@@ -1,0 +1,203 @@
+<?php
+
+namespace App\Http\Controllers\Rdv;
+
+use App\Http\Controllers\Controller;
+
+use App\Models\Disease;
+use App\Models\Illness;
+use App\Models\Symptom;
+use Illuminate\Http\Request;
+use App\Models\Service;
+use Illuminate\Support\Facades\DB;
+
+
+class RecommendationServiceController extends Controller
+{
+
+public function showSelectionSymptomes()
+{
+    // Récupérer la liste des symptômes
+    $symptomes = Symptom::all();
+    return view('rdv.selection_symptomes', compact('symptomes'));
+}
+
+public function showSelectionMaux()
+{
+    // Récupérer la liste des maux
+    $maux = Illness::all();
+    return view('rdv.selection_maux', compact('maux'));
+}
+
+public function showSelectionMaladies()
+{
+    // Récupérer la liste des maladies
+    $maladies = Disease::all();
+    return view('rdv.selection_maladies', compact('maladies'));
+}
+
+
+    public function AfficherForm()
+    {
+         return view('rdv.recommandService');
+    }
+
+
+    public function recommander_servicePar_symptome(Request $request)
+{
+    // Valider les données du formulaire
+    $request->validate([
+        'symptomes' => 'array', // Les symptômes doivent être un tableau
+    ]);
+
+    // Récupérer les symptômes sélectionnés
+    $symptomes = $request->input('symptomes', []);
+
+    // Construction de la requête pour récupérer les services
+    $servicesQuery = Service::query();
+
+    // Joindre la table pivot service_symptom_illness_disease
+    $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
+
+    // Ajouter les contraintes en fonction des symptômes sélectionnés
+    if (!empty($symptomes)) {
+        $servicesQuery->whereIn('service_symptom_illness_disease.symptom_id', $symptomes);
+    }
+
+    // Récupérer les services recommandés
+    $services = $servicesQuery->distinct()->get();
+
+    // Retourner la vue avec les services recommandés
+    return view('rdv.selectionService', compact('services'));
+}
+
+
+public function recommander_servicePar_maux(Request $request)
+{
+    // Valider les données du formulaire
+    $request->validate([
+        'maux' => 'array', // Les maux doivent être un tableau
+    ]);
+
+    // Récupérer les maux sélectionnés
+    $maux = $request->input('maux', []);
+
+    // Construction de la requête pour récupérer les services
+    $servicesQuery = Service::query();
+
+    // Joindre la table pivot service_symptom_illness_disease
+    $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
+
+    // Ajouter les contraintes en fonction des maux sélectionnés
+    if (!empty($maux)) {
+        $servicesQuery->whereIn('service_symptom_illness_disease.illness_id', $maux);
+    }
+
+    // Récupérer les services recommandés
+    $services = $servicesQuery->distinct()->get();
+
+    // Retourner la vue avec les services recommandés
+    return view('rdv.selectionService', compact('services'));
+}
+
+
+public function recommander_servicePar_maladie(Request $request)
+{
+    // Valider les données du formulaire
+    $request->validate([
+        'maladies' => 'array', // Les maladies doivent être un tableau
+    ]);
+
+    // Récupérer les maladies sélectionnées
+    $maladies = $request->input('maladies', []);
+
+    // Construction de la requête pour récupérer les services
+    $servicesQuery = Service::query();
+
+    // Joindre la table pivot service_symptom_illness_disease
+    $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
+
+    // Ajouter les contraintes en fonction des maladies sélectionnées
+    if (!empty($maladies)) {
+        $servicesQuery->whereIn('service_symptom_illness_disease.disease_id', $maladies);
+    }
+
+    // Récupérer les services recommandés
+    $services = $servicesQuery->distinct()->get();
+
+    // Retourner la vue avec les services recommandés
+    return view('rdv.selectionService', compact('services'));
+}
+
+        // public function recommander(Request $request)
+        // {
+        //     // Valider les données du formulaire
+        //     $request->validate([
+        //         'maux' => 'array', // Les maux doivent être un tableau
+        //         'symptomes' => 'array', // Les symptômes doivent être un tableau
+        //         'maladies' => 'array', // Les maladies doivent être un tableau
+        //     ]);
+
+        //     // Récupérer les données soumises
+        //     $maux = $request->input('maux', []);
+        //     $symptomes = $request->input('symptomes', []);
+        //     $maladies = $request->input('maladies', []);
+
+        //     // Commencer la construction de la requête pour récupérer les services
+        //     $servicesQuery = Service::query();
+
+        //     // Joindre la table pivot service_symptom_illness_disease
+        //     $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
+
+        //     // Condition de jointure pour chaque partie sélectionnée
+        //     $servicesQuery->where(function ($query) use ($maux, $symptomes, $maladies) {
+        //         // Sélectionne les services correspondant à chaque partie sélectionnée individuellement
+        //         if (!empty($maux)) {
+        //             $query->whereIn('service_symptom_illness_disease.illness_id', $maux);
+        //         }
+
+        //         if (!empty($symptomes)) {
+        //             $query->whereIn('service_symptom_illness_disease.symptom_id', $symptomes);
+        //         }
+
+        //         if (!empty($maladies)) {
+        //             $query->whereIn('service_symptom_illness_disease.disease_id', $maladies);
+        //         }
+
+        //         // Sélectionne les services correspondant à la combinaison de maux et symptômes
+        //         if (!empty($maux) && !empty($symptomes)) {
+        //             $query->orWhere(function ($query) use ($maux, $symptomes) {
+        //                 $query->whereIn('service_symptom_illness_disease.illness_id', $maux)
+        //                       ->whereIn('service_symptom_illness_disease.symptom_id', $symptomes);
+        //             });
+        //         }
+
+        //         // Sélectionne les services correspondant à la combinaison de maux et maladies
+        //         if (!empty($maux) && !empty($maladies)) {
+        //             $query->orWhere(function ($query) use ($maux, $maladies) {
+        //                 $query->whereIn('service_symptom_illness_disease.illness_id', $maux)
+        //                       ->whereIn('service_symptom_illness_disease.disease_id', $maladies);
+        //             });
+        //         }
+
+        //         // Sélectionne les services correspondant à la combinaison de symptômes et maladies
+        //         if (!empty($symptomes) && !empty($maladies)) {
+        //             $query->orWhere(function ($query) use ($symptomes, $maladies) {
+        //                 $query->whereIn('service_symptom_illness_disease.symptom_id', $symptomes)
+        //                       ->whereIn('service_symptom_illness_disease.disease_id', $maladies);
+        //             });
+        //         }
+        //     });
+
+        //     // Récupérer les services recommandés
+        //     $services = $servicesQuery->distinct()->get();
+
+        //     // Retourner la vue avec les services recommandés
+        //     return view('back_end.rdv.selectionService', compact('services'));
+        // }
+
+
+
+
+
+}
