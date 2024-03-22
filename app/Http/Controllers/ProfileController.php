@@ -46,10 +46,29 @@ class ProfileController extends Controller
       */
      public function update(ProfileUpdateRequest $request): RedirectResponse
      {
-        
+
 
         $user = $request->user();
         $user->fill($request->validated());
+        // Vérifier si une nouvelle photo est téléchargée
+        // dd($user);
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            if($user->photo){
+                Storage::disk('public')->delete($user->photo);
+            }
+            $new_photo = $photo->getClientOriginalName();
+            $user['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+        }
+        //Ajout de l'image de l'photo
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            if($user->photo){
+                Storage::disk('public')->delete($user->photo);
+            }
+            $new_photo = $photo->getClientOriginalName();
+            $user['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+        }
 
 
          if ($user->isDirty('email')) {

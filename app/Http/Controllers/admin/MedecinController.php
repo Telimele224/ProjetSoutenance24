@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use PhpParser\Node\Expr\Cast\String_;
 
@@ -49,7 +50,6 @@ class MedecinController extends Controller
     public function store(MedecinRequest $request)
     {
 
-        $avatarPath = $this->uploadAvatar($request->file('avatar'));
         // dd($request->all());
         // Création de l'utilisateur
         $user = User::create([
@@ -63,10 +63,19 @@ class MedecinController extends Controller
             'telephone' => $request->input('telephone'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'avatar' => $avatarPath,
+            // 'photo' => null, // Initialisez la valeur du champ photo à null par défaut
+
 
         ]);
-
+       //Ajout de l'image de l'photo
+       if($request->hasFile('photo')){
+        $photo = $request->file('photo');
+        if($user->photo){
+            Storage::disk('public')->delete($user->photo);
+        }
+        $new_photo = $photo->getClientOriginalName();
+        $user['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+    }
     // Création du patient lié à l'utilisateur
     $medecin = Medecin::create([
         'specialite' => $request->input('specialite'),
@@ -109,7 +118,6 @@ class MedecinController extends Controller
          $medecin = Medecin::findOrFail($id);
         // Validation des données du formulaire
 
-        $avatarPath = $this->uploadAvatar($request->file('avatar'));
 
         // dd($request->all());
         // Mise à jour des informations du patient
@@ -131,8 +139,25 @@ class MedecinController extends Controller
 
         $user->telephone = $request->input('telephone');
         $user->email = $request->input('email');
-        $user->avatar = $avatarPath ?: $user->avatar;
+        $user->photo = $request->input('photo') ?: $user->photo;
 
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            if($medecin->photo){
+                Storage::disk('public')->delete($medecin->photo);
+            }
+            $new_photo = $photo->getClientOriginalName();
+            $data['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+        }
+        //Ajout de l'image de l'photo
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            if($medecin->photo){
+                Storage::disk('public')->delete($medecin->photo);
+            }
+            $new_photo = $photo->getClientOriginalName();
+            $data['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+        }
 
 
         // Vérification et mise à jour du mot de passe
@@ -159,21 +184,5 @@ class MedecinController extends Controller
         //
     }
 
-    function uploadAvatar($file)
-    {
-        if ($file) {
-            $filename = uniqid() . '_' . $file->getClientOriginalName();
-            $path = public_path('avatars');
 
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-
-            $file->move($path, $filename);
-
-            return $filename;
-        }
-
-        return null;
-    }
 }

@@ -34,8 +34,8 @@
                                 <td>{{$k+1}}</td>
                                 <td>{{$service->nom}}</td>
                                 <td>{{Str::substr($service->description, 0, 80) }}...</td>
-                                <td><img  class="card-img-top" src="{{asset('storage/'.$service->photo)}} " alt="Image"></td>
-                                <td><img  class="card-img-top" src="{{asset('storage/'.$service->avatar)}} " alt="Image"></td>
+                                <td><img width="25" height="25"  class=" rounded-circle" src="{{asset('storage/'.$service->photo)}} " alt="Image"></td>
+                                <td><img  width="25" height="25" class=" rounded-circle" src="{{asset('storage/'.$service->avatar)}} " alt="Image"></td>
                                 <td>
                                     <div class="avatar-list text-end">
                                         <span class="avatar rounded-circle bg-blue-dark" ><i class="fe fe-eye fs-15"></i></span>

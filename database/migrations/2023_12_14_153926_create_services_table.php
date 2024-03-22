@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('service_id');
             $table->string('nom');
             $table->string('description');
+            $table->string('photo')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

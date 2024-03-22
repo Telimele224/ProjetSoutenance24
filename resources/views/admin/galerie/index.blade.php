@@ -26,10 +26,10 @@
                                 </label>
                             </div>
                             <ul class="list-unstyled row lightgallery">
-                                @foreach ($photos as $photo)
+                                @foreach ($photos as $galerie)
                                     <li class="col-xs-6 col-sm-4 col-md-4 col-xl-2">
-                                        <a href="{{asset('storage/'.$photo->photo)}}" class="glightbox card br-5" data-gallery="gallery1">
-                                            <img  class="card-img-top br-5" src="{{asset('storage/'.$photo->photo)}}" alt="Image">
+                                        <a href="{{asset('storage/'.$galerie->photo)}}" class="glightbox card br-5" data-gallery="gallery1">
+                                            <img  class="card-img-top br-5" src="{{asset('storage/'.$galerie->photo)}}" alt="Image">
                                         </a>
                                     </li>
                                 @endforeach

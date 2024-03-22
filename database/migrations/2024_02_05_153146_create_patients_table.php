@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('ville');
+            $table->string('ville')->nullable();
             $table->string('poids')->nullable();
+            $table->string('telephone')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

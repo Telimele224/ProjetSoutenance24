@@ -10,8 +10,9 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    { Schema::create('horaires', function (Blueprint $table) {
-        $table->id();
+    {
+        Schema::create('horaires', function (Blueprint $table) {
+            $table->id();
         $table->unsignedBigInteger('id_medecin');
         $table->foreign('id_medecin')->references('id')->on('medecins')->onDelete('cascade');
         $table->time('lundi_debut')->nullable();
@@ -29,8 +30,7 @@ return new class extends Migration
         $table->time('dimanche_debut')->nullable();
         $table->time('dimanche_fin')->nullable();
         $table->timestamps();
-    });
-
+        });
     }
 
     /**

@@ -46,7 +46,7 @@
                    <!-- Start::slide  Patient-->
                    <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
-                       <span class="side-menu__label"><i class="fa fa-bed"></i>  ADMINISTRATEURS</span>
+                       <span class="side-menu__label"><i class="fa fa-user-circle-o"></i>  ADMINISTRATEURS</span>
                        <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">
@@ -65,7 +65,7 @@
              <!-- Start::slide  Medecins-->
              <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
-                   <span class="side-menu__label"><i class="fa fa-group"></i>          MEDECINS</span>
+                   <span class="side-menu__label"><i class="fa fa-user-md"></i>          MEDECINS</span>
                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1">
@@ -155,7 +155,7 @@
                            <!-- Start::slide -->
              <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
-                   <span class="side-menu__label"><i class="fa fa-cubes"></i>      GALERIES</span>
+                   <span class="side-menu__label"><i class="icon icon-picture"></i>      GALERIES</span>
                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1">
@@ -177,7 +177,7 @@
              <!-- End::slide -->
              <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
-                   <span class="side-menu__label"><i class="fa fa-quote-left"></i>    TEMOIGNAGES</span>
+                   <span class="side-menu__label"><i class="fa fa-thumbs-o-up"></i>    TEMOIGNAGES</span>
                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1">
@@ -196,7 +196,7 @@
               <!-- End::slide -->
               <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
-                   <span class="side-menu__label"><i class="fa fa-quote-left"></i>    TYPE DE TEMOIGNAGE</span>
+                   <span class="side-menu__label"><i class="fa fa-themeisle"></i>    TYPE DE TEMOIGNAGE</span>
                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1">
@@ -220,7 +220,7 @@
              <!-- Start::slide -->
              <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
-                   <span class="side-menu__label">MESSAGERIE & FORUM</span>
+                   <span class="side-menu__label"> <i class="fa fa-comments-o"></i>      CONVERSATIONS</span>
                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1 mega-menu">
@@ -237,12 +237,12 @@
              </li>
              <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
-                   <span class="side-menu__label">CALENDRIER</span>
+                   <span class="side-menu__label"><i class="fa fa-calendar"></i> CALENDRIER</span>
                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1 mega-menu">
                    <li class="slide side-menu__label1">
-                      <a href="javascript:void(0);"><span>CALENDRIER</a>
+                      <a href="javascript:void(0);"><span> CALENDRIER</a>
                    </li>
                    <li class="slide">
                     <a href="{{route('admin.calendriers.index')}}" class="side-menu__item"><span><i class="fa fa-commenting"></i>        CALENDRIER</span></a>

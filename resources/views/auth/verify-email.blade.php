@@ -1,36 +1,56 @@
 @extends('layouts.contenu')
+<style>
+    /* Ajout de styles pour centrer le contenu */
+    .centrer-contenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Hauteur de la vue */
+    }
+
+    /* Ajout de styles pour centrer horizontalement */
+    .centrer-horizontalement {
+        text-align: center;
+    }
+</style>
 @section('contenu')
 
-<div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-    {{ __('Merci pour l\'enregistrement! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n\'avez pas reçu l\'e-mail, nous vous en enverrons volontiers un autre.') }}
-</div>
+<div class="centrer-contenu">
 
-@if (session('status') == 'verification-link-sent')
-<div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-    {{ __('Un nouveau lien de vérification a été envoyé à l\'adresse e-mail que vous avez fournie lors de l\'inscription.') }}
-</div>
-@endif
-
-<div class="mt-4 flex items-center justify-between">
-    <form method="POST" action="{{ route('verification.send') }}">
-        @csrf
-
-        <div>
-            <button class="btn btn-primary">
-                {{ __('Renvoyer l\'e-mail de vérification') }}
-            </button>
+    <div class="mb-4 text-lg centrer-horizontalement container">
+        <div class="container">
+            {{ __('Merci pour l\'enregistrement! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n\'avez pas reçu l\'e-mail, nous vous en enverrons volontiers un autre.') }}
         </div>
-    </form>
 
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
+    </div>
 
-        <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-            {{ __('Se déconnecter') }}
-        </button>
-    </form>
+    @if (session('status') == 'verification-link-sent')
+    <div class="mb-4 font-medium text-sm centrer-horizontalement">
+        {{ __('Un nouveau lien de vérification a été envoyé à l\'adresse e-mail que vous avez fournie lors de l\'inscription.') }}
+    </div>
+    @endif
+
+    <div class="mt-4 flex items-center justify-between centrer-horizontalement">
+        <form method="POST" action="{{ route('verification.send') }}">
+            @csrf
+
+            <div>
+                <button class="btn btn-primary">
+                    {{ __('Renvoyer l\'e-mail de vérification') }}
+                </button>
+            </div>
+        </form>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <button type="submit" class="btn btn-secondary">
+                {{ __('Se déconnecter') }}
+            </button>
+        </form>
+    </div>
+
 </div>
 
 @endsection
-
-

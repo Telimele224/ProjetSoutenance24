@@ -29,7 +29,7 @@
                             <label   for="titre" :value="__('Titre')" class="mb-2 fw-500">Titre de l'actualité<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-convert"></i></span>
-                                <input type="text" class="form-control @error('titre') is-invalid @enderror" name="titre" placeholder="selectionner une photo" aria-label="titre" aria-describedby="addon-wrapping" value="{{ old('titre', $actualite->titre) }}" ><br>
+                                <input type="text" class="form-control @error('titre') is-invalid @enderror" name="titre" placeholder="Entrer le titre de l'actualité" aria-label="titre" aria-describedby="addon-wrapping" value="{{ old('titre', $actualite->titre) }}" ><br>
                                 <div class="invalid-feedback">@error('titre') {{$message}} @enderror </div>
                             </div>
                         </div>

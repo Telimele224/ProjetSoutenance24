@@ -227,7 +227,7 @@
                       <a href="javascript:void(0);" class="header-link dropdown-toggle d-flex align-items-center"
                          id="mainHeaderProfile" data-bs-toggle="dropdown" aria-expanded="false">
                          <span class="me-2">
-                         <img src="{{asset('storage/'.Auth::user()->photo)}}" alt="img" width="30"
+                            <img src="{{asset('storage/'.Auth::user()->photo)}}" alt="img" width="30"
                             height="30" class="rounded-circle">
                          </span>
                          <div class="d-xl-block d-none lh-1">
@@ -237,7 +237,7 @@
                       <!-- End::header-link|dropdown-toggle -->
                       <ul class="dropdown-menu pt-0 overflow-hidden dropdown-menu-end mt-1"
                          aria-labelledby="mainHeaderProfile">
-                         <li><a class="dropdown-item" href="{{route('profile.edit')}}"><i
+                         <li><a class="dropdown-item" href="{{route('profilee.edit')}}"><i
                             class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile</a></li>
                          <li><a class="dropdown-item" href="{{route('home')}}">
                             <i class="ti ti-inbox fs-18 me-2 op-7"></i>Tableau de bord</a></li>

@@ -1,4 +1,4 @@
-@extends('en_tete.entete_administrateurs')
+@extends('en_tete.entete_patient')
 
 @section('contenu')
 
@@ -22,7 +22,7 @@
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-md-5">
             <div class="card text-center shadow-none border profile-cover__img">
                 <div class="card-body">
-                   @include('admin.profile.partials.image')
+                   @include('patients.profilepatient.partials.image')
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
                             <div class="row p-5">
-                                @include('admin.profile.partials.update-profile-information-form')
+                                @include('patients.profilepatient.partials.update-profile-information-form')
                             </div>
                         </div>
                         <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
@@ -66,10 +66,10 @@
                         <div class="tab-pane fade" id="editprofile" role="tabpanel" aria-labelledby="editprofile-tab">
                             <div class="row ">
                                 <div class="row col-xl-6 vstack gap-3">
-                                    @include('admin.profile.partials.update-password-form')
+                                    @include('patients.profilepatient.partials.update-password-form')
                                 </div>
                                 <div class=" row col-xl-6 vstack gap-3">
-                                    @include('admin.profile.partials.delete-user-form')
+                                    @include('patients.profilepatient.partials.delete-user-form')
                                 </div>
                             </div>
                         </div>
@@ -93,4 +93,4 @@
 
 </div>
  @endsection
- 
+

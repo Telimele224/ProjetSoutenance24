@@ -26,7 +26,7 @@ class ProfileUpdateRequest extends FormRequest
             'specialite' => [ 'string', 'max:255'],
             'genre' => [ 'string', 'max:255'],
             'adresse' => [ 'string', 'max:255'],
-            'telephone' => 'required|int|min:9|unique:users,telephone',
+            // 'telephone' => 'required|int|min:9,
             'avatar'=>['image','mimes:png,jpg,jpeg,gif'],
             'biographie'=> [ 'string'],
         ];

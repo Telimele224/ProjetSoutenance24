@@ -50,7 +50,7 @@
       <!-- PAGE -->
       <div class="page">
          <div class="page-main">
-            @include('en_tete.navigation_en_haut')
+            @include('en_tete.navigation_en_haut_patient')
             <!--Main-Sidebar Onglets de navigation-->
             @include('onglets_navigation.onglet_patient')
             <!-- End Main-Sidebar onglet de navigation fin-->

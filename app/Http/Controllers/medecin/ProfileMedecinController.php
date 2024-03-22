@@ -5,46 +5,23 @@ namespace App\Http\Controllers\medecin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Medecin;
-use App\Models\Patient;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-
-class ProfileController extends Controller
+class ProfileMedecinController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -54,7 +31,7 @@ class ProfileController extends Controller
        $medecins = Medecin::all();
     //    $patients = Patient::all();
 
-       return view('medecins.profile.edit',[
+       return view('medecins.profilee.edit',[
            'user' => $request ->user(),
            'medecins'=>$medecins,
         //    'patients' => $patients
@@ -66,19 +43,40 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
-     {
+    {
 
 
-        $user = $request->user();
-        $user->fill($request->validated());
+       $user = $request->user();
+       $user->fill($request->validated());
+       // Vérifier si une nouvelle photo est téléchargée
+       // dd($user);
+       if($request->hasFile('photo')){
+           $photo = $request->file('photo');
+           if($user->photo){
+               Storage::disk('public')->delete($user->photo);
+           }
+           $new_photo = $photo->getClientOriginalName();
+           $user['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+       }
+       //Ajout de l'image de l'photo
+       if($request->hasFile('photo')){
+           $photo = $request->file('photo');
+           if($user->photo){
+               Storage::disk('public')->delete($user->photo);
+           }
+           $new_photo = $photo->getClientOriginalName();
+           $user['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+       }
 
-         if ($user->isDirty('email')) {
-             $user->email_verified_at = null;
-         }
 
-         $request ->user()->save();
-         return redirect()->route('profile.edit')->with('status', 'profile-updated');
-     }
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $request ->user()->save();
+        return redirect()->route('profilee.edit')->with('status', 'profile-updated');
+    }
+
 
 
     /**

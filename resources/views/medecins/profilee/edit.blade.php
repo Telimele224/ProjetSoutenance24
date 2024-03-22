@@ -1,44 +1,28 @@
 @extends('en_tete.entete_medecin')
 
 @section('contenu')
+
+
 <div class="main-container container-fluid">
+
+        @if (session('status') === 'profile-updated')
+
+        <p class="alert alert-success"
+            x-data="{ show: true }"
+            x-show="show"
+            x-transition
+            x-init="setTimeout(() => show = false, 5000)"
+            class="text-sm text-gray-600 dark:text-gray-400"
+        >{{ __('Mise à jour effectuée avec succès.') }}</p>
+        @endif
+
 
     <!-- ROW-1 -->
     <div class="row">
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-md-5">
             <div class="card text-center shadow-none border profile-cover__img">
                 <div class="card-body">
-                    <div class="profile-img-1">
-                        <img src="{{asset('assets/build/assets/images/users/18.jpg')}}" alt="img" id="profile-img">
-                        <a aria-label="anchor" href="#" class="rounded-pill avatar-icons bg-primary tx-fixed-white p-2">
-                            <input type="file" name="photo" class="position-absolute w-100 h-100 op-0" id="profile-change">
-                            <i class="fe fe-camera lh-base"></i>
-                        </a>
-                    </div>
-                    <div class="profile-img-content text-dark my-2">
-                        <div>
-                            <h5 class="mb-0">{{ Auth::user()->prenom }} {{Auth::user()->nom}} </h5>
-                            @foreach($medecins as $medecin)
-                                @if(Auth::user()->id === $medecin->user_id)
-                                    <p class="text-muted mb-0"> {{$medecin->specialite}} </p>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div>
-                        <div class="text-warning mb-0">
-                            <i class="fa fa-star fs-20"></i>
-                            <i class="fa fa-star fs-20"></i>
-                            <i class="fa fa-star fs-20"></i>
-                            <i class="fa fa-star fs-20"></i>
-                            <i class="fa fa-star-half-o fs-20"></i>
-                        </div>
-                    </div>
-                    <p class="mb-2">(3145 Reviews)</p>
-                    <div class="d-flex btn-list btn-list-icon justify-content-center">
-                        <button type="button" class="btn btn-sm btn-primary"><i class="fe fe-user-plus me-1"></i>Follow</button>
-                        <button type="button" class="btn btn-sm btn-info"><i class="fe fe-message-square me-1"></i>Message</button>
-                    </div>
+                   @include('admin.profile.partials.image')
                 </div>
             </div>
 
@@ -109,3 +93,4 @@
 
 </div>
  @endsection
+

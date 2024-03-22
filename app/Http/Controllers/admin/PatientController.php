@@ -45,9 +45,7 @@ class PatientController extends Controller
     {
 
 
-        $avatarPath = $this->uploadAvatar($request->file('avatar'));
-        // dd($request->all());
-        // Création de l'utilisateur
+
         $user = User::create([
             'name' => $request->input('name'),
             'nom' => $request->input('nom'),
@@ -59,38 +57,32 @@ class PatientController extends Controller
             'telephone' => $request->input('telephone'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'avatar' => $avatarPath,
+            // 'photo' => null, // Initialisez la valeur du champ photo à null par défaut
+
 
         ]);
-        // Création du patient lié à l'utilisateur
-    $patient = Patient::create([
-        'ville' => $request->input('ville'),
-        'poids' => $request->input('poids'),
-        'telephone' => $request->input('telephone'),
-        'user_id' => $user->id,
-    ]);
+
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            if($photo->isValid()){
+                $new_photo = $photo->getClientOriginalName();
+                $user['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+            }
+        }
+
+            // Création du patient lié à l'utilisateur
+        $patient = Patient::create([
+            'ville' => $request->input('ville'),
+            'poids' => $request->input('poids'),
+            'telephone' => $request->input('telephone'),
+            'user_id' => $user->id,
+        ]);
 
         // event(new Registered($user));
         // event(new Registered($patient));
         return redirect()->route('admin.patient.index')->with('success', 'patient ajouté avec succès.');
     }
-    function uploadAvatar($file)
-    {
-        if ($file) {
-            $filename = uniqid() . '_' . $file->getClientOriginalName();
-            $path = public_path('avatars');
 
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-
-            $file->move($path, $filename);
-
-            return $filename;
-        }
-
-        return null;
-    }
 
     /**
      * Display the specified resource.

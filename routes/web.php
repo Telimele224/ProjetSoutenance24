@@ -20,8 +20,10 @@ use App\Http\Controllers\Rdv\MalController;
 use App\Http\Controllers\medecin\ConsultationController;
 use App\Http\Controllers\medecin\ListeMedecinsController;
 use App\Http\Controllers\medecin\PatientsController;
+use App\Http\Controllers\medecin\ProfileMedecinController;
 use App\Http\Controllers\patient\DossierMedicalController;
 use App\Http\Controllers\patient\MedecinListeController;
+use App\Http\Controllers\patient\ProfilePatientController;
 use App\Http\Controllers\patient\TemoignageControllers;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Rdv\RdvController;
@@ -104,7 +106,22 @@ Route::prefix('medecins')->name('medecins.')->group(function () {
     Route::resource('consultation', ConsultationController::class);
     Route::resource('patient', PatientsController::class)->except('show');
     Route::resource('monequipe', ListeMedecinsController::class)->except('show');
+    // Route::resource('profile', ProfileMedecinController::class)->except('show','index','store','create');
+
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profilee', [ProfileMedecinController::class, 'edit'])->name('profilee.edit');
+    Route::patch('/profilee', [ProfileMedecinController::class, 'update'])->name('profilee.update');
+    Route::delete('/profilee', [ProfileMedecinController::class, 'destroy'])->name('profilee.destroy');
+});
+//ROute pour le profile du patient
+Route::middleware('auth')->group(function () {
+    Route::get('/profilepatient', [ProfilePatientController::class, 'edit'])->name('profilepatient.edit');
+    Route::patch('/profilepatient', [ProfilePatientController::class, 'update'])->name('profilepatient.update');
+    Route::delete('/profilepatient', [ProfilePatientController::class, 'destroy'])->name('profilepatient.destroy');
+});
+
 
 // routes pour l'authentification
 
@@ -113,6 +130,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 Route::get('/admin/emplois/create', [HoraireController::class ,'selectMedecinForm'])->name('admin.emplois.create');
 Route::get('/admin/emplois/selectMedecin', [HoraireController::class ,'selectMedecin'])->name('admin.emplois.selectMedecin');

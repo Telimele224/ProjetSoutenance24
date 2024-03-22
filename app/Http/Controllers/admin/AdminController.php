@@ -44,7 +44,6 @@ class AdminController extends Controller
     public function store(AdministrateurRequest $request)
     {
 
-        $avatarPath = $this->uploadAvatar($request->file('avatar'));
         // dd($request->all());
         // Création de l'utilisateur
         $user = User::create([
@@ -58,9 +57,19 @@ class AdminController extends Controller
             'telephone' => $request->input('telephone'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'avatar' => $avatarPath,
-
+            'photo' => null, // Initialisez la valeur du champ photo à null par défaut
         ]);
+
+         // Télécharge l'avatar de l'utilisateur s'il est fourni dans la requête
+         if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            if ($photo->isValid()) {
+                $new_photo = $photo->getClientOriginalName();
+                $path = $photo->storeAs('photos', $new_photo, 'public'); // Enregistrez la photo dans le stockage public
+                $user->photo = $path; // Mettez à jour le champ photo avec le chemin d'accès de la photo
+                $user->save(); // Enregistrez les modifications
+            }
+        }
         // Création du patient lié à l'utilisateur
     $admininistrateur = Administrateurs::create([
         'user_id' => $user->id,
@@ -70,23 +79,7 @@ class AdminController extends Controller
         // event(new Registered($patient));
         return redirect()->route('admin.administrateur.index')->with('success', 'patient ajouté avec succès.');
     }
-    function uploadAvatar($file)
-    {
-        if ($file) {
-            $filename = uniqid() . '_' . $file->getClientOriginalName();
-            $path = public_path('avatars');
-
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-
-            $file->move($path, $filename);
-
-            return $filename;
-        }
-
-        return null;
-    }
+    
 
     /**
      * Display the specified resource.

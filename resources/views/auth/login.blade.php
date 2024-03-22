@@ -54,11 +54,11 @@
                           </x-primary-button>
                      </div>
                      <div class="text-center">
-                         <p class="mb-0 tx-14">Don't have an account yet?
-                             <a href="{{route('register')}}" class="tx-primary ms-1 text-decoration-underline">Sign Up</a>
+                         <p class="mb-0 tx-14">Vous n'avez pas encore de compte?
+                             <a href="{{route('register')}}" class="tx-primary ms-1 text-decoration-underline">S'inscrire</a>
                          </p>
                      </div>
-                     <p class="text-center mt-3 mb-2">Signin with</p>
+                     <p class="text-center mt-3 mb-2">Se connecter avec</p>
                          <div class="d-flex justify-content-center">
                              <div class="btn-list">
                                  <button class="btn btn-icon bg-primary-transparent rounded-pill border-0" type="button">

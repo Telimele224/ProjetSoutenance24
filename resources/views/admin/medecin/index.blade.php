@@ -110,7 +110,7 @@
                         <div class="user-image">
                             <img src="{{asset('assets/build/assets/images/media/files/04.jpg')}}" class="card-img-top" alt="...">
                             <span class="avatar avatar-xl rounded-circle">
-                                <img src="{{asset('assets/build/assets/images/users/16.jpg')}}" alt="" class="rounded-circle">
+                                <img src="{{asset('storage/'.$user->photo)}}" alt="" class="rounded-circle">
                             </span>
                         </div>
                         <div class="card-body text-center">
