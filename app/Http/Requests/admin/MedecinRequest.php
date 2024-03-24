@@ -25,7 +25,7 @@ class MedecinRequest extends FormRequest
             'adresse' => 'required|string',
             'age' => 'required|integer',
             'telephone' => 'required|string|min:9|max:15|unique:users,telephone',
-            'avatar' => 'nullable|image',
+            'photo' => 'nullable|image',
             'email' => 'required|email|unique:users,email',
             'password' =>['required','min:8', 'confirmed', Rules\Password::defaults()],
             'statut' => 'required|string',

@@ -3,10 +3,8 @@
 namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules;
 
-
-class AdministrateurRequest extends FormRequest
+class PersonnelsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +22,11 @@ class AdministrateurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
             'nom' => 'required|string',
             'prenom' => 'required|string',
-            'genre' => 'required|string',
-            'adresse' => 'required|string',
-            'age' => 'required|integer',
-            'telephone' => 'required|string|min:9|max:15|unique:users,telephone',
-            'photo' => 'nullable|image',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required','min:8', 'confirmed', Rules\Password::defaults()],
+            'poste' => 'required|string',
+            'photo'=>['required','image','mimes:png,jpg,svg,jpeg,gif'],
+
         ];
     }
 }

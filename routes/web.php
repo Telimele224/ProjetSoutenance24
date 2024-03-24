@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\calendrierControllers as AdminCalendrierControlle
 use App\Http\Controllers\admin\GalerieController;
 use App\Http\Controllers\admin\MedecinController;
 use App\Http\Controllers\admin\PatientController;
+use App\Http\Controllers\admin\PersonnelsController;
 use App\Http\Controllers\admin\ServiceControllers;
 use App\Http\Controllers\admin\TypeConsultationController;
 use App\Http\Controllers\Rdv\AuthController;
@@ -72,6 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('medecin',MedecinController::class)->except('show');
     Route::resource('patient',PatientController::class)->except('show');
     Route::resource('administrateur',AdminController::class)->except('show');
+    Route::resource('personnel',PersonnelsController::class);
     Route::resource('typeconsultation',TypeConsultationController::class)->except('show');
     Route::resource('horaires',HoraireController::class);
     Route::resource('symptomes',SymptomController::class);

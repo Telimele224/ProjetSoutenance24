@@ -90,8 +90,8 @@
                 </ul>
              </li>
              <!-- End::slide -->
-                   <!-- Start::slide  Patient-->
-                   <li class="slide has-sub">
+             <!-- Start::slide  Patient-->
+                <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
                        <span class="side-menu__label"><i class="fa fa-bed"></i>  PATIENTS</span>
                        <i class="fe fe-chevron-right side-menu__angle"></i>
@@ -107,7 +107,25 @@
                           <a href="{{route('admin.patient.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>        Listes</span></a>
                     </ul>
                  </li>
-                     <!-- Start::slide  fin-->
+             <!-- Start::slide  fin-->
+              <!-- Start::slide  Patient-->
+              <li class="slide has-sub">
+                <a href="javascript:void(0);" class="side-menu__item">
+                   <span class="side-menu__label"><i class="fa fa-bed"></i>  PERSONNELS</span>
+                   <i class="fe fe-chevron-right side-menu__angle"></i>
+                </a>
+                <ul class="slide-menu child1">
+                   <li class="slide side-menu__label1">
+                      <a href="javascript:void(0);">personnels</a>
+                   </li>
+                   <li class="slide">
+                     <a href="{{route('admin.personnel.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle"></i>       Enregistrer</span></a>
+                   </li>
+                   <li class="slide">
+                      <a href="{{route('admin.personnel.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>        Listes</span></a>
+                </ul>
+             </li>
+         <!-- Start::slide  fin-->
 
              <li class="slide__category"><span class="category-name"> Services Actualités</span></li>
              <!-- End::slide__category -->

@@ -114,7 +114,7 @@ class ActualiteControllers extends Controller
             Storage::disk('public')->delete($actualite->avatar);
         }
         $actualite->delete();
-        return redirect()->route('admin.service.index')->with('sucess', 'suppression effectue avec success !');
+        return redirect()->route('admin.actualite.index')->with('sucess', 'suppression effectue avec success !');
     }
 
 }

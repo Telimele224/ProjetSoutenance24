@@ -62,11 +62,14 @@ class PatientController extends Controller
 
         ]);
 
-        if($request->hasFile('photo')){
+         // Télécharge l'avatar de l'utilisateur s'il est fourni dans la requête
+         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
-            if($photo->isValid()){
+            if ($photo->isValid()) {
                 $new_photo = $photo->getClientOriginalName();
-                $user['photo'] = $photo->storeAs('photos', $new_photo, 'public');
+                $path = $photo->storeAs('photos', $new_photo, 'public'); // Enregistrez la photo dans le stockage public
+                $user->photo = $path; // Mettez à jour le champ photo avec le chemin d'accès de la photo
+                $user->save(); // Enregistrez les modifications
             }
         }
 

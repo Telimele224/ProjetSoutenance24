@@ -18,7 +18,7 @@
                     @csrf
                     @method($service->exists ? 'put': 'post')
                     <div class="row">
-                        <div class=""col-md-6 position-relative">
+                        <div class="col-md-6 position-relative">
                             <label   for="photo" :value="__('Photo')" class="mb-2 fw-500">Photo du Service<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-convert"></i></span>
@@ -26,7 +26,7 @@
                                 <div class="invalid-feedback">@error('photo') {{$message}} @enderror </div>
                             </div>
                         </div>
-                        <div class=""col-md-6 position-relative">
+                        <div class="col-md-6 position-relative">
                             <label   for="avatar" :value="__('avatar')" class="mb-2 fw-500">Logo du Service<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-convert"></i></span>
@@ -34,7 +34,7 @@
                                 <div class="invalid-feedback">@error('avatar') {{$message}} @enderror </div>
                             </div>
                         </div>
-                        <div class=""col-md-6 position-relative">
+                        <div class="col-md-6 position-relative">
                             <label   for="nom" :value="__('nom')" class="mb-2 fw-500">Nom du service<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-arrow-left"></i></span>

@@ -30,7 +30,7 @@
                         <!-- Avatar du médecin -->
 
                             <div class="rounded-circle overflow-hidden me-2" style="width: 50px; height: 50px;">
-                                <img src="{{ asset('avatars/' . $medecin->user->avatar) }}" alt="{{ $medecin->user->nom }}" class="w-100 h-100 object-fit-cover">
+                                <img src="{{ asset('avatars/' . $medecin->user->photo) }}" alt="{{ $medecin->user->nom }}" class="w-100 h-100 object-fit-cover">
                             </div>
 
 

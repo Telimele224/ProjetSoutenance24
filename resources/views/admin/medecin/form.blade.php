@@ -127,11 +127,11 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <label   for="photo" :value="__('avatar')" class="mb-2 fw-500">Photo<span class="text-danger ms-1">*</span></label>
+                            <label   for="photo" :value="__('photo')" class="mb-2 fw-500">Photo<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="icon icon-picture"></i></span>
-                                <input type="file" class="form-control  @error('avatar') is-invalid @enderror" name="avart" placeholder="Votre photo" aria-label="avatar" aria-describedby="addon-wrapping" value="{{ old('avatar', $medecin ? $medecin->user->avatar : '') }}">
-                                <div class="invalid-feedback">@error('avatar') {{$message}} @enderror </div>
+                                <input type="file" class="form-control  @error('photo') is-invalid @enderror" name="photo" placeholder="Votre photo" aria-label="photo" aria-describedby="addon-wrapping" value="{{ old('photo', $medecin ? $medecin->user->photo : '') }}">
+                                <div class="invalid-feedback">@error('photo') {{$message}} @enderror </div>
                                 </div>
                         </div>
                     </div>

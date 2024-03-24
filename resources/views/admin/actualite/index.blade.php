@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            @foreach ($actualites as $k => $actualite)
+
                 <div class="card-body">
                     <div class="table-responsive">
                             <table class="table border text-nowrap text-md-nowrap mb-0">
@@ -30,7 +30,9 @@
                                         <th class="text-end">Action</th>
                                     </tr>
                                 </thead>
+                                @foreach ($actualites as $k => $actualite)
                                 <tbody>
+
                                     <tr>
                                         <td>{{$k+1}}</td>
                                         <td>{{$actualite->titre}}</td>
@@ -48,6 +50,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                 </div>
@@ -99,7 +102,7 @@
             </div>
         </div>
     </div>
-     @endforeach
+
 </div>
 
 {{$actualites->links()}}

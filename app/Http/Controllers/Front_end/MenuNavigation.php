@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front_end;
 use App\Http\Controllers\Controller;
 use App\Models\Actualite;
 use App\Models\Medecin;
+use App\Models\Personnel;
 use App\Models\Service;
 use App\Models\Temoignage;
 use Chatify\Facades\ChatifyMessenger;
@@ -30,9 +31,11 @@ class MenuNavigation extends Controller
         return view('Front_end.contact');
     }
     public function welcome()
-    {
+    {   $actualites = Actualite::all();
+        $personnels = Personnel::all();
         $temoignages = Temoignage::with('user.patient')->where('publier', true)->get();
-        return view('Front_end.welcome', ['temoignages' => $temoignages]);
+        return view('Front_end.welcome', ['temoignages' => $temoignages,
+        'actualites' => $actualites, 'personnels'=>$personnels]);
     }
 
     public function departements () {

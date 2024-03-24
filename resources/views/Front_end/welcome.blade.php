@@ -288,27 +288,30 @@
          <div class="col-12">
             <div class="carousel-classes">
                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                     <div class="class-box">
-                        <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.5s" style="cursor:pointer;">
-                           <div class="member-box wow reveal-effect">
-                              <figure>
-                                 <img src="{{asset('assets/wp-content/uploads/2022/06/team1.jpg')}}" alt="Image">
-                                 <figcaption>
-                                    <h6>Jack Smith</h6>
-                                    <p class="paragraf-sol-beyaz-orta">Urology Doctor</p>
-                                    <ul>
-                                       <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                       <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                       <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                    </ul>
-                                 </figcaption>
-                              </figure>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="swiper-slide">
+                @foreach ($personnels as $personnel)
+                <div class="swiper-slide">
+                    <div class="class-box">
+                       <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.5s" style="cursor:pointer;">
+                          <div class="member-box wow reveal-effect">
+                             <figure>
+                                <img src="{{asset('storage/'.$personnel->photo)}}" width="350" height="350" alt="Image">
+                                <figcaption>
+                                   <h6>{{$personnel->nom}} {{$personnel->prenom}}</h6>
+                                   <p class="paragraf-sol-beyaz-orta">{{$personnel->poste}}</p>
+                                   <ul>
+                                      <li><a href="#"><i class="lni-facebook"></i></a></li>
+                                      <li><a href="#"><i class="lni-instagram"></i></a></li>
+                                      <li><a href="#"><i class="lni-twitter"></i></a></li>
+                                   </ul>
+                                </figcaption>
+                             </figure>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                @endforeach
+
+                  {{-- <div class="swiper-slide">
                      <div class="class-box">
                         <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.6s" style="cursor:pointer;">
                            <div class="member-box wow reveal-effect">
@@ -367,7 +370,7 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> --}}
                </div>
                <div class="swiper-pagination"></div>
             </div>
@@ -389,30 +392,78 @@
                 </p>
                 <div class="bosluk3a"></div>
             </div>
-        </div>
-        <div class="row">
-            @foreach ($temoignages as $temoignage)
-            <div class="col-12 col-md-4">
-                <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
-                    <div class="class-box">
-                        @if($temoignage->publier)
-                        <div class="testimonial-card">
-                            <div class="testimon-text">
-                                {{ $temoignage->contenu}} <i class="fas fa-quote-right quote"></i>
-                            </div>
-                            <div class="testimonialimg">
-                                <div class="testimonimg">
-                                    @if($temoignage->user && $temoignage->user->patient && $temoignage->user->patient->avatar)
-                                        <img src="{{ asset('storage/'.$temoignage->user->patient->avatar) }}" alt="Image du patient">
-                                    @endif
+            <div class="col-12">
+                <div class="carousel-classes">
+                    <div class="swiper-wrapper">
+                        @foreach ($temoignages as $temoignage)
+                            @if($temoignage->publier)
+                                <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
+                                    <div class="class-box">
+                                        <div class="testimonial-card">
+                                            <div class="testimon-text">
+                                                {{ $temoignage->contenu}} <i class="fas fa-quote-right quote"></i>
+                                            </div>
+                                            <div class="testimonialimg">
+                                                <div class="testimonimg">
+                                                    <img height="80" width="80" class="rounded-circle" src="{{ asset('storage/'.$temoignage->user->photo) }}" alt="Image du patient">
+                                                </div>
+                                                <h3 class='person'>{{ $temoignage->user->name }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3 class='person'>{{ $temoignage->user->name }}</h3>
-                            </div>
-                        </div>
-                        @endif
+                            @endif
+                        @endforeach
                     </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{{-- <section class="yorumlar-alani-sayfa">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 wow animated fadeIn animated" data-wow-delay="0.5s">
+                <div class="h-yazi-ortalama h-yazi-margin-orta-3">
+                    <h2 class="h2-baslik-hizmetler-yorum wow fadeInUp" data-wow-delay="0.5s"> Que disent nos patients? </h2>
+                </div>
+                <p class="h2-baslik-hizmetler-yorum__yorum wow fadeInUp" data-wow-delay="0.5s">
+                    Chaque patient est précieux pour nous. Voici les avis de certains de nos clients qui nous ont choisi.
+                </p>
+                <div class="bosluk3a"></div>
+            </div>
+        </div>
+        <div class="row ">
+            @foreach ($temoignages as $temoignage)
+            <div class="col-12">
+                <div class="carousel-classes">
+                    <div class="swiper-wrapper">
+                         <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
+                            <div class="class-box">
+                                @if($temoignage->publier)
+                                <div class="testimonial-card">
+                                    <div class="testimon-text">
+                                        {{ $temoignage->contenu}} <i class="fas fa-quote-right quote"></i>
+                                    </div>
+                                    <div class="testimonialimg">
+                                        <div class="testimonimg">
+                                            @if($temoignage->user && $temoignage->user->patient && $temoignage->user->patient->avatar)
+                                                <img height="80" width="80" class="rounded-circle" src="{{ asset('storage/'.$temoignage->user->photo) }}" alt="Image du patient">
+                                            @endif
+                                        </div>
+                                        <h3 class='person'>{{ $temoignage->user->name }}</h3>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
                     <!-- end swiper-slide -->
                 </div>
+                    </div>
+                </div>
+
             </div>
             @endforeach
         </div>
@@ -422,107 +473,56 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!--Posts-->
-
 <section class="yorumlar-alani-sayfa">
-   <div class="container">
-      <div class="row">
-         <div class="col-12 wowfade">
-            <div class="h-yazi-ortalama h-yazi-margin-orta-3">
-               <h2 class="h2-baslik-hizmetler-yorum wow fadeInUp" data-wow-delay="0.4s">Renvoyer les nouveaux et les articles </h2>
-            </div>
-            <p class="h2-baslik-hizmetler-yorum__yorum wow fadeInUp" data-wow-delay="0.5s">
-               Informations importantes pour votre santé.
-            </p>
-            <div class="bosluksv5"></div>
-         </div>
-      </div>
-   </div>
-   <div class="container">
-      <div class="row">
-         <div class="col-12">
-            <div class="carousel-classes">
-               <div class="swiper-wrapper">
-                  <div class="swiper-slide wow fadeInLeft" data-wow-delay="0.5s" data-tilt>
-                     <div class="post-kutu" style="cursor:pointer;">
-                        <img width="373" height="223" src="{{asset('assets/wp-content/uploads/2022/06/news1-banner-373x223.png')}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" fetchpriority="high" srcset="https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news1-banner-373x223.png 373w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news1-banner-300x180.png 300w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news1-banner.png 700w" sizes="(max-width: 373px) 100vw, 373px" />
-                        <div class="datesection">
-                           <span class="date">
-                           05.06.2022                            </span>&nbsp;<span class="tt">-</span>&nbsp;
-                           <ul class="post-categories">
-                              <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
-                           </ul>
-                        </div>
-                        <h3 class="baslik-3 h-yazi-margin-kucuk">Inconnu dans le traitement implantaire</h3>
-                        <p class="post-kutu--yazi">
-                        <p>Un implant est une racine dentaire artificielle en titane placée dans la mâchoire lors du traitement des dents manquants. Au préalable. Panoramique [&hellip;]</p>
-                        <div class="h-yazi-ortalama h-yazi-margin-4">
-                           <a href="unknowns-in-implant-treatment/index.html" class="custom-button">Plus</a>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="swiper-slide wow fadeInLeft" data-wow-delay="0.5s" data-tilt>
-                     <div class="post-kutu" style="cursor:pointer;">
-                        <img width="373" height="223" src="{{asset('assets/wp-content/uploads/2022/06/news2-banner-373x223.png')}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" srcset="https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news2-banner-373x223.png 373w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news2-banner-300x180.png 300w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news2-banner.png 700w" sizes="(max-width: 373px) 100vw, 373px" />
-                        <div class="datesection">
-                           <span class="date">
-                           05.06.2022                            </span>&nbsp;<span class="tt">-</span>&nbsp;
-                           <ul class="post-categories">
-                              <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
-                           </ul>
-                        </div>
-                        <h3 class="baslik-3 h-yazi-margin-kucuk">Des méthodes étonnantes pour les maux de dents</h3>
-                        <p class="post-kutu--yazi">
-                        <p>Méthodes étonnantes pour les maux de dents. Il n'y a pratiquement personne qui n'ait jamais eu mal dans sa vie. Peu importe.[&hellip;]</p>
-                        <div class="h-yazi-ortalama h-yazi-margin-4">
-                           <a href="amazing-methods-for-toothache/index.html" class="custom-button">More</a>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="swiper-slide wow fadeInLeft" data-wow-delay="0.5s" data-tilt>
-                     <div class="post-kutu" style="cursor:pointer;">
-                        <img width="373" height="223" src="{{asset('assets/wp-content/uploads/2022/06/news3-banner-373x223.png')}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" srcset="https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news3-banner-373x223.png 373w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news3-banner-300x180.png 300w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news3-banner.png 700w" sizes="(max-width: 373px) 100vw, 373px" />
-                        <div class="datesection">
-                           <span class="date">
-                           05.06.2022                            </span>&nbsp;<span class="tt">-</span>&nbsp;
-                           <ul class="post-categories">
-                              <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
-                           </ul>
-                        </div>
-                        <h3 class="baslik-3 h-yazi-margin-kucuk">It&#8217;Il est désormais facile d'avoir des sourires parfaits</h3>
-                        <p class="post-kutu--yazi">
-                        <p>Quelles sont les conséquences de l'encombrement dentaire sur l'état de santé dentaire ? Comment se déroule le traitement ? L'encombrement dentaire peut [&hellip;]</p>
-                        <div class="h-yazi-ortalama h-yazi-margin-4">
-                           <a href="its-now-easy-to-have-perfect-smiles/index.html" class="custom-button">Plus</a>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="swiper-slide wow fadeInLeft" data-wow-delay="0.5s" data-tilt>
-                     <div class="post-kutu" style="cursor:pointer;">
-                        <img width="373" height="223" src="{{asset('assets/wp-content/uploads/2022/06/news5-banner-373x223.png')}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" srcset="https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news5-banner-373x223.png 373w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news5-banner-300x180.png 300w, https://garantiwebtasarim.com/wordpress/medidoc/wp-content/uploads/2022/06/news5-banner.png 700w" sizes="(max-width: 373px) 100vw, 373px" />
-                        <div class="datesection">
-                           <span class="date">
-                           05.06.2022                            </span>&nbsp;<span class="tt">-</span>&nbsp;
-                           <ul class="post-categories">
-                              <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
-                           </ul>
-                        </div>
-                        <h3 class="baslik-3 h-yazi-margin-kucuk">Le stress ménace la santé !</h3>
-                        <p class="post-kutu--yazi">
-                    <p>Le stress, l'une des maladies les plus importantes de notre époque, entraîne de nombreuses maladies telles que les maux de tête, les maladies cardiaques, l'obésité, les nausées, [&hellip;]</p>
-                        <div class="h-yazi-ortalama h-yazi-margin-4">
-                           <a href="stress-threatens-oral-and-dental-health/index.html" class="custom-button">Plus</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="swiper-pagination"></div>
-</section>
+    <div class="container">
+       <div class="row">
+          <div class="col-12 wowfade">
+             <div class="h-yazi-ortalama h-yazi-margin-orta-3">
+                <h2 class="h2-baslik-hizmetler-yorum wow fadeInUp" data-wow-delay="0.4s">Renvoyer les nouveaux et les articles </h2>
+             </div>
+             <p class="h2-baslik-hizmetler-yorum__yorum wow fadeInUp" data-wow-delay="0.5s">
+                Informations importantes pour votre santé.
+             </p>
+             <div class="bosluksv5"></div>
+          </div>
+       </div>
+    </div>
+    <div class="container">
+       <div class="row">
+          <div class="col-12">
+             <div class="carousel-classes">
+                <div class="swiper-wrapper">
+                     @foreach ($actualites as $actualite)
+                         <div class="swiper-slide wow fadeInLeft" data-wow-delay="0.5s" data-tilt>
+                             <div class="post-kutu" style="cursor:pointer;">
+                                 <img width="200" height="163" src="{{asset('storage/'.$actualite->avatar)}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" fetchpriority="high"  />
+                                 <div class="datesection">
+                                 <span class="date">
+                                 {{$actualite->created_at->format('d-m-Y')}}                          </span>&nbsp;<span class="tt">-</span>&nbsp;
+                                 <ul class="post-categories">
+                                     <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
+                                 </ul>
+                                 </div>
+                                 <h3 class="baslik-3 h-yazi-margin-kucuk">{{$actualite->titre}}</h3>
+                                 <p class="post-kutu--yazi">
+                                     {{$actualite->contenu}} [&hellip;]
+                                 </p>
+                                 <div class="h-yazi-ortalama h-yazi-margin-4">
+                                     <a href="unknowns-in-implant-treatment/index.html" class="custom-button">Plus</a>
+                                 </div>
+                             </div>
+                         </div>
+                     @endforeach
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="swiper-pagination"></div>
+ </section>
+
 <!--Footer Alanı-->
 
 @endsection

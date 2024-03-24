@@ -57,7 +57,7 @@ class AdminController extends Controller
             'telephone' => $request->input('telephone'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'photo' => null, // Initialisez la valeur du champ photo à null par défaut
+            // 'photo' => null, // Initialisez la valeur du champ photo à null par défaut
         ]);
 
          // Télécharge l'avatar de l'utilisateur s'il est fourni dans la requête
@@ -79,7 +79,7 @@ class AdminController extends Controller
         // event(new Registered($patient));
         return redirect()->route('admin.administrateur.index')->with('success', 'patient ajouté avec succès.');
     }
-    
+
 
     /**
      * Display the specified resource.
