@@ -32,6 +32,8 @@ use App\Http\Controllers\Rdv\RecommendationServiceController;
 use App\Http\Controllers\Rdv\SymptomController;
 use App\Http\Requests\medecin\ConsultationRequest;
 use App\Models\TypeConsultation;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +46,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// pour l'impression
+Route::get('/export', [ExportController::class, 'export'])->name('export');
+
+
+// pour le pdf
+
+Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate.pdf');
+
+
 
 // ROUTE POUR FRONT END LES PAGES DE NAVIGATION
 Route::get('/apropos',[MenuNavigation::class, 'apropos'])->name('apropos');

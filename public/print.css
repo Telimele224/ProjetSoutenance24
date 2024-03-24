@@ -1,0 +1,20 @@
+
+    @media print {
+        /* Masquer certains éléments pendant l'impression */
+        .page-options {
+            display: none;
+        }
+
+        /* Appliquer des styles spécifiques pour le tableau lors de l'impression */
+        .table-responsive {
+            overflow: visible !important; /* Afficher les débordements de contenu */
+        }
+
+        /* Ajuster la taille de la police pour l'impression */
+        .table th,
+        .table td {
+            font-size: 10pt;
+        }
+
+        /* Autres styles spécifiques à l'impression */
+    }

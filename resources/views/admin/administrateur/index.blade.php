@@ -78,6 +78,9 @@
                                             <td class="text-nowrap align-middle">{{$user->adresse}}</td>
                                             <td class="align-middle">
                                                 <div class="btn-list">
+                                           <a href="{{ route('export') }}" class="btn btn-primary">Exporter vers Excel</a>
+                                           <a href="{{ route('generate.pdf') }}" class="btn btn-primary">Télécharger en PDF</a>
+
                                                     <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"></i></button>
                                                     <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"><i class="bi bi-trash"></i></button>
                                                 </div>
@@ -127,6 +130,8 @@
                                 <span class="text-muted"><i class="fe fe-phone mx-2 text-success "></i>+224 {{$user->telephone}}</span>
                                 <div class="text-center mt-3">
                                     <a class="btn btn-sm bg-primary-transparent rounded-circle me-1" role="button" href="javascript:void(0);"><i class="mdi mdi-facebook fs-16"></i></a>
+                                    <a href="{{ route('export') }}" class="btn btn-primary">Exporter vers Excel</a>
+
                                     <a class="btn btn-sm bg-secondary-transparent rounded-circle me-1" role="button" href="javascript:void(0);"><i class="mdi mdi-linkedin fs-16"></i></a>
                                     <a class="btn btn-sm bg-success-transparent rounded-circle" role="button" href="javascript:void(0);"><i class="mdi mdi-twitter fs-16"></i></a>
                                 </div>
@@ -143,7 +148,7 @@
         </div>
     </div>
 
-{{$users->links()}}
+{{-- {{$users->links()}} --}}
 @endsection
 
 

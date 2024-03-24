@@ -24,6 +24,9 @@
 
       <link href="{{ asset('css/fullcalendar.min.css') }}" rel="stylesheet">
 
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/print.css') }}" media="print">
+
+
       <!-- BOOTSTRAP CSS -->
       <link id="style" href="{{asset('assets/build/assets/libs/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
       <!-- Choices JS -->
