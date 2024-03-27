@@ -9,7 +9,7 @@
             <div class="card">
                <div class="text-center mb-0">
                   <h4 class="mb-1">S'INSCRIRE</h4>
-                  <p>Creation d'un compte pour continuer.</p>
+                  <p>Création d'un compte pour continuer.</p>
                </div>
                <form method="POST" action="{{ $action }}">
                   @csrf
@@ -118,21 +118,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row">
                         <div class="">
-                            <label for="password" :value="__('Password')" class="mb fw-500">Crée un  mot de passe<span class="text-danger ms-1">*</span></label>
-                            <div class="input-group has-validation">
-                                <button class="btn btn-light" onclick="createpassword('signup-password',this)" type="button"><i class="ri-eye-off-line align-middle"></i></button>
-                                <input type="password" class="form-control ms-0 border-end-0 @error('password') is-invalid @enderror" name="password" placeholder="Crée un mot de passe" id="signup-password" value="{{ old('password', $administrateur ? $administrateur->password : '') }}">
-                                <div class="invalid-feedback">@error('password') {{$message}} @enderror </div>
+                            <div class="">
+                                <label   for="password" :value="__('Password')" class="mb-2 fw-500">Crée un  mot de passe<span class="text-danger ms-1">*</span></label>
+                                <div class="input-group has-validation">
+                                    <button class="btn btn-light" onclick="createpassword('signup-password',this)" type="button" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
+                                    <input type="password" class="form-control ms-0 border-end-0 @error('password') is-invalid @enderror" name="password" placeholder="Crée un mot de passe" id="signup-password" value="{{ old('password', $administrateur ? $administrateur->password : '') }}">
+                                    <div class="invalid-feedback">@error('password') {{$message}} @enderror </div>
+                                </div>
                             </div>
                         </div>
                         <div class="">
-                            <label for="password_confirmation" :value="__('Confirm Password')" class="mb fw-500">Confirmation votre mot de passe<span class="text-danger ms-1">*</span></label>
-                            <div class="input-group has-validation">
-                                <button class="btn btn-light" onclick="createpassword('signup-confirmpassword',this)" type="button"><i class="ri-eye-off-line align-middle"></i></button>
-                                <input type="password" class="form-control ms-0 border-end-0" name="password_confirmation" placeholder="Confirmation votre mot de passe" id="signup-confirmpassword" >
-                            </div>
+                                <label  for="password_confirmation" :value="__('Confirm Password')" class="mb-2 fw-500">Confirmation votre mot de passe<span class="text-danger ms-1">*</span></label>
+                                <div class="input-group has-validation">
+                                    <button class="btn btn-light" onclick="createpassword('signup-confirmpassword',this)" type="button" id="button-addon21"><i class="ri-eye-off-line align-middle"></i></button>
+                                    <input type="password" class="form-control ms-0 border-end-0" name="password_confirmation" placeholder="Confirmation votre mot de passe" id="signup-confirmpassword" >
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

@@ -33,6 +33,15 @@ use App\Http\Controllers\Rdv\SymptomController;
 use App\Http\Requests\medecin\ConsultationRequest;
 use App\Models\TypeConsultation;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\impression\AdminImpression;
+use App\Http\Controllers\impression\MedecinImpression;
+use App\Http\Controllers\impression\PatientImpression;
+use App\Http\Controllers\impression\PersonnelImpression;
+use App\Http\Controllers\medecin\OrdonnanceController;
+use App\Http\Controllers\pdf\AdminPdf;
+use App\Http\Controllers\pdf\MedecinPdf;
+use App\Http\Controllers\pdf\Patientdf;
+use App\Http\Controllers\pdf\Personnelpdf;
 use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,12 +57,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 // pour l'impression
-Route::get('/export', [ExportController::class, 'export'])->name('export');
+Route::get('/export', [AdminImpression::class, 'export'])->name('export');
+Route::get('/medecinimprime', [MedecinImpression::class, 'medecin'])->name('medecinimprime');
+Route::get('/patientimprime', [PatientImpression::class, 'patient'])->name('patientimprime');
+Route::get('/personnelimprime', [PersonnelImpression::class, 'personnel'])->name('personnelimprime');
+
+
+
 
 
 // pour le pdf
+Route::get('/adminpdf', [AdminPdf::class, 'generatePDF'])->name('adminpfd.pdf');
+Route::get('/medecinpdf', [MedecinPdf::class, 'medecin'])->name('medecinpdf.pdf');
+Route::get('/patientpdf', [Patientdf::class, 'patient'])->name('patientpdf.pdf');
+Route::get('/personnelpdf', [Personnelpdf::class, 'personnel'])->name('personnelpdf.pdf');
 
-Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate.pdf');
+
+
 
 
 
@@ -65,6 +85,7 @@ Route::get('/contact',[MenuNavigation::class, 'contact'])->name('contact');
 Route::get('/',[MenuNavigation::class, 'welcome'])->name('welcome');
 Route::get('/les_departements',[MenuNavigation::class, 'departements'])->name('les_departements');
 Route::get('/Blog', [MenuNavigation::class,'blog'])->name('Blog');
+Route::get('/galerie', [MenuNavigation::class,'galerie'])->name('galerie');
 Route::get('/Medecins', [MenuNavigation::class,'lien'])->name('Medecins');
 
 
@@ -120,9 +141,10 @@ Route::prefix('medecins')->name('medecins.')->group(function () {
     Route::resource('consultation', ConsultationController::class);
     Route::resource('patient', PatientsController::class)->except('show');
     Route::resource('monequipe', ListeMedecinsController::class)->except('show');
-    // Route::resource('profile', ProfileMedecinController::class)->except('show','index','store','create');
-
+    Route::resource('ordonance',OrdonnanceController::class);
 });
+Route::get('/medecins/consultation/getPatientsByDate', [ConsultationController::class, 'getPatientsByDate'])->name('medecins.consultation.getPatientsByDate');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profilee', [ProfileMedecinController::class, 'edit'])->name('profilee.edit');

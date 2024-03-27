@@ -56,6 +56,9 @@
                    <li class="slide">
                       <a href="{{route('medecins.consultation.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>        Listes</span></a>
                    </li>
+                   <li class="slide">
+                    <a href="{{route('medecins.ordonance.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>        Listes des Ordonances</span></a>
+                 </li>
                 </ul>
              </li>
              <li class="slide has-sub">

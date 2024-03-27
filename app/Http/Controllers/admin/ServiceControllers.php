@@ -76,7 +76,7 @@ class ServiceControllers extends Controller
      */
     public function show(Service $service)
     {
-        return view('admin.service.form',[
+        return view('admin.service.show',[
             'service' => $service
         ]);
     }

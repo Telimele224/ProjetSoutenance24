@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\pdf;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Dompdf\Dompdf;
-use Illuminate\Http\Request;
 
-class PDFController extends Controller
+class AdminPdf extends Controller
 {
     public function generatePDF()
     {
@@ -23,5 +23,4 @@ class PDFController extends Controller
         // Retourne le PDF pour téléchargement
         return $pdf->stream('document.pdf');
     }
-
 }

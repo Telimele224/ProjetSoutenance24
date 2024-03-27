@@ -23,8 +23,7 @@ class ConsultationController extends Controller
      */
     public function index(Request $request)
     {
-
-            // Récupérer le terme de recherche du formulaire
+        // Récupérer le terme de recherche du formulaire
          $search = $request->input('search');
 
         // Rechercher les consultations en fonction du numéro de téléphone (patient_id) ou du code

@@ -180,6 +180,8 @@
       <script src="{{asset('assets/build/assets/js/calendar.js')}}"></script>
       {{-- pour le calendrier --}}
       <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
+      
+      <script src="{{asset('assets/build/assets/show-password.js')}}"></script>
 
 
       <!-- Simplebar JS -->

@@ -14,12 +14,11 @@
                             <form action="" method="GET" class="mb-3">
                                 <div class="input-group row">
                                     <div class="col-md-10">
-                                        <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
+                                        <input type="text"  aria-describedby="addon-wrapping" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
                                     </div>
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
                                     </div>
-
                                 </div>
                             </form>
 
@@ -42,12 +41,10 @@
             <div class="tab-pane active show" id="tab-11" role="tabpanel">
                 <div class="card">
                     <div class="card-header border-bottom-0 px-5">
-                        <h2 class="card-title">1 - 30  Medecins</h2>
+                        <a href="{{ route('personnelimprime') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a>
+                        <h2 class="card-title"> </h2>
                         <div class="page-options ms-auto">
-                            <select class="form-control select2 w-100">
-                                <option value="asc">Dernièrè Liste</option>
-                                <option value="desc">Vielles liste</option>
-                            </select>
+                            <a href="{{ route('personnelpdf.pdf') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
                         </div>
                     </div>
                     <div class="e-table px-5 pb-5">
@@ -72,12 +69,60 @@
                                                 <td class="text-nowrap align-middle " ><img src="{{asset('storage/'.$personnel->photo)}}" alt="" width="60" height="60" class="rounded-circle"></td>
 
                                                 <td class="align-middle">
-                                                    <div class="btn-list">
-                                                        <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"><i class="bi bi-trash"></i></button>
+                                                    <div class="avatar-list text-end">
+                                                        <span class="avatar rounded-circle bg-blue-dark" ><a href=""></a><i class="fe fe-eye fs-15"></i></span>
+                                                        <span class="avatar rounded-circle bg-blue"><a href="{{route('admin.personnel.edit', $personnel)}}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a></span>
+                                                        <span class="avatar rounded-circle bg-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#delete"><i class="bi bi-trash fs-15 "></i>
+                                                        </span>
                                                     </div>
                                                 </td>
                                         </tr>
+                                        <div class="modal fade" id="delete">
+                                            <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                                <div class="modal-content tx-size-sm">
+                                                    <div class="modal-body p-4 pb-5">
+                                                        <button aria-label="Close" class="btn-close position-absolute" data-bs-dismiss="modal"><span
+                                                                aria-hidden="true">&times;</span></button>
+                                                        <h5>SUPPRESION </h5>
+                                                        <p class="">Voulez vous vraiment supprimer</p>
+                                                        <div class="card shadow-none text-start bg-secondary-transparent border-start border-secondary">
+                                                            <div class="card-body">
+                                                                <div class="d-flex align-items-center">
+                                                                    <span class="me-3"><svg xmlns="http://www.w3.org/2000/svg" height="30" width="30"
+                                                                            viewBox="0 0 24 24">
+                                                                            <path fill="#f07f8f"
+                                                                                d="M20.05713,22H3.94287A3.02288,3.02288,0,0,1,1.3252,17.46631L9.38232,3.51123a3.02272,3.02272,0,0,1,5.23536,0L22.6748,17.46631A3.02288,3.02288,0,0,1,20.05713,22Z">
+                                                                            </path>
+                                                                            <circle cx="12" cy="17" r="1" fill="#e62a45"></circle>
+                                                                            <path fill="#e62a45"
+                                                                                d="M12,14a1,1,0,0,1-1-1V9a1,1,0,0,1,2,0v4A1,1,0,0,1,12,14Z"></path>
+                                                                        </svg></span>
+                                                                    <div>
+                                                                        <p class="mb-0">Attention !!!</p>
+                                                                        <p class="card-text">En cliquant sur supprimer, le personnel serras supprimer definitivement!!!
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-list">
+                                                            <button class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                                                            <form id="delete-actulité-form" method="POST" action="{{ route('admin.personnel.destroy',$personnel) }}">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <p class="confirmation-text"></p>
+                                                                <!-- Champ caché pour stocker l'identifiant du service -->
+                                                                <input type="hidden" name="service_id" class="service-id">
+                                                                <div class="btn-list">
+                                                                    <button type="submit" class="btn btn-danger">Supprimer | Personnel</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
 
@@ -125,6 +170,7 @@
 
                         </div>
                     </div>
+
                     @endforeach
                 </div>
 
@@ -135,5 +181,43 @@
 
 {{$personnels->links()}}
 @endsection
+<div class="card-body">
+    <div class="card-content btn-list">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delete">Delete</button>
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#info-modal">Info</button>
+    </div>
+</div>
 
+<div class="modal fade" id="delete" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body p-4 pb-5">
+                <button aria-label="Close" class="btn-close position-absolute" data-bs-dismiss="modal"><span aria-hidden="true">×</span></button>
+                <h5>Delete Media</h5>
+                <p class="">Are You sure you want to delete img.jpg_001 file.?</p>
+                <div class="card shadow-none text-start bg-secondary-transparent border-start border-secondary">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <span class="me-3"><svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 24 24">
+                                    <path fill="#f07f8f" d="M20.05713,22H3.94287A3.02288,3.02288,0,0,1,1.3252,17.46631L9.38232,3.51123a3.02272,3.02272,0,0,1,5.23536,0L22.6748,17.46631A3.02288,3.02288,0,0,1,20.05713,22Z">
+                                    </path>
+                                    <circle cx="12" cy="17" r="1" fill="#e62a45"></circle>
+                                    <path fill="#e62a45" d="M12,14a1,1,0,0,1-1-1V9a1,1,0,0,1,2,0v4A1,1,0,0,1,12,14Z"></path>
+                                </svg></span>
+                            <div>
+                                <p class="mb-0">Warning</p>
+                                <p class="card-text">By Deleting this media trashed media also deleted
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-list">
+                    <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger">Delete Media</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

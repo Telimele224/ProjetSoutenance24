@@ -142,7 +142,7 @@
                             <label   for="biographie" :value="__('biographie')" class="mb-2 fw-500">Biographie<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account"></i></span>
-                                <textarea cols="30" rows="4" class="form-control @error('biographie') is-invalid @enderror" name="biographie" placeholder="votre biographie" aria-label="biographie" aria-describedby="addon-wrapping" >{{ old('biographie', $medecin ? $medecin->biographie : '') }} </textarea>
+                                <textarea cols="30" rows="4" class="form-control @error('biographie')is-invalid @enderror" name="biographie" placeholder="votre biographie" aria-label="biographie" aria-describedby="addon-wrapping" >{{ old('biographie',$medecin ? $medecin->biographie : '') }} </textarea>
                                 <div class="invalid-feedback">@error('biographie') {{$message}} @enderror </div>
                                 </div>
                         </div>
@@ -187,22 +187,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-1">
+                                <div class="row">
                                     <div class="">
                                         <div class="">
                                             <label   for="password" :value="__('Password')" class="mb-2 fw-500">Crée un  mot de passe<span class="text-danger ms-1">*</span></label>
                                             <div class="input-group has-validation">
                                                 <button class="btn btn-light" onclick="createpassword('signup-password',this)" type="button" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
-                                                <input type="password" name="password" id="password"  class="form-control  @error('password') is-invalid @enderror">
+                                                <input type="password" class="form-control ms-0 border-end-0 @error('password') is-invalid @enderror" name="password" placeholder="Crée un mot de passe" id="signup-password" >
                                                 <div class="invalid-feedback">@error('password') {{$message}} @enderror </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="">
-                                            <label  for="password_confirmation" :value="__('Confirm Password')" class="mb-2 fw-500">Confirmation mot de passe<span class="text-danger ms-1">*</span></label>
+                                            <label  for="password_confirmation" :value="__('Confirm Password')" class="mb-2 fw-500">Confirmation votre mot de passe<span class="text-danger ms-1">*</span></label>
                                             <div class="input-group has-validation">
                                                 <button class="btn btn-light" onclick="createpassword('signup-confirmpassword',this)" type="button" id="button-addon21"><i class="ri-eye-off-line align-middle"></i></button>
-                                                <input type="password" class="form-control ms-0 border-end-0" name="password_confirmation" placeholder="Confirmation votre mot de passe" id="signup-confirmpassword">
+                                                <input type="password" class="form-control ms-0 border-end-0" name="password_confirmation" placeholder="Confirmation votre mot de passe" id="signup-confirmpassword" >
                                                 <div class="invalid-feedback">
                                                     Veuillez entrer un mot de passe correspondant.
                                                 </div>

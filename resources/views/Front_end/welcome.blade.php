@@ -31,7 +31,7 @@
                </h1>
                <p>Nous sommes à votre service pour une vie plus saine</p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="#">Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">Prendre rendez-vous →</a></div>
 
                <div class="or">
                   <a href="#">En savoir plus →</a>
@@ -46,7 +46,7 @@
                </h1>
                <p>Votre santé est entre de bonne mains grâce à notre personnel experts et experimentés. </p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="#">Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">Prendre rendez-vous →</a></div>
 
                <div class="or">
                   <a href="#">En savoir plus →</a>
@@ -61,7 +61,7 @@
                </h1>
                <p>Votre santé est tout. </p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="#">Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">Prendre rendez-vous →</a></div>
                <div class="or">
                   <a href="#">En savoir plus →</a>
                </div>
@@ -139,7 +139,7 @@
       <div class="row">
          <div class="col-md-12 wow fadeInUp" data-wow-delay="0.6s">
             <div class="ortabuton">
-               <a href="all-departments/index.html" class="custom-button">All Departments →</a>
+               <a href="{{route('les_departements')}}" class="custom-button">Tous les Services →</a>
             </div>
          </div>
       </div>

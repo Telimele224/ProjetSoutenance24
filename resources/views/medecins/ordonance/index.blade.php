@@ -23,12 +23,12 @@
        <div class="row">
           <div class="card-body">
             <!-- Formulaire de recherche -->
-            <form action="{{ route('medecins.consultation.index') }}" method="GET" class="mb-3">
+            <form action="{{ route('medecins.ordonance.index') }}" method="GET" class="mb-3">
                 <div class="input-group row">
-                    <div class="col-md-6">
+                    <div class="col-md-10">
                         <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <button type="submit" class="btn btn-primary text-end">Rechercher</button>
                     </div>
 
@@ -50,29 +50,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($consultations as $k => $consultation)
+                        @foreach ($ordonances as $k => $ordonance)
                             <tr>
                                 <td>{{ $k + 1 }}</td>
-                                @if($consultation->patient) <!-- Vérifiez si la consultation est liée à un patient -->
-                                <td>{{ $consultation->patient->user->prenom }}  {{ $consultation->patient->user->nom }}</td>
-                                @else
-                                    <td colspan="2">Aucun patient associé</td> <!-- Si la consultation n'est pas liée à un patient -->
+                                {{-- @if($ordonance->patient) <!-- Vérifiez si la ordonance est liée à un patient -->
+                                <td>{{ $ordonance->patient->user->prenom }}  {{ $ordonance->patient->user->nom }}</td>
+                                @else --}}
+                                    {{-- <td colspan="2">Aucun patient associé</td> <!-- Si la ordonance n'est pas liée à un patient -->
                                 @endif
-                                <td>{{ $consultation->typeConsultation->name }}</td>
-                                <td>{{ $consultation->code }}</td>
-                                <td>{{ $consultation->status }}</td>
-                                <td>{{ $consultation->frais }}</td>
+                                <td>{{ $ordonance->typeordonance->name }}</td> --}}
+                                {{-- <td>{{ $ordonance->code }}</td> --}}
+                                {{-- <td>{{ $ordonance->status }}</td>
+                                <td>{{ $ordonance->frais }}</td> --}}
                                 <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
                                 <td>
                                     <div class="avatar-list text-end">
                                         <span class="avatar rounded-circle bg-blue-dark">
-                                            <a href="{{route('medecins.consultation.show',$consultation) }}"><i class="fe fe-eye fs-15"></i></a>
+                                            <a href=""><i class="fe fe-eye fs-15"></i></a>
                                         </span>
                                         <span class="avatar rounded-circle bg-blue">
-                                            <a href="{{route('medecins.consultation.edit',$consultation) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
+                                            <a href="" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
                                         </span>
                                         <span class="avatar rounded-circle bg-blue">
-                                            <a href="{{ route('consultation.pdf', $consultation->id) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
+                                            <a href="" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
                                         </span>
 
                                     </div>

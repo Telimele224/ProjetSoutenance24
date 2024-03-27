@@ -24,9 +24,7 @@ return new class extends Migration
             $table->string('note_medecin')->nullable();
             $table->string('status')->nullable();
             $table->string('frais');
-            $table->foreignIdFor(Medecin::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(Rdv::class)->constrained()->cascadeOnUpdate();
-            $table->foreignIdFor(Patient::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(TypeConsultation::class)->constrained()->cascadeOnUpdate();
             $table->timestamps();
         });

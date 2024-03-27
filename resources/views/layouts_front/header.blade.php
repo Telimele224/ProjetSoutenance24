@@ -74,22 +74,21 @@
                      <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
                         <ul id="menu-mobil-menu" class="nav navbar-nav" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
                            <li  id="menu-item-1149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5 current_page_item active menu-item-1149 nav-item"><a itemprop="url" href="{{route('welcome')}}" class="nav-link" aria-current="page"><span itemprop="name">Home</span></a></li>
-                           <li  id="menu-item-1150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1150 nav-item"><a itemprop="url" href="{{ route('apropos') }}" class="nav-link"><span itemprop="name">About Us</span></a></li>
-                           <li  id="menu-item-1151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-1151 nav-item">
-                              <a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1151"><span itemprop="name">Présentation de nos services</span></a>
+                           <li  id="menu-item-1150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1150 nav-item"><a itemprop="url" href="{{ route('apropos') }}" class="nav-link"><span itemprop="name">A propos</span></a></li>
+                           <li id="menu-item-1151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-1151 nav-item">
+                              <a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1151"><span itemprop="name"> de nos services</span></a>
                               <ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-1151">
-                                 <li  id="menu-item-1423" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1423 nav-item"><a itemprop="url" href="{{route('show')}}" class="dropdown-item"><span itemprop="name">Urology</span></a></li>
-                                 <li  id="menu-item-1422" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1422 nav-item"><a itemprop="url" href="gastroenterology/index.html" class="dropdown-item"><span itemprop="name">Gastroenterology</span></a></li>
-                                 <li  id="menu-item-1421" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1421 nav-item"><a itemprop="url" href="chest-diseases/index.html" class="dropdown-item"><span itemprop="name">Chest Diseases</span></a></li>
-                                 <li  id="menu-item-1420" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1420 nav-item"><a itemprop="url" href="cardiac-surgery/index.html" class="dropdown-item"><span itemprop="name">Cardiac Surgery</span></a></li>
-                                 <li  id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419 nav-item"><a itemprop="url" href="radiology/index.html" class="dropdown-item"><span itemprop="name">Radiology</span></a></li>
-                                 <li  id="menu-item-1418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418 nav-item"><a itemprop="url" href="dental-diseases/index.html" class="dropdown-item"><span itemprop="name">Dental Diseases</span></a></li>
-                                 <li  id="menu-item-1417" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1417 nav-item"><a itemprop="url" href="gynecology-obstetrics/index.html" class="dropdown-item"><span itemprop="name">Gynecology</span></a></li>
-                                 <li  id="menu-item-1416" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1416 nav-item"><a itemprop="url" href="brain-surgery/index.html" class="dropdown-item"><span itemprop="name">Brain Surgery</span></a></li>
-                                 <li  id="menu-item-1158" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1158 nav-item"><a itemprop="url" href="{{route('les_departements')}}" class="dropdown-item"><span itemprop="name">Tous nos Services</span></a></li>
+                                 @foreach ($services as $service)
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page nav-item">
+                                          <a href="{{route('admin.service.show',$service)}}" class="dropdown-item"><span itemprop="name">{{ $service->nom }}</span></a>
+                                    </li>
+                                 @endforeach
+                              <li  id="menu-item-364" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-364 nav-item"><a itemprop="url" href="{{route('les_departements')}}" class="dropdown-item"><span itemprop="name">Tous nos services</span></a></li>
+
                               </ul>
                            </li>
                            <li  id="menu-item-1424" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1424 nav-item"><a itemprop="url" href="{{route('medecins')}}" class="nav-link"><span itemprop="name">Doctors</span></a></li>
+                           <li  id="menu-item-1161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1161 nav-item"><a itemprop="url" href="{{route('galerie')}}" class="nav-link"><span itemprop="name">Galerie</span></a></li>
                            <li  id="menu-item-1161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1161 nav-item"><a itemprop="url" href="{{route('Blog')}}" class="nav-link"><span itemprop="name">Blog</span></a></li>
                            <li  id="menu-item-1162" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1162 nav-item"><a itemprop="url" href="{{route('contact')}}" class="nav-link"><span itemprop="name">Contact</span></a></li>
                            @if (Route::has('login'))
@@ -128,21 +127,20 @@
                      <ul id="menu-main-menu" class="nav navbar-nav" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
                         <li  id="menu-item-322" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5 current_page_item active menu-item-322 nav-item"><a itemprop="url" href="{{route('welcome')}}" class="nav-link" aria-current="page"><span itemprop="name">Accueil</span></a></li>
                         <li  id="menu-item-329" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-329 nav-item"><a itemprop="url" href="{{ route('apropos') }}" class="nav-link"><span itemprop="name">A Propos</span></a></li>
-                        <li  id="menu-item-980" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-980 nav-item">
-                           <a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-980"><span itemprop="name">Présentation des services</span></a>
-                           <ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-980">
-                              <li  id="menu-item-1432" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1432 nav-item"><a itemprop="url" href="{{route('show')}}" class="dropdown-item"><span itemprop="name">Urology</span></a></li>
-                              <li  id="menu-item-1431" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1431 nav-item"><a itemprop="url" href="gastroenterology/index.html" class="dropdown-item"><span itemprop="name">Gastroenterology</span></a></li>
-                              <li  id="menu-item-1430" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1430 nav-item"><a itemprop="url" href="chest-diseases/index.html" class="dropdown-item"><span itemprop="name">Chest Diseases</span></a></li>
-                              <li  id="menu-item-1429" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1429 nav-item"><a itemprop="url" href="cardiac-surgery/index.html" class="dropdown-item"><span itemprop="name">Cardiac Surgery</span></a></li>
-                              <li  id="menu-item-1428" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1428 nav-item"><a itemprop="url" href="radiology/index.html" class="dropdown-item"><span itemprop="name">Radiology</span></a></li>
-                              <li  id="menu-item-1427" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1427 nav-item"><a itemprop="url" href="dental-diseases/index.html" class="dropdown-item"><span itemprop="name">Dental Diseases</span></a></li>
-                              <li  id="menu-item-1426" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1426 nav-item"><a itemprop="url" href="gynecology-obstetrics/index.html" class="dropdown-item"><span itemprop="name">Gynecology</span></a></li>
-                              <li  id="menu-item-1425" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1425 nav-item"><a itemprop="url" href="brain-surgery/index.html" class="dropdown-item"><span itemprop="name">Brain Surgery</span></a></li>
+
+                        <li id="menu-item-1151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-1151 nav-item">
+                           <a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1151"><span itemprop="name">Nos services</span></a>
+                           <ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-1151">
+                              @foreach ($services as $service)
+                                 <li class="menu-item menu-item-type-post_type menu-item-object-page nav-item">
+                                       <a href="{{route('admin.service.show',$service)}}" class="dropdown-item"><span itemprop="name">{{ $service->nom }}</span></a>
+                                 </li>
+                              @endforeach
                               <li  id="menu-item-364" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-364 nav-item"><a itemprop="url" href="{{route('les_departements')}}" class="dropdown-item"><span itemprop="name">Tous nos services</span></a></li>
                            </ul>
                         </li>
                         <li  id="menu-item-1433" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1433 nav-item"><a itemprop="url" href="{{route('Medecins')}}" class="nav-link"><span itemprop="name">Medecins</span></a></li>
+                        <li  id="menu-item-1432" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1432 nav-item"><a itemprop="url" href="{{ route('galerie') }}" class="nav-link"><span itemprop="name">Galerie</span></a></li>
                         <li  id="menu-item-1432" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1432 nav-item"><a itemprop="url" href="{{ route('Blog') }}" class="nav-link"><span itemprop="name">Blog</span></a></li>
                         <li  id="menu-item-980" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-980 nav-item"><a itemprop="url" href="{{route('contact')}}" class="nav-link"><span itemprop="name">Contact</span></a></li>
                         <li  id="menu-item-980" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-980 nav-item">

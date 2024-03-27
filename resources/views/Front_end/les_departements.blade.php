@@ -19,54 +19,6 @@
 <div class="bosluk3ps"></div>
 <div class="container">
     <div class="row">
-                                {{-- <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.5s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-uterus"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Urology</h3>
-            </div>
-        </div>
-                    <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.6s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-intestines"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Gastroenterology</h3>
-            </div>
-        </div>
-                    <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.7s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-human-lungs"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Chest Diseases</h3>
-            </div>
-        </div>
-                    <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.8s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-heart-1"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Cardiac Surgery</h3>
-            </div>
-        </div>
-                    <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.5s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-medical-1"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Radiology</h3>
-            </div>
-        </div>
-                    <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.6s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-human-teeth"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Dental Diseases</h3>
-            </div>
-        </div>
-                    <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.7s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-human-fetus"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Gynecology & Obstetrics</h3>
-            </div>
-        </div>
-                    <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.8s">
-            <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                <div class="icon"><i class="flaticon-brain"></i></div>
-                <h3 class="baslik-3 h-yazi-margin-kucuk1">Brain Surgery</h3>
-            </div>
-        </div> --}}
         @foreach ($services as $service)
             <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.8s">
                 <div class="dep" onclick="location.href='';" style="cursor:pointer;">

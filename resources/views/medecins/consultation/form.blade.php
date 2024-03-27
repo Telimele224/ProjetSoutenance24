@@ -3,40 +3,46 @@
 @section('title', $consultation->exists ? "Modifier une consultation" : "Ajouter une consultation")
 @section('contenu')
 
+<div class="row card-header ">
+    <div class="page-header d-flex align-items-center justify-content-between border-bottom mb-4 mt-0">
+        <h1 class="my-3">@yield('title')</h1>
+        <div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><span><a href="{{route('medecins.ordonance.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | Ordonance</a></span></li>
+            </ol>
+        </div>
+    </div>
+</div>
+
 <div class="card m-2">
     <div class="card-body">
-        <h1 class="my-3">@yield('title')</h1>
+        <div class="row">
+            <label for="date_rendez_vous" class="form-lable">Date du rendez-vous</label>
+            <input type="date" name="date_rendez_vous" class="form-control" id="date_rendez_vous">
+        </div>
         <div class="row justify-content-center">
             <form  action="{{route($consultation->exists ? 'medecins.consultation.update' : 'medecins.consultation.store', $consultation)}}" method="post" class="vstack gap-2" enctype="multipart/form-data" class="row g-4 needs-validation" novalidate="">
                 @csrf
                 @method($consultation->exists ? 'put': 'post')
 
-                <!-- Champ motif -->
-                <div class="row">
-                    {{-- <input type="text" class="form-control @error('medecin_id') is-invalid @enderror" id="medecin_id" name="medecin_id" placeholder="Référence du rendez-vous" value="{{ old('medecin_id', Auth::user()->id) }}"> --}}
-                </div>
 
                 <div class="row">
-                    <!-- Champ motif -->
-                    <div class="col-md-4">
-                        <label for="code" class="form-label">Référence du rendez-vous</label>
-                        <input type="text" class="form-control @error('code') is-invalid @enderror" id="code" name="code" placeholder="Référence du rendez-vous" value="{{ old('code', $consultation->code) }}">
-                        <div class="invalid-feedback">@error('code') {{ $message }} @enderror</div>
-                    </div>
-
                     <!-- Champ patient_id -->
-                    <div class="col-md-4">
-                        <label for="patient_id" class="form-label">Patient Phone</label>
-                        <select class="select2 js-states form-control @error('patient_id') is-invalid @enderror" id="patient_id" name="patient_id">
+                    <div class="col-md-6">
+                        <label for="rdv_id" class="form-label">Patient Phone</label>
+                        <select class="select2 js-states form-control @error('rdv_id') is-invalid @enderror" id="rdv_id" name="rdv_id">
                             @foreach($patients as $patient)
-                                <option value="{{ $patient->id }}" {{ $consultation->patient_id == $patient->id ? 'selected' : '' }}>{{ $patient->telephone }}</option>
+                                <option value="{{ $patient->id }}" data-rendezvous="{{ $patient->rdv_id }}" {{ $consultation->r == $patient->id ? 'selected' : '' }}>{{ $patient->telephone }}</option>
+                                <input type="hidden" id="rdv_id" name="rdv_id">
                             @endforeach
                         </select>
-                        <div class="invalid-feedback">@error('patient_id') {{ $message }} @enderror</div>
+                        <div class="invalid-feedback">@error('rdv_id') {{ $message }} @enderror</div>
                     </div>
 
+                        <input type="hidden" id="rdv_id" name="rdv_id">
+
                     <!-- Champ status -->
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="status" class="form-label">Statut</label>
                         <input type="text" class="form-control @error('status') is-invalid @enderror" id="status" name="status" placeholder="Statut de la consultation" value="{{ old('status', $consultation->status) }}">
                         <div class="invalid-feedback">@error('status') {{ $message }} @enderror</div>
@@ -118,5 +124,48 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        $('#patient_id').on('change', function() {
+            var selectedRendezVous = $(this).find(':selected').data('rendezvous');
+            $('#rdv_id').val(selectedRendezVous);
+        });
+    });
+
+    $(document).ready(function() {
+        $('#date_rendez_vous').on('change', function() {
+            var selectedDate = $(this).val();
+            $.ajax({
+                url: '{{ route('medecins.consultation.getPatientsByDate') }}',
+                type: 'GET',
+                data: { date_rendez_vous: selectedDate },
+                success: function(response) {
+                    $('#patient_id').empty(); // Clear previous options
+                    if (response.patients.length > 0) {
+                        $.each(response.patients, function(id, phone) {
+                            $('#patient_id').append($('<option>', {
+                                value: id,
+                                'data-phone': phone,
+                                text: phone
+                            }));
+                        });
+                    } else {
+                        $('#patient_id').append($('<option>', {
+                            value: '',
+                            text: 'Aucun patient disponible pour cette date'
+                        }));
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
+
+
 
 @endsection

@@ -30,7 +30,7 @@ class MedecinRequest extends FormRequest
             'password' =>['required','min:8', 'confirmed', Rules\Password::defaults()],
             'statut' => 'required|string',
             'specialite' => 'required|string',
-            'biographie' => 'required|string',
+            'biographie' => 'string',
             'service_id' => 'required',
         ];
     }

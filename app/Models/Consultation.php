@@ -10,8 +10,7 @@ class Consultation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'medecin_id',
-        'patient_id',
+        'rdv_id',
         'type_consultation_id',
         'motif',
         'resultat',
@@ -20,21 +19,19 @@ class Consultation extends Model
         'note_medecin',
         'frais',
         'status',
-        'code',
     ];
 
-    public function medecin()
+    public function rendez_vous()
     {
-        return $this->belongsTo(Medecin::class, 'medecin_id');
-    }
-
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class, 'patient_id');
+        return $this->belongsTo(Rdv::class, 'rdv_id');
     }
 
     public function typeConsultation()
     {
         return $this->belongsTo(TypeConsultation::class, 'type_consultation_id');
+    }
+    public function ordonance()
+    {
+        return $this->hasMany(Ordonance::class);
     }
 }

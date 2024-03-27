@@ -4,16 +4,18 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use App\Models\User;
-use Maatwebsite\Excel\Concerns\WithEvents;
+
 use Maatwebsite\Excel\Events\AfterSheet;
-use Maatwebsite\Excel\Sheet;
 
 
-class UsersExport implements FromCollection
+class Medecinlistes implements FromCollection
 {
     public function collection()
     {
-        return User::select('nom','prenom','telephone','adresse')->get();
+        return User::query()->join('medecins', 'users.id', '=', 'medecins.user_id')
+        ->select('users.nom', 'users.prenom', 'users.telephone', 'users.adresse', 'medecins.specialite')
+        ->get();
+
     }
     public function registerEvents(): array
     {
@@ -24,6 +26,8 @@ class UsersExport implements FromCollection
                 $event->sheet->setCellValue('B1', 'Prénom'); // Écrire "Prénom" dans la cellule C1
                 $event->sheet->setCellValue('C1', 'telephone'); // Écrire "Prénom" dans la cellule C1
                 $event->sheet->setCellValue('D1', 'adresse'); // Écrire "Prénom" dans la cellule C1
+                $event->sheet->setCellValue('E1', 'speciate'); // Écrire "Prénom" dans la cellule C1
+
 
             },
         ];

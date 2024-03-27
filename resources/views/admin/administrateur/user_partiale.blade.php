@@ -1,7 +1,5 @@
 @extends('en_tete.entete_administrateurs')
 @section('contenu')
-
-
     <!-- ROW OPEN -->
     <div class="row row-cards">
         <div class="col-xl-12">
@@ -46,7 +44,7 @@
                         <a href="{{ route('export') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a>
                         <h2 class="card-title"> </h2>
                         <div class="page-options ms-auto">
-                            <a href="{{ route('adminpfd.pdf') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
+                            <a href="{{ route('generate.pdf') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
                         </div>
                     </div>
                     <div class="e-table px-5 pb-5">
@@ -154,7 +152,6 @@
         });
     });
 </script>
-
 
 @endsection
 

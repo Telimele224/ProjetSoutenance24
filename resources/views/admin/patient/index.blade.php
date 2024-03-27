@@ -11,10 +11,10 @@
                              <!-- Formulaire de recherche -->
                         <form action="" method="GET" class="mb-3">
                             <div class="input-group row">
-                                <div class="col-md-6">
+                                <div class="col-md-10">
                                     <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
                                 </div>
 
@@ -41,12 +41,10 @@
         <div class="tab-pane active show" id="tab-11" role="tabpanel">
             <div class="card">
                 <div class="card-header border-bottom-0 px-5">
-                    <h2 class="card-title">1 - 30  Medecins</h2>
+                    <a href="{{ route('patientimprime') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a>
+                    <h2 class="card-title"> </h2>
                     <div class="page-options ms-auto">
-                        <select class="form-control select2 w-100">
-                            <option value="asc">Dernièrè Liste</option>
-                            <option value="desc">Vielles liste</option>
-                        </select>
+                        <a href="{{ route('patientpdf.pdf') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
                     </div>
                 </div>
                 <div class="e-table px-5 pb-5">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\PersonnelsRequest;
+use App\Http\Requests\admin\PersonnelsRequestUpdate;
 use App\Models\Actualite;
 use App\Models\Personnel;
 use Illuminate\Contracts\Cache\Store;
@@ -77,7 +78,7 @@ class PersonnelsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PersonnelsRequest $request, Personnel $personnel)
+    public function update(PersonnelsRequestUpdate $request, Personnel $personnel)
     {
         $data = $request->validated();
         // dd($data);
