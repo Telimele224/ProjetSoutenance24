@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\PatientController;
 use App\Http\Controllers\admin\PersonnelsController;
 use App\Http\Controllers\admin\ServiceControllers;
 use App\Http\Controllers\admin\TypeConsultationController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Rdv\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Front_end\MenuNavigation;
@@ -28,6 +29,7 @@ use App\Http\Controllers\patient\ProfilePatientController;
 use App\Http\Controllers\patient\TemoignageControllers;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Rdv\RdvController;
+use App\Http\Controllers\patient\RdvpatientController;
 use App\Http\Controllers\Rdv\RecommendationServiceController;
 use App\Http\Controllers\Rdv\SymptomController;
 use App\Http\Requests\medecin\ConsultationRequest;
@@ -43,6 +45,7 @@ use App\Http\Controllers\pdf\MedecinPdf;
 use App\Http\Controllers\pdf\Patientdf;
 use App\Http\Controllers\pdf\Personnelpdf;
 use App\Http\Controllers\PDFController;
+use App\Models\Rdv;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,8 +76,9 @@ Route::get('/patientpdf', [Patientdf::class, 'patient'])->name('patientpdf.pdf')
 Route::get('/personnelpdf', [Personnelpdf::class, 'personnel'])->name('personnelpdf.pdf');
 
 
-
-
+//Route pour la page contact
+// Route::get('/contact' , [ContactController::class,'show'])->name('contact.show');
+Route::post('/contact' , [MenuNavigation::class,'send'])->name('contact.send');
 
 
 // ROUTE POUR FRONT END LES PAGES DE NAVIGATION
@@ -124,7 +128,7 @@ Route::post('horaireStore/{id}', [HoraireController::class,'store'])->name('hora
 
 //Afficher les temoignage publier
 Route::get('/admin/listeTemoignage', [adminTemoignages::class, 'listeTemoignage'])->name('admin.temoignage.temoignagepublier');
-Route::get('/consultations', [ConsultationController::class, 'index'])->name('consultations.index');
+// Route::get('/consultations', [ConsultationController::class, 'index'])->name('consultations.index');
 
 //ROUTE POUR LE PATIENTS BACK_END
 Route::prefix('patients')->name('patients.')->group(function () {
@@ -142,8 +146,9 @@ Route::prefix('medecins')->name('medecins.')->group(function () {
     Route::resource('patient', PatientsController::class)->except('show');
     Route::resource('monequipe', ListeMedecinsController::class)->except('show');
     Route::resource('ordonance',OrdonnanceController::class);
+    Route::get('medecins/consultation/rendezvous', [RdvController::class, 'mesRendezVous'])->name('mesrendezvous');
 });
-Route::get('/medecins/consultation/getPatientsByDate', [ConsultationController::class, 'getPatientsByDate'])->name('medecins.consultation.getPatientsByDate');
+// Route::get('/medecins/consultation/getPatientsByDate', [ConsultationController::class, 'getPatientsByDate'])->name('medecins.consultation.getPatientsByDate');
 
 
 Route::middleware('auth')->group(function () {
@@ -223,11 +228,29 @@ Route::post('/login_medecin',[AuthController::class,'login_medecin'])->name('med
 
 Route::get('/dashboard_patient', [AuthController::class,'dashboard_patient_view'])->name('patients.dashboard_patient');
 Route::get('/dashboard_medecin', [AuthController::class,'dashboard_medecin_view'])->name('medecins.dashboard_medecin');
-Route::get('/confirmation-rdv_view', [RdvController::class,'confirmationRdv_view'])->name('confirmation_rdv_view');
+Route::get('/confirmation-rdv_view', [RdvController::class,'confirmationRdv_view'])->middleware(['auth', 'verified'])->name('confirmation_rdv_view');
 Route::post('/confirmation-rdv', [RdvController::class,'confirmationRdv'])->name('confirmation_rdv');
 Route::get('/verify-code', [AuthController::class,'verifyCodeView'])->name('patients.verify_code_view');
 Route::post('/verify-code', [AuthController::class,'verifyCode'])->name('patients.verify_code');
 
 
+
+//rendez-vous patient
+
+Route::get('/recommandation-service_patient', [RdvpatientController::class, 'AfficherForm'])->name('recommandation.service_patient');
+Route::post('/selectionService_patient', [RdvpatientController::class, 'recommander'])->name('selectionService_patient');
+Route::get('/selection-symptomes_patient', [RdvpatientController::class, 'showSelectionSymptomes'])->name('selectionSymptomes_patient');
+Route::get('/selection-maux_patient', [RdvpatientController::class, 'showSelectionMaux'])->name('selectionMaux_patient');
+Route::get('/selection-maladies_patient', [RdvpatientController::class, 'showSelectionMaladies'])->name('selectionMaladies_patient');
+Route::post('/recommander/serviceParSymptome_patient', [RdvpatientController::class, 'recommander_servicePar_symptome'])->name('recommander_servicePar_symptome_patient');
+Route::post('/recommander/serviceParMaux_patient', [RdvpatientController::class, 'recommander_servicePar_maux'])->name('recommander_servicePar_maux_patient');
+Route::post('/recommander/serviceParMaladie_patient', [RdvpatientController::class, 'recommander_servicePar_maladie'])->name('recommander_servicePar_maladie_patient');
+
+Route::get('/afficherMedecinsParService_patient/{serviceId}', [RdvpatientController::class, 'afficherMedecinsParService'])->name('afficherMedecinsParService_patient');
+Route::get('/choisirDate_patient/{medecinId}', [RdvpatientController::class, 'choisirDate'])->name('choisirDate_patient');
+Route::post('/choisirHeure_patient', [RdvpatientController::class, 'choisirHeure'])->name('choisirHeure_patient');
+Route::get('/confirmation-rdv_view_patient', [RdvpatientController::class,'confirmationRdv_view'])->name('confirmation_rdv_view_patient');
+Route::post('/confirmation-rdv_patient', [RdvpatientController::class,'confirmationRdv'])->name('confirmation_rdv_patient');
+Route::post('/ajouterRendezVous_patient', [RdvpatientController::class, 'ajouterRendezVous'])->name('ajouterRendezVous_patient');
 
 require __DIR__.'/auth.php';

@@ -22,8 +22,8 @@
         @foreach ($services as $service)
             <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.8s">
                 <div class="dep" onclick="location.href='';" style="cursor:pointer;">
-                    <div class="icon"><img width="30px" src="{{asset('storage/'.$service->avatar)}} " alt=""></div>
-                    <h3 class="baslik-3 h-yazi-margin-kucuk1">{{$service->nom}}</h3>
+                    <div class="icon"> <a href="{{ route('admin.service.show', $service) }}"><img width="30px" src="{{asset('storage/'.$service->avatar)}} " alt=""></a> </div>
+                    <h3 class="baslik-3 h-yazi-margin-kucuk1"><a href="{{ route('admin.service.show', $service) }}">{{$service->nom}}</a></h3>
                 </div>
             </div>
         @endforeach

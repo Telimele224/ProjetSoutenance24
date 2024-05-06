@@ -10,18 +10,18 @@
                         <div class="input-group">
                              <!-- Formulaire de recherche -->
                         <form action="" method="GET" class="mb-3">
-                            <div class="input-group row">
+                            <div class="main-header-center  d-none d-lg-block  header-link">
                                 <div class="col-md-10">
-                                    <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
+                                    <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone " id="typehead" autocomplete="on">
+
+                                        <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
+
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
-                                </div>
+
 
                             </div>
                         </form>
-                            {{-- <input type="text" class="form-control mr-2" name="search" placeholder="Recherche par email" aria-describedby="button-addon2">
-                            <button class="btn border" type="button" id="button-addon2"><i class="bi bi-search text-muted"></i></button> --}}
+
                         </div>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
@@ -80,8 +80,10 @@
                                         </td>
                                         <td class="align-middle">
                                             <div class="btn-list">
-                                                <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"></i></button>
-                                                <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"><i class="bi bi-trash"></i></button>
+                                                @if($user->patient)
+                                                    <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"> </i></button>
+                                                    <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"> <a href="{{route('admin.patient.edit',$user->patient)}}"><i class="bi bi-trash"></i></a></button>
+                                                 @endif
                                             </div>
                                         </td>
                                 </tr>

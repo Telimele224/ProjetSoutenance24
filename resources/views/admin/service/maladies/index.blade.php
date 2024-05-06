@@ -1,26 +1,21 @@
 @extends('en_tete.entete_administrateurs')
 @section('contenu')
 <div class="main-content">
-    <div>
-        <div class="page-title">
-            <a href="{{ route('back_end.maladies.create') }}" class="btn-2"> <i class="fa-solid fa-plus"></i> Ajouter une maladie </a>
-            <ul class="d-flex align-items-center gap-20">
-                <li class="bc-item"><a class="para-1b" href="index.html">Dashboard</a></li>
-                <li class="bc-item">Liste des Maladies</li>
-            </ul>
-            <form action="" method="get">
-                @csrf
-                <div class="form-group ">
-                    <label for="rechercheMaladies" class="mb-2 ">Rechercher une maladie par nom :</label>
-                    <input type="text" id="rechercheMaladies" name="rechercheMaladies" class="form-control">
-                </div>
-            </form>
+    <div class="card">
+       
+        <div class="card-header list-title d-between bgnc-10 br-trl-sm px-30 py-3">
+            <span class="heading-five">Liste des Maladies</span>
         </div>
-
-        <div class="list-body">
-            <div class="list-title d-between bgnc-10 br-trl-sm px-30 py-3">
-                <span class="heading-five">Liste des Maladies</span>
+        <div class="card-body">
+            @if(Session::has('success'))
+            <div class="alert alert-success " style="height: 50px;margin-bottom:15px">
+              {{Session::get('success')}}
             </div>
+            @elseif(Session::has('error'))
+            <div class="alert alert-danger " style="height: 50px;margin-bottom:15px">
+              {{Session::get('error')}}
+            </div>
+            @endif
 
             <!-- table start -->
             <table class="list-table" id="diseasesTable">

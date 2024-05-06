@@ -2,17 +2,10 @@
 @section('contenu')
 <div class="main-content">
     <div class="row">
-        <div class="page-title justify-content-end">
-            <ul class="d-flex align-items-center gap-20">
-                <li class="bc-item"><a class="para-1b" href="index.html">Dashboard</a></li>
-                <li class="bc-item"><a class="para-1b" href="{{ route('back_end.maladies.index') }}">Maladies</a></li>
-                <li class="bc-item">Ajouter une maladie</li>
-            </ul>
-        </div>
 
         <div class="bgnc-10 br-sm p-sm-30 p-10 col-md-9">
             <span class="heading-five mb-sm-30 mb-3">Ajouter une maladie</span>
-            <form action="{{ route('back_end.maladies.store') }}" enctype="multipart/form-data" method="post">
+            <form action="{{ route('admin.maladies.store') }}" enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="row gy-20">
                     <div class="mb-20 form-group col-sm-6 mb-2">

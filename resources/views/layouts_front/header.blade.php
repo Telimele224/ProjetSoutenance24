@@ -44,7 +44,7 @@
       <aside class="side-widget">
          <div class="inner">
             <!-- Logo Menu Mobile -->
-            <div class="logo"> <a href="index.html"><img src="{{asset('assets/wp-content/uploads/2022/06/loader-medidoc.png')}}" alt="Image"></a> </div>
+            <div class="logo"> <a href="{{route('welcome')}}"><img src="{{asset('Image/Logo HRL.png')}}" width="100" height="100" alt="Image"></a> </div>
             <div class="hide-mobile">
                <div class="or">
                   <h2 class="h2-baslik-hizmetler-2"> Contact Information </h2>
@@ -118,7 +118,7 @@
          <div class="container">
             <!-- Logo Menu Desktop -->
             <div class="logo"> <a href="index.html">
-               <img src="{{asset('assets/wp-content/uploads/2022/06/logo-medidoc.png')}}" alt="Image">
+               <img src="{{asset('Image/Logo HRL.png')}}"  alt="Image">
                </a>
             </div>
             <div class="site-menu">
@@ -149,7 +149,7 @@
                                 @if (Route::has('login'))
                                     <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                                         @auth
-                                        <li  id="menu-item-1433" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1433 nav-item"><a href="{{ url('/home') }}" class="nav-link"><span itemprop="name">Tableau de Bord</span></a></li>
+                                        <li  id="menu-item-1433" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1433 nav-item"><a href="{{ url('/home') }}" target="blank" class="nav-link"><span itemprop="name">Tableau de Bord</span></a></li>
                                         @else
                                         <li  id="menu-item-1433" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1433 nav-item"><a href="{{ route('login') }}" class="nav-link"><span itemprop="name">S'authentifier</span></a></li>
 

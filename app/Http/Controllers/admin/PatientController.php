@@ -4,10 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\PatientRequest;
+use App\Http\Requests\admin\updateRequest;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
@@ -27,7 +29,7 @@ class PatientController extends Controller
     public function create()
     {
 
-        $patient = null; // Initialisez $medecin à null pour l'ajout
+        $patient = null; // Initialisez $patient à null pour l'ajout
 
         return view('admin.patient.form', [
             'title' => 'Ajouter un Patient',
@@ -98,18 +100,45 @@ class PatientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
-        //
+        $patient = Patient::findOrFail($id);
+
+        return view('admin.patient.accountactive', [
+            'title' => 'Modifier un Patient',
+            'action' => route('admin.patient.update', ['patient' => $id]),
+            'method' => 'put',
+            'patient' => $patient,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        // Autres méthodes du contrôleur
+
+        public function update(Request $request, $id)
+        {
+
+            // Trouver le patient à mettre à jour
+            $patient = Patient::findOrFail($id);
+
+            $statut = $request->has('statut');
+            // Mettre à jour l'utilisateur associé au patient
+            $user = $patient->user;
+
+            $user->statut = $statut;
+            // dd($user);
+
+           $user->save();
+
+            // Redirection avec un message de succès
+            return redirect()->route('admin.patient.index')->with('success', 'Patient mis à jour avec succès.');
+        }
+
+
+
+
 
     /**
      * Remove the specified resource from storage.

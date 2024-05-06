@@ -142,9 +142,8 @@
             <div class="container">
                <div class="row align-items-center flex-row-reverse">
                   <div class="col-md-12 col-sm-12 text-center">
-                     Copyright © <span id="year"></span> <a href="javascript:void(0);">Vexel</a>. Designed with <span
-                        class="fa fa-heart text-danger"></span> by <a href="javascript:void(0);"> Spruko </a> All
-                     rights reserved.
+                     Copyright © <span id="year"></span> <a href="javascript:void(0);">IST-MAMOU GENIE-INFO P15 G-33 -</a>.Tous droits reservés. <span
+                        class="fa fa-heart text-danger"></span>
                   </div>
                </div>
             </div>
@@ -158,16 +157,6 @@
          <span class="arrow"><i class="fa fa-angle-up fs-20"></i></span>
       </div>
 
-      {{-- pour le calendrier --}}
-            {{-- <script src="{{asset('assets/plugin/bootstrap.min.js')}}"></script>
-            <script src="{{asset('assets/plugin/calendar.js')}}"></script>
-            <script src="{{asset('assets/plugin/cdn.jsdelivr.net_npm_chart.js')}}"></script>
-            <script src="{{asset('assets/plugin/jquery-3.7.0.min.js')}}"></script>
-            <script src="{{asset('assets/plugin/jquery.nice-select.min.js')}}"></script> --}}
-      {{-- fin --}}
-
-
-
 
       <!-- Scroll To Top -->
       <div id="responsive-overlay"></div>
@@ -180,7 +169,7 @@
       <script src="{{asset('assets/build/assets/js/calendar.js')}}"></script>
       {{-- pour le calendrier --}}
       <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
-      
+
       <script src="{{asset('assets/build/assets/show-password.js')}}"></script>
 
 

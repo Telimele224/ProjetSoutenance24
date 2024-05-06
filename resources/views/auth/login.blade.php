@@ -6,6 +6,11 @@
     <div class="row justify-content-center mt-4 mx-0">
        <div class="col-xl-4 col-lg-6">
           <div class="card shadow-none">
+            <div class="row m-3">
+                <div class="text-center">
+                   <a href="index.html"><img src="{{asset('Image/Logo HRL.png')}}" width="50" height="50" class="header-brand-img" alt=""></a>
+                </div>
+             </div>
              <div class="card-body p-sm-6">
                 <div class="text-center mb-3">
                    <h4 class="mb-1">CONNECTEZ-VOUS</h4>

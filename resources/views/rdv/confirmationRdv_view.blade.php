@@ -16,20 +16,21 @@
         Confirmer-vous ces informations ?
     </div>
     <div class="card-body">
+       <!-- Afficher les informations du rendez-vous -->
         <div class="card-header text-justify">
-            <h6>Date du rendez-vous : {{ $rendezVous->dateRdv }}</h6s>
+            <h6>Date du rendez-vous : {{ $rendezVous['dateRdv'] }}</h6>
         </div>
         <div class="card-header text-justify ">
-            <h6>Heure du rendez-vous : {{ $rendezVous->heure }}</h6>
+            <h6>Heure du rendez-vous : {{ $rendezVous['heure'] }}</h6>
         </div>
         <div class="card-header text-justify">
-            <h6>Jour du rendez-vous : {{ $rendezVous->jour }}</h6>
+            <h6>Jour du rendez-vous : {{ $rendezVous['jour'] }}</h6>
         </div>
         <div class="card-footer ">
             <form action="{{ route('confirmation_rdv') }}" method="POST">
                 @csrf
                 <!-- Vous pouvez passer l'ID du rendez-vous en tant que champ caché -->
-                <input type="hidden" name="rendezVousId" value="{{ $rendezVous->id }}">
+                {{-- <input type="hidden" name="rendezVousId" value="{{ $rendezVous->id }}"> --}}
 
                 <button type="submit" class="btn btn-outline-success w-100 mt-3 float-end">Confirmer</button>
 

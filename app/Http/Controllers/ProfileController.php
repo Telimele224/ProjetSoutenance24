@@ -82,22 +82,27 @@ class ProfileController extends Controller
 
     /**
      * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+    /**
+ * Disable the user's account.
+ */
+public function destroy(Request $request): RedirectResponse
+{
+    $request->validateWithBag('userDeletion', [
+        'password' => ['required', 'current_password'],
+    ]);
 
-        $user = $request->user();
+    $user = $request->user();
 
-        Auth::logout();
+    // Mettre à jour le statut de l'utilisateur dans la base de données
+    $user->update(['statut' => false]);
 
-        $user->delete();
+    Auth::logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
 
-        return Redirect::to('/');
-    }
+    // Rediriger l'utilisateur vers une autre page si nécessaire
+    return redirect()->to('/')->with('status', 'Votre compte a été désactivé.');
+}
+
 }

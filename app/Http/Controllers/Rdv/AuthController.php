@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationCodeEmail;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 // use App\Models\VerificationCodeEmail;
 use Illuminate\Validation\Rule;
 use App\Models\User;
@@ -19,112 +22,131 @@ class AuthController extends Controller
 {
 
 
-    public function nouveauPatient(PatientRequest $request)
+    public function nouveauPatient(PatientRequest $request) :RedirectResponse
     {
         $request->validate($request->rules());
+                // Création de l'utilisateur
+                $user = User::create([
+                    'name' => $request->input('name'),
+                    'nom' => $request->input('nom'),
+                    'prenom' => $request->input('prenom'),
+                    'genre' => $request->input('genre'),
+                    'adresse' => $request->input('adresse'),
+                    'age' => $request->input('age'),
+                    'role' => $request->filled('role') ? $request->input('role') : 'patient',
+                    'telephone' => $request->input('telephone'),
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->input('password')),
+                    // 'photo' => null, // Initialisez la valeur du champ photo à null par défaut
+                ]);
 
-        // Génération et envoi du code de validation par e-mail
-        $verificationCode = $this->generateVerificationCode();
-        Mail::to($request->input('email'))->send(new VerificationCodeEmail($verificationCode));
+                // Télécharge l'avatar de l'utilisateur s'il est fourni dans la requête
+                if ($request->hasFile('photo')) {
+                    $photo = $request->file('photo');
+                    if ($photo->isValid()) {
+                        $new_photo = $photo->getClientOriginalName();
+                        $path = $photo->storeAs('photos', $new_photo, 'public'); // Enregistrez la photo dans le stockage public
+                        $user->photo = $path; // Mettez à jour le champ photo avec le chemin d'accès de la photo
+                        $user->save(); // Enregistrez les modifications
+                    }
+                }
 
-        // Stocker uniquement les données nécessaires à la vérification du code dans la session
-        session()->put('registration_data', [
-            'name' => $request->input('name'),
-            'nom' => $request->input('nom'),
-            'prenom' => $request->input('prenom'),
-            'adresse' => $request->input('adresse'),
-            'genre' => $request->input('genre'),
-            'age' => $request->input('age'),
-            'email' => $request->input('email'),
-            'telephone' => $request->input('telephone'),
-            'ville' => $request->input('ville'),
-            'role' => $request->filled('role') ? $request->input('role') : 'patient',
-            'password' => $request->input('password'),
-        ]);
-        session()->put('verification_code', $verificationCode);
 
-        // Redirection vers la vue où l'utilisateur saisira le code
-        return redirect()->route('patients.verify_code_view');
+                // Création du patient lié à l'utilisateur
+                $patient = Patient::create([
+                    'ville' => $request->input('ville'),
+                    'poids' => $request->input('poids'),
+                    'telephone' => $request->input('telephone'),
+                    'user_id' => $user->id, // Association du patient à l'utilisateur créé
+                ]);
+
+                //   // Envoi de l'e-mail de vérification
+                //   event(new Registered($user));
+
+                // Connexion de l'utilisateur nouvellement enregistré
+                Auth::login($user);
+
+                return redirect()->route('confirmation_rdv_view');; // Redi rection vers la page d'accuel
     }
 
-    public function verifyCodeView()
-    {
-        // Récupérer les données d'inscription de la session pour les afficher dans la vue
-        $registrationData = session()->get('registration_data');
-        return view('rdv.verification_code', compact('registrationData'));
-    }
+    // public function verifyCodeView()
+    // {
+    //     // Récupérer les données d'inscription de la session pour les afficher dans la vue
+    //     $registrationData = session()->get('registration_data');
+    //     return view('rdv.verification_code', compact('registrationData'));
+    // }
 
-    public function verifyCode(Request $request)
-    {
-        $request->validate([
-            'verification_code' => 'required',
-        ]);
+    // public function verifyCode(Request $request)
+    // {
+    //     $request->validate([
+    //         'verification_code' => 'required',
+    //     ]);
 
-        $verificationCode = session()->get('verification_code');
+    //     $verificationCode = session()->get('verification_code');
 
-        // Vérification si le code entré par l'utilisateur est correct
-        if ($request->input('verification_code') == $verificationCode) {
-            // Récupérer les données d'inscription de la session
-            $registrationData = session()->get('registration_data');
+    //     // Vérification si le code entré par l'utilisateur est correct
+    //     if ($request->input('verification_code') == $verificationCode) {
+    //         // Récupérer les données d'inscription de la session
+    //         $registrationData = session()->get('registration_data');
 
-            // Créer l'utilisateur
+    //         // Créer l'utilisateur
 
-            $avatarPath = $this->uploadAvatar($request->file('avatar'));
+    //         $avatarPath = $this->uploadAvatar($request->file('avatar'));
 
-            $user = User::create([
-                'name' => $registrationData['name'],
-                'nom' => $registrationData['nom'],
-                'prenom' => $registrationData['prenom'],
-                'adresse' => $registrationData['adresse'],
-                'genre' => $registrationData['genre'],
-                'age' => $registrationData['age'],
-                'telephone' => $registrationData['telephone'],
-                'email' => $registrationData['email'],
-                'role' => $registrationData['role'],
-                'avatar' => $avatarPath, // Utiliser le chemin de l'avatar téléchargé
-                'password' => Hash::make($registrationData['password']),
-            ]);
+    //         $user = User::create([
+    //             'name' => $registrationData['name'],
+    //             'nom' => $registrationData['nom'],
+    //             'prenom' => $registrationData['prenom'],
+    //             'adresse' => $registrationData['adresse'],
+    //             'genre' => $registrationData['genre'],
+    //             'age' => $registrationData['age'],
+    //             'telephone' => $registrationData['telephone'],
+    //             'email' => $registrationData['email'],
+    //             'role' => $registrationData['role'],
+    //             'avatar' => $avatarPath, // Utiliser le chemin de l'avatar téléchargé
+    //             'password' => Hash::make($registrationData['password']),
+    //         ]);
 
-            // Créer le patient lié à l'utilisateur
-            Patient::create([
-                'ville' => $registrationData['ville'],
-                'user_id' => $user->id,
-            ]);
+    //         // Créer le patient lié à l'utilisateur
+    //         Patient::create([
+    //             'ville' => $registrationData['ville'],
+    //             'user_id' => $user->id,
+    //         ]);
 
-            // Redirection vers la page de connexion
-            return redirect()->route('patients.login_patient_view')->with('success', 'Patient ajouté avec succès.');;
-        } else {
-            // Code incorrect, afficher un message d'erreur
-            return back()->with('error', 'Le code de validation est incorrect. Veuillez réessayer.');
-        }
-    }
-
-
-    function uploadAvatar($file)
-    {
-        if ($file) {
-            $filename = uniqid() . '_' . $file->getClientOriginalName();
-            $path = public_path('avatars');
-
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-
-            $file->move($path, $filename);
-
-            return $filename;
-        }
-
-        return null;
-    }
+    //         // Redirection vers la page de connexion
+    //         return redirect()->route('patients.login_patient_view')->with('success', 'Patient ajouté avec succès.');;
+    //     } else {
+    //         // Code incorrect, afficher un message d'erreur
+    //         return back()->with('error', 'Le code de validation est incorrect. Veuillez réessayer.');
+    //     }
+    // }
 
 
+    // function uploadAvatar($file)
+    // {
+    //     if ($file) {
+    //         $filename = uniqid() . '_' . $file->getClientOriginalName();
+    //         $path = public_path('avatars');
 
-    protected function generateVerificationCode()
-    {
-        // Générer un code de validation aléatoire
-        return mt_rand(100000, 999999);
-    }
+    //         if (!file_exists($path)) {
+    //             mkdir($path, 0777, true);
+    //         }
+
+    //         $file->move($path, $filename);
+
+    //         return $filename;
+    //     }
+
+    //     return null;
+    // }
+
+
+
+    // protected function generateVerificationCode()
+    // {
+    //     // Générer un code de validation aléatoire
+    //     return mt_rand(100000, 999999);
+    // }
 
     public function login_patient_view(){
         return view("rdv.loginPatient");

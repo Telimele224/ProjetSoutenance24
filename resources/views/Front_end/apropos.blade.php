@@ -150,201 +150,101 @@
 
 <!--TITLE-->
 <section class="ozellika" data-background="#f3f3f3">
-<div class="container">
-    <div class="row align-items-center no-gutters">
-        <div class="col-lg-12">
-            <div class="wow fadeInUp" data-wow-delay="0.3s">
+    <div class="container">
+       <div class="row align-items-center no-gutters">
+          <div class="col-lg-12">
+             <div class="wow fadeInUp" data-wow-delay="0.3s">
                 <div class="boslukalt"></div>
-                <h2 class="h2-baslik-hizmetler-2 wow fadeInUp" data-wow-delay="0.4s">Nos medécins experts</h2>
+                <h2 class="h2-baslik-hizmetler-2 wow fadeInRight" data-wow-delay="0.4s">Nos médecins experts</h2>
                 <p class="h2-baslik-hizmetler-2__paragraf wow fadeInUp" data-wow-delay="0.4s">
-                Votre santé nous est confiée.                    </p>
-            </div>
-        </div>
+                   Votre santé nous est confiée.
+                </p>
+             </div>
+          </div>
+       </div>
     </div>
-</div>
-</section>
-<!--Team Alanı-->
-<section class="team-section">
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-        <div class="carousel-classes">
-        <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                <div class="class-box">
-                    <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.5s" style="cursor:pointer;">
-                        <div class="member-box wow reveal-effect">
-                            <figure> <img src="{{asset('assets/wp-content/uploads/2022/06/team1.jpg')}}" alt="Image">
-                                <figcaption>
-                                <h6>Aboubakhr</h6>
-                                <p class="paragraf-sol-beyaz-orta">Urology Doctor</p>
-                                <ul>
-                                    <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                    <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                    <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                </ul>
-                                </figcaption>
-                            </figure>
+ </section>
+ <!--Team Alanı-->
+ <section class="team-section">
+    <div class="container">
+       <div class="row">
+          <div class="col-12">
+             <div class="carousel-classes">
+                <div class="swiper-wrapper">
+                 @foreach ($personnels as $personnel)
+                 <div class="swiper-slide">
+                     <div class="class-box">
+                        <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.5s" style="cursor:pointer;">
+                           <div class="member-box wow reveal-effect">
+                              <figure>
+                                 <img src="{{asset('storage/'.$personnel->photo)}}" width="350" height="350" alt="Image">
+                                 <figcaption>
+                                    <h6>{{$personnel->nom}} {{$personnel->prenom}}</h6>
+                                    <p class="paragraf-sol-beyaz-orta">{{$personnel->poste}}</p>
+                                    <ul>
+                                       <li><a href="#"><i class="lni-facebook"></i></a></li>
+                                       <li><a href="#"><i class="lni-instagram"></i></a></li>
+                                       <li><a href="#"><i class="lni-twitter"></i></a></li>
+                                    </ul>
+                                 </figcaption>
+                              </figure>
+                           </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-                    <div class="swiper-slide">
-                <div class="class-box">
-                    <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.6s" style="cursor:pointer;">
-                        <div class="member-box wow reveal-effect">
-                            <figure> <img src="{{asset('assets/wp-content/uploads/2022/06/team2.jpg')}}" alt="Image">
-                                <figcaption>
-                                <h6>Adam Brown</h6>
-                                <p class="paragraf-sol-beyaz-orta">Gastroenterology Doctor</p>
-                                <ul>
-                                    <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                    <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                    <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                </ul>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                    <div class="swiper-slide">
-                <div class="class-box">
-                    <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.7s" style="cursor:pointer;">
-                        <div class="member-box wow reveal-effect">
-                            <figure> <img src="{{asset('assets/wp-content/uploads/2022/06/team3.jpg')}}" alt="Image">
-                                <figcaption>
-                                <h6>Michael Lee</h6>
-                                <p class="paragraf-sol-beyaz-orta">Chest Diseases Doctor</p>
-                                <ul>
-                                    <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                    <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                    <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                </ul>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                    <div class="swiper-slide">
-                <div class="class-box">
-                    <div class="services-kutu2 wow fadeInRight" data-wow-delay="0.8s" style="cursor:pointer;">
-                        <div class="member-box wow reveal-effect">
-                            <figure> <img src="{{asset('assets/wp-content/uploads/2022/06/team4.jpg')}}" alt="Image">
-                                <figcaption>
-                                <h6>Olivia Lee</h6>
-                                <p class="paragraf-sol-beyaz-orta">Dental Doctor</p>
-                                <ul>
-                                    <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                    <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                    <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                </ul>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                     </div>
+                  </div>
+                 @endforeach
 
-    </div>
 
-    <div class="swiper-pagination"></div>
-        </div>
+                </div>
+                <div class="swiper-pagination"></div>
+             </div>
+          </div>
+       </div>
     </div>
-</div>
-</div>
-</section>
+ </section>
+ <!--Yorumlar-->
 
 <!--Yorumlar-->
 <section class="yorumlar-alani-sayfa">
-<div class="container">
-    <div class="row">
-    <div class="col-12 wow animated fadeIn animated" data-wow-delay="0.5s">
-        <div class="h-yazi-ortalama h-yazi-margin-orta-3">
-            <h2 class="h2-baslik-hizmetler-yorum wow fadeInUp" data-wow-delay="0.5s"> Que disent nos clients ?</h2>
-        </div>
-            <p class="h2-baslik-hizmetler-yorum__yorum wow fadeInUp" data-wow-delay="0.5s">
-                Chaque client est précieux pour nous. Voici les avis de certains de nos clients qui nous ont choisi.               </p>
-            <div class="bosluk3a"></div>
-    </div>
-    <div class="col-12">
-        <div class="carousel-classes">
-           <div class="swiper-wrapper">
-            @foreach ($temoignages as $temoignage)
-
-            @if($temoignage->publier)
-                    <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
-                        <div class="class-box">
-                        <div class="testimonial-card">
-                            <div class="testimon-text">
-                                {{ $temoignage->contenu_temoi}}<i class="fas fa-quote-right quote"></i>
-                            </div>
-                            <div class="testimonialimg">
-                                <div class="testimonimg">
-                                @if($temoignage->user && $temoignage->user->patient && $temoignage->user->patient->avatar)
-                                    <img src="{{ asset('storage/'.$temoignage->user->patient->avatar) }}" alt="Image du patient">
-                                @endif
+    <div class="container">
+        <div class="row">
+            <div class="col-12 wow animated fadeIn animated" data-wow-delay="0.5s">
+                <div class="h-yazi-ortalama h-yazi-margin-orta-3">
+                    <h2 class="h2-baslik-hizmetler-yorum wow fadeInUp" data-wow-delay="0.5s"> Que disent nos patients? </h2>
+                </div>
+                <p class="h2-baslik-hizmetler-yorum__yorum wow fadeInUp" data-wow-delay="0.5s">
+                    Chaque patient est précieux pour nous. Voici les avis de certains de nos clients qui nous ont choisi.
+                </p>
+                <div class="bosluk3a"></div>
+            </div>
+            <div class="col-12">
+                <div class="carousel-classes">
+                    <div class="swiper-wrapper">
+                        @foreach ($temoignages as $temoignage)
+                            @if($temoignage->publier)
+                                <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
+                                    <div class="class-box">
+                                        <div class="testimonial-card">
+                                            <div class="testimon-text">
+                                                {{ $temoignage->contenu}} <i class="fas fa-quote-right quote"></i>
+                                            </div>
+                                            <div class="testimonialimg">
+                                                <div class="testimonimg">
+                                                    <img height="80" width="80" class="rounded-circle" src="{{ asset('storage/'.$temoignage->user->photo) }}" alt="Image du patient">
+                                                </div>
+                                                <h3 class='person'>{{ $temoignage->user->name }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h3 class='person'>{{ $temoignage->user->name }}</h3>
-                            </div>
-                        </div>
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
-
-             @endif
-            @endforeach
-              {{-- <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
-                 <div class="class-box">
-                    <div class="testimonial-card">
-                       <div class="testimon-text">
-                         Il a nettoyé le tartre dans ma bouche et applioqué un traitement des gencives au laser. Je n'ai eu aucun problème après le traitement. Une très bonne clinique. <i class="fas fa-quote-right quote"></i>
-                       </div>
-                       <div class="testimonialimg">
-                          <div class="testimonimg"><img src="{{asset('assets/wp-content/uploads/2022/06/testimonial2.png')}}" alt="">
-                          </div>
-                          <h3 class='person'>Michael</h3>
-                       </div>
-                    </div>
-                 </div>
-                 <!-- end swiper-slide -->
-              </div>
-              <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
-                 <div class="class-box">
-                    <div class="testimonial-card">
-                       <div class="testimon-text">
-                          Pour la première fois. Je quitte un dentiste avec bonheur. Parce que je sais que mes dents sont désormais entre des mains professionnelles. Heureux d'avoir eu l'occasion de faire votre connaissance                     <i class="fas fa-quote-right quote"></i>
-                       </div>
-                       <div class="testimonialimg">
-                          <div class="testimonimg"><img src="{{asset('assets/wp-content/uploads/2022/06/testimonial3.png')}}" alt="">
-                          </div>
-                          <h3 class='person'>Robert</h3>
-                       </div>
-                    </div>
-                 </div>
-                 <!-- end swiper-slide -->
-              </div>
-              <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
-                 <div class="class-box">
-                    <div class="testimonial-card">
-                       <div class="testimon-text">
-                          Si vous avez un problème de gencives, faites vous examiner sans aucune hésitation. Elle vous fait sentir en sécurité avec son visage souriant et son attitude est confortante pendant le processus de traitement.                    <i class="fas fa-quote-right quote"></i>
-                       </div>
-                       <div class="testimonialimg">
-                          <div class="testimonimg"><img src="{{asset('assets/wp-content/uploads/2022/06/testimonial5.png')}}" alt="">
-                          </div>
-                          <h3 class='person'>Adam</h3>
-                       </div>
-                    </div>
-                 </div>
-                 <!-- end swiper-slide -->
-              </div> --}}
-           </div>
-           <div class="swiper-pagination"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
         </div>
-     </div>
     </div>
-</div>
 </section>
 
 @endsection

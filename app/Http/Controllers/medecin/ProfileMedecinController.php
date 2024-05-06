@@ -87,16 +87,18 @@ class ProfileMedecinController extends Controller
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
-
+    
         $user = $request->user();
-
+    
+        // Mettre à jour le statut de l'utilisateur dans la base de données
+        $user->update(['statut' => false]);
+    
         Auth::logout();
-
-        $user->delete();
-
+    
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+    
+        // Rediriger l'utilisateur vers une autre page si nécessaire
+        return redirect()->to('/')->with('status', 'Votre compte a été désactivé.');
     }
 }

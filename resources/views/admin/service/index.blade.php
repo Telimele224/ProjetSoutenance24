@@ -4,6 +4,7 @@
 
 
 <div class="row">
+  
     <div class="col-xxl-6">
         <div class="page-header d-flex align-items-center justify-content-between border-bottom mb-4 mt-0">
             <h1 class="page-title">NOS SERVICES</h1>
@@ -15,6 +16,15 @@
         </div>
        <div class="row">
 
+        @if(Session::has('success'))
+        <div class="alert alert-success " style="height: 50px;margin-bottom:15px">
+          {{Session::get('success')}}
+        </div>
+        @elseif(Session::has('error'))
+        <div class="alert alert-danger " style="height: 50px;margin-bottom:15px">
+          {{Session::get('error')}}
+        </div>
+        @endif
           <div class="card-body">
             <div class="table-responsive">
                     <table class="table border text-nowrap text-md-nowrap mb-0">

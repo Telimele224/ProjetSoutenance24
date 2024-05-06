@@ -63,7 +63,7 @@
                 <ul class="slide-menu child1">
 
                    <li class="slide">
-                      <a href="{{ route('medecins.login_medecin_view') }}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Ajout | Rendez-vous</span></a>
+                      <a href={{route('recommandation.service_patient')}} class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Ajout | Rendez-vous</span></a>
                    </li>
                    <li class="slide">
                       <a href="{{ route('liste_rdv_patient') }}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Liste | Rendez-vous</span></a>
@@ -97,10 +97,10 @@
                       <a href="javascript:void(0);"><span>Forum</a>
                    </li>
                    <li class="slide">
-                      <a href="{{route('chatify')}}" class="side-menu__item"><span><i class="ion-chatbox"></i>        Messagerie</span></a>
+                      <a href="{{route('chatify')}}" target="blank" class="side-menu__item"><span><i class="ion-chatbox"></i>        Messagerie</span></a>
                    </li>
                    <li class="slide">
-                      <a href="{{route('forum.index')}}" class="side-menu__item"><span><i class="fa fa-commenting"></i>        Form</span></a>
+                      <a href="{{route('forum.index')}}" target="blank"  class="side-menu__item"><span><i class="fa fa-commenting"></i>        Form</span></a>
                    </li>
                 </ul>
              </li>

@@ -31,64 +31,14 @@
              </a>
              <!-- End::header-link -->
           </div>
-          <!-- End::header-element -->
-          <div class="main-header-center  d-none d-lg-block  header-link">
-             <input type="text" class="form-control" id="typehead" placeholder="Search for results..."
-                autocomplete="off">
-             <button class="btn pe-1"><i class="fe fe-search" aria-hidden="true"></i></button>
-             <div id="headersearch" class="header-search">
-                <div class="p-3">
-                   <div class="">
-                      <p class="fw-semibold text-muted mb-2 fs-13">Recent Searches</p>
-                      <div class="ps-2">
-                         <a href="javascript:void(0);" class="search-tags"><i
-                            class="fe fe-search me-2"></i>People<span></span></a>
-                         <a href="javascript:void(0);" class="search-tags"><i
-                            class="fe fe-search me-2"></i>Pages<span></span></a>
-                         <a href="javascript:void(0);" class="search-tags"><i
-                            class="fe fe-search me-2"></i>Articles<span></span></a>
-                      </div>
-                   </div>
-                   <div class="mt-3">
-                      <p class="fw-semibold text-muted mb-2 fs-13">Apps and pages</p>
-                      <ul class="ps-2">
-                         <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                            <a href="calendar2.html"><span><i
-                               class='bi bi-calendar me-2 fs-14 bg-primary-transparent avatar rounded-circle '></i>Calendar</span></a>
-                         </li>
-                         <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                            <a href="email-inbox.html"><span><i
-                               class='bi bi-envelope me-2 fs-14 bg-primary-transparent avatar rounded-circle'></i>Mail</span></a>
-                         </li>
-                         <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                            <a href="buttons.html"><span><i
-                               class='bi bi-dice-1 me-2 fs-14 bg-primary-transparent avatar rounded-circle '></i>Buttons</span></a>
-                         </li>
-                      </ul>
-                   </div>
-                   <div class="mt-3">
-                      <p class="fw-semibold text-muted mb-2 fs-13">Links</p>
-                      <ul class="ps-2">
-                         <li class="p-1 align-items-center text-muted mb-1 search-app">
-                            <a href="javascript:void(0);"
-                               class="text-primary"><u>http://spruko/html/spruko.com</u></a>
-                         </li>
-                         <li class="p-1 align-items-center text-muted mb-1 search-app">
-                            <a href="javascript:void(0);"
-                               class="text-primary"><u>http://spruko/demo/spruko.com</u></a>
-                         </li>
-                      </ul>
-                   </div>
-                </div>
-                <div class="py-3 border-top px-0">
-                   <div class="text-center">
-                      <a href="javascript:void(0);"
-                         class="text-primary text-decoration-underline fs-15">View all</a>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <!-- header search -->
+         <!-- End::header-element -->
+         <div class="main-header-center  d-none d-lg-block  header-link">
+            <input type="text" class="form-control" id="typehead" placeholder="Labé hôpital regional ..."
+               autocomplete="off">
+            <button class="btn pe-1"><i class="fe fe-search" aria-hidden="true"></i></button>
+
+         </div>
+         <!-- header search -->
        </div>
        <!-- End::header-content-left -->
        <!-- Start::header-content-right -->
@@ -157,7 +107,7 @@
                    <!-- Start::header-element -->
                    <div class="header-element dropdown-center cart-dropdown">
                       <!-- Start::header-link|dropdown-toggle -->
-                      <a href="{{route('forum.index')}}" class="header-link dropdown-toggle"
+                      <a href="{{route('forum.index')}}" target="blank" class="header-link dropdown-toggle"
                          >
                       <i class="ion-chatbox"></i>
                       <span class="badge bg-primary rounded-pill header-icon-badge"
@@ -169,7 +119,7 @@
                          data-popper-placement="none">
                          <div class="p-3 empty-header-item border-top">
 
-                               <a href="{{route('forum.index')}}" ></a>
+                               <a href="{{route('forum.index')}}" target="blank"></a>
 
                          </div>
                          <div class="p-5 empty-item d-none">
@@ -190,7 +140,7 @@
                    <!-- Start::header-element -->
                    <div class="header-element dropdown-center notifications-dropdown">
                       <!-- Start::header-link|dropdown-toggle -->
-                      <a href="{{route('chatify')}}" class="header-link dropdown-toggle"
+                      <a href="{{route('chatify')}}" target="blank" class="header-link dropdown-toggle"
                         >
                       <i class="fa fa-commenting"></i>
                       <span

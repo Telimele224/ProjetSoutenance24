@@ -7,7 +7,13 @@
         <h1 class="my-3">@yield('title')</h1>
 
         <div class="row justify-content-center">
+            <div class="row m-4">
+                <div class="text-center">
+                   <a href="index.html"><img src="{{asset('Image/Logo HRL.png')}}" width="50" height="50" class="header-brand-img" alt=""></a>
+                </div>
+             </div>
             <div class="col-xl-8">
+
                 <div class="card">
 
                         <div class="text-center mb-0">

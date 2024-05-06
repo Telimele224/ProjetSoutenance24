@@ -81,8 +81,10 @@
                                         </td>
                                         <td class="align-middle">
                                             <div class="btn-list">
-                                                <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"></i></button>
-                                                <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"><i class="bi bi-trash"></i></button>
+                                                @if($user->medecin)
+                                                    <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"> </i></button>
+                                                    <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"> <a href="{{route('admin.administrateur.edit',$user->medecin)}}"><i class="bi bi-trash"></i></a></button>
+                                                @endif
                                             </div>
                                         </td>
                                 </tr>

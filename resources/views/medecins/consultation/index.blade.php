@@ -10,39 +10,26 @@
 
 <div class="row">
     <div class="col-xxl-6">
-        <div class="row card-header ">
+        <div class="row card-header mb-0">
             <div class="page-header d-flex align-items-center justify-content-between border-bottom mb-4 mt-0">
-                <h1 class="page-title">Listes des Ordonances</h1>
+                <h1 class="page-title">Listes des rendez vous</h1>
                 <div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><span><a href="{{route('medecins.ordonance.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | Ordonance</a></span></li>
+                        <li class="breadcrumb-item"><span><a href="{{route('medecins.consultation.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | Consultation</a></span></li>
                     </ol>
                 </div>
             </div>
         </div>
-       <div class="row">
+       <div class="row mt-0">
           <div class="card-body">
-            <!-- Formulaire de recherche -->
-            <form action="{{ route('medecins.consultation.index') }}" method="GET" class="mb-3">
-                <div class="input-group row">
-                    <div class="col-md-6">
-                        <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary text-end">Rechercher</button>
-                    </div>
-
-                </div>
-            </form>
 
             <div class="table-responsive">
                 <table class="table border-top table-bordered mb-0 text-nowrap">
                     <thead class="table-success">
                         <tr>
-                            <th>Numero</th>
-                            <th>Nom Patient</th>
+                            <th>N°</th>
+                            <th>Prenom et Nom</th>
                             <th>Type Consultation</th>
-                            <th>Code</th>
                             <th>Status</th>
                             <th>Frais</th>
                             <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
@@ -53,13 +40,8 @@
                         @foreach ($consultations as $k => $consultation)
                             <tr>
                                 <td>{{ $k + 1 }}</td>
-                                @if($consultation->patient) <!-- Vérifiez si la consultation est liée à un patient -->
-                                <td>{{ $consultation->patient->user->prenom }}  {{ $consultation->patient->user->nom }}</td>
-                                @else
-                                    <td colspan="2">Aucun patient associé</td> <!-- Si la consultation n'est pas liée à un patient -->
-                                @endif
+                                <td>{{ $consultation->rdv->patient->user->prenom }}  {{ $consultation->rdv->patient->user->nom }}</td>
                                 <td>{{ $consultation->typeConsultation->name }}</td>
-                                <td>{{ $consultation->code }}</td>
                                 <td>{{ $consultation->status }}</td>
                                 <td>{{ $consultation->frais }}</td>
                                 <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
@@ -69,10 +51,10 @@
                                             <a href="{{route('medecins.consultation.show',$consultation) }}"><i class="fe fe-eye fs-15"></i></a>
                                         </span>
                                         <span class="avatar rounded-circle bg-blue">
-                                            <a href="{{route('medecins.consultation.edit',$consultation) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
+                                            <a href="{{route('medecins.consultation.edit',$consultation) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15 text-white"></i></a>
                                         </span>
-                                        <span class="avatar rounded-circle bg-blue">
-                                            <a href="{{ route('consultation.pdf', $consultation->id) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
+                                        <span class="avatar rounded-circle bg-red">
+                                            <a href="{{ route('consultation.pdf', $consultation->id) }}" class="text-decoration-none text-default"><i class="fa fa-trash fs-15 text-white "></i></a>
                                         </span>
 
                                     </div>

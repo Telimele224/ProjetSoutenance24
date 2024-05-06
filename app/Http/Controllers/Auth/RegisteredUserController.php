@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
             'adresse' => $request->input('adresse'),
             'age' => $request->input('age'),
             'role' => $request->filled('role') ? $request->input('role') : 'patient',
+            'role' => $request->filled('role') ? $request->input('role') : 'patient',
             'telephone' => $request->input('telephone'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),

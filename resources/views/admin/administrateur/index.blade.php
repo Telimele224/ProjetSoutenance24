@@ -12,9 +12,10 @@
                             <div class="input-group">
                                  <!-- Formulaire de recherche -->
                             <form action="" method="GET" class="mb-3">
-                                <div class="input-group row">
+                                <div class="input-group row main-header-center  d-none d-lg-block  header-link">
                                     <div class="col-md-10">
-                                        <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ">
+                                        <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone " id="typehead" autocomplete="on">
+
                                     </div>
                                     <div class="col-md-2">
                                         <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
@@ -22,8 +23,6 @@
 
                                 </div>
                             </form>
-                                {{-- <input type="text" class="form-control mr-2" name="search" placeholder="Recherche par email" aria-describedby="button-addon2">
-                                <button class="btn border" type="button" id="button-addon2"><i class="bi bi-search text-muted"></i></button> --}}
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
@@ -60,21 +59,29 @@
                                         <th>Email</th>
                                         <th>Téléphone</th>
                                         <th>Adresse</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     @foreach ($users as $k=>$user)
-                                    @if( $user->role ==='admin')
-                                    <tr class="user-list">
-                                            <td class="text-nowrap align-middle">{{$user->nom}}</td>
-                                            <td class="text-nowrap align-middle">{{$user->prenom}}</td>
-                                            <td class="text-nowrap align-middle">{{$user->genre}}</td>
-                                            <td class="text-nowrap align-middle">{{$user->email}}</td>
-                                            <td class="text-nowrap align-middle">{{$user->telephone}}</td>
-                                            <td class="text-nowrap align-middle">{{$user->adresse}}</td>
-                                    </tr>
-                                    @endif
+                                        @if( $user->role ==='admin')
+                                        <tr class="user-list">
+                                                <td class="text-nowrap align-middle">{{$user->nom}}</td>
+                                                <td class="text-nowrap align-middle">{{$user->prenom}}</td>
+                                                <td class="text-nowrap align-middle">{{$user->genre}}</td>
+                                                <td class="text-nowrap align-middle">{{$user->email}}</td>
+                                                <td class="text-nowrap align-middle">{{$user->telephone}}</td>
+                                                <td class="text-nowrap align-middle">{{$user->adresse}}</td>
+                                                <td class="align-middle">
+                                                    <div class="btn-list">
+                                                        @if($user->administrateurs)
+                                                            <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"> </i></button>
+                                                            <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"> <a href="{{route('admin.administrateur.edit',$user->administrateurs)}}"><i class="bi bi-trash"></i></a></button>
+                                                         @endif
+                                                    </div>
+                                                </td>
+                                        </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
 

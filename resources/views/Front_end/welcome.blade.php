@@ -7,7 +7,8 @@
    <div class="main-slider">
       <div class="swiper-wrapper">
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp" data-wow-delay="0.3s" data-background="{{asset('assets/wp-content/uploads/2022/06/slider1.jpg')}}"></div>
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide1.jpg')}}"  width="1920"
+            height="1080"></div>
             <div class="container">
                <h1>Il n'y a pas de place <br>
                   pour les excuses en matière de santé
@@ -24,7 +25,8 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp" data-wow-delay="0.3s" data-background="{{asset('assets/wp-content/uploads/2022/06/slider2.jpg')}}"></div>
+            <div class="slide-image wow fadeInUp mt-10" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide2.jpg')}}"  width="1920"
+            height="1080"></div>
             <div class="container">
                <h1>Pour une vie <br>
                   plus saine
@@ -39,7 +41,8 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp" data-wow-delay="0.3s" data-background="{{asset('assets/wp-content/uploads/2022/06/slider3.jpg')}}"></div>
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide3.jpg')}}" width="1920"
+            height="1080"></div>
             <div class="container">
                <h1>Medécins <br>
                   Compétents et Expérimentés
@@ -54,7 +57,7 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp" data-wow-delay="0.3s" data-background="{{asset('assets/wp-content/uploads/2022/06/slider4.jpg')}}"></div>
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('assets/wp-content/uploads/2022/06/slider4.jpg')}}"></div>
             <div class="container">
                <h1>Ne retardez pas  <br>
                   votre santé
@@ -154,8 +157,8 @@
          <div class="galeri1">
             <img class="imagerotate" src="{{asset('assets/wp-content/uploads/2022/06/medidoc-technology.png')}}" alt="" >
          </div>
-         <div class="galeri wow slideInUp" data-wow-delay="100ms" data-wow-duration="1500ms" data-tilt>
-            <img src="{{asset('assets/wp-content/uploads/2022/06/medidoc-about.png')}}" alt="Webone About" class="galeri__gorsel galeri__gorsel--3 zimage">
+         <div class="galeri wow slideInUp mt-5" data-wow-delay="100ms" data-wow-duration="1500ms" data-tilt >
+            <img src="{{asset('Slide/Secretaire.png')}}" height="400"  class="rounded-circle" alt="Webone About" class="galeri__gorsel galeri__gorsel--3 zimage">
          </div>
       </div>
       <!--Galeri Görsel Alanı-->
@@ -226,7 +229,7 @@
                      <span class="border-layer"></span>
                      <i class="flaticon-table"></i>
                   </div>
-                  <p>Vous pouvez prendre rendez-vouys en ligne avec nos medécins dans notre hôpital d'où vous êtes et parler à votre médecin dans le confort de votre maison </p>
+                  <p>Vous pouvez prendre rendez-vous en ligne avec nos medécins dans notre hôpital d'où vous êtes et parler à votre médecin dans le confort de votre maison </p>
                </div>
             </div>
          </div>
@@ -311,66 +314,7 @@
                  </div>
                 @endforeach
 
-                  {{-- <div class="swiper-slide">
-                     <div class="class-box">
-                        <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.6s" style="cursor:pointer;">
-                           <div class="member-box wow reveal-effect">
-                              <figure>
-                                 <img src="{{asset('assets/wp-content/uploads/2022/06/team2.jpg')}}" alt="Image">
-                                 <figcaption>
-                                    <h6>Adam Brown</h6>
-                                    <p class="paragraf-sol-beyaz-orta">Gastroenterology Doctor</p>
-                                    <ul>
-                                       <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                       <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                       <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                    </ul>
-                                 </figcaption>
-                              </figure>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="swiper-slide">
-                     <div class="class-box">
-                        <div class="services-kutu2 wow fadeInLeft" data-wow-delay="0.7s" style="cursor:pointer;">
-                           <div class="member-box wow reveal-effect">
-                              <figure>
-                                 <img src="{{asset('assets/wp-content/uploads/2022/06/team3.jpg')}}" alt="Image">
-                                 <figcaption>
-                                    <h6>Michael Lee</h6>
-                                    <p class="paragraf-sol-beyaz-orta">Chest Diseases Doctor</p>
-                                    <ul>
-                                       <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                       <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                       <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                    </ul>
-                                 </figcaption>
-                              </figure>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="swiper-slide">
-                     <div class="class-box">
-                        <div class="services-kutu2 wow fadeInRight" data-wow-delay="0.8s" style="cursor:pointer;">
-                           <div class="member-box wow reveal-effect">
-                              <figure>
-                                 <img src="{{asset('assets/wp-content/uploads/2022/06/team4.jpg')}}" alt="Image">
-                                 <figcaption>
-                                    <h6>Olivia Lee</h6>
-                                    <p class="paragraf-sol-beyaz-orta">Dental Doctor</p>
-                                    <ul>
-                                       <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                       <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                       <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                    </ul>
-                                 </figcaption>
-                              </figure>
-                           </div>
-                        </div>
-                     </div>
-                  </div> --}}
+
                </div>
                <div class="swiper-pagination"></div>
             </div>
@@ -495,22 +439,26 @@
              <div class="carousel-classes">
                 <div class="swiper-wrapper">
                      @foreach ($actualites as $actualite)
-                         <div class="swiper-slide wow fadeInLeft" data-wow-delay="0.5s" data-tilt>
+                         <div class="swiper-slide wow fadeInLef" data-wow-delay="0.2s" data-tilt>
                              <div class="post-kutu" style="cursor:pointer;">
-                                 <img width="200" height="163" src="{{asset('storage/'.$actualite->avatar)}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" fetchpriority="high"  />
+                                 <img width="300" height="200" src="{{asset('storage/'.$actualite->avatar)}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" fetchpriority="high"  />
                                  <div class="datesection">
-                                 <span class="date">
-                                 {{$actualite->created_at->format('d-m-Y')}}                          </span>&nbsp;<span class="tt">-</span>&nbsp;
-                                 <ul class="post-categories">
-                                     <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
-                                 </ul>
+                                    <span class="date">
+                                    {{$actualite->created_at->format('d-m-Y')}}</span>&nbsp;<span class="tt">-</span>&nbsp;
+                                    <ul class="post-categories">
+                                        <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
+                                    </ul>
                                  </div>
-                                 <h3 class="baslik-3 h-yazi-margin-kucuk">{{$actualite->titre}}</h3>
-                                 <p class="post-kutu--yazi">
-                                     {{$actualite->contenu}} [&hellip;]
-                                 </p>
-                                 <div class="h-yazi-ortalama h-yazi-margin-4">
-                                     <a href="unknowns-in-implant-treatment/index.html" class="custom-button">Plus</a>
+                                 <div class="h-yazi-ortalama h-yazi-margin-2">
+                                    <h2 class="baslik-3 h-yazi-margin-kucuk">{{ strlen($actualite->titre) > 70 ? substr($actualite->titre, 0, 70) . '...' : $actualite->titre }}</h2>
+                                 </div>
+                                 <div class="h-yazi-ortalama h-yazi-margin-2">
+                                    <p class="post-kutu--yazi">
+                                        {{ strlen($actualite->contenu) > 150 ? substr($actualite->contenu, 0, 150) . '...' : $actualite->contenu }} [&hellip;]
+                                    </p>
+                                 </div>
+                                 <div class="h-yazi-ortalama h-yazi-margin-3">
+                                    <a href="{{ route('admin.actualite.show', ['actualite' => $actualite->id]) }}" class="custom-button">Lire la suite</a>
                                  </div>
                              </div>
                          </div>

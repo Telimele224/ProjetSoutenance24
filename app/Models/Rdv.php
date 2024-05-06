@@ -14,7 +14,17 @@ class Rdv extends Model
         return $this->belongsTo(Patient::class,'id_patient');
     }
 
-     public function medecin(){
+    public function patients()
+    {
+        return $this->belongsTo(User::class, 'id_patient');
+    }
+
+    public function medecin(){
         return $this->belongsTo(Medecin::class,'id_medecin');
     }
+
+    public function consultations(){
+        return $this->hasMany(Medecin::class);
+    }
+
 }

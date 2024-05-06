@@ -51,14 +51,17 @@
                       <a href="javascript:void(0);">Consulation</a>
                    </li>
                    <li class="slide">
-                     <a href="{{route('medecins.consultation.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle"></i>       Enregistrer</span></a>
+                     <a href="{{route('medecins.consultation.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle me-2"></i>Enregistrer</span></a>
                    </li>
                    <li class="slide">
-                      <a href="{{route('medecins.consultation.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>        Listes</span></a>
+                      <a href="{{route('medecins.consultation.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol me-2"></i>Listes</span></a>
                    </li>
-                   <li class="slide">
-                    <a href="{{route('medecins.ordonance.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>        Listes des Ordonances</span></a>
-                 </li>
+                    <li class="slide">
+                        <a href="{{route('medecins.ordonance.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol me-2"></i>Les Ordonances</span></a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{route('medecins.mesrendezvous')}}" class="side-menu__item"> <span><i class="fa fa-list-ol me-2"></i>Mes rendez-vous</span></a>
+                    </li>
                 </ul>
              </li>
              <li class="slide has-sub">
@@ -118,10 +121,10 @@
                       <a href="javascript:void(0);"><span>Forum</a>
                    </li>
                    <li class="slide">
-                      <a href="{{route('chatify')}}" class="side-menu__item"><span><i class="ion-chatbox"></i>        Messagerie</span></a>
+                      <a href="{{route('chatify')}}" target="blank" class="side-menu__item"><span><i class="ion-chatbox"></i>        Messagerie</span></a>
                    </li>
                    <li class="slide">
-                      <a href="{{route('forum.index')}}" class="side-menu__item"><span><i class="fa fa-commenting"></i>        Form</span></a>
+                      <a href="{{route('forum.index')}}" target="blank" class="side-menu__item"><span><i class="fa fa-commenting"></i>        Form</span></a>
                    </li>
                 </ul>
              </li>

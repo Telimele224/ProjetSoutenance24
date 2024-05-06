@@ -76,7 +76,7 @@ class MedecinController extends Controller
             $user->photo = $path; // Mettez à jour le champ photo avec le chemin d'accès de la photo
             $user->save(); // Enregistrez les modifications
         }
-    
+
     }
     // Création du patient lié à l'utilisateur
     $medecin = Medecin::create([
@@ -114,66 +114,42 @@ class MedecinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function edit( $id)
     {
-         // Récupération du patient à mettre à jour
-         $medecin = Medecin::findOrFail($id);
-        // Validation des données du formulaire
+        $medecin = Medecin::findOrFail($id);
 
-
-        // dd($request->all());
-        // Mise à jour des informations du patient
-        $medecin->specialite = $request->input('specialite');
-        $medecin->biographie = $request->input('biographie');
-        $medecin->statut = $request->input('statut');
-        $medecin->service_id = $request->input('service_id');
-
-        // ... ajoutez d'autres champs à mettre à jour ...
-
-        // Mise à jour des informations de l'utilisateur lié au MEDECIN (si nécessaire)
-        $user = $medecin->user;
-        $user->name = $request->input('name');
-        $user->nom = $request->input('nom');
-        $user->prenom = $request->input('prenom');
-        $user->genre = $request->input('genre');
-        $user->adresse = $request->input('adresse');
-        $user->age = $request->input('age');
-
-        $user->telephone = $request->input('telephone');
-        $user->email = $request->input('email');
-        $user->photo = $request->input('photo') ?: $user->photo;
-
-        if($request->hasFile('photo')){
-            $photo = $request->file('photo');
-            if($medecin->photo){
-                Storage::disk('public')->delete($medecin->photo);
-            }
-            $new_photo = $photo->getClientOriginalName();
-            $data['photo'] = $photo->storeAs('photos', $new_photo, 'public');
-        }
-        //Ajout de l'image de l'photo
-        if($request->hasFile('photo')){
-            $photo = $request->file('photo');
-            if($medecin->photo){
-                Storage::disk('public')->delete($medecin->photo);
-            }
-            $new_photo = $photo->getClientOriginalName();
-            $data['photo'] = $photo->storeAs('photos', $new_photo, 'public');
-        }
-
-
-        // Vérification et mise à jour du mot de passe
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->input('password'));
-        }
-
-        // Enregistrement des modifications
-        $user->save();
-        $medecin->save();
-
-        return redirect()->route('admin.medecin.index')->with('success', 'Medecin mis à jour avec succès.');
-
+        return view('admin.medecin.accountactive', [
+            'title' => 'Modifier un medecin',
+            'action' => route('admin.medecin.update', ['medecin' => $id]),
+            'method' => 'put',
+            'medecin' => $medecin,
+        ]);
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
+        // Autres méthodes du contrôleur
+
+        public function update(Request $request, $id)
+        {
+
+            // Trouver le patient à mettre à jour
+            $medecin = Medecin::findOrFail($id);
+
+            $statut = $request->has('statut');
+            // Mettre à jour l'utilisateur associé au patient
+            $user = $medecin->user;
+
+            $user->statut = $statut;
+            // dd($user);
+
+           $user->save();
+
+            // Redirection avec un message de succès
+            return redirect()->route('admin.medecin.index')->with('success', 'Medecin mis à jour avec succès.');
+        }
+
 
 
 

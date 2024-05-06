@@ -19,7 +19,7 @@
                 <div class="col-lg-3 col-sm-3 col-md-3">
                     <div class="post-kutu" style="cursor:pointer;">
                         <a href="{{asset('storage/' . $galerie->photo) }}">
-                            <img style="width: 100%; height: 150px;" src="{{ asset('storage/' . $galerie->photo) }}" class="attachment-custom-size size-custom-size wp-post-image" alt="{{ $galerie->created_at }}" decoding="async" fetchpriority="high" />
+                            <img style="width: 200%; height:200px;" src="{{ asset('storage/' . $galerie->photo) }}" class="attachment-custom-size size-custom-size wp-post-image" alt="{{ $galerie->created_at }}" decoding="async" fetchpriority="high" />
                          </a>
                     </div>
                 </div>

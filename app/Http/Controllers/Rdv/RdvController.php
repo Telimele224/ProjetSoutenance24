@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Medecin;
 use App\Models\Role;
 use App\Models\Horaires;
+use App\Models\Patient;
 use App\Models\Rdv;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -154,35 +155,35 @@ public function connexionInscription(){
 
 public function choisirHeure(Request $request)
 {
-         // Valider les données du formulaire
-            $request->validate([
-                'medecinId' => 'required|numeric',
-                'date' => 'required|date',
-                'heure' => 'required|date_format:H:i',
-                'jour' => 'required|string',
-            ]);
+    // Valider les données du formulaire
+    $request->validate([
+        'medecinId' => 'required|numeric',
+        'date' => 'required|date',
+        'heure' => 'required|date_format:H:i',
+        'jour' => 'required|string',
+    ]);
 
+    // Définir la locale de Carbon sur le français
+    Carbon::setLocale('fr');
 
-                // Définir la locale de Carbon sur le français
-                Carbon::setLocale('fr');
+    // Récupérer la date et le jour
+    $date = $request->input('date');
+    $jour = Carbon::parse($date)->locale('fr')->isoFormat('dddd');
 
+    // Mettre les données en session
+    session()->put('rendezVous', [
+        'medecinId' => $request->input('medecinId'),
+        'dateRdv' => $date,
+        'heure' => $request->input('heure'),
+        'jour' => $jour,
+    ]);
 
+    session()->put('medecinId', $request->input('medecinId'));
 
-        // Créer un nouvel rendez-vous en utilisant la méthode create
-        $rendezVous = Rdv::create([
-            'id_medecin' => $request->input('medecinId'),
-            'dateRdv' => $request->input('date'),
-            'heure' => $request->input('heure'),
-            'jour' => Carbon::parse($request->input('jour'))->locale('fr')->isoFormat('dddd'), // Convertir le jour en français
-        ]);
-
-        // Stocker l'ID du rendez-vous en session
-        session()->put('rendezVous', $rendezVous);
-        session()->put('medecinId', $request->input('medecinId'));
-
-        // Rediriger vers la vue de connexion ou d'inscription avec un message de succès
-        return redirect()->route('connexionInscription')->with('success', 'Rendez-vous ajouté avec succès.');
+    // Rediriger vers la vue de confirmation
+    return redirect()->route('connexionInscription');
 }
+
 
 
 
@@ -219,18 +220,18 @@ public function rechercheMedecin(Request $request)
 
 
 
- public function ajouterRendezVous(Request $request)
+public function ajouterRendezVous(Request $request)
 {
     $request->validate([
         'dateRdv' => 'required|date',
         'heure' => 'required',
         'jour' => 'string',
+    ]);
 
-        ]);
     // Récupérer les données du formulaire
     $dateRdv = $request->input('dateRdv');
     $heure = $request->input('heure');
-    $jour = $request->input('jour');
+    $jour = Carbon::parse($dateRdv)->locale('fr')->isoFormat('dddd');
     $patientId = $request->input('patientId');
     $medecinId = $request->input('medecinId');
 
@@ -240,62 +241,51 @@ public function rechercheMedecin(Request $request)
     }
 
     // Vérifier que l'heure est supérieure à l'heure actuelle
-    $heureActuelle = now()->format('H:i');
-    // if (strtotime($heure) <= strtotime($heureActuelle)) {
-    //     return redirect()->back()->with('error', 'L\'heure doit être ultérieure à l\'heure actuelle.');
-    // }
-
-    // Convertir la date fournie en jour de la semaine en français
-    $jourSemaine = Carbon::parse($dateRdv)->locale('fr')->isoFormat('dddd');
+    // ...
 
     // Construire le nom des colonnes pour l'heure de début et de fin en fonction du jour de la semaine
-    $colonneDebut = strtolower($jourSemaine) . '_debut';
-    $colonneFin = strtolower($jourSemaine) . '_fin';
+    $colonneDebut = strtolower($jour) . '_debut';
+    $colonneFin = strtolower($jour) . '_fin';
 
     // Récupérer les horaires de disponibilité du médecin pour le jour de la semaine donné
     $horairesDisponibles = Horaires::where('id_medecin', $medecinId)
-        ->whereNotNull($colonneDebut) // S'assurer que l'horaire pour ce jour est défini
-        ->whereRaw("TIME($colonneDebut) <= ?", [$heure]) // Vérifier que l'horaire de début est avant ou égal à l'heure sélectionnée
-        ->whereRaw("TIME($colonneFin) >= ?", [$heure]) // Vérifier que l'horaire de fin est après ou égal à l'heure sélectionnée
+        ->whereNotNull($colonneDebut)
+        ->whereRaw("TIME($colonneDebut) <= ?", [$heure])
+        ->whereRaw("TIME($colonneFin) >= ?", [$heure])
         ->get();
 
-    // Vérifier que le médecin est disponible à l'heure sélectionnée pour ce jour
+    // Vérifier la disponibilité du médecin à l'heure sélectionnée
     if ($horairesDisponibles->isEmpty()) {
         return redirect()->back()->with('error', 'Le médecin n\'est pas disponible à cette heure.');
     }
 
-    // Si toutes les vérifications passent, ajoutez le rendez-vous
-    $rendezVous = new Rdv([
+    // Enregistrez le rendez-vous dans la session
+    session()->put('rendezVous', [
+        'medecinId' => $medecinId,
         'dateRdv' => $dateRdv,
         'heure' => $heure,
         'jour' => $jour,
-        'id_patient' => null, // Le patient sera associé plus tard
-        'id_medecin' => $medecinId,
-
     ]);
 
-    $rendezVous->save();
-
-    // Stocker les données du rendez-vous dans la session
-    session()->put('rendezVous', $rendezVous);
-
-    // Rediriger vers la page de connexion/inscription du patient
-    return redirect()->route('connexionInscription')->with('success', 'Rendez-vous ajouté avec succès.');
+    // Rediriger vers la page de confirmation
+    return redirect()->route('confirmation_rdv_view_patient');
 }
 
 
 public function confirmationRdv_view()
 {
- // Récupérer le rendez-vous depuis la session
-$rendezVous = session('rendezVous');
+    // Récupérer le rendez-vous depuis la session
+    $rendezVous = session('rendezVous');
 
-// Vérifier si le rendez-vous existe en session
-if (!$rendezVous) {
-    return redirect()->back()->with('error', 'Aucun rendez-vous trouvé.');
+    // Vérifier si le rendez-vous existe en session
+    if (!$rendezVous) {
+        return redirect()->back()->with('error', 'Aucun rendez-vous trouvé.');
+    }
+
+    // Passer le rendez-vous à la vue de confirmation
+    return view('rdv.confirmationRdv_view', compact('rendezVous'));
 }
-// Passer le rendez-vous à la vue de confirmation
-return view('rdv.confirmationRdv_view', compact('rendezVous'));
-}
+
 
 
 
@@ -303,11 +293,8 @@ public function confirmationRdv(Request $request)
 {
     // Valider les données du formulaire
     $request->validate([
-        'rendezVousId' => 'required|numeric',
+        // Ajoutez vos règles de validation si nécessaire
     ]);
-
-    // Récupérer le rendez-vous à partir de l'ID fourni
-    $rendezVous = Rdv::findOrFail($request->input('rendezVousId'));
 
     // Vérifier si l'utilisateur est connecté
     if (!auth()->check()) {
@@ -322,24 +309,49 @@ public function confirmationRdv(Request $request)
         return back()->with('error', 'Seuls les patients peuvent confirmer un rendez-vous.');
     }
 
+    // Récupérer les données du rendez-vous depuis la session
+    $rendezVousData = session('rendezVous');
+
+    // Vérifier si les données du rendez-vous existent en session
+    if (!$rendezVousData) {
+        return redirect()->back()->with('error', 'Aucun rendez-vous trouvé en session.');
+    }
+
     // Vérifier qu'un rendez-vous n'existe pas déjà pour ce patient, ce médecin et cette date
     $existingRdv = Rdv::where('id_patient', $user->patient->id)
-        ->where('id_medecin', $rendezVous->id_medecin)
-        ->where('dateRdv', $rendezVous->dateRdv)
+        ->where('id_medecin', $rendezVousData['medecinId'])
+        ->where('dateRdv', $rendezVousData['dateRdv'])
         ->exists();
 
     if ($existingRdv) {
         return redirect()->back()->with('error', 'Vous avez déjà un rendez-vous avec ce médecin pour cette date.');
     }
 
-    // Mettre à jour le rendez-vous avec l'ID du patient
-    $rendezVous->id_patient = $user->patient->id;
-    $rendezVous->save();
+    // Enregistrer le rendez-vous dans la base de données
+    $rendezVous = Rdv::create([
+        'id_medecin' => $rendezVousData['medecinId'],
+        'id_patient' => $user->patient->id,
+        'dateRdv' => $rendezVousData['dateRdv'],
+        'heure' => $rendezVousData['heure'],
+        'jour' => $rendezVousData['jour'],
+        // Ajoutez d'autres champs si nécessaire
+    ]);
 
-    // Rediriger vers une autre page avec un message de succès
-    return redirect()->route('patients.dashboard_patient')->with('success', 'La demande de rendez-vous a été confirmée avec succès. Veuillez patienter !');
+    // Nettoyer la session
+    session()->forget('rendezVous');
+
+    $rendezVous = Rdv::all();
+    $rendezVousAcceptes = Rdv::where('statut', 'accepte')->get();
+    $rendezVousRejettes = Rdv::where('statut', 'rejette')->get();
+    $rendezVousEnAttente= Rdv::where('statut', 'annuler')->get();
+    return view('patients.home',[
+        'rendezVous'=>$rendezVous,
+        'rendezVousAcceptes' => $rendezVousAcceptes,
+        'rendezVousRejettes' => $rendezVousRejettes,
+        'rendezVousEnAttente' => $rendezVousEnAttente
+    ])->with('success', 'La demande de rendez-vous a été confirmée avec succès');
+
 }
-
 
 
 public function liste_rdv_patient()
@@ -428,51 +440,12 @@ public function annulerRendezVous(Request $request,$id)
     return back()->with('success', 'Le rendez-vous a été annulé avec succès.');
 }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    //   mes rendez-vous
+    public function mesRendezVous() {
+        return view('medecins.consultation.rendezvous', [
+            'mesRendezVous' => Rdv::orderBy('created_at', 'desc')->get(),
+            'users' => User::all(),
+            'patients' => Patient::all()
+        ]);
     }
 }

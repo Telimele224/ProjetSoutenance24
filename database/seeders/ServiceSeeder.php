@@ -1,65 +1,67 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\Disease;
+use Illuminate\Database\Seeder;
+use App\Models\Service;
 use App\Models\Illness;
 use App\Models\Symptom;
-use App\Models\Service;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        //ajouter les services
+        $migraine = Illness::where('nom', 'Migraine')->first();
+        $gastrite = Illness::where('nom', 'Gastrite')->first();
+        $fracture_poignet = Illness::where('nom', 'Fracture du poignet')->first();
+        $ulcere_peptique = Illness::where('nom', 'Ulcère peptique')->first();
+        $tension_lombaire = Illness::where('nom', 'Tension musculaire lombaire')->first();
 
-        // Service::create(['nom' => 'cardiologie', 'description' => 'le service de cardio',]);
-        // Service::create(['nom' => 'pediatrie', 'description' => 'le service de pediatrie',]);
-        // Service::create(['nom' => 'chirurgie', 'description' => 'le service de chirurgie',]);
+        $fievre = Symptom::where('nom', 'Fièvre')->first();
+        $douleur_abdominale = Symptom::where('nom', 'Douleur abdominale')->first();
+        $toux_persistante = Symptom::where('nom', 'Toux persistante')->first();
+        $fatigue_extreme = Symptom::where('nom', 'Fatigue extrême')->first();
+        $douleur_thoracique = Symptom::where('nom', 'Douleur thoracique')->first();
 
-// Modifiez la partie du seeder ServiceSeeder comme suit :
-    $mal1 = Illness::where('nom', 'Maux1')->first();
-    $mal2 = Illness::where('nom', 'Maux2')->first();
-    $symptome1 = Symptom::where('nom', 'Symptome1')->first();
-    $symptome2 = Symptom::where('nom', 'Symptome2')->first();
-    $maladie1 = Disease::where('nom', 'Maladie1')->first();
-    $maladie2 = Disease::where('nom', 'Maladie2')->first();
-    
-    Service::create([
-        'nom' => 'Service1',
-        'description' => 'Description du service 1'
-    ])->symptoms()->attach([$symptome1->id]);
-    
-    Service::create([
-        'nom' => 'Service2',
-        'description' => 'Description du service 2' 
-    ])->symptoms()->attach([$symptome2->id]);
-    
-    Service::create([
-        'nom' => 'Service3',
-        'description' => 'Description du service 3'
-    ])->illnesses()->attach([$mal1->id]);
-    
-    Service::create([
-        'nom' => 'Service4',
-        'description' => 'Description du service 4'
-    ])->illnesses()->attach([$mal2->id]);
+        // Création des services avec leurs relations
+        Service::create([
+            'nom' => 'Service de neurologie',
+            'description' => 'Service pour les troubles neurologiques.'
+        ])->illnesses()->attach([$migraine->id]);
 
-    Service::create([
-        'nom' => 'Service5',
-        'description' => 'Description du service 5'
-    ])->diseases()->attach([$maladie1->id]);
+        Service::create([
+            'nom' => 'Service de gastro-entérologie',
+            'description' => 'Service pour les problèmes gastro-intestinaux.'
+        ])->illnesses()->attach([$gastrite->id]);
 
-    Service::create([
-        'nom' => 'Service6',
-        'description' => 'Description du service 6'
-    ])->diseases()->attach([$maladie2->id]);
-    
+        Service::create([
+            'nom' => 'Service de chirurgie orthopédique',
+            'description' => 'Service pour les problèmes orthopédiques.'
+        ])->illnesses()->attach([$fracture_poignet->id]);
 
+        Service::create([
+            'nom' => 'Service de médecine interne',
+            'description' => 'Service pour les maladies internes.'
+        ])->illnesses()->attach([$ulcere_peptique->id]);
+
+        Service::create([
+            'nom' => 'Service de rhumatologie',
+            'description' => 'Service pour les troubles musculosquelettiques.'
+        ])->illnesses()->attach([$tension_lombaire->id]);
+
+        Service::create([
+            'nom' => 'Service de pédiatrie',
+            'description' => 'Service pour les soins aux enfants.'
+        ])->symptoms()->attach([$fievre->id, $douleur_abdominale->id]);
+
+        Service::create([
+            'nom' => 'Service d\'urgence',
+            'description' => 'Service pour les situations d\'urgence médicale.'
+        ])->symptoms()->attach([$toux_persistante->id, $fatigue_extreme->id]);
+
+        Service::create([
+            'nom' => 'Service de cardiologie',
+            'description' => 'Service pour les problèmes cardiaques.'
+        ])->symptoms()->attach([$douleur_thoracique->id]);
     }
 }
+

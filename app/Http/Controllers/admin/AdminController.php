@@ -41,7 +41,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $admininistrateur = null; // Initialisez $medecin à null pour l'ajout
+        $admininistrateur = null; // Initialisez $admininistrateur à null pour l'ajout
 
         return view('admin.administrateur.form', [
             'title' => 'Ajouter un admininistrateur',
@@ -85,7 +85,7 @@ class AdminController extends Controller
             }
         }
         // Création du patient lié à l'utilisateur
-    $admininistrateur = Administrateurs::create([
+    $administrateur = Administrateurs::create([
         'user_id' => $user->id,
     ]);
 
@@ -106,18 +106,44 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
-        //
+        $administrateur = Administrateurs::findOrFail($id);
+
+        return view('admin.administrateur.accountactive', [
+            'title' => 'Modifier un administrateur',
+            'action' => route('admin.administrateur.update', ['administrateur' => $id]),
+            'method' => 'put',
+            'administrateur' => $administrateur,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        // Autres méthodes du contrôleur
+
+        public function update(Request $request, $id)
+        {
+
+            // Trouver le patient à mettre à jour
+            $administrateur = Administrateurs::findOrFail($id);
+
+            $statut = $request->has('statut');
+            // Mettre à jour l'utilisateur associé au patient
+            $user = $administrateur->user;
+
+            $user->statut = $statut;
+            // dd($user);
+
+           $user->save();
+
+            // Redirection avec un message de succès
+            return redirect()->route('admin.administrateur.index')->with('success', 'administrateur mis à jour avec succès.');
+        }
+
+
+
 
     /**
      * Remove the specified resource from storage.

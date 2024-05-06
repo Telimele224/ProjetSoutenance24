@@ -26,7 +26,7 @@ class Patient extends Model
     // }
 
     public function rdvs() {
-        return $this->hasMany(Rdv::class, 'id_patient');
+        return $this->hasMany(Rdv::class);
     }
 
 

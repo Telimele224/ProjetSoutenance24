@@ -9,8 +9,8 @@
       <meta charset="UTF-8">
       <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="description" content="vexel – Laravel Bootstrap 5  Admin & Dashboard Template">
-      <meta name="author" content="Spruko Technologies Private Limited">
+      <meta name="description" content="Hopital Regional de Labé">
+      <meta name="author" content="IST Technologies Groupe 33">
       <meta name="keywords" content="admin panel template, admin dashboard template, admin panel, bootstrap admin template, dashboard, laravel, bootstrap dashboard, admin dashboard, admin panel laravel template, laravel framework, admin laravel, laravel admin panel.">
       <!-- TITLE -->
       <title>Hopital Regional Regional de Labé &amp; Dasboard Login </title>
@@ -18,7 +18,7 @@
       <link rel="modulepreload" href="{{asset('assets/build/assets/authentication-main-d17b6bac.js')}}" />
       <script type="module" src="{{asset('assets/build/assets/authentication-main-d17b6bac.js')}}"></script>
       <!-- Favicon -->
-      <link rel="icon" href="{{asset('assets/build/assets/images/brand/favicon.ico')}}" type="image/x-icon">
+      <link rel="icon" href="{{asset('assets/build/assets/images/brand/toggle-logo.png')}}" type="image/x-icon">
       <!-- ICONS CSS -->
       <link href="{{asset('assets/build/assets/iconfonts/icons.css')}}" rel="stylesheet">
       <!-- BOOTSTRAP CSS -->
@@ -36,11 +36,7 @@
          <!-- PAGE -->
          <div class="page">
             <!-- CONTAINER OPEN -->
-            <div class="row">
-               <div class="text-center">
-                  <a href="index.html"><img src="{{asset('assets/build/assets/images/brand/desktop-dark.png')}}" class="header-brand-img" alt=""></a>
-               </div>
-            </div>
+           
             @yield('contenu')
             <!-- CONTAINER CLOSED -->
          </div>

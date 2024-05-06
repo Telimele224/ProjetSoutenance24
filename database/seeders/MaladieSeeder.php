@@ -10,8 +10,12 @@ class MaladieSeeder extends Seeder
 {
     public function run()
     {
-        Disease::create(['nom' => 'Maladie1']);
-        Disease::create(['nom' => 'Maladie2']);
-      
+         // Maladies
+         $maladie1 = Disease::create(['nom' => 'Grippe']);
+         $maladie2 = Disease::create(['nom' => 'Diabète de type 2']);
+         $maladie3 = Disease::create(['nom' => 'Pneumonie']);
+         $maladie4 = Disease::create(['nom' => 'Hypertension artérielle']);
+         $maladie5 = Disease::create(['nom' => 'Asthme']);
+
     }
 }

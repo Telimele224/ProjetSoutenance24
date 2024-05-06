@@ -8,7 +8,7 @@
         <h1 class="my-3">@yield('title')</h1>
         <div>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><span><a href="{{route('medecins.ordonance.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | Ordonance</a></span></li>
+                <li class="breadcrumb-item"><span><a href="{{route('medecins.ordonance.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | Une consultation</a></span></li>
             </ol>
         </div>
     </div>
@@ -16,10 +16,7 @@
 
 <div class="card m-2">
     <div class="card-body">
-        <div class="row">
-            <label for="date_rendez_vous" class="form-lable">Date du rendez-vous</label>
-            <input type="date" name="date_rendez_vous" class="form-control" id="date_rendez_vous">
-        </div>
+       
         <div class="row justify-content-center">
             <form  action="{{route($consultation->exists ? 'medecins.consultation.update' : 'medecins.consultation.store', $consultation)}}" method="post" class="vstack gap-2" enctype="multipart/form-data" class="row g-4 needs-validation" novalidate="">
                 @csrf
@@ -27,19 +24,19 @@
 
 
                 <div class="row">
-                    <!-- Champ patient_id -->
+                    <!-- Champ rdv_id -->
+
                     <div class="col-md-6">
                         <label for="rdv_id" class="form-label">Patient Phone</label>
                         <select class="select2 js-states form-control @error('rdv_id') is-invalid @enderror" id="rdv_id" name="rdv_id">
-                            @foreach($patients as $patient)
-                                <option value="{{ $patient->id }}" data-rendezvous="{{ $patient->rdv_id }}" {{ $consultation->r == $patient->id ? 'selected' : '' }}>{{ $patient->telephone }}</option>
-                                <input type="hidden" id="rdv_id" name="rdv_id">
+                            @foreach($rdvs as $rdv)
+                                @if (Auth::user()->id === $rdv->id_medecin)
+                                    <option value="{{ $rdv->id }}" data-rdv="{{ $rdv->rdv_id }}" {{ $consultation->r == $rdv->id ? 'selected' : '' }}>{{ $rdv->patient->telephone }}</option>
+                                @endif
                             @endforeach
                         </select>
                         <div class="invalid-feedback">@error('rdv_id') {{ $message }} @enderror</div>
                     </div>
-
-                        <input type="hidden" id="rdv_id" name="rdv_id">
 
                     <!-- Champ status -->
                     <div class="col-md-6">
@@ -124,48 +121,5 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    $(document).ready(function() {
-        $('#patient_id').on('change', function() {
-            var selectedRendezVous = $(this).find(':selected').data('rendezvous');
-            $('#rdv_id').val(selectedRendezVous);
-        });
-    });
-
-    $(document).ready(function() {
-        $('#date_rendez_vous').on('change', function() {
-            var selectedDate = $(this).val();
-            $.ajax({
-                url: '{{ route('medecins.consultation.getPatientsByDate') }}',
-                type: 'GET',
-                data: { date_rendez_vous: selectedDate },
-                success: function(response) {
-                    $('#patient_id').empty(); // Clear previous options
-                    if (response.patients.length > 0) {
-                        $.each(response.patients, function(id, phone) {
-                            $('#patient_id').append($('<option>', {
-                                value: id,
-                                'data-phone': phone,
-                                text: phone
-                            }));
-                        });
-                    } else {
-                        $('#patient_id').append($('<option>', {
-                            value: '',
-                            text: 'Aucun patient disponible pour cette date'
-                        }));
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-    });
-</script>
-
-
 
 @endsection

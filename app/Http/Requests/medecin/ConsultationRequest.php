@@ -24,8 +24,7 @@ class ConsultationRequest extends FormRequest
     {
         $id = $this->route('consultation');
         return [
-            // 'medecin_id'=>['required','exists:medecins,id'],
-            'patient_id'=>['required','exists:patients,id'],
+            'rdv_id'=>['required','exists:rdvs,id'],
             'type_consultation_id' => ['required','exists:type_consultations,id'],
             'motif'=>['required','string'],
             'resultat'=>['required','string'],
@@ -33,7 +32,6 @@ class ConsultationRequest extends FormRequest
             'suivi_recommande'=>['required','string'],
             'note_medecin'=>['required','string'],
             'frais'=>['required','string'],
-            'code'=>['required','string', Rule::unique('consultations')->ignore($id, 'id')],
             'status'=>['required','string'],
         ];
 

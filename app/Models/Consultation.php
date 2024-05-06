@@ -10,8 +10,6 @@ class Consultation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rdv_id',
-        'type_consultation_id',
         'motif',
         'resultat',
         'examen_complementaire',
@@ -19,9 +17,11 @@ class Consultation extends Model
         'note_medecin',
         'frais',
         'status',
+        'rdv_id',
+        'type_consultation_id',
     ];
 
-    public function rendez_vous()
+    public function rdv()
     {
         return $this->belongsTo(Rdv::class, 'rdv_id');
     }
@@ -30,6 +30,7 @@ class Consultation extends Model
     {
         return $this->belongsTo(TypeConsultation::class, 'type_consultation_id');
     }
+
     public function ordonance()
     {
         return $this->hasMany(Ordonance::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rdv;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -11,14 +12,26 @@ class HomeController extends Controller
 
         if(Auth::id())
         {
-            if(Auth::user()->role=='patient'){
-                return view('patients.home');
+            if(Auth::user()->role=='patient' && Auth::user()->statut=='1'){
+                $rendezVous = Rdv::all();
+                $rendezVousAcceptes = Rdv::where('statut', 'accepte')->get();
+                $rendezVousRejettes = Rdv::where('statut', 'rejette')->get();
+                $rendezVousEnAttente= Rdv::where('statut', 'annuler')->get();
+                return view('patients.home',[
+                    'rendezVous'=>$rendezVous,
+                    'rendezVousAcceptes' => $rendezVousAcceptes,
+                    'rendezVousRejettes' => $rendezVousRejettes,
+                    'rendezVousEnAttente' => $rendezVousEnAttente
+                ]);
             }
-            elseif(Auth::user()->role=='admin'){
+            elseif(Auth::user()->role=='admin' && Auth::user()->statut=='1'){
                 return view('admin.home');
             }
-            else{
+            elseif(Auth::user()->role=='admin' && Auth::user()->statut=='1'){
                 return view('medecins.home');
+            }
+            else{
+                return view('message');
             }
 
         }

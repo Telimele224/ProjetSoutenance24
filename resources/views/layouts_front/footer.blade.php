@@ -2,7 +2,7 @@
     <div class="container">
        <div class="row">
           <div class="col-xl-3 col-lg-4">
-             <div class="logo wow animated fadeInUp animated" data-wow-delay="0.5s"> <img src="{{asset('assets/wp-content/uploads/2022/06/logo-footer-medidoc.png')}}" alt="Image"> </div>
+             <div class="logo wow animated fadeInUp animated" data-wow-delay="0.5s"> <img src="{{asset('Image/Logo HRL.png')}}" alt="Image"> </div>
              <!-- end logo -->
              <div class="footer-info wow animated fadeInUp animated" data-wow-delay="0.5s">
                 <p><i class="flaticon-location iconpfooter1 "></i>Labé, Guinée</p>
@@ -73,7 +73,7 @@
              <div class="footer-menu">
                 <div class="menu-quick-links-container">
                    <ul id="menu-quick-links" class="menu" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-                      <li id="menu-item-606" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5 current_page_item menu-item-606"><a href="{{route('welcome')}}" aria-current="page">Home</a></li>
+                      <li id="menu-item-606" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5 current_page_item menu-item-606"><a href="{{route('welcome')}}" aria-current="page">Acceuil</a></li>
                       <li id="menu-item-607" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-607"><a href="{{route('apropos')}}">A propos</a></li>
                       <li id="menu-item-608" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-608"><a href="blog/index.html">Blog</a></li>
                       <li id="menu-item-1510" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1510"><a href="{{route('medecins')}}">Médecins</a></li>
@@ -91,7 +91,7 @@
     <div class="container">
        <div class="row">
           <div class="col-12">
-             <p class="copyright">© 2024 Hopital Régional de Labé - Tous droits reservés.</p>
+             <p class="copyright">© 2024 IST-MAMOU GENIE-INFO P15 G-33 - Tous droits reservés.</p>
           </div>
        </div>
     </div>
