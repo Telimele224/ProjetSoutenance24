@@ -16,7 +16,7 @@
                <p>Optenez les meilleurs soins de santé avec notre personnel compétent et expérimenté </p>
                <div class="bosluks2"></div>
 
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}"><i class="flaticon-timetable iconp"></i>    Prendre rendez-vous →</a></div>
 
                <div class="or">
 
@@ -33,7 +33,7 @@
                </h1>
                <p>Nous sommes à votre service pour une vie plus saine</p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}"><i class="flaticon-timetable iconp"></i>  Prendre rendez-vous →</a></div>
 
                <div class="or">
                   <a href="#">En savoir plus →</a>
@@ -41,7 +41,7 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide3.jpg')}}" width="1920"
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Image/hero-6-bg.jpg')}}" width="1920"
             height="1080"></div>
             <div class="container">
                <h1>Medécins <br>
@@ -49,7 +49,7 @@
                </h1>
                <p>Votre santé est entre de bonne mains grâce à notre personnel experts et experimentés. </p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}"> <i class="flaticon-timetable iconp"></i>   Prendre rendez-vous →</a></div>
 
                <div class="or">
                   <a href="#">En savoir plus →</a>
@@ -57,14 +57,14 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('assets/wp-content/uploads/2022/06/slider4.jpg')}}"></div>
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Image/testi-bg.jpg')}}"></div>
             <div class="container">
                <h1>Ne retardez pas  <br>
                   votre santé
                </h1>
                <p>Votre santé est tout. </p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">   <i class="flaticon-timetable iconp"></i>Prendre rendez-vous →</a></div>
                <div class="or">
                   <a href="#">En savoir plus →</a>
                </div>
@@ -87,55 +87,56 @@
    <div class="bosluk3ps"></div>
    <div class="container">
       <div class="row">
-         <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.5s">
-            <div class="dep" onclick="location.href='urology/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-uterus"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1">Urologie</h3>
+        <div class="col-lg-7">
+            <div class="row">
+            @foreach ($services as $service)
+                <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.5s">
+                    <div class="dep" onclick="location.href='{{route('admin.service.show',$service)}}';" style="cursor:pointer;">
+                        <div class="icon"> <img src="{{asset('storage/'.$service->avatar)}}" alt="Icon"></div>
+                        <h3 class="baslik-3 h-yazi-margin-kucuk1">{{$service->nom}}</h3>
+                    </div>
+                </div>
+
+            @endforeach
+
             </div>
+        </div>
+        <div class="col-lg-5 mt-5">
+            <div class="container mt-5">
+                <!-- Tableau avec les colonnes et lignes demandées -->
+                <table class="table table-bordered">
+                  <!-- Ligne entière en haut avec "salut" -->
+                  <thead>
+                    <tr>
+                      <th colspan="3" class="text-center "><h3> Horaires de Visites </h3></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Première ligne du corps du tableau -->
+                    <tr>
+                      <td class="text-center" rowspan="2"><h3>Tous les jours</h3></td>
+                      <td class="text-center"><h3>Le Matin de</h3></td>
+                      <td class="text-center"><span class="text-danger"> 7 </span>h :<span class="text-danger"> 00</span> min-<span class="text-danger"> 8 </span> h :<span class="text-danger"> 00</span> min</td>
+                    </tr>
+                    <!-- Deuxième ligne du corps du tableau -->
+                    <tr>
+                      <td class="text-center"><h3> L'après Midi</h3></td>
+                      <td class="text-center"><span class="text-danger">16</span> h : <span class="text-danger">30 </span> min-<span class="text-danger"> 20 </span> h :<span class="text-danger"> 00</span> min</td>
+                    </tr>
+                    <tr>
+                      <td class="text-center" colspan="3"><span class="text-danger"><h1>Interdiction formelle de sortir de :</h1></span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="3"> <h1><span class="text-danger">19</span> h : <span class="text-danger">30 </span> min-<span class="text-danger"> 6 </span> h : <span class="text-danger">30 </span> min </h1></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="3"><h1>De Malade Hospitalisé, Du Nouveaux Né et de Dépouille Mortelle</h1></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
          </div>
-         <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.6s">
-            <div class="dep" onclick="location.href='gastroenterology/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-intestines"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1">Gastro-entroélogie</h3>
-            </div>
-         </div>
-         <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.7s">
-            <div class="dep" onclick="location.href='chest-diseases/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-human-lungs"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1">Maladies thoraciques</h3>
-            </div>
-         </div>
-         <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.8s">
-            <div class="dep" onclick="location.href='cardiac-surgery/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-heart-1"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1">Cardiac Surgery</h3>
-            </div>
-         </div>
-         <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.5s">
-            <div class="dep" onclick="location.href='radiology/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-medical-1"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1">Radiologie</h3>
-            </div>
-         </div>
-         <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.6s">
-            <div class="dep" onclick="location.href='dental-diseases/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-human-teeth"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1"></h3>
-            </div>
-         </div>
-         <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.7s">
-            <div class="dep" onclick="location.href='gynecology-obstetrics/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-human-fetus"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1">Gynecology & Obstetrics</h3>
-            </div>
-         </div>
-         <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.8s">
-            <div class="dep" onclick="location.href='brain-surgery/index.html';" style="cursor:pointer;">
-               <div class="icon"><i class="flaticon-brain"></i></div>
-               <h3 class="baslik-3 h-yazi-margin-kucuk1">Brain Surgery</h3>
-            </div>
-         </div>
-      </div>
    </div>
    <div class="bosluksv"></div>
    <div class="container">
@@ -157,8 +158,8 @@
          <div class="galeri1">
             <img class="imagerotate" src="{{asset('assets/wp-content/uploads/2022/06/medidoc-technology.png')}}" alt="" >
          </div>
-         <div class="galeri wow slideInUp mt-5" data-wow-delay="100ms" data-wow-duration="1500ms" data-tilt >
-            <img src="{{asset('Slide/Secretaire.png')}}" height="400"  class="rounded-circle" alt="Webone About" class="galeri__gorsel galeri__gorsel--3 zimage">
+         <div class="galeri wow slideInUp mt-5 " data-wow-delay="15ms" data-wow-duration="15ms" data-tilt >
+            <img src="{{asset('logo/techBar.png')}}"  alt="Webone About" class="galeri__gorsel galeri__gorsel--3 zimage">
          </div>
       </div>
       <!--Galeri Görsel Alanı-->
@@ -365,59 +366,6 @@
         </div>
     </div>
 </section>
-
-
-{{-- <section class="yorumlar-alani-sayfa">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 wow animated fadeIn animated" data-wow-delay="0.5s">
-                <div class="h-yazi-ortalama h-yazi-margin-orta-3">
-                    <h2 class="h2-baslik-hizmetler-yorum wow fadeInUp" data-wow-delay="0.5s"> Que disent nos patients? </h2>
-                </div>
-                <p class="h2-baslik-hizmetler-yorum__yorum wow fadeInUp" data-wow-delay="0.5s">
-                    Chaque patient est précieux pour nous. Voici les avis de certains de nos clients qui nous ont choisi.
-                </p>
-                <div class="bosluk3a"></div>
-            </div>
-        </div>
-        <div class="row ">
-            @foreach ($temoignages as $temoignage)
-            <div class="col-12">
-                <div class="carousel-classes">
-                    <div class="swiper-wrapper">
-                         <div class="swiper-slide wow animated fadeInLeft animated" data-wow-delay="0.5s">
-                            <div class="class-box">
-                                @if($temoignage->publier)
-                                <div class="testimonial-card">
-                                    <div class="testimon-text">
-                                        {{ $temoignage->contenu}} <i class="fas fa-quote-right quote"></i>
-                                    </div>
-                                    <div class="testimonialimg">
-                                        <div class="testimonimg">
-                                            @if($temoignage->user && $temoignage->user->patient && $temoignage->user->patient->avatar)
-                                                <img height="80" width="80" class="rounded-circle" src="{{ asset('storage/'.$temoignage->user->photo) }}" alt="Image du patient">
-                                            @endif
-                                        </div>
-                                        <h3 class='person'>{{ $temoignage->user->name }}</h3>
-                                    </div>
-                                </div>
-                                @endif
-                            </div>
-                    <!-- end swiper-slide -->
-                </div>
-                    </div>
-                </div>
-
-            </div>
-            @endforeach
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 <!--Posts-->
 <section class="yorumlar-alani-sayfa">
     <div class="container">
@@ -435,33 +383,23 @@
     </div>
     <div class="container">
        <div class="row">
-          <div class="col-12">
-             <div class="carousel-classes">
+          <div class="col-12 mt-4">
+             <div class="carousel-classes ">
                 <div class="swiper-wrapper">
                      @foreach ($actualites as $actualite)
-                         <div class="swiper-slide wow fadeInLef" data-wow-delay="0.2s" data-tilt>
-                             <div class="post-kutu" style="cursor:pointer;">
-                                 <img width="300" height="200" src="{{asset('storage/'.$actualite->avatar)}}" class="attachment-custom-size size-custom-size wp-post-image" alt="" decoding="async" fetchpriority="high"  />
-                                 <div class="datesection">
-                                    <span class="date">
-                                    {{$actualite->created_at->format('d-m-Y')}}</span>&nbsp;<span class="tt">-</span>&nbsp;
-                                    <ul class="post-categories">
-                                        <li><a href="category/medical/index.html" rel="category tag">Medical</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="h-yazi-ortalama h-yazi-margin-2">
-                                    <h2 class="baslik-3 h-yazi-margin-kucuk">{{ strlen($actualite->titre) > 70 ? substr($actualite->titre, 0, 70) . '...' : $actualite->titre }}</h2>
-                                 </div>
-                                 <div class="h-yazi-ortalama h-yazi-margin-2">
-                                    <p class="post-kutu--yazi">
-                                        {{ strlen($actualite->contenu) > 150 ? substr($actualite->contenu, 0, 150) . '...' : $actualite->contenu }} [&hellip;]
-                                    </p>
-                                 </div>
-                                 <div class="h-yazi-ortalama h-yazi-margin-3">
-                                    <a href="{{ route('admin.actualite.show', ['actualite' => $actualite->id]) }}" class="custom-button">Lire la suite</a>
-                                 </div>
-                             </div>
+                     <div class="card swiper-slide wow fadeInLef " style="height: 300px" data-wow-delay="0.2s" data-tilt>
+                        <img style="width: 100%; height: 150px;"  src="{{asset('storage/'.$actualite->avatar)}}" class="attachment-custom-size size-custom-size wp-post-image img-fluid" alt="" decoding="async" fetchpriority="high"  />
+                        <div class="card-body">
+                          <h5 class="card-title"><span class="">
+                           " {{$actualite->created_at->format('d-m-Y')}} "</span></h5>
+                          <h4 class=" card-title">{{ strlen($actualite->titre) > 50 ? substr($actualite->titre, 0, 50) . '...' : $actualite->titre }}</h4>
+                          <p class="card-text small mb-3"> {{ strlen($actualite->contenu) > 150 ? substr($actualite->contenu, 0, 150) . '...' : $actualite->contenu }} [&hellip;].</p>
+                         <div class="">
+                            <a href="{{ route('admin.actualite.show', ['actualite' => $actualite->id]) }}" class="btn btn-primary b ">Lire la suite</a>
                          </div>
+                        </div>
+                      </div>
+
                      @endforeach
                 </div>
              </div>

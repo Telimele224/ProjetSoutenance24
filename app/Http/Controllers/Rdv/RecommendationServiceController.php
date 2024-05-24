@@ -42,12 +42,15 @@ public function showSelectionMaladies()
          return view('rdv.recommandService');
     }
 
-
-    public function recommander_servicePar_symptome(Request $request)
+public function recommander_servicePar_symptome(Request $request)
 {
     // Valider les données du formulaire
     $request->validate([
-        'symptomes' => 'array', // Les symptômes doivent être un tableau
+        'symptomes' => 'required|array|min:1', // Les symptômes doivent être un tableau avec au moins un élément
+    ], [
+        'symptomes.required' => 'Vous devez sélectionner au moins un symptôme.',
+        'symptomes.array' => 'La sélection des symptômes est invalide.',
+        'symptomes.min' => 'Vous devez sélectionner au moins un symptôme.',
     ]);
 
     // Récupérer les symptômes sélectionnés
@@ -67,16 +70,24 @@ public function showSelectionMaladies()
     // Récupérer les services recommandés
     $services = $servicesQuery->distinct()->get();
 
+     // Vérifiez s'il n'y a aucun médecin lié au service
+     if ($services->isEmpty()) {
+        return back()->with('error', 'Aucune maladie  n\'est lié à ce service.');
+    }
+
     // Retourner la vue avec les services recommandés
     return view('rdv.selectionService', compact('services'));
 }
-
 
 public function recommander_servicePar_maux(Request $request)
 {
     // Valider les données du formulaire
     $request->validate([
-        'maux' => 'array', // Les maux doivent être un tableau
+        'maux' => 'required|array|min:1', // Les maux doivent être un tableau avec au moins un élément
+    ], [
+        'maux.required' => 'Vous devez sélectionner au moins un mal.',
+        'maux.array' => 'La sélection des maux est invalide.',
+        'maux.min' => 'Vous devez sélectionner au moins un mal.',
     ]);
 
     // Récupérer les maux sélectionnés
@@ -100,12 +111,15 @@ public function recommander_servicePar_maux(Request $request)
     return view('rdv.selectionService', compact('services'));
 }
 
-
 public function recommander_servicePar_maladie(Request $request)
 {
     // Valider les données du formulaire
     $request->validate([
-        'maladies' => 'array', // Les maladies doivent être un tableau
+        'maladies' => 'required|array|min:1', // Les maladies doivent être un tableau avec au moins un élément
+    ], [
+        'maladies.required' => 'Vous devez sélectionner au moins une maladie.',
+        'maladies.array' => 'La sélection des maladies est invalide.',
+        'maladies.min' => 'Vous devez sélectionner au moins une maladie.',
     ]);
 
     // Récupérer les maladies sélectionnées
@@ -128,75 +142,6 @@ public function recommander_servicePar_maladie(Request $request)
     // Retourner la vue avec les services recommandés
     return view('rdv.selectionService', compact('services'));
 }
-
-        // public function recommander(Request $request)
-        // {
-        //     // Valider les données du formulaire
-        //     $request->validate([
-        //         'maux' => 'array', // Les maux doivent être un tableau
-        //         'symptomes' => 'array', // Les symptômes doivent être un tableau
-        //         'maladies' => 'array', // Les maladies doivent être un tableau
-        //     ]);
-
-        //     // Récupérer les données soumises
-        //     $maux = $request->input('maux', []);
-        //     $symptomes = $request->input('symptomes', []);
-        //     $maladies = $request->input('maladies', []);
-
-        //     // Commencer la construction de la requête pour récupérer les services
-        //     $servicesQuery = Service::query();
-
-        //     // Joindre la table pivot service_symptom_illness_disease
-        //     $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
-
-        //     // Condition de jointure pour chaque partie sélectionnée
-        //     $servicesQuery->where(function ($query) use ($maux, $symptomes, $maladies) {
-        //         // Sélectionne les services correspondant à chaque partie sélectionnée individuellement
-        //         if (!empty($maux)) {
-        //             $query->whereIn('service_symptom_illness_disease.illness_id', $maux);
-        //         }
-
-        //         if (!empty($symptomes)) {
-        //             $query->whereIn('service_symptom_illness_disease.symptom_id', $symptomes);
-        //         }
-
-        //         if (!empty($maladies)) {
-        //             $query->whereIn('service_symptom_illness_disease.disease_id', $maladies);
-        //         }
-
-        //         // Sélectionne les services correspondant à la combinaison de maux et symptômes
-        //         if (!empty($maux) && !empty($symptomes)) {
-        //             $query->orWhere(function ($query) use ($maux, $symptomes) {
-        //                 $query->whereIn('service_symptom_illness_disease.illness_id', $maux)
-        //                       ->whereIn('service_symptom_illness_disease.symptom_id', $symptomes);
-        //             });
-        //         }
-
-        //         // Sélectionne les services correspondant à la combinaison de maux et maladies
-        //         if (!empty($maux) && !empty($maladies)) {
-        //             $query->orWhere(function ($query) use ($maux, $maladies) {
-        //                 $query->whereIn('service_symptom_illness_disease.illness_id', $maux)
-        //                       ->whereIn('service_symptom_illness_disease.disease_id', $maladies);
-        //             });
-        //         }
-
-        //         // Sélectionne les services correspondant à la combinaison de symptômes et maladies
-        //         if (!empty($symptomes) && !empty($maladies)) {
-        //             $query->orWhere(function ($query) use ($symptomes, $maladies) {
-        //                 $query->whereIn('service_symptom_illness_disease.symptom_id', $symptomes)
-        //                       ->whereIn('service_symptom_illness_disease.disease_id', $maladies);
-        //             });
-        //         }
-        //     });
-
-        //     // Récupérer les services recommandés
-        //     $services = $servicesQuery->distinct()->get();
-
-        //     // Retourner la vue avec les services recommandés
-        //     return view('back_end.rdv.selectionService', compact('services'));
-        // }
-
-
 
 
 

@@ -12,10 +12,9 @@
         <div class="row justify-content-center">
             <div class="col-xl-8">
                 <div class="card">
-
-                        <div class="text-center mb-0">
-                            <h4 class="mb-1">S'INSCRIRE</h4>
-                            <p>Creation d'un compte pout continuer.</p>
+                        <div class="text-center mt-4">
+                            <h4 class="card-title">ACTIVATION OU DESACVATION DE COMPTE</h4>
+                            <p class="small gray">Formaulaire d'activation ou d'ésactivation de compte.</p>
                         </div>
                         <form method="POST" action="{{ $action }}" enctype="multipart/form-data" method="post" >
                             @if ($method === 'put')
@@ -47,15 +46,15 @@
                                             <label for="genre" class="mb-2 fw-500">Genre<span class="text-danger ms-1">*</span></label>
                                             <br>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input @error('genre') is-invalid @enderror" type="radio" id="homme" name="genre" value="homme" @if(old('genre',$administrateur ? $administrateur->user->genre : '') == 'homme')checked @endif>
-                                                <label class="form-check-label " for="homme">homme</label>
+                                               <input class="form-check-input @error('genre') is-invalid @enderror" type="radio" id="homme" name="genre" value="homme" @if(old('genre',$administrateur ? $administrateur->user->genre : '') == 'homme')checked @endif>
+                                               <label class="form-check-label " for="homme">Homme</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input @error('genre') is-invalid @enderror" type="radio" id="femme" name="genre" value="femme" @if(old('genre',$administrateur ? $administrateur->user->genre : '') == 'femme') checked @endif>
-                                                <label class="form-check-label " for="femme">Femme</label>
+                                               <input class="form-check-input @error('genre') is-invalid @enderror" type="radio" id="femme" name="genre" value="femme" @if(old('genre',$administrateur ? $administrateur->user->genre : '') == 'femme') checked @endif>
+                                               <label class="form-check-label " for="femme">Femme</label>
                                             </div>
                                             <div class="invalid-feedback">@error('genre') {{$message}} @enderror </div>
-                                        </div>
+                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <label   for="adresse" :value="__('Adresse')" class="mb-2 fw-500">Adresse<span class="text-danger ms-1">*</span></label>
@@ -72,7 +71,7 @@
                                     <div class="col-lg-6">
                                         <label   for="age" :value="__('age')" class="mb-2 fw-500">Age<span class="text-danger ms-1">*</span></label>
                                         <div class="input-group ">
-                                            <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account"></i></span>
+                                            <span class="input-group-text" id="addon-wrapping"><i class="fa fa-child"></i></span>
                                             <input type="text" disabled class="form-control  @error('age') is-invalid @enderror" placeholder="Votre age" aria-label="age" name="age" value="{{ old('age', $administrateur ? $administrateur->user->age : '') }}" aria-describedby="addon-wrapping">
                                             <div class="invalid-feedback">@error('age') {{$message}} @enderror </div>
                                             </div>
@@ -89,21 +88,16 @@
 
                                 <!--End Row-->
                                 <!-- Row -->
-                                 <div class="row mb-1">
-
-
+                                <div class="row mb-1">
                                     <div class="col-lg-12">
-                                        <label   for="photo" :value="__('photo')" class="mb-2 fw-500">photo<span class="text-danger ms-1">*</span></label>
-                                        <div class="input-group ">
-                                            <span class="input-group-text" id="addon-wrapping"><i class="icon icon-picture"></i></span>
-                                            <input type="file" disabled class="form-control  @error('photo') is-invalid @enderror" name="photo" placeholder="Votre photo" aria-label="photo" value="{{ old('photo', $administrateur ? $administrateur->user->photo : '') }}" aria-describedby="addon-wrapping" >
-                                            <div class="invalid-feedback">@error('photo') {{$message}} @enderror </div>
-                                        </div>
+                                       <label   for="photo" :value="__('photo')" class="mb-2 fw-500">Photo</label>
+                                       <div class="input-group ">
+                                          <span class="input-group-text" id="addon-wrapping"><i class="icon icon-picture"></i></span>
+                                          <input type="file" class="form-control  @error('photo') is-invalid @enderror" name="photo" placeholder="image de votre profile" aria-label="photo" value="{{ old('photo', $administrateur ? $administrateur->photo : '') }}" aria-describedby="addon-wrapping" >
+                                          <div class="invalid-feedback">@error('photo') {{$message}} @enderror </div>
+                                       </div>
                                     </div>
-
-
-                                </div>
-
+                                 </div>
                                 <!--End Row-->
                             </div>
 
@@ -112,7 +106,7 @@
             <div class="col-xl-4">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title small"><h6>INFORMATION DE CONNEXION</h6></div>
+                        <div class="card-title"><h6>INFORMATION DE CONNEXION</h6></div>
                     </div>
                     <div class="card-body">
                         <div class="">

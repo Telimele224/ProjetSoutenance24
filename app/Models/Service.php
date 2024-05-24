@@ -17,7 +17,7 @@ class Service extends Model
     ];
 
     public function medecin(){
-        return $this->hasMany(Medecin::class);
+        return $this->hasMany(Medecin::class,'service_id');
     }
     public function symptoms()
     {

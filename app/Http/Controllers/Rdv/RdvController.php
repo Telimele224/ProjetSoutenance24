@@ -39,19 +39,42 @@ public function rdvC(Request $request){
             return view("rdv.selectionService", compact("services",));
 }
 
-public function rechercheService(Request $request){
-        $services = Service::query();
+public function rechercheService(Request $request) {
+    $services = Service::query();
 
-        // Vérifie si une recherche par nom a été effectuée
-        if ($request->has('rechercheService')) {
-            $searchTerm = $request->input('rechercheService');
-            $services->where('nom', 'like', '%' . $searchTerm . '%');
-        }
+    // Vérifie si une recherche par nom a été effectuée
+    if ($request->has('rechercheService')) {
+        $searchTerm = $request->input('rechercheService');
+        $services->where('nom', 'like', '%' . $searchTerm . '%');
+    }
 
-        $services = $services->select('service_id', 'nom')->get();
+    $services = $services->select('service_id', 'nom', 'description')->get();
 
-        return response()->json($services);
+    return response()->json($services);
 }
+
+// Dans RdvController
+public function detail_medecin($medecinId)
+{
+    // Récupérer le médecin
+    $medecin = Medecin::findOrFail($medecinId);
+
+    // Récupérer les horaires de disponibilité du médecin
+    $horaires = $medecin->horaires;
+
+    // Retourner la vue avec les données du médecin
+    return view('rdv.show_medecin', compact('medecin', 'horaires'));
+}
+
+
+public function detail_service($serviceId)
+    {
+        $service = Service::with('medecin.user')->findOrFail($serviceId);
+        $medecins = $service->medecin;  // Récupérer les médecins du service
+
+        return view('rdv.show_service', compact('service', 'medecins'));
+    }
+
 
 
 public function choisirDate($medecinId)
@@ -186,15 +209,20 @@ public function choisirHeure(Request $request)
 
 
 
-
 public function afficherMedecinsParService($serviceId)
 {
     // Récupérez les médecins du service spécifié
     $service = Service::find($serviceId);
-    $medecins = Medecin::where('service_id',  $service->service_id)->get();
+    $medecins = Medecin::where('service_id', $service->service_id)->get();
+
+    // Vérifiez s'il n'y a aucun médecin lié au service
+    if ($medecins->isEmpty()) {
+        return view('rdv.selectionMedecin', compact('service'))->with('message', 'Aucun médecin n\'est lié à ce service.');
+    }
 
     return view('rdv.selectionMedecin', compact('service', 'medecins'));
 }
+
 
 
 
@@ -213,7 +241,7 @@ public function rechercheMedecin(Request $request)
         });
     }
 
-    $medecins = $query->with('user:id,nom,prenom,avatar')->get();
+    $medecins = $query->with('user:id,nom,prenom,photo')->get();
 
     return response()->json($medecins);
 }

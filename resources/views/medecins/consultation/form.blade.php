@@ -16,7 +16,7 @@
 
 <div class="card m-2">
     <div class="card-body">
-       
+
         <div class="row justify-content-center">
             <form  action="{{route($consultation->exists ? 'medecins.consultation.update' : 'medecins.consultation.store', $consultation)}}" method="post" class="vstack gap-2" enctype="multipart/form-data" class="row g-4 needs-validation" novalidate="">
                 @csrf
@@ -30,8 +30,9 @@
                         <label for="rdv_id" class="form-label">Patient Phone</label>
                         <select class="select2 js-states form-control @error('rdv_id') is-invalid @enderror" id="rdv_id" name="rdv_id">
                             @foreach($rdvs as $rdv)
-                                @if (Auth::user()->id === $rdv->id_medecin)
-                                    <option value="{{ $rdv->id }}" data-rdv="{{ $rdv->rdv_id }}" {{ $consultation->r == $rdv->id ? 'selected' : '' }}>{{ $rdv->patient->telephone }}</option>
+                                    {{-- @dd($rdv->id_medecin); --}}
+                                @if (Auth::user()->id === $rdv->medecin->user_id)
+                                    <option value="{{ $rdv->id }}" data-rdv="{{ $rdv->rdv_id }}" {{ $consultation->rdv_id== $rdv->id ? 'selected' : '' }}>{{ $rdv->patient->telephone }}</option>
                                 @endif
                             @endforeach
                         </select>

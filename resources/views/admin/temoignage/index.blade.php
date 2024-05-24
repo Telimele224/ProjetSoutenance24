@@ -19,13 +19,13 @@
             <div class="card-body">
                 <p>{{strlen($temoignage->contenu) > 100 ? substr($temoignage->contenu, 0, 100) . '  ...' : $temoignage->contenu }}</p>
                 <div class="avatar-list">
-                    <span class="avatar rounded-circle bg-blue">
+                    <span class="btn btn-sm btn-icon btn-info-light rounded-circle  bg-blue m-2">
                         <a href="{{route('admin.temoignage.edit', $temoignage)}}" class="text-decoration-none text-default">
-                            <i class="fa fa-edit fs-15"></i>
+                            <i class="fa fa-edit "></i>
                         </a>
                     </span>
-                    <span class="avatar rounded-circle bg-danger" data-bs-toggle="modal" data-bs-target="#delete{{$k}}">
-                        <i class="bi bi-trash fs-15"></i>
+                    <span class="btn btn-sm btn-icon btn-info-light rounded-circle  bg-danger" data-bs-toggle="modal" data-bs-target="#delete{{$k}}">
+                        <i class="bi bi-trash"></i>
                     </span>
                 </div>
             </div>

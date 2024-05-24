@@ -14,8 +14,8 @@
                 <div class="card">
 
                         <div class="text-center mb-0">
-                            <h4 class="mb-1">S'INSCRIRE</h4>
-                            <p>Creation d'un compte pout continuer.</p>
+                            <h4 class="card-title">ENREGISTREMENT D'UN PATIENT</h4>
+                            <p class="small">Creation d'un compte patient.</p>
                         </div>
                         <form method="POST" action="{{ $action }}">
                             @csrf
@@ -69,7 +69,7 @@
                                     <div class="col-lg-6">
                                         <label   for="age" :value="__('age')" class="mb-2 fw-500">Age<span class="text-danger ms-1">*</span></label>
                                         <div class="input-group ">
-                                            <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account"></i></span>
+                                            <span class="input-group-text" id="addon-wrapping"><i class="fa fa-child"></i></span>
                                             <input type="text" class="form-control  @error('age') is-invalid @enderror" placeholder="Votre age" aria-label="age" name="age" value="{{ old('age', $patient ? $patient->age : '') }}" aria-describedby="addon-wrapping">
                                             <div class="invalid-feedback">@error('age') {{$message}} @enderror </div>
                                             </div>
@@ -156,10 +156,11 @@
                                     <div class="row">
                                         <div class="">
                                             <div class="">
+
                                                 <label   for="password" :value="__('Password')" class="mb-2 fw-500">Crée un  mot de passe<span class="text-danger ms-1">*</span></label>
                                                 <div class="input-group has-validation">
-                                                    <button class="btn btn-light" onclick="createpassword('signup-password',this)" type="button" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
-                                                    <input type="password" class="form-control ms-0 border-end-0 @error('password') is-invalid @enderror" name="password" placeholder="Crée un mot de passe" id="signup-password" value="{{ old('password', $patient ? $patient->password : '') }}">
+                                                    <button class="btn btn-light" onclick="createpassword('signup-password',this)" type="button" id="button-addon2"><i class="ri-eye-off-line align-middle input-group-text"></i></button>
+                                                    <input type="password" class="form-control  border-end-1 @error('password') is-invalid @enderror" name="password" placeholder="Crée un mot de passe" id="signup-password" value="{{ old('password', $patient ? $patient->password : '') }}">
                                                     <div class="invalid-feedback">@error('password') {{$message}} @enderror </div>
                                                 </div>
                                             </div>
@@ -167,8 +168,8 @@
                                         <div class="">
                                                 <label  for="password_confirmation" :value="__('Confirm Password')" class="mb-2 fw-500">Confirmation votre mot de passe<span class="text-danger ms-1">*</span></label>
                                                 <div class="input-group has-validation">
-                                                    <button class="btn btn-light" onclick="createpassword('signup-confirmpassword',this)" type="button" id="button-addon21"><i class="ri-eye-off-line align-middle"></i></button>
-                                                    <input type="password" class="form-control ms-0 border-end-0" name="password_confirmation" placeholder="Confirmation votre mot de passe" id="signup-confirmpassword" >
+                                                    <button class="btn btn-light" onclick="createpassword('signup-confirmpassword',this)" type="button" id="button-addon21"><i class="ri-eye-off-line align-middle input-group-text"></i></button>
+                                                    <input type="password" class="form-control  border-end-1" name="password_confirmation" placeholder="Confirmation votre mot de passe" id="signup-confirmpassword" >
                                                     <div class="invalid-feedback">
                                                         Please choose a username.
                                                     </div>
@@ -180,10 +181,8 @@
 
                         </div>
                         <div class="card-footer text-center">
-                            <button class="btn btn-primary" type="submit">
-
-                                    Connexion
-
+                            <button class="btn btn-primary" type="submit"><span><i class="mdi mdi-check"></i></span>
+                                ENREGISTRER LE PATIENT
                             </button>
 
                         </div>

@@ -10,9 +10,10 @@
 
 
     <title>Hopital Regional de Labé</title>
-    <link rel="icon" href="{{asset('assets/build/assets/images/brand/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('logo/LogoHRL.png')}}" type="image/x-icon">
     <!-- ICONS CSS -->
     <link href="{{asset('assets/build/assets/iconfonts/icons.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/bootstrap.min.css')}}">
     <!-- Main Theme Js -->
     <script src="{{asset('assets/build/assets/main.js')}}"></script>
     <link rel="stylesheet" href="{{asset('assets/plugin/style.css')}}">
@@ -24,6 +25,8 @@
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{asset('assets/build/assets/libs/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    {{-- <link rel='stylesheet' id='bootstrap-css' href="{{asset('assets/wp-content/themes/medidoc/css/bootstrap.min68b3.css?ver=1')}}" media='all' /> --}}
+
     <!-- Choices JS -->
     <script src="{{asset('assets/build/assets/libs/choices.js/public/assets/scripts/choices.min.js')}}"></script>
     <!-- Simplebar Css -->
@@ -39,27 +42,19 @@
     <link rel="stylesheet" href="{{asset('assets/select2.css')}}">
     <link rel="stylesheet" href="{{asset('assets/select2.min.css')}}">
 
-      <!-- Vos fichiers CSS personnalisés -->
-      {{-- <link rel="stylesheet" href="{{ asset('assets1/css/customizeBootstrap.css')}}"> --}}
-      {{-- <link rel="stylesheet" href="{{ asset('assets1/css/style.css')}}"> --}}
-      {{-- <link rel="stylesheet" href="{{ asset('assets1/css/modal.css')}}"> --}}
-
-
 </head>
 
 <body>
-    {{-- <div class="row ">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title text-lg-center">ESPACE DE PRISE DE RENDEZ VOUS</h3>
-                </div>
 
-
-                </div>
-            </div>
+    <div class="row " style="background-color: #215e8c">
+        <div class="col-sm-4 ">
+            <img src="{{asset('logo/SIDEBARE2.png')}}" width="230" height="70" alt="">
         </div>
-    </div> --}}
+        <div class="text-center p-3 mb-1 col-sm-6">
+            <h3 style="color: white">ESPACE DE PRISE DE RENDEZ-VOUS</h3>
+        </div>
+
+    </div>
 
 <div class="contenair">
     @yield('contenu')

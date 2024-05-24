@@ -4,6 +4,9 @@
 use App\Http\Controllers\admin\ActualiteControllers;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\adminTemoignages;
+use App\Http\Controllers\admin\afficherImpression;
+use App\Http\Controllers\admin\afficherImpressionMedecin;
+use App\Http\Controllers\admin\afficherImpressionPatient;
 use App\Http\Controllers\admin\CalendrierController;
 use App\Http\Controllers\admin\calendrierControllers as AdminCalendrierControllers;
 use App\Http\Controllers\admin\GalerieController;
@@ -45,6 +48,8 @@ use App\Http\Controllers\pdf\MedecinPdf;
 use App\Http\Controllers\pdf\Patientdf;
 use App\Http\Controllers\pdf\Personnelpdf;
 use App\Http\Controllers\PDFController;
+use App\Models\Consultation;
+use App\Models\Medecin;
 use App\Models\Rdv;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +71,8 @@ Route::get('/patientimprime', [PatientImpression::class, 'patient'])->name('pati
 Route::get('/personnelimprime', [PersonnelImpression::class, 'personnel'])->name('personnelimprime');
 
 
+Route::get('/afficher', [AdminPdf::class, 'afficher'])->name('afficher');
+Route::get('/afficher', [MedecinPdf::class, 'afficher'])->name('afficher');
 
 
 
@@ -79,6 +86,9 @@ Route::get('/personnelpdf', [Personnelpdf::class, 'personnel'])->name('personnel
 //Route pour la page contact
 // Route::get('/contact' , [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact' , [MenuNavigation::class,'send'])->name('contact.send');
+
+Route::get('/mesrendevous' , [ConsultationController::class,'listedesrendezvous'])->name('listerendezvous');
+
 
 
 // ROUTE POUR FRONT END LES PAGES DE NAVIGATION
@@ -103,6 +113,9 @@ Route::get('consultations/{id}/pdf', [DossierMedicalController::class, 'generate
 // ROUTE POUR L'ADMINISTRATEUR BACK_END
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('service',ServiceControllers::class);
+    Route::resource('usersPdf',afficherImpression::class);
+    Route::resource('usersPdf',afficherImpressionMedecin::class);
+    Route::resource('usersPdf',afficherImpressionPatient::class);
     Route::resource('actualite',ActualiteControllers::class);
     Route::resource('temoignage',adminTemoignages::class)->except('show');
     Route::resource('medecin',adminTemoignages::class)->except('show');
@@ -180,7 +193,8 @@ Route::get('/admin/emplois/selectMedecin', [HoraireController::class ,'selectMed
 
 
 // LES ROUTES LIER AU RDV
-
+Route::get('/rdvdetail_medecin/{medecinId}', [RdvController::class, 'detail_medecin'])->name('rdv.detail_medecin');
+Route::get('/services/{serviceId}/details', [RdvController::class, 'detail_service'])->name('detailService');
 Route::get('/rendezVous',[RdvController::class,'index'])->name('rendezVous');
 Route::get('/rdvCreate',[RdvController::class,'create'])->name('rdvCreate');
 Route::post('/ajouterRendezVous', [RdvController::class, 'ajouterRendezVous'])->name('ajouterRendezVous');

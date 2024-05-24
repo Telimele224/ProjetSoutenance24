@@ -7,6 +7,7 @@ use App\Http\Requests\ActualiteRequest;
 use App\Http\Requests\admin\ActualiteRequest as AdminActualiteRequest;
 use App\Http\Requests\admin\UpdateActualites;
 use App\Models\Actualite;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -60,8 +61,12 @@ class ActualiteControllers extends Controller
      */
     public function show(Actualite $actualite)
     {
+        $services = Service::take(7)->get();
+
         return view('admin.actualite.show',[
-            'actualite' => $actualite
+            'actualite' => $actualite,
+            'services' => $services
+
         ]);
     }
 

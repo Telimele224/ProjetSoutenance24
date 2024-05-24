@@ -2,7 +2,8 @@
 @section('contenu')
 <div class="main-container container-fluid">
 
-    <!-- GALLERY DEMO OPEN -->
+    <div class="card">
+        <!-- GALLERY DEMO OPEN -->
     <div class="demo-gallery card">
         <div class="card-header d-sm-flex d-block">
             <ul class="nav nav-pills nav-tabs-header mb-0 d-sm-flex d-block" role="tablist">
@@ -66,6 +67,9 @@
         </div>
     </div>
     <!-- GALLERY DEMO CLOSED -->
+    </div>
+
+
 </div>
 
 @endsection

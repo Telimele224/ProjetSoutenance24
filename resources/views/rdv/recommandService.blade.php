@@ -2,53 +2,54 @@
 
 @section('contenu')
 
-<div class="card" style="margin-top:20px; margin-left:25%; width:50%">
-    <div class="card-header text-center">
-        <p>Veuillez sélectionner parmi ces trois votre motif de consultation :</p>
+<div class="card" style="margin-top:20px; margin-left:17%; width:70%">
+    <div class=" card text-center" >
+        <p class="mt-4 text-bold">VEUILEZ SELECTIONNER VOTRE MOTIF DE VOTRE CONSULTATION MERCI :</p>
     </div>
-
-    <div class="card-body row">
-        <!-- Contenu de la vue principale -->
-        <div class="telh col-md-12  card-header">
-            <a href="{{ route('selectionSymptomes') }}" class="btn btn-outline-success w-100" style="text-decoration: none; color: inherit;">
-                <i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;Sélectionner un symptôme
-            </a>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{asset('logo/techBar.png')}}" alt="">
         </div>
-        <div class="col-md-12">
-            <div class="row">
-
-                <div class="col-md-5 ms-4">
-                    <hr style="border: 1px solid black;">
-                </div>
-                <div class="col-md-1">OU</div>
-                <div class="col-md-5">
-                    <hr style="border: 1px solid black;">
+        <div class="col-md-6">
+            <div class="card row">
+                <div class="row mt-5 mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="telh col-md-12  card-header mb-4">
+                                <a href="{{ route('selectionSymptomes') }}" class="btn btn-outline-primary w-100 float-end" style="text-decoration: none; ">
+                                    <i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;Sélectionnez un symptome
+                                </a>
+                            </div>
+                            <div class="col">
+                                <hr style="border: 1px solid black;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="telh col-md-12 card-header  mb-4">
+                                <a href="{{ route('selectionMaux') }}" class="btn btn-outline-primary   w-100 float-end"  style="text-decoration: none;">
+                                    Sélectionner un ou des maux
+                                </a>
+                            </div>
+                            <div class="col">
+                                <hr style="border: 1px solid black;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="telh col-md-12 card-header  mb-4">
+                                <a href="{{ route('selectionMaladies') }}" class="btn btn-outline-primary   w-100 float-end" style="text-decoration: none;">
+                                    Sélectionner une maladie
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="telh col-md-12 card-header">
-            <a href="{{ route('selectionMaux') }}" class="btn btn-outline-success  w-100"  style="text-decoration: none; color: inherit;">
-                Sélectionner un ou des maux
-            </a>
-        </div>
-        <div class="col-md-12">
-            <div class="row">
-
-                <div class="col-md-5 ms-4">
-                    <hr style="border: 1px solid black;">
-                </div>
-                <div class="col-md-1">OU</div>
-                <div class="col-md-5">
-                    <hr style="border: 1px solid black;">
-                </div>
-            </div>
-        </div>
-        <div class="telh col-md-12 card-header">
-            <a href="{{ route('selectionMaladies') }}" class="btn btn-outline-success  w-100" style="text-decoration: none; color: inherit;">
-                Sélectionner une maladie
-            </a>
-        </div>
     </div>
 </div>
 

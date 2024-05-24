@@ -16,12 +16,22 @@ class PersonnelsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Personnel::query();
 
-        return view('admin.personnel.index',[
-            'personnels' => Personnel::orderBy('created_at', 'desc')->paginate(10)
-        ]);
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('nom', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('prenom', 'like', '%' . $searchTerm . '%');
+                //   ->orWhere('telephone', 'like', '%' . $searchTerm . '%'); // Recherche par numéro de téléphone
+            });
+        }
+
+        $personnels = $query->paginate(10);
+
+        return view('admin.personnel.index', compact('personnels'));
     }
 
     /**

@@ -27,7 +27,7 @@ class HomeController extends Controller
             elseif(Auth::user()->role=='admin' && Auth::user()->statut=='1'){
                 return view('admin.home');
             }
-            elseif(Auth::user()->role=='admin' && Auth::user()->statut=='1'){
+            elseif(Auth::user()->role=='medecin' && Auth::user()->statut=='1'){
                 return view('medecins.home');
             }
             else{

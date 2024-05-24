@@ -94,8 +94,12 @@ class ServiceControllers extends Controller
      */
     public function show(Service $service)
     {
+        $services = Service::take(7)->get();
+
         return view('admin.service.show',[
-            'service' => $service
+            'service' => $service,
+            'services' => $services
+
         ]);
     }
 

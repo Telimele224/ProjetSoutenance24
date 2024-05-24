@@ -4,6 +4,7 @@ namespace App\Http\Controllers\medecin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\medecin\OrdonnanceRequest;
+use App\Models\Consultation;
 use App\Models\Ordonance;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,12 @@ class OrdonnanceController extends Controller
      */
     public function index()
     {
-
+        $consultations= Consultation::all();
         return view('medecins.ordonance.index', [
+            'consultations' => $consultations,
             'ordonances' => Ordonance::orderBy('created_at', 'desc')->paginate(10)
         ]);
+
     }
 
     /**
@@ -26,8 +29,10 @@ class OrdonnanceController extends Controller
     public function create()
     {
         $ordonance = new Ordonance();
+        $consultations= Consultation::all();
         return view('medecins.ordonance.form',[
-            'ordonance' => $ordonance
+            'ordonance' => $ordonance,
+            'consultations' => $consultations
         ]);
     }
 

@@ -16,21 +16,18 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        // Récupérer le terme de recherche du formulaire
-        $search = $request->input('search');
+        $query = User::where('role', 'admin');
 
-        // Rechercher les utilisateurs en fonction du numéro de téléphone ou de l'adresse
-        $users = User::where('telephone', 'like', '%' . $search . '%')
-                     ->orWhere('adresse', 'like', '%' . $search . '%')
-                     ->orderBy('created_at', 'desc')
-                     ->paginate(10);
-
-        // Si la requête est une requête AJAX, retourner une vue partielle
-        if ($request->ajax()) {
-            return view('admin.administrateur.user_partiale', compact('users'));
+        if ($request->has('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('nom', 'like', '%' . $request->search . '%')
+                  ->orWhere('prenom', 'like', '%' . $request->search . '%')
+                  ->orWhere('telephone', 'like', '%' . $request->search . '%'); // Recherche par numéro de téléphone
+            });
         }
 
-        // Retourner la vue complète avec les résultats de recherche
+        $users = $query->paginate(10);
+
         return view('admin.administrateur.index', compact('users'));
     }
 

@@ -19,7 +19,7 @@
                             <label   for="photo" :value="__('Photo')" class="mb-2 fw-500">Photo du personnel<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-convert"></i></span>
-                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" placeholder="selectionner une photo" aria-label="photo" aria-describedby="addon-wrapping" value="{{ old('photo', $personnel->photo) }}" ><br>
+                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" placeholder="Selectionner une photo" aria-label="photo" aria-describedby="addon-wrapping" value="{{ old('photo', $personnel->photo) }}" ><br>
                                 <div class="invalid-feedback">@error('photo') {{$message}} @enderror </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         </div>
                           <!-- Champs pour les symptômes -->
                           <div class="col-md-6 position-relative">
-                            <label   for="prenom" :value="__('prenom')" class="mb-2 fw-500">prenom du personnel<span class="text-danger ms-1">*</span></label>
+                            <label   for="prenom" :value="__('prenom')" class="mb-2 fw-500">Prenom du personnel<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-arrow-left"></i></span>
                                 <input type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" placeholder="Entrer le prenom du personnel" aria-label="prenom" aria-describedby="addon-wrapping" value="{{ old('prenom', $personnel->prenom) }}" ><br>
@@ -43,7 +43,7 @@
                           <!-- Champs pour les symptômes -->
                          <!-- Champs pour les symptômes -->
                          <div class="col-md-6 position-relative">
-                            <label   for="poste" :value="__('poste')" class="mb-2 fw-500">poste du personnel<span class="text-danger ms-1">*</span></label>
+                            <label   for="poste" :value="__('poste')" class="mb-2 fw-500">Poste du personnel<span class="text-danger ms-1">*</span></label>
                             <div class="input-group ">
                                 <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-arrow-left"></i></span>
                                 <input type="text" class="form-control @error('poste') is-invalid @enderror" name="poste" placeholder="Entrer le poste du personnel" aria-label="poste" aria-describedby="addon-wrapping" value="{{ old('poste', $personnel->poste) }}" ><br>

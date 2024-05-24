@@ -13,10 +13,10 @@
         </div>
        <div class="row">
 
-          <div class="card-body">
-            <div class="table-responsive">
-                    <table class="table border text-nowrap text-md-nowrap mb-0">
-                        <thead class="table-danger">
+          <div class="card">
+            <div class="table-responsive table-lg">
+                    <table class="table border-top table-bordered mb-0 text-nowrap">
+                        <thead>
                             <tr>
                                 <th>Numero</th>
                                 <th>Nom </th>
@@ -30,9 +30,9 @@
                                 <td>{{$typeconsultation->name}}</td>
                                 <td>
                                     <div class="avatar-list text-end">
-                                        <span class="avatar rounded-circle bg-blue-dark" ><i class="fe fe-eye fs-15"></i></span>
-                                        <span class="avatar rounded-circle bg-blue"><a href="{{route('admin.typeconsultation.edit', $typeconsultation)}}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a></span>
-                                        <span class="avatar rounded-circle bg-danger" data-bs-toggle="modal"
+                                        {{-- <span class="btn btn-sm btn-icon btn-info-light rounded-circle  bg-blue-dark" ><i class="fe fe-eye fs-15"></i></span> --}}
+                                        <span class="btn btn-sm btn-icon btn-info-light rounded-circle  bg-blue m-2"><a href="{{route('admin.typeconsultation.edit', $typeconsultation)}}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a></span>
+                                        <span class="btn btn-sm btn-icon btn-info-light rounded-circle  bg-danger" data-bs-toggle="modal"
                                         data-bs-target="#delete"><i class="bi bi-trash fs-15 "></i>
                                         </span>
                                     </div>

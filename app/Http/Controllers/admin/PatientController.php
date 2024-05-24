@@ -16,14 +16,21 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = User::where('role', 'patient');
 
-        $patients = new Patient();
-        return view ('admin.patient.index',[
-            'users' => User::orderBy('created_at', 'desc')->paginate(10),
-            'patients'=> $patients
-        ]);
+        if ($request->has('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('nom', 'like', '%' . $request->search . '%')
+                  ->orWhere('prenom', 'like', '%' . $request->search . '%')
+                  ->orWhere('telephone', 'like', '%' . $request->search . '%'); // Recherche par numéro de téléphone
+            });
+        }
+
+        $users = $query->paginate(10);
+
+        return view('admin.patient.index', compact('users'));
     }
 
     public function create()

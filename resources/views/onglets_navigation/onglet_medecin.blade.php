@@ -60,7 +60,7 @@
                         <a href="{{route('medecins.ordonance.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol me-2"></i>Les Ordonances</span></a>
                     </li>
                     <li class="slide">
-                        <a href="{{route('medecins.mesrendezvous')}}" class="side-menu__item"> <span><i class="fa fa-list-ol me-2"></i>Mes rendez-vous</span></a>
+                        <a href="{{route('listerendezvous')}}" class="side-menu__item"> <span><i class="fa fa-list-ol me-2"></i>Mes rendez-vous</span></a>
                     </li>
                 </ul>
              </li>

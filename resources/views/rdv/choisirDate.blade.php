@@ -3,6 +3,7 @@
 
 @section('contenu')
 <div class="card " style="margin-top:20px ;margin-left:10%; width:80%">
+    <div class="card " style="margin-top:20px ;margin-left:10%; width:80%">
     @if(Session::has('success'))
     <div id="successMessage" class="alert alert-success" style="height: 50px; margin-bottom: 15px">
         {{ Session::get('success') }}
@@ -12,14 +13,15 @@
         {{Session::get('error') }}
     </div>
     @endif
-
-            <div class="card-header text-center mt-2">
-                <h6>Choisissez une date de consultation
-                    <button class="btn btn-outline-success btn-select-date dbtn-sm float-end" data-toggle="collapse" data-target="#formSelectionDate" aria-expanded="false" aria-controls="formSelectionDate">
+            <div class=" row  mb-4">
+                <div class="col-md-6 text-center">
+                    <h6 class="text-uppercase">Choisissez une date de consultation :</h6>
+                </div>
+                <div class="col-md-6 ">
+                    <button class="btn btn-outline-primary btn-select-date dbtn-sm float-end" data-toggle="collapse" data-target="#formSelectionDate" aria-expanded="false" aria-controls="formSelectionDate">
                         Sélectionner une date de RDV
                     </button>
-                </h6>
-
+                </div>
             </div>
         <div class="row">
             <div class="card-body col-md-7" id="card-body-container">
@@ -53,14 +55,20 @@
                                 <input type="hidden" name="medecinId" value="{{ $medecin->id }}">
 
 
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-outline-info" name="submit" type="submit">Valider</button>
+                                <div class="d-grid gap-4">
+                                    <button class="btn btn-outline-primary text-uppercase" name="submit" type="submit">Valider</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
 
+
+                @if(empty($horairesParJour))
+                <div class="alert alert-warning" role="alert">
+                    Ce médecin n'a pas d'horaires disponibles pour le moment.
+                </div>
+                @else
                 <!-- Horaires de consultation -->
                 <div id="horairesContainer">
                     @foreach ($horairesParJour as $jour => $horaires)
@@ -100,80 +108,89 @@
                 @endforeach
 
                 </div>
-            </div>
+            @endif
+         </div>
 
-            <div class="col-md-5">
-                <!-- Card Bootstrap pour les horaires de disponibilité -->
-                <div class="card ">
-                    <div class="card-header text-center">
-                        Horaires de disponibilité
-                    </div>
-                    <div class="row">
-                        @if($horair->lundi_debut && $horair->lundi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+         <div class="col-md-5">
+            <!-- Card Bootstrap pour les horaires de disponibilité -->
+            <div class="card">
+                <div class="card-header text-center">
+                    Horaires de disponibilité
+                </div>
+                <div class="row">
+                    @if(!empty($horair->lundi_debut) && !empty($horair->lundi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Lundi
                             </div>
-                                <p style="text-align: center; font-weight:bold; ">{{ date('H:i', strtotime($horair->lundi_debut)) }} - {{ date('H:i', strtotime($horair->lundi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->lundi_debut)) }} - {{ date('H:i', strtotime($horair->lundi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->mardi_debut && $horair->mardi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->mardi_debut) && !empty($horair->mardi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Mardi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->mardi_debut)) }} - {{ date('H:i', strtotime($horair->mardi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->mardi_debut)) }} - {{ date('H:i', strtotime($horair->mardi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->mercredi_debut && $horair->mercredi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->mercredi_debut) && !empty($horair->mercredi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Mercredi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->mercredi_debut)) }} - {{ date('H:i', strtotime($horair->mercredi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->mercredi_debut)) }} - {{ date('H:i', strtotime($horair->mercredi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->jeudi_debut && $horair->jeudi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->jeudi_debut) && !empty($horair->jeudi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Jeudi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->jeudi_debut)) }} - {{ date('H:i', strtotime($horair->jeudi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->jeudi_debut)) }} - {{ date('H:i', strtotime($horair->jeudi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->vendredi_debut && $horair->vendredi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->vendredi_debut) && !empty($horair->vendredi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Vendredi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->vendredi_debut)) }} - {{ date('H:i', strtotime($horair->vendredi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->vendredi_debut)) }} - {{ date('H:i', strtotime($horair->vendredi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->samedi_debut && $horair->samedi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->samedi_debut) && !empty($horair->samedi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Samedi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->samedi_debut)) }} - {{ date('H:i', strtotime($horair->samedi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->samedi_debut)) }} - {{ date('H:i', strtotime($horair->samedi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->dimanche_debut && $horair->dimanche_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->dimanche_debut) && !empty($horair->dimanche_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Dimanche
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->dimanche_debut)) }} - {{ date('H:i', strtotime($horaires->dimanche_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->dimanche_debut)) }} - {{ date('H:i', strtotime($horair->dimanche_fin)) }}</p>
                         </div>
-                        @endif
-
-
-                    </div>
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
                 </div>
             </div>
+        </div>
+
 
      </div>
 
 </div>
+</div>
+
 
 <!-- Script JavaScript pour gérer l'affichage du card-body -->
 <script>

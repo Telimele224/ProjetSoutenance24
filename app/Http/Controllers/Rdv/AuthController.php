@@ -181,15 +181,24 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
         // Tentative d'authentification de l'utilisateur
         if (Auth::attempt($credentials)) {
-            return redirect()->route('medecins.dashboard_medecin');
+            // Vérifier si l'utilisateur est un patient
+            if (Auth::user()->role !== 'patient') {
+                // Déconnexion de l'utilisateur actuel
+                Auth::logout();
+                // Redirection avec un message d'erreur
+                return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
+            }
+            // L'utilisateur est authentifié et est un patient, rediriger vers la page appropriée pour les patients
+            return redirect()->route('patients.dashboard_patient');
         } else {
             // Authentification échouée, rediriger l'utilisateur avec un message d'erreur
             return redirect()->back()->with('error', 'Email ou mot de passe incorrect.');
         }
     }
+    
 
 
 

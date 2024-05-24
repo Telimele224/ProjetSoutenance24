@@ -11,16 +11,17 @@
                         <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
                             <div class="input-group">
                                  <!-- Formulaire de recherche -->
-                            <form action="" method="GET" class="mb-3">
-                                <div class="input-group row">
-                                    <div class="col-md-10">
-                                        <input type="text"  aria-describedby="addon-wrapping" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
+                                 <form action="{{ route('admin.personnel.index') }}" method="GET" class="mb-3">
+                                    <div class="input-group row">
+                                        <div class="col-md-10">
+                                            <input type="text" id="search" name="search" class="form-control" placeholder="Rechercher par  telephone ou nom_prenom " autocomplete="on" value="{{ request('search') }}">
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
 
                             </div>
                         </div>
@@ -52,6 +53,7 @@
                             <table class="table border-top table-bordered mb-0 text-nowrap">
                                 <thead>
                                     <tr>
+                                        <th>Numero</th>
                                         <th>Nom</th>
                                         <th>Prenom</th>
                                         <th>Poste</th>
@@ -63,17 +65,17 @@
                                 <tbody>
                                     @foreach ($personnels as $k=>$personnel)
                                         <tr class="user-list">
+                                                <td class="text-nowrap align-middle">{{$k+1}}</td>
                                                 <td class="text-nowrap align-middle">{{$personnel->nom}}</td>
                                                 <td class="text-nowrap align-middle">{{$personnel->prenom}}</td>
                                                 <td class="text-nowrap align-middle">{{$personnel->poste}}</td>
                                                 <td class="text-nowrap align-middle " ><img src="{{asset('storage/'.$personnel->photo)}}" alt="" width="60" height="60" class="rounded-circle"></td>
-
                                                 <td class="align-middle">
                                                     <div class="avatar-list text-end">
-                                                        <span class="avatar rounded-circle bg-blue-dark" ><a href=""></a><i class="fe fe-eye fs-15"></i></span>
-                                                        <span class="avatar rounded-circle bg-blue"><a href="{{route('admin.personnel.edit', $personnel)}}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a></span>
-                                                        <span class="avatar rounded-circle bg-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#delete"><i class="bi bi-trash fs-15 "></i>
+                                                        <span class="btn btn-sm btn-icon btn-info-light rounded-circle m-2" ><a href=""></a><i class="fe fe-eye"></i></span>
+                                                        <span class="btn btn-sm btn-icon btn-info-light rounded-circle"><a href="{{route('admin.personnel.edit', $personnel)}}" class="text-decoration-none text-default"><i class="fa fa-edit"></i></a></span>
+                                                        <span class="btn btn-sm btn-icon btn-info-light rounded-circle m-2" data-bs-toggle="modal"
+                                                        data-bs-target="#delete"><i class="bi bi-trash "></i>
                                                         </span>
                                                     </div>
                                                 </td>
@@ -180,13 +182,6 @@
     </div>
 
 {{$personnels->links()}}
-@endsection
-<div class="card-body">
-    <div class="card-content btn-list">
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delete">Delete</button>
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#info-modal">Info</button>
-    </div>
-</div>
 
 <div class="modal fade" id="delete" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered text-center" role="document">
@@ -220,4 +215,7 @@
         </div>
     </div>
 </div>
+@include('admin.scripts.recherche_actualisation')
+
+@endsection
 

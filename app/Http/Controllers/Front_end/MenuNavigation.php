@@ -21,26 +21,38 @@ class MenuNavigation extends Controller
 {
     //
     public function apropos () {
+        $services = Service::take(7)->get();
+
 
         $personnels = Personnel::all();
         $temoignages = Temoignage::with('user.patient')->where('publier', true)->get();
 
-            return view('Front_end.apropos', ['temoignages' => $temoignages,'personnels'=>$personnels]);
+            return view('Front_end.apropos', ['temoignages' => $temoignages,'personnels'=>$personnels,'services' => $services]);
     }
     public function medecins () {
 
         $personnels = Personnel::all();
+        $services = Service::take(7)->get();
+
         return view('Front_end.medecins',[
-            'personnels'=>$personnels
+            'personnels'=>$personnels,'services' => $services
         ]);
     }
     public function essai () {
+        $services = Service::take(7)->get();
+        return view('Front_end.show',[
+            'services' => $services
+        ]);
 
-        return view('Front_end.show');
+
     }
 
     public function contact () {
-        return view('Front_end.contact');
+        $services = Service::take(7)->get();
+
+        return view('Front_end.contact',[
+            'services'=>$services
+        ]);
 
     }
     public function send(){
@@ -59,7 +71,7 @@ class MenuNavigation extends Controller
     public function welcome()
     {
           // Récupérer les services depuis la base de données (limitez à 7 résultats)
-        $services = Service::take(7)->get();
+        $services = Service::take(8)->get();
         $actualites = Actualite::all();
         $personnels = Personnel::all();
         $temoignages = Temoignage::with('user.patient')->where('publier', true)->get();
@@ -70,9 +82,12 @@ class MenuNavigation extends Controller
     }
 
     public function departements () {
-        $services = Service::all();
+        $servicess = Service::all();
+        $services = Service::take(7)->get();
         return view('Front_end.les_departements', [
-            'services' => $services
+            'services' => $services,
+            'servicess' => $servicess
+
         ]);
     }
     public function chatify( $id = null)
@@ -87,25 +102,41 @@ class MenuNavigation extends Controller
     public function blog()
     {
         $actualites=Actualite::all();
-        return view('Front_end.blog',compact('actualites'));
+        $services = Service::take(7)->get();
+
+        return view('Front_end.blog',[
+            'actualites'=>$actualites,
+            'services'=>$services,
+        ]);
     }
     public function galerie()
     {
+        $services = Service::take(7)->get();
+
         $galeries=Galerie::all();
-        return view('Front_end.galerie',compact('galeries'));
+
+        return view('Front_end.galerie',[
+            'galeries'=>$galeries,
+            'services'=>$services,
+        ]);
     }
     public function lien()
     {
         $personnels = Personnel::all();
+        $services = Service::take(7)->get();
 
         return view('Front_end.medecins', [
             'medecins' => Medecin::orderBy('created_at', 'desc')->paginate(10),
-            'personnels'=>$personnels
+            'personnels'=>$personnels,
+            'services'=>$services
+
 
         ]);
             }
         public function afficherMenu()
         {
+        $services = Service::take(7)->get();
+
             // Récupérer les services depuis la base de données (limitez à 7 résultats)
             $services = Service::take(7)->get();
 

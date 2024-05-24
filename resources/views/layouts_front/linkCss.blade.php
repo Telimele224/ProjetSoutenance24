@@ -54,7 +54,7 @@
     }
     .svgpath {
     fill: #ffffff00;
-    stroke: #07afe0;
+    stroke: #0884d7;
     stroke-width: 2px;
     stroke-dasharray: 1000;
     stroke-linecap: round;
@@ -181,233 +181,233 @@
     }
     .preloader {background: #fff;}
     .swiper-pagination-bullet {margin-left:5px;}
-    .navbar-nav .nav-link:hover {color: #07afe0;}
-    .navbar .site-menu ul li a:hover {color: #07afe0;}
-    .slider .main-slider .swiper-slide .container a {background:#07afe0;}
-    .slider .main-slider .swiper-slide .container a:hover {background:#4dcdaf;}
-    .navbar .navbar-button a {background: #07afe0;}
-    .slider .button-next:hover {background: #07afe0;}
-    .custom-button{background:#07afe0;}
-    .custom-button:hover{background:#4dcdaf;}
-    .custom-button12{background:#07afe0;}
-    .custom-button12:hover{background:#4dcdaf;}
-    .preloader figure:after {border-top: 1px solid #07afe0;}
-    .menueffect a:hover {color: #4dcdaf;}
+    .navbar-nav .nav-link:hover {color: #215e8c;}
+    .navbar .site-menu ul li a:hover {color: #215e8c;}
+    .slider .main-slider .swiper-slide .container a {background:#215e8c;}
+    .slider .main-slider .swiper-slide .container a:hover {background:#8ed1fc;}
+    .navbar .navbar-button a {background: #215e8c;}
+    .slider .button-next:hover {background: #215e8c;}
+    .custom-button{background:#215e8c;}
+    .custom-button:hover{background:#8ed1fc;}
+    .custom-button12{background:#215e8c;}
+    .custom-button12:hover{background:#8ed1fc;}
+    .preloader figure:after {border-top: 1px solid #215e8c;}
+    .menueffect a:hover {color: #8ed1fc;}
     .menueffect a:before {background-color: #043577;}
-    h3 a{color: #07afe0;font-family:Satoshi Black;}
+    h3 a{color: #215e8c;font-family:Britannic Black;}
     h3 a:hover{color: #fff;}
-    .hizmet-kutu .kutu-duzen .icon-box i  {color: #07afe0;}
-    .hizmet-kutu .kutu-duzen:hover  {background: #07afe0;}
+    .hizmet-kutu .kutu-duzen .icon-box i  {color: #215e8c;}
+    .hizmet-kutu .kutu-duzen:hover  {background: #215e8c;}
     .counter-box h6:after{color: #07afe1; }
-    li a:hover {color: #07afe0;}
-    input#wp-block-search__input-1 {border-bottom: 0.3rem solid #07afe0;}
-    input#wp-block-search__input-2 {border-bottom: 0.3rem solid #07afe0;}
-    input#wp-block-search__input {border-bottom: 0.3rem solid #07afe0;}
-    .slider .button-prev:hover {background: #07afe0; border-color: transparent; }
-    .content-section {background: #07afe0 }
-    .content-section.bottom-dark-spacing:after {background: #07afe0; }
-    .section-title h2 {color: #07afe0;}
-    .image-box .time {color: #07afe0; }
-    .menueffect a:before {background-color: #07afe0; }
-    .side-content form button[type="submit"] {color: #07afe0; }
-    .side-image .side-timetable li b { color: #07afe0; }
-    .side-member figcaption {background: #07afe0;}
-    .custom-progress span {color: #07afe0; }
-    .custom-progress .progress-bar .progress {background: #07afe0;}
-    .tab-wrapper .tab-nav li.active a {background: #07afe0;}
-    .tab-wrapper .tab-nav li.active a:hover {background: #4dcdaf; }
-    .tab-wrapper .tab-item .tab-inner {background: #07afe0; }
-    .tab-wrapper .tab-item .tab-inner ul li span {color: #07afe0; }
-    .service-box {background: #07afe0; }
-    .service-box:before {background: #07afe0;}
-    .image-overlap-box figure {background: #07afe0; }
-    .image-overlap-box .content a:hover {color: #4dcdaf; }
-    .video {background: #07afe0; }
-    .video a {color: #07afe0;}
+    li a:hover {color: #215e8c;}
+    input#wp-block-search__input-1 {border-bottom: 0.3rem solid #215e8c;}
+    input#wp-block-search__input-2 {border-bottom: 0.3rem solid #215e8c;}
+    input#wp-block-search__input {border-bottom: 0.3rem solid #215e8c;}
+    .slider .button-prev:hover {background: #215e8c; border-color: transparent; }
+    .content-section {background: #215e8c }
+    .content-section.bottom-dark-spacing:after {background: #215e8c; }
+    .section-title h2 {color: #215e8c;}
+    .image-box .time {color: #215e8c; }
+    .menueffect a:before {background-color: #215e8c; }
+    .side-content form button[type="submit"] {color: #215e8c; }
+    .side-image .side-timetable li b { color: #215e8c; }
+    .side-member figcaption {background: #215e8c;}
+    .custom-progress span {color: #215e8c; }
+    .custom-progress .progress-bar .progress {background: #215e8c;}
+    .tab-wrapper .tab-nav li.active a {background: #215e8c;}
+    .tab-wrapper .tab-nav li.active a:hover {background: #8ed1fc; }
+    .tab-wrapper .tab-item .tab-inner {background: #215e8c; }
+    .tab-wrapper .tab-item .tab-inner ul li span {color: #215e8c; }
+    .service-box {background: #215e8c; }
+    .service-box:before {background: #215e8c;}
+    .image-overlap-box figure {background: #215e8c; }
+    .image-overlap-box .content a:hover {color: #8ed1fc; }
+    .video {background: #215e8c; }
+    .video a {color: #215e8c;}
     .class-box figure {background: none;}
-    .text-box h5 {color: #07afe0;}
-    .recent-news figure {background: #07afe0;}
-    .recent-news .content h3 a { color: #07afe0; }
-    .recent-news .content small span {background: #07afe0;}
-    .blog-box figure {background: #07afe0; }
-    .blog-box .content h3 a {color: #07afe0;}
-    .blog-box .content blockquote {color: #07afe0;}
-    .sidebar .widget .widget-title {color: #07afe0;}
-    .sidebar .widget .widget-title:before {background: #07afe0;}
-    .sidebar .widget form input[type="submit"] {background: #07afe0;}
-    .sidebar .widget .categories li a {color: #07afe0;}
-    .branch-box h6 {color: #07afe0;}
-    .branch-box a {color: #07afe0;}
-    .member-box figcaption {background: #07afe0;}
-    .icon {background: #07afe0;}
-    .iconsv {background: #07afe0;}
+    .text-box h5 {color: #215e8c;}
+    .recent-news figure {background: #215e8c;}
+    .recent-news .content h3 a { color: #215e8c; }
+    .recent-news .content small span {background: #215e8c;}
+    .blog-box figure {background: #215e8c; }
+    .blog-box .content h3 a {color: #215e8c;}
+    .blog-box .content blockquote {color: #215e8c;}
+    .sidebar .widget .widget-title {color: #215e8c;}
+    .sidebar .widget .widget-title:before {background: #215e8c;}
+    .sidebar .widget form input[type="submit"] {background: #215e8c;}
+    .sidebar .widget .categories li a {color: #215e8c;}
+    .branch-box h6 {color: #215e8c;}
+    .branch-box a {color: #215e8c;}
+    .member-box figcaption {background: #215e8c;}
+    .icon {background: #215e8c;}
+    .iconsv {background: #215e8c;}
     .iconk {color: #f5f5f5;}
-    .telh:hover{background: #4dcdaf;}
-    .iconk:hover { color: #4dcdaf; }
-    .sidebar-service {background: #07afe0;}
-    span.menu-service {background: #07afe0;}
-    span.menu-service:hover { background: #4dcdaf; }
-    span.menu-service.menuactive { background: #4dcdaf; }
-    .iconleft {color: #07afe0;}
-    .iconleft:hover { color: #4dcdaf; }
-    a.menucolor { color: #07afe0; }
-    a.menucolor:hover { color: #4dcdaf; }
-    .pagination .page-item .page-link { color: #07afe0; }
-    .footer {background: #07afe0;}
-    .footer .footer-info a { color: #07afe0; }
-    .footer .copyright {background: #07afe000;}
-    .footer .footer-social li a:hover {background: #4dcdaf;border: 1px solid rgba(255, 255, 255, 0.3);}
-    .iconk { color: #07afe0; }
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
-    .iconk { color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
-    .icon:hover{ color: #4dcdaf; }
-    span.menu-service {color: #07afe0;}
-    textarea#comment {border-bottom: 0.3rem solid #07afe0;}
-    input#author {border-bottom: 0.3rem solid #07afe0;}
-    input#email {border-bottom: 0.3rem solid #07afe0;}
-    input#url {border-bottom: 0.3rem solid #07afe0;}
+    .telh:hover{background: #8ed1fc;}
+    .iconk:hover { color: #8ed1fc; }
+    .sidebar-service {background: #215e8c;}
+    span.menu-service {background: #215e8c;}
+    span.menu-service:hover { background: #8ed1fc; }
+    span.menu-service.menuactive { background: #8ed1fc; }
+    .iconleft {color: #215e8c;}
+    .iconleft:hover { color: #8ed1fc; }
+    a.menucolor { color: #215e8c; }
+    a.menucolor:hover { color: #8ed1fc; }
+    .pagination .page-item .page-link { color: #215e8c; }
+    .footer {background: #215e8c;}
+    .footer .footer-info a { color: #215e8c; }
+    .footer .copyright {background: #215e8c00;}
+    .footer .footer-social li a:hover {background: #8ed1fc;border: 1px solid rgba(255, 255, 255, 0.3);}
+    .iconk { color: #215e8c; }
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
+    .iconk { color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
+    .icon:hover{ color: #8ed1fc; }
+    span.menu-service {color: #215e8c;}
+    textarea#comment {border-bottom: 0.3rem solid #215e8c;}
+    input#author {border-bottom: 0.3rem solid #215e8c;}
+    input#email {border-bottom: 0.3rem solid #215e8c;}
+    input#url {border-bottom: 0.3rem solid #215e8c;}
     .paketler2__on--arkayazi-1 {background: none;}
-    .form__input{border-bottom: 0.3rem solid #07afe0;border-radius: 3rem;}
-    .form__input:focus{border-bottom: 0.3rem solid #07afe0;}
-    .form__input:focus:invalid{border-bottom: 0.3rem solid #07afe0;}
-    .form__radio-buton {border: 0.5rem solid #07afe0;}
-    .form__radio-buton::after {background-color: #07afe0;}
-    .form-popup__input {border-bottom: 0.3rem solid #07afe0;}
-    .form-popup__input:focus {border-bottom: 0.3rem solid #07afe0;}
-    .form-popup__input:focus:invalid {border-bottom: 0.3rem solid #07afe0;}
-    .hizmetler-kutu--icon{background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .ozellik-kutu--icon{background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .post-kutu--icon {background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .yorum-kutu--icon {background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .ozellik-kutu-iletisim--icon {background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .baslik-4--icon{background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .yukaricik {background-image: linear-gradient(to right bottom, #07afe0,#4dcdaf);}
-    .footer {background-image: linear-gradient(to right bottom, #07afe0, #4dcdaf);}
-    .footer-404 {background-image: linear-gradient(to right bottom, #07afe0,#4dcdaf);}
-    .paketler-alani {background-color: #07afe0;}
-    .form-alani {background-image: linear-gradient(to right bottom,#07afe0,#4dcdaf);}
-    .markalar {background: #07afe0;}
-    .h2-baslik-hizmetler {background-image: linear-gradient(to right, #07afe0, #4dcdaf);}
-    .h2-baslik-hizmetler__paragraf {color: #07afe0;}
-    .h2-baslik-hizmetler-2 {background-image: linear-gradient(to right, #07afe0, #4dcdaf);}
-    .side-widget small {color: #07afe0;}
-    .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {background: #07afe0;}
-    ::-webkit-scrollbar-thumb {background: #07afe0;}
-    .custom-buttonw1 { border-bottom: 0.3rem solid #07afe0;}
-    .iconsocia {color: #07afe0;}
-    .iconsocia:hover {color: #4dcdaf;}
-    .paketler3__gorsel--1 { background-image: linear-gradient(to right bottom, #07afe0, #4dcdaf)}
-    .paketler3__on--arkayazi-1 { background-image: linear-gradient(to right bottom, #07afe0, #4dcdaf)}
-    p.countb {background: #07afe0;}
-    .icontops {background: #07afe0;}
-    input#submit {background: #07afe0;}
-    .custom-buttonw:hover{background: #07afe0;}
-    .comment-meta.commentmetadata a:hover {color: #4dcdaf; }
-    a.comment-edit-link:hover {color: #4dcdaf; }
-    p.logged-in-as a:hover {color: #4dcdaf; }
-    .menu-item a:hover {color: #4dcdaf; }
+    .form__input{border-bottom: 0.3rem solid #215e8c;border-radius: 3rem;}
+    .form__input:focus{border-bottom: 0.3rem solid #215e8c;}
+    .form__input:focus:invalid{border-bottom: 0.3rem solid #215e8c;}
+    .form__radio-buton {border: 0.5rem solid #215e8c;}
+    .form__radio-buton::after {background-color: #215e8c;}
+    .form-popup__input {border-bottom: 0.3rem solid #215e8c;}
+    .form-popup__input:focus {border-bottom: 0.3rem solid #215e8c;}
+    .form-popup__input:focus:invalid {border-bottom: 0.3rem solid #215e8c;}
+    .hizmetler-kutu--icon{background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .ozellik-kutu--icon{background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .post-kutu--icon {background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .yorum-kutu--icon {background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .ozellik-kutu-iletisim--icon {background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .baslik-4--icon{background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .yukaricik {background-image: linear-gradient(to right bottom, #215e8c,#8ed1fc);}
+    .footer {background-image: linear-gradient(to right bottom, #215e8c, #8ed1fc);}
+    .footer-404 {background-image: linear-gradient(to right bottom, #215e8c,#8ed1fc);}
+    .paketler-alani {background-color: #215e8c;}
+    .form-alani {background-image: linear-gradient(to right bottom,#215e8c,#8ed1fc);}
+    .markalar {background: #215e8c;}
+    .h2-baslik-hizmetler {background-image: linear-gradient(to right, #215e8c, #8ed1fc);}
+    .h2-baslik-hizmetler__paragraf {color: #215e8c;}
+    .h2-baslik-hizmetler-2 {background-image: linear-gradient(to right, #215e8c, #8ed1fc);}
+    .side-widget small {color: #215e8c;}
+    .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {background: #215e8c;}
+    ::-webkit-scrollbar-thumb {background: #215e8c;}
+    .custom-buttonw1 { border-bottom: 0.3rem solid #215e8c;}
+    .iconsocia {color: #215e8c;}
+    .iconsocia:hover {color: #8ed1fc;}
+    .paketler3__gorsel--1 { background-image: linear-gradient(to right bottom, #215e8c, #8ed1fc)}
+    .paketler3__on--arkayazi-1 { background-image: linear-gradient(to right bottom, #215e8c, #8ed1fc)}
+    p.countb {background: #215e8c;}
+    .icontops {background: #215e8c;}
+    input#submit {background: #215e8c;}
+    .custom-buttonw:hover{background: #215e8c;}
+    .comment-meta.commentmetadata a:hover {color: #8ed1fc; }
+    a.comment-edit-link:hover {color: #8ed1fc; }
+    p.logged-in-as a:hover {color: #8ed1fc; }
+    .menu-item a:hover {color: #8ed1fc; }
     li a {color: #00d084; }
-    .tag-cloud-link {color: #07afe0; }
-    .tagcloud a:hover {color: #4dcdaf; }
-    li#recent-posts-5 a:hover {color: #4dcdaf; }
-    input#s {border-bottom: 0.3rem solid #4dcdaf;}
-    .telh {background: #07afe0;}
-    .iconsociai {color: #07afe0; }
-    .iconsociai:hover {color: #4dcdaf; }
-    select {border-bottom: 0.3rem solid #07afe0; color:#999b9f;}
-    .wpcf7-validates-as-date{border-bottom: 0.3rem solid #07afe0;color:#999b9f;}
-    ::selection { background-color: #07afe0; }
-    ::-webkit-scrollbar-thumb { background-color: #4dcdaf; }
-    .ozellik-kutu-yorumlar--icon{background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .services-kutu1--icon{background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .services-kutu2--icon{background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    .services-kutu3--icon{background-image: linear-gradient(to right, #07afe0,#4dcdaf);}
-    b.fn a:hover {color: #4dcdaf; }
-    li a:hover {color: #4dcdaf;}
-    .wp-block-latest-posts__list a:hover {color: #07afe0;}
+    .tag-cloud-link {color: #215e8c; }
+    .tagcloud a:hover {color: #8ed1fc; }
+    li#recent-posts-5 a:hover {color: #8ed1fc; }
+    input#s {border-bottom: 0.3rem solid #8ed1fc;}
+    .telh {background: #215e8c;}
+    .iconsociai {color: #215e8c; }
+    .iconsociai:hover {color: #8ed1fc; }
+    select {border-bottom: 0.3rem solid #215e8c; color:#999b9f;}
+    .wpcf7-validates-as-date{border-bottom: 0.3rem solid #215e8c;color:#999b9f;}
+    ::selection { background-color: #215e8c; }
+    ::-webkit-scrollbar-thumb { background-color: #8ed1fc; }
+    .ozellik-kutu-yorumlar--icon{background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .services-kutu1--icon{background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .services-kutu2--icon{background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    .services-kutu3--icon{background-image: linear-gradient(to right, #215e8c,#8ed1fc);}
+    b.fn a:hover {color: #8ed1fc; }
+    li a:hover {color: #8ed1fc;}
+    .wp-block-latest-posts__list a:hover {color: #215e8c;}
     .wp-post-image {height: 100%;}
     .paketler3__icerik {padding:0rem;}
-    .component-systemTabs .cards .card .cardContent{border-image: linear-gradient(to right, #07afe0,#4dcdaf);border-image-slice: 1;}
-    .component-systemTabs .tabs-container ul.tabs li.current {color:#07afe0;border-bottom: 4px solid #07afe0;}
+    .component-systemTabs .cards .card .cardContent{border-image: linear-gradient(to right, #215e8c,#8ed1fc);border-image-slice: 1;}
+    .component-systemTabs .tabs-container ul.tabs li.current {color:#215e8c;border-bottom: 4px solid #215e8c;}
     .services-kutu2--yazi1 {width:100%;}
     .swiper-pagination {z-index: 2;}
-    Satoshi Black30700
-    Satoshi Regular16400
+    Britannic Black30700
+    Britannic Regular16400
     /* text primary */
-    .person {color: #07afe0; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .ozellik-kutu-iletisim--yazi {color: #07afe0; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .footer-info p {font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    p {font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .h2-baslik-hizmetler-21__paragraf {font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .paketler3__icerik ul li {font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    body {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .paragraf{color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    .paragraf-info {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    span.date {color: #212529; font-family: Satoshi Regular; font-size: 16px; }
-    span.category {color: #212529; font-family: Satoshi Regular; font-size: 16px;}
-    span.tt { color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    .paragraf-info a {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    .paragraf-sol-beyaz a {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .paragraf-sol-beyaz-orta a {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .paragraf-ahp a {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    .paragraf-pdetay a {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    .paragraf-404 a {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    .h2-baslik-hizmetler-yorum__yorum {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    .testimon-text {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .post-kutu p {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .services-kutu2--yazi1 {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .h2-baslik-hizmetler-2__paragraf {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400; }
-    .paragraf-popup {color: #212529; font-family: Satoshi Regular; font-size: 16px; font-weight: 400;  }
-    ul.post-categories {color: #07afe0; font-family: Satoshi Regular; font-size: 16px;}
-    .services-kutu2--yazi { font-family: Satoshi Regular;  font-size: 16px;}
+    .person {color: #215e8c; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .ozellik-kutu-iletisim--yazi {color: #215e8c; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .footer-info p {font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    p {font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .h2-baslik-hizmetler-21__paragraf {font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .paketler3__icerik ul li {font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    body {color: #212529; font-family: Baskerville Old Face; font-size: 16px; font-weight: 400; }
+    .paragraf{color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    .paragraf-info {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    span.date {color: #212529; font-family: Britannic Regular; font-size: 16px; }
+    span.category {color: #212529; font-family: Britannic Regular; font-size: 16px;}
+    span.tt { color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    .paragraf-info a {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    .paragraf-sol-beyaz a {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .paragraf-sol-beyaz-orta a {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .paragraf-ahp a {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    .paragraf-pdetay a {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    .paragraf-404 a {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    .h2-baslik-hizmetler-yorum__yorum {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    .testimon-text {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .post-kutu p {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .services-kutu2--yazi1 {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .h2-baslik-hizmetler-2__paragraf {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400; }
+    .paragraf-popup {color: #212529; font-family: Britannic Regular; font-size: 16px; font-weight: 400;  }
+    ul.post-categories {color: #215e8c; font-family: Britannic Regular; font-size: 16px;}
+    .services-kutu2--yazi { font-family: Britannic Regular;  font-size: 16px;}
     /* headings */
-    .telh{font-family: Satoshi Black;}
-    h3 {font-family: Satoshi Black;color: #07afe0;font-size:25px;}
-    .navbar .site-menu ul li a{font-family: Satoshi Black;}
-    .services-kutu1{ font-family: Satoshi Black;}
-    .icon-project-detail{ font-family: Satoshi Black;color: #07afe0;}
-    .component-systemTabs .tabs-container ul.tabs{ font-family: Satoshi Black;font-weight: 700; }
-    .component-systemTabs .cards .card .cardContent h2{ font-family: Satoshi Black;font-weight: 700; }
-    .component-systemTabs .cards .card .cardContent button{ background-color: #07afe0; font-family: Satoshi Black;font-weight: 700; }
-    .h2-baslik-anasayfa {background-image: linear-gradient(to right, #0684aa,#4dcdaf);border-bottom: .1rem solid #07afe0; font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-anasayfa-ozel {background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-anasayfa-blog {background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-ahb{background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-bottom {background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-404{background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-footer{background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-iletisim-ozel{background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-popup {background-image: linear-gradient(to right, #0684aa, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .baslik-3-h {color: #0684aa; font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .baslik-33 {color: #0684aa; font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .baslik-star{color:#0684aa; font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-hizmetler-yorum {background-image: linear-gradient(to right, #07afe0, #4dcdaf); font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .baslik-3s {color:#0684aa; font-family: Satoshi Black; }
-    .baslik-3white {font-family: Satoshi Black; }
-    .counter-box .odometer {color:#0684aa; font-family: Satoshi Black;  }
-    .baslik-orta {font-size: 23px;color:#0684aa; font-family: Satoshi Black;font-weight: 700; }
-    .baslik-4 {color:#0684aa; font-family: Satoshi Black; font-weight: 700; }
-    .counter-box h6 {color:#0684aa; font-family: Satoshi Black; }
-    .slider .main-slider .swiper-slide .container h1 { font-family: Satoshi Black; }
-    .slider .main-slider .swiper-slide .container p { font-family: Satoshi Black; }
-    .slider .main-slider .swiper-slide .container a { font-family: Satoshi Black; }
-    .custom-button { font-family: Satoshi Black; }
-    .custom-buttonw { font-family: Satoshi Black; }
-    .baslik-sol { font-family: Satoshi Black; }
-    .member-box figcaption h6 { font-family: Satoshi Black; }
-    .member-box figcaption p { font-family: Satoshi Black; }
-    .h2-baslik-hizmetler-2 { font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-hizmetler-21 { font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .h2-baslik-hizmetler-2111 { font-family: Satoshi Black;font-size: 30px;font-weight: 700; }
-    .baslik-3-service { font-family: Satoshi Black; }
-    .paketler3__pr-yazi { font-family: Satoshi Black; }
-    .paketler3__pr-degeri { font-family: Satoshi Black; font-size: 30px; font-weight: 700; }
-    .baslik-3 { font-size: 20px;color:#0684aa; font-family: Satoshi Black; }
-    .footer .widget-title { font-family: Satoshi Black; }
-    .page-header .container h2 { font-family: Satoshi Black; }
+    .telh{font-family: Britannic Black;}
+    h3 {font-family: Britannic Black;color: #215e8c;font-size:25px;}
+    .navbar .site-menu ul li a{font-family: Britannic Black;}
+    .services-kutu1{ font-family: Britannic Black;}
+    .icon-project-detail{ font-family: Britannic Black;color: #215e8c;}
+    .component-systemTabs .tabs-container ul.tabs{ font-family: Britannic Black;font-weight: 700; }
+    .component-systemTabs .cards .card .cardContent h2{ font-family: Britannic Black;font-weight: 700; }
+    .component-systemTabs .cards .card .cardContent button{ background-color: #215e8c; font-family: Britannic Black;font-weight: 700; }
+    .h2-baslik-anasayfa {background-image: linear-gradient(to right, #0684aa,#8ed1fc);border-bottom: .1rem solid #215e8c; font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-anasayfa-ozel {background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-anasayfa-blog {background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-ahb{background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-bottom {background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-404{background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-footer{background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-iletisim-ozel{background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-popup {background-image: linear-gradient(to right, #0684aa, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .baslik-3-h {color: #0684aa; font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .baslik-33 {color: #0684aa; font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .baslik-star{color:#0684aa; font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-hizmetler-yorum {background-image: linear-gradient(to right, #215e8c, #8ed1fc); font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .baslik-3s {color:#0684aa; font-family: Britannic Black; }
+    .baslik-3white {font-family: Britannic Black; }
+    .counter-box .odometer {color:#0684aa; font-family: Britannic Black;  }
+    .baslik-orta {font-size: 23px;color:#0684aa; font-family: Britannic Black;font-weight: 700; }
+    .baslik-4 {color:#0684aa; font-family: Britannic Black; font-weight: 700; }
+    .counter-box h6 {color:#0684aa; font-family: Britannic Black; }
+    .slider .main-slider .swiper-slide .container h1 { font-family: Britannic Black; }
+    .slider .main-slider .swiper-slide .container p { font-family: Britannic Black; }
+    .slider .main-slider .swiper-slide .container a { font-family: Britannic Black; }
+    .custom-button { font-family: Britannic Black; }
+    .custom-buttonw { font-family: Britannic Black; }
+    .baslik-sol { font-family: Britannic Black; }
+    .member-box figcaption h6 { font-family: Britannic Black; }
+    .member-box figcaption p { font-family: Britannic Black; }
+    .h2-baslik-hizmetler-2 { font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-hizmetler-21 { font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .h2-baslik-hizmetler-2111 { font-family: Britannic Black;font-size: 30px;font-weight: 700; }
+    .baslik-3-service { font-family: Britannic Black; }
+    .paketler3__pr-yazi { font-family: Britannic Black; }
+    .paketler3__pr-degeri { font-family: Britannic Black; font-size: 30px; font-weight: 700; }
+    .baslik-3 { font-size: 20px;color:#0684aa; font-family: Britannic Black; }
+    .footer .widget-title { font-family: Britannic Black; }
+    .page-header .container h2 { font-family: Britannic Black; }
     /* text secondary */
     .reply a:hover {color: #07afe1; }
     cite.fn a:hover {color: #07afe1; }
@@ -421,64 +421,64 @@
     responsive
     */
     @media only screen and (min-width: 1199px), only screen and (max-width: 1199px) {
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft { color: #07afe0; }
-    .icon {background: none; color:#07afe0;}
-    span.menu-service { color: #07afe0; }
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft { color: #215e8c; }
+    .icon {background: none; color:#215e8c;}
+    span.menu-service { color: #215e8c; }
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
     }
     @media only screen and (min-width: 991px), only screen and (max-width: 1180px) {
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft { color: #07afe0; }
-    .icon {background: none; color:#07afe0;}
-    span.menu-service { color: #07afe0; }
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft { color: #215e8c; }
+    .icon {background: none; color:#215e8c;}
+    span.menu-service { color: #215e8c; }
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
     }
     @media only screen and (min-width: 767px), only screen and (max-width: 767px) {
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft { color: #07afe0; }
-    .icon {background: none; color:#07afe0;font-size: 80px;}
-    span.menu-service { color: #07afe0; }
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft { color: #215e8c; }
+    .icon {background: none; color:#215e8c;font-size: 80px;}
+    span.menu-service { color: #215e8c; }
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
     }
     @media (min-width: 820px) and (max-width: 820px) {
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft { color: #07afe0; }
-    .icon {background: none; color:#07afe0;}
-    span.menu-service { color: #07afe0; }
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft { color: #215e8c; }
+    .icon {background: none; color:#215e8c;}
+    span.menu-service { color: #215e8c; }
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
     }
     @media (min-width: 767px) and (max-width: 850px) {
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft { color: #07afe0; }
-    .icon {background: none; color:#07afe0;}
-    span.menu-service { color: #07afe0; }
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft { color: #215e8c; }
+    .icon {background: none; color:#215e8c;}
+    span.menu-service { color: #215e8c; }
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
     }
     @media (min-width: 1180px) and (max-width: 1200px) {
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft { color: #07afe0; }
-    .icon {background: none; color:#07afe0;}
-    span.menu-service { color: #07afe0; }
-    .iconk {color: #07afe0;}
-    .iconk:hover { color: #4dcdaf; }
-    .iconleft {color: #07afe0;}
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft { color: #215e8c; }
+    .icon {background: none; color:#215e8c;}
+    span.menu-service { color: #215e8c; }
+    .iconk {color: #215e8c;}
+    .iconk:hover { color: #8ed1fc; }
+    .iconleft {color: #215e8c;}
     }
     @media (min-width: 1280px) and (max-width: 1280px) {
     .slider .main-slider .swiper-slide .container h1 {
@@ -491,7 +491,5 @@
     font-size: 15px;
     }
     }
-
-
 
  </style>

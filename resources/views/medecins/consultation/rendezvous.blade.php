@@ -1,65 +1,51 @@
 @extends('en_tete.entete_medecin')
-
 @section('contenu')
 
-@if(session('success'))
-    <div id="success-message" class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
-@endif
-
-<div class="row">
-    <div class="col-xxl-6">
-        <div class="row card-header mb-0">
-            <div class="page-header d-flex align-items-center justify-content-between border-bottom mb-4 mt-0">
-                <h1 class="page-title">Listes des rendez vous</h1>
-                <div>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><span><a href="{{route('medecins.consultation.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | Une consultation</a></span></li>
-                    </ol>
-                </div>
+<div class="main-content">
+    <!-- main content start -->
+    <div class="list-body">
+        <div class="list-title d-between bgnc-10 br-trl-sm px-30 py-3">
+            <span class="heading-five">Liste des Rendez-Vous</span>
+            <div class="d-between gap-30">
+                <button class="btn-1 para-1b"> <i class="fa-solid fa-cloud-arrow-down"></i> Export</button>
+                <button class="btn-1 para-1b" id="showFilter"> <i class="fa-solid fa-sliders"></i>
+                    Filter</button>
             </div>
         </div>
-       <div class="row mt-0">
-          <div class="card-body">
 
-            <div class="table-responsive">
-                <table class="table border-top table-bordered mb-0 text-nowrap">
-                    <thead class="table-success">
-                        <tr>
-                            <th>Numero</th>
-                            <th>Prenom et Nom</th>
-                            <th>Telephone</th>
-                            <th>Date et Heure</th>
-                            <th>Status</th>
-                            <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($mesRendezVous as $k => $mrv)
-                             @if (Auth::user()->id === $mrv->id_medecin)
-                            <tr>
-                                <td>{{ $k+1 }} </td>
-                                <td>{{ $mrv->patient->user->prenom }} {{ $mrv->patient->user->nom }}</td>
-                                <td>{{ $mrv->patient->telephone }}</td>
-                                <td>{{ $mrv->dateRdv }} à {{ $mrv->heure }} </td>
-                                <td>{{ $mrv->statut }}</td>
-                            </tr>
-                            @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-       </div>
-    </div>
- </div>
-<!-- JavaScript pour afficher la fenêtre modale -->
 
-<script>
-    // Attendre 10 secondes (10000 millisecondes) avant de masquer le message de succès
-    setTimeout(function(){
-        $('#success-message').fadeOut();
-    }, 5000);
-</script>
+        <table class="responsive table table-bordered" >
+            <thead class="bg-success">
+                <tr>
+                    <th class="sort-devices">No</th>
+                    <th class="sort-devices">Jour </th>
+                    <th class="sort-devices">Date</th>
+                    <th class="sort-devices">Heure</th>
+                    <th class="sort-devices">Patient</th>
+                    <th class="sort-devices">Telephone</th>
+                    <th class="sort-devices">statut</th>
+                </tr>
+            </thead>
+            <tbody>
+             @foreach ($rendezVous as $key=> $rendezVous)
+                @if ($rendezVous->patient)
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{ $rendezVous->jour }}</td>
+                    <td>{{ $rendezVous->dateRdv }}</td>
+                    <td>{{ $rendezVous->heure }}</td>
+                    <td>P. {{ $rendezVous->patient->user->nom }} {{ $rendezVous->patient->user->prenom }}</td>
+                    <td>+224 {{ $rendezVous->patient->user->telephone }}</td>
+
+                    <td>{{ $rendezVous->statut }}</td>
+
+                </tr>
+               @endif
+             @endforeach
+            </tbody>
+        </table>
+   </div>
+</div>
+
+
 @endsection

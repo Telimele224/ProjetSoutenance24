@@ -16,10 +16,10 @@
                 </div>
             </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                            <table class="table border text-nowrap text-md-nowrap mb-0">
-                                <thead class="table-danger">
+                <div class="card">
+                    <div class="table-responsive table-lg">
+                            <table class="table border-top table-bordered mb-0 text-nowrap ">
+                                <thead >
                                     <tr>
                                         <th>Numero</th>
                                         <th>Titre</th>
@@ -40,17 +40,17 @@
                                         <td><img  class="card-img-top" src="{{asset('storage/'.$actualite->avatar)}} " alt="Image"></td>
                                         <td>
                                             <div class="avatar-list text-end">
-                                                <span class="avatar rounded-circle bg-blue-dark" ><a href="{{route('admin.actualite.show', $actualite)}}"><i class="fe fe-eye fs-15"></i></a></span>
-                                                <span class="avatar rounded-circle bg-blue"><a href="{{route('admin.actualite.edit', $actualite)}}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a></span>
-                                                <span class="avatar rounded-circle bg-danger" data-bs-toggle="modal"
-                                                data-bs-target="#delete"><i class="bi bi-trash fs-15 "></i>
-                                                </span>
+                                                <span class="btn btn-sm btn-icon btn-info-light rounded-circle m-2"><a href="{{route('admin.actualite.show', $actualite)}}"><i class="fe fe-eye"></i></a></span>
+                                                <span class="btn btn-sm btn-icon btn-info-light rounded-circle"><a href="{{route('admin.actualite.edit', $actualite)}}" class="text-decoration-none text-default"><i class="fa fa-edit"></i></a></span>
+                                                {{-- <span class="btn btn-sm btn-icon btn-info-light rounded-circle bg-danger m-2" data-bs-toggle="modal"
+                                                data-bs-target="#delete"><i class="bi bi-trash  "></i>
+                                                </span> --}}
                                             </div>
                                         </td>
                                     </tr>
 
                                 </tbody>
-                                <div class="modal fade" id="delete">
+                                {{-- <div class="modal fade" id="delete">
                                     <div class="modal-dialog modal-dialog-centered text-center" role="document">
                                         <div class="modal-content tx-size-sm">
                                             <div class="modal-body p-4 pb-5">
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 @endforeach
                             </table>
                         </div>

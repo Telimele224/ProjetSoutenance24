@@ -29,11 +29,40 @@ class AdministrateurRequest extends FormRequest
             'prenom' => 'required|string',
             'genre' => 'required|string',
             'adresse' => 'required|string',
-            'age' => 'required|integer',
-            'telephone' => 'required|string|min:9|max:15|unique:users,telephone',
+            'age' => 'required|min:12|integer',
+            'telephone' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    // Supprimer tous les caractères non numériques du numéro de téléphone
+                    $phoneNumber = preg_replace('/[^0-9]/', '', $value);
+
+                    // Vérifier si le numéro de téléphone a au moins 8 chiffres
+                    if (strlen($phoneNumber) < 8) {
+                        $fail('Le numéro de téléphone doit contenir au moins 8 chiffres.');
+                    }
+                }
+            ],
+
             'photo' => 'nullable|image',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required','min:8', 'confirmed', Rules\Password::defaults()],
+            'email' => [
+                'required',
+                'email',
+                'unique:users,email',
+                function ($attribute, $value, $fail) {
+                    // Vérifier si l'e-mail contient des majuscules
+                    if (strtolower($value) !== $value) {
+                        $fail('L\'adresse e-mail doit être en minuscules.');
+                    }
+                },
+            ],
+            'password' => [
+                'required',
+                'min:8',
+                'confirmed',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W\_])[A-Za-z\d\W\_]+$/',
+                Rules\Password::defaults(),
+            ],
         ];
     }
 }

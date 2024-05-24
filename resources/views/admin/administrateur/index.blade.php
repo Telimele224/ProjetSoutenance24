@@ -10,19 +10,20 @@
                     <div class="row align-items-center justify-content-around">
                         <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
                             <div class="input-group">
-                                 <!-- Formulaire de recherche -->
-                            <form action="" method="GET" class="mb-3">
-                                <div class="input-group row main-header-center  d-none d-lg-block  header-link">
-                                    <div class="col-md-10">
-                                        <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone " id="typehead" autocomplete="on">
+                                <!-- Formulaire de recherche -->
+                                <form action="{{ route('admin.administrateur.index') }}" method="GET" class="mb-3">
+                                    <div class="input-group row">
+                                        <div class="col-md-10">
+                                            <input type="text" id="search" name="search" class="form-control" placeholder="Rechercher par  telephone ou nom_prenom " autocomplete="on" value="{{ request('search') }}">
+                                        </div>
 
+                                        <div class="col-md-1">
+                                            <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
-                                    </div>
+                                </form>
 
-                                </div>
-                            </form>
+
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
@@ -45,7 +46,7 @@
                         <a href="{{ route('export') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a>
                         <h2 class="card-title"> </h2>
                         <div class="page-options ms-auto">
-                            <a href="{{ route('adminpfd.pdf') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
+                            <a href="{{ route('admin.usersPdf.index') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
                         </div>
                     </div>
                     <div class="e-table px-5 pb-5">
@@ -53,6 +54,7 @@
                             <table class="table border-top table-bordered mb-0 text-nowrap">
                                 <thead>
                                     <tr>
+                                        <th>Numero</th>
                                         <th>Nom</th>
                                         <th>Prenom</th>
                                         <th>Genre</th>
@@ -66,6 +68,7 @@
                                     @foreach ($users as $k=>$user)
                                         @if( $user->role ==='admin')
                                         <tr class="user-list">
+                                                <td class="text-nowrap align-middle">{{$k+1}}</td>
                                                 <td class="text-nowrap align-middle">{{$user->nom}}</td>
                                                 <td class="text-nowrap align-middle">{{$user->prenom}}</td>
                                                 <td class="text-nowrap align-middle">{{$user->genre}}</td>
@@ -75,8 +78,7 @@
                                                 <td class="align-middle">
                                                     <div class="btn-list">
                                                         @if($user->administrateurs)
-                                                            <button class="btn btn-sm btn-icon btn-info-light rounded-circle" data-target="#user-form-modal" data-bs-toggle="" type="button"><i class="bi bi-pencil-square"> </i></button>
-                                                            <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle" type="button"> <a href="{{route('admin.administrateur.edit',$user->administrateurs)}}"><i class="bi bi-trash"></i></a></button>
+                                                            <button class="btn btn-sm btn-icon btn-secondary-light rounded-circle " type="button"> <a href="{{route('admin.administrateur.edit',$user->administrateurs)}}"><i class="fa fa-lock"></i></a></button>
                                                          @endif
                                                     </div>
                                                 </td>

@@ -2,7 +2,7 @@
     <div class="container">
        <div class="row">
           <div class="col-xl-3 col-lg-4">
-             <div class="logo wow animated fadeInUp animated" data-wow-delay="0.5s"> <img src="{{asset('Image/Logo HRL.png')}}" alt="Image"> </div>
+             <div class="logo wow animated fadeInUp animated" data-wow-delay="0.5s"> <img src="{{asset('logo/SIDEBARE2.png')}}" alt="Image"> </div>
              <!-- end logo -->
              <div class="footer-info wow animated fadeInUp animated" data-wow-delay="0.5s">
                 <p><i class="flaticon-location iconpfooter1 "></i>Labé, Guinée</p>
@@ -11,12 +11,6 @@
                 <p><i class="flaticon-email iconpfooter3 "></i>&nbsp;&nbsp;&nbsp;hrlabe224@gmail.com</p>
                 <br>
              </div>
-             <!-- end footer-info -->
-             {{-- <ul class="footer-social wow animated fadeInUp animated" data-wow-delay="0.5s">
-                <li><a href="#"><i class="lni-facebook iconsociaf"></i></a></li>
-                <li><a href="#"><i class="lni-instagram iconsociaf"></i></a></li>
-                <li><a href="#"><i class="lni-twitter iconsociaf"></i></a></li>
-             </ul> --}}
           </div>
           <!-- end col-3 -->
           <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
@@ -54,17 +48,11 @@
           <div class="col-lg-2 offset-xl-1 col-sm-6 wow animated fadeInUp animated" data-wow-delay="0.5s">
              <h6 class="widget-title">Services</h6>
              <div class="footer-menu">
-                <div class="menu-departments-container">
-                   <ul id="menu-departments" class="menu" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-                      <li id="menu-item-1509" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1509"><a href="urology/index.html">Urology</a></li>
-                      <li id="menu-item-1508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1508"><a href="gastroenterology/index.html">Gastroenterology</a></li>
-                      <li id="menu-item-1507" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1507"><a href="chest-diseases/index.html">Chest Diseases</a></li>
-                      <li id="menu-item-1506" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1506"><a href="cardiac-surgery/index.html">Cardiac Surgery</a></li>
-                      <li id="menu-item-1504" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1504"><a href="dental-diseases/index.html">Dental Diseases</a></li>
-                      <li id="menu-item-1503" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1503"><a href="gynecology-obstetrics/index.html">Gynecology</a></li>
-                      <li id="menu-item-1502" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1502"><a href="brain-surgery/index.html">Brain Surgery</a></li>
-                   </ul>
-                </div>
+                @foreach ($services as $service)
+                <li class="menu-item menu-item-type-post_type menu-item-object-page nav-item">
+                      <a href="{{route('admin.service.show',$service)}}" class=""><span itemprop="name">{{ $service->nom }}</span></a>
+                </li>
+             @endforeach
              </div>
           </div>
           <!-- end col-2 -->
@@ -75,11 +63,11 @@
                    <ul id="menu-quick-links" class="menu" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
                       <li id="menu-item-606" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5 current_page_item menu-item-606"><a href="{{route('welcome')}}" aria-current="page">Acceuil</a></li>
                       <li id="menu-item-607" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-607"><a href="{{route('apropos')}}">A propos</a></li>
-                      <li id="menu-item-608" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-608"><a href="blog/index.html">Blog</a></li>
+                      <li id="menu-item-608" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-608"><a href="{{route('Blog')}}">Blog</a></li>
                       <li id="menu-item-1510" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1510"><a href="{{route('medecins')}}">Médecins</a></li>
-                      <li id="menu-item-1511" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1511"><a href="all-departments/index.html">Tous les services</a></li>
-                      <li id="menu-item-610" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-610"><a href="contact/index.html">Contact</a></li>
-                      <li id="menu-item-1515" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1515"><a href="appointment/index.html">Prendre rendez-vous</a></li>
+                      <li id="menu-item-1511" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1511"><a href="{{route('les_departements')}}">Tous les services</a></li>
+                      <li id="menu-item-610" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-610"><a href="{{route('contact')}}">Contact</a></li>
+                      <li id="menu-item-1515" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1515"><a href="{{route('recommandation.service')}}">Prendre rendez-vous</a></li>
                    </ul>
                 </div>
              </div>

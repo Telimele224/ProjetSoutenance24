@@ -18,13 +18,36 @@ class MedecinController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view ('admin.medecin.index',[
-            'users'=>User::orderBy('created_at', 'desc')->paginate(10),
-            'medecins' => Medecin::all()
-        ]);
+        $query = User::where('role', 'medecin');
+
+        if ($request->has('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('nom', 'like', '%' . $request->search . '%')
+                  ->orWhere('prenom', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        if ($request->has('service') && $request->service != '') {
+            $query->whereHas('medecin', function($q) use ($request) {
+                $q->where('service_id', $request->service);
+            });
+        }
+
+           // Vérifier si le paramètre de tri est présent dans l'URL
+           if ($request->has('sort_by')) {
+            // Supprimer le paramètre de tri de l'URL
+            $query->getQuery()->orders = null;
+        }
+
+
+        $users = $query->paginate(10);
+        $services = Service::all();
+
+        return view('admin.medecin.index', compact('users', 'services'));
     }
+
 
     /**
      * Show the form for creating a new resource.

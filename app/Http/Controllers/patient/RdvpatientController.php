@@ -15,6 +15,17 @@ use Carbon\Carbon;
 
 class RdvpatientController extends Controller
 {
+
+
+
+    public function detail_service($serviceId)
+    {
+        $service = Service::with('medecin.user')->findOrFail($serviceId);
+        $medecins = $service->medecin;  // Récupérer les médecins du service
+
+        return view('rdv.show_service', compact('service', 'medecins'));
+    }
+
     /**
      * Display a listing of the resource.
      */

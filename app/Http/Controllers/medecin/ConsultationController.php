@@ -9,6 +9,7 @@ use App\Models\Patient;
 use App\Models\Rdv;
 use App\Models\TypeConsultation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConsultationController extends Controller
 {
@@ -30,6 +31,9 @@ class ConsultationController extends Controller
      */
     public function create()
     {
+        $essai = Rdv::all();
+
+        // dd($essai);
         $consultation = new Consultation();
         return view('medecins.consultation.form', [
             'consultation' => $consultation,
@@ -37,6 +41,7 @@ class ConsultationController extends Controller
             'typesConsultations' => TypeConsultation::all(),
 
         ]);
+
     }
 
 
@@ -53,9 +58,10 @@ class ConsultationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Consultation $consultation)
+    public function show()
     {
-        //
+
+
     }
 
     /**
@@ -86,5 +92,29 @@ class ConsultationController extends Controller
     public function destroy(Consultation $consultation)
     {
         //
+    }
+
+    public function listedesrendezvous()
+    {
+        $user = auth()->user();
+
+        // Vérifier si l'utilisateur est un médecin et s'il a un médecin associé
+        if ($user->role === 'medecin' && $user->medecin) {
+            // L'utilisateur est un médecin et a un médecin associé
+            // Récupérer l'ID du médecin
+            $medecinId = $user->medecin->id;
+
+            // Récupérer les rendez-vous du médecin avec les détails des patients
+            $rendezVous = Rdv::where('id_medecin', $medecinId)->where('is_deleted', true)->with('patient.user')->get();
+
+            // Passer les rendez-vous à la vue
+            return view('medecins.consultation.rendezvous', ['rendezVous' => $rendezVous,
+
+            'mesRendezVous' => Rdv::all(),
+            'consultations' => Consultation::all(),
+            'patients' => Patient::all(),
+            'typesConsultations' => TypeConsultation::all(),
+        ]);
+     }
     }
 }

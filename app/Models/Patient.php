@@ -38,4 +38,6 @@ class Patient extends Model
     public function consultations() {
         $this->hasMany(Consultation::class);
     }
+
+    
 }

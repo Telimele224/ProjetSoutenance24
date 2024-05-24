@@ -2,7 +2,7 @@
 
 @section('contenu')
 
-<header class="page-header wow fadeInUp" data-wow-delay="0.5s" data-background="{{asset('assets/wp-content/uploads/2022/06/about-us.jpg')}}">
+<header class="page-header wow fadeInUp" data-wow-delay="0.5s" data-background="{{asset('Image/hero-6-bg.jpg')}}">
     <div class="container">
       <h2>A propos</h2>
       <div class="bosluk3"></div>

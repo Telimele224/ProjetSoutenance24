@@ -9,7 +9,7 @@
                 <h4 class="mt-3">@yield('title')</h4>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card">
             <div class="card-area">
             <div class="card-area gap-3">
                 <form  action="{{route($actualite->exists ? 'admin.actualite.update' : 'admin.actualite.store', $actualite)}}" method="post" class="vstack gap-2" enctype="multipart/form-data" class="row g-4 needs-validation" novalidate="">

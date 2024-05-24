@@ -31,7 +31,7 @@ class Consultation extends Model
         return $this->belongsTo(TypeConsultation::class, 'type_consultation_id');
     }
 
-    public function ordonance()
+    public function ordonnances()
     {
         return $this->hasMany(Ordonance::class);
     }

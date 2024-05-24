@@ -19,7 +19,7 @@
 <div class="bosluk3ps"></div>
 <div class="container">
     <div class="row">
-        @foreach ($services as $service)
+        @foreach ($servicess as $service)
             <div class="col-lg-3 wow bounceInRight" data-wow-delay="0.8s">
                 <div class="dep" onclick="location.href='';" style="cursor:pointer;">
                     <div class="icon"> <a href="{{ route('admin.service.show', $service) }}"><img width="30px" src="{{asset('storage/'.$service->avatar)}} " alt=""></a> </div>

@@ -1,4 +1,4 @@
-<!-- medecins_par_service.blade.php -->
+{{-- <!-- medecins_par_service.blade.php -->
 @extends('rdv.headerRdv')
 
 @section('contenu')
@@ -38,70 +38,75 @@
                     Horaires de disponibilité
                 </div>
                 <div class="card">
-                    @if($horaires->lundi_debut && $horaires->lundi_fin)
-                    <div class="card mb-3">
-                        <div class="card-header text-center">
-                            Lundi
-                        </div>
+                    @if($horaires->count() > 0)
+                        @if($horaires->lundi_debut && $horaires->lundi_fin)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                Lundi
+                            </div>
                             <p style="text-align: center; font-weight:bold; ">{{ date('H:i', strtotime($horaires->lundi_debut)) }} - {{ date('H:i', strtotime($horaires->lundi_fin)) }}</p>
-                    </div>
-                    @endif
-                    @if($horaires->mardi_debut && $horaires->mardi_fin)
-                    <div class="card mb-3">
-                        <div class="card-header text-center">
-                            Mardi
                         </div>
+                        @endif
+                        @if($horaires->mardi_debut && $horaires->mardi_fin)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                Mardi
+                            </div>
                             <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horaires->mardi_debut)) }} - {{ date('H:i', strtotime($horaires->mardi_fin)) }}</p>
-                    </div>
-                    @endif
-                    @if($horaires->mercredi_debut && $horaires->mercredi_fin)
-                    <div class="card mb-3">
-                        <div class="card-header text-center">
-                            Mercredi
                         </div>
+                        @endif
+                        @if($horaires->mercredi_debut && $horaires->mercredi_fin)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                Mercredi
+                            </div>
                             <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horaires->mercredi_debut)) }} - {{ date('H:i', strtotime($horaires->mercredi_fin)) }}</p>
-                    </div>
-                    @endif
-                    @if($horaires->jeudi_debut && $horaires->jeudi_fin)
-                    <div class="card mb-3">
-                        <div class="card-header text-center">
-                            Jeudi
                         </div>
+                        @endif
+                        @if($horaires->jeudi_debut && $horaires->jeudi_fin)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                Jeudi
+                            </div>
                             <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horaires->jeudi_debut)) }} - {{ date('H:i', strtotime($horaires->jeudi_fin)) }}</p>
-                    </div>
-                    @endif
-                    @if($horaires->vendredi_debut && $horaires->vendredi_fin)
-                    <div class="card mb-3">
-                        <div class="card-header text-center">
-                            Vendredi
                         </div>
+                        @endif
+                        @if($horaires->vendredi_debut && $horaires->vendredi_fin)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                Vendredi
+                            </div>
                             <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horaires->vendredi_debut)) }} - {{ date('H:i', strtotime($horaires->vendredi_fin)) }}</p>
-                    </div>
-                    @endif
-                    @if($horaires->samedi_debut && $horaires->samedi_fin)
-                    <div class="card mb-3">
-                        <div class="card-header text-center">
-                            Samedi
                         </div>
+                        @endif
+                        @if($horaires->samedi_debut && $horaires->samedi_fin)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                Samedi
+                            </div>
                             <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horaires->samedi_debut)) }} - {{ date('H:i', strtotime($horaires->samedi_fin)) }}</p>
-                    </div>
-                    @endif
-                    @if($horaires->dimanche_debut && $horaires->dimanche_fin)
-                    <div class="card mb-3">
-                        <div class="card-header text-center">
-                            Dimanche
                         </div>
+                        @endif
+                        @if($horaires->dimanche_debut && $horaires->dimanche_fin)
+                        <div class="card mb-3">
+                            <div class="card-header text-center">
+                                Dimanche
+                            </div>
                             <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horaires->dimanche_debut)) }} - {{ date('H:i', strtotime($horaires->dimanche_fin)) }}</p>
-                    </div>
+                        </div>
+                        @endif
+                    @else
+                        <div class="card-body">
+                            <p class="text-center">Ce médecin n'a pas d'horaires définis pour le moment.</p>
+                        </div>
                     @endif
-
-                    <!-- Répétez cette structure pour chaque jour de la semaine -->
                 </div>
             </div>
         </div>
+        
 
 
     </div>
 </div>
 
-@endsection
+@endsection --}}

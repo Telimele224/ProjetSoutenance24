@@ -14,6 +14,15 @@ class SymptomController extends Controller
         return view('admin.service.symptomes.index', compact('symptoms'));
     }
 
+    public function getSymptoms(Request $request){
+        $symptoms=[];
+        if($search=$request->nom){
+            $symptoms=Symptom::where('nom','LIKE',"%$search%")->get();
+        }
+        return response()->json($symptoms);
+
+    }
+
     public function create(){
         return view('admin.service.symptomes.create');
     }

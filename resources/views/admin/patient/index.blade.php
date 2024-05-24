@@ -6,22 +6,20 @@
         <div class="card p-0">
             <div class="card-body p-4">
                 <div class="row align-items-center justify-content-around">
-                    <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
+                    <div class="col-xl-5 col-lg-10 col-md-10 col-sm-10">
                         <div class="input-group">
                              <!-- Formulaire de recherche -->
-                        <form action="" method="GET" class="mb-3">
-                            <div class="main-header-center  d-none d-lg-block  header-link">
-                                <div class="col-md-10">
-                                    <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone " id="typehead" autocomplete="on">
-
+                             <form action="{{ route('admin.patient.index') }}" method="GET" class="mb-3">
+                                <div class="input-group row">
+                                    <div class="col-md-10">
+                                        <input type="text" id="search" name="search" class="form-control" placeholder="Rechercher par  telephone ou nom_prenom " autocomplete="on" value="{{ request('search') }}">
+                                    </div>
+                                    
+                                    <div class="col-md-1">
                                         <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
-
+                                    </div>
                                 </div>
-
-
-                            </div>
-                        </form>
-
+                            </form>                          
                         </div>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
@@ -52,6 +50,7 @@
                         <table class="table border-top table-bordered mb-0 text-nowrap">
                             <thead>
                                 <tr>
+                                    <th>N°</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Genre</th>
@@ -67,6 +66,7 @@
                                 @foreach ($users as $k=>$user)
                                 @if( $user->role ==='patient')
                                 <tr class="user-list">
+                                        <td>{{$k+1}}</td>
                                         <td class="text-nowrap align-middle">{{$user->nom}}</td>
                                         <td class="text-nowrap align-middle">{{$user->prenom}}</td>
                                         <td class="text-nowrap align-middle">{{$user->genre}}</td>
@@ -149,6 +149,8 @@
     </div>
 </div>
 {{$users->links()}}
+
+@include('admin.scripts.recherche_actualisation')
 
 @endsection
 

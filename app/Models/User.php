@@ -65,6 +65,14 @@ class User extends Authenticatable  implements MustVerifyEmail
     {
         return $this->hasOne(Medecin::class);
     }
-
+    // Définissez la relation avec le modèle Rdv
+    public function rdvs()
+    {
+        return $this->hasMany(Rdv::class, 'id_medecin');
+    }
+    public function patients()
+    {
+        return $this->hasMany(Patient::class, 'user_id');
+    }
 
 }

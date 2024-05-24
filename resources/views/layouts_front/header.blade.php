@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-   <!-- Mirrored from garantiwebtasarim.com/wordpress/medidoc/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Nov 2023 12:07:28 GMT -->
-   <!-- Added by HTTrack -->
+
    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
    <!-- /Added by HTTrack -->
 
@@ -24,7 +23,7 @@
        @include('layouts_front.linkCss')
 
       <title>Hôpital Regional de Labé</title>
-      <link rel="shortcut icon" type="image/png" href="{{asset('assets/wp-content/uploads/2022/06/favicon-medidoc.png')}}">
+      <link rel="shortcut icon" type="image/png" href="{{asset('Image/Logo HRL.png')}}">
       <meta name="description" content="We are at your service with our expert physician staff, friendly employees, quality health service and constantly renewed technologies.">
    </head>
    <body>
@@ -44,7 +43,7 @@
       <aside class="side-widget">
          <div class="inner">
             <!-- Logo Menu Mobile -->
-            <div class="logo"> <a href="{{route('welcome')}}"><img src="{{asset('Image/Logo HRL.png')}}" width="100" height="100" alt="Image"></a> </div>
+            <div class="logo"> <a href="{{route('welcome')}}"><img src="{{asset('logo/LogoHRL.png')}}" width="70" height="70" alt="Image"></a> </div>
             <div class="hide-mobile">
                <div class="or">
                   <h2 class="h2-baslik-hizmetler-2"> Contact Information </h2>
@@ -73,10 +72,10 @@
 
                      <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
                         <ul id="menu-mobil-menu" class="nav navbar-nav" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-                           <li  id="menu-item-1149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5 current_page_item active menu-item-1149 nav-item"><a itemprop="url" href="{{route('welcome')}}" class="nav-link" aria-current="page"><span itemprop="name">Home</span></a></li>
+                           <li  id="menu-item-1149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5 current_page_item active menu-item-1149 nav-item"><a itemprop="url" href="{{route('welcome')}}" class="nav-link" aria-current="page"><span itemprop="name">Accueil</span></a></li>
                            <li  id="menu-item-1150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1150 nav-item"><a itemprop="url" href="{{ route('apropos') }}" class="nav-link"><span itemprop="name">A propos</span></a></li>
                            <li id="menu-item-1151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-1151 nav-item">
-                              <a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1151"><span itemprop="name"> de nos services</span></a>
+                              <a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-1151"><span itemprop="name">Nos services</span></a>
                               <ul class="dropdown-menu" aria-labelledby="menu-item-dropdown-1151">
                                  @foreach ($services as $service)
                                     <li class="menu-item menu-item-type-post_type menu-item-object-page nav-item">
@@ -89,7 +88,7 @@
                            </li>
                            <li  id="menu-item-1424" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1424 nav-item"><a itemprop="url" href="{{route('medecins')}}" class="nav-link"><span itemprop="name">Doctors</span></a></li>
                            <li  id="menu-item-1161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1161 nav-item"><a itemprop="url" href="{{route('galerie')}}" class="nav-link"><span itemprop="name">Galerie</span></a></li>
-                           <li  id="menu-item-1161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1161 nav-item"><a itemprop="url" href="{{route('Blog')}}" class="nav-link"><span itemprop="name">Blog</span></a></li>
+                           {{-- <li  id="menu-item-1161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1161 nav-item"><a itemprop="url" href="{{route('Blog')}}" class="nav-link"><span itemprop="name">Blog</span></a></li> --}}
                            <li  id="menu-item-1162" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1162 nav-item"><a itemprop="url" href="{{route('contact')}}" class="nav-link"><span itemprop="name">Contact</span></a></li>
                            @if (Route::has('login'))
                                @auth
@@ -108,7 +107,7 @@
                </div>
             </div>
             <small>
-            © 2024 - Hopital Regional de Labe
+                <p class="copyright">© 2024 IST-MAMOU GENIE-INFO P15 G-33 - Tous droits reservés.</p>
             </small>
          </div>
       </aside>
@@ -117,8 +116,8 @@
 
          <div class="container">
             <!-- Logo Menu Desktop -->
-            <div class="logo"> <a href="index.html">
-               <img src="{{asset('Image/Logo HRL.png')}}"  alt="Image">
+            <div class="logo"> <a href="{{route('welcome')}}">
+               <img src="{{asset('logo/HRLSIDEBAR.png')}}"   alt="Image">
                </a>
             </div>
             <div class="site-menu">
@@ -141,7 +140,7 @@
                         </li>
                         <li  id="menu-item-1433" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1433 nav-item"><a itemprop="url" href="{{route('Medecins')}}" class="nav-link"><span itemprop="name">Medecins</span></a></li>
                         <li  id="menu-item-1432" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1432 nav-item"><a itemprop="url" href="{{ route('galerie') }}" class="nav-link"><span itemprop="name">Galerie</span></a></li>
-                        <li  id="menu-item-1432" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1432 nav-item"><a itemprop="url" href="{{ route('Blog') }}" class="nav-link"><span itemprop="name">Blog</span></a></li>
+                        {{-- <li  id="menu-item-1432" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1432 nav-item"><a itemprop="url" href="{{ route('Blog') }}" class="nav-link"><span itemprop="name">Blog</span></a></li> --}}
                         <li  id="menu-item-980" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-980 nav-item"><a itemprop="url" href="{{route('contact')}}" class="nav-link"><span itemprop="name">Contact</span></a></li>
                         <li  id="menu-item-980" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-980 nav-item">
                             <a href="#" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" id="menu-item-dropdown-980"><span itemprop="name">Autentification</span></a>
@@ -167,11 +166,6 @@
                </div>
             </div>
             <div class="hamburger-menu"> <span></span> <span></span> <span></span> </div>
-            {{-- <div class="navbar-button">
-               <div class="telh" onclick="location.href='#';" style="cursor:pointer;"><i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;Appointment</div>
-            </div> --}}
-
-
          </div>
       </nav>
 

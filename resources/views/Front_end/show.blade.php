@@ -84,12 +84,13 @@
                 <div class="bosluk333"></div>
                 <p class="paragraf wow fade">
                 </p>
-                <div class="bosluk333"></div>
-                <img class="divider" width="120" height="15" title="divider" alt="divider" src="{{asset('assets/wp-content/uploads/2022/05/divider.jpg')}}">
-                <div class="bosluk333"></div>
                 <p class="paragraf wow fade">
                     <p>{{$service->description}}</p>
                 </p>
+                <div class="bosluk333"></div>
+                <img class="divider" width="120" height="15" title="divider" alt="divider" src="{{asset('assets/wp-content/uploads/2022/05/divider.jpg')}}">
+                <div class="bosluk333"></div>
+
                 <div class="bosluk333"></div>
                 <div class="bosluk3"></div>
                 <div class="tabloozellik">

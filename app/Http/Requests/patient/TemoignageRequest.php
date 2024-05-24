@@ -23,7 +23,7 @@ class TemoignageRequest extends FormRequest
     {
         return [
             //
-            'contenu'=>['required','string','max:200'],
+            'contenu'=>['required','string','max:500'],
             'publier'=>['boolean'],
             'user_id' => ['exists:users,id'],
         ];
