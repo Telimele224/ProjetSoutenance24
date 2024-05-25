@@ -7,8 +7,8 @@ use App\Http\Controllers\admin\adminTemoignages;
 use App\Http\Controllers\admin\afficherImpression;
 use App\Http\Controllers\admin\afficherImpressionMedecin;
 use App\Http\Controllers\admin\afficherImpressionPatient;
+use App\Http\Controllers\admin\afficherImprissionPersonnel;
 use App\Http\Controllers\admin\CalendrierController;
-use App\Http\Controllers\admin\calendrierControllers as AdminCalendrierControllers;
 use App\Http\Controllers\admin\GalerieController;
 use App\Http\Controllers\admin\MedecinController;
 use App\Http\Controllers\admin\PatientController;
@@ -70,7 +70,6 @@ Route::get('/medecinimprime', [MedecinImpression::class, 'medecin'])->name('mede
 Route::get('/patientimprime', [PatientImpression::class, 'patient'])->name('patientimprime');
 Route::get('/personnelimprime', [PersonnelImpression::class, 'personnel'])->name('personnelimprime');
 
-
 Route::get('/afficher', [AdminPdf::class, 'afficher'])->name('afficher');
 Route::get('/afficher', [MedecinPdf::class, 'afficher'])->name('afficher');
 
@@ -84,9 +83,7 @@ Route::get('/personnelpdf', [Personnelpdf::class, 'personnel'])->name('personnel
 
 
 //Route pour la page contact
-// Route::get('/contact' , [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact' , [MenuNavigation::class,'send'])->name('contact.send');
-
 Route::get('/mesrendevous' , [ConsultationController::class,'listedesrendezvous'])->name('listerendezvous');
 
 
@@ -101,21 +98,20 @@ Route::get('/les_departements',[MenuNavigation::class, 'departements'])->name('l
 Route::get('/Blog', [MenuNavigation::class,'blog'])->name('Blog');
 Route::get('/galerie', [MenuNavigation::class,'galerie'])->name('galerie');
 Route::get('/Medecins', [MenuNavigation::class,'lien'])->name('Medecins');
-
-
 Route::get('/home',[HomeController::class, 'redirect'])->middleware(['auth', 'verified'])->name('home');
+
+
+
 Route::get('consultations/{id}/pdf', [ConsultationController::class, 'generatePDF'])->name('consultations.pdf');
 Route::get('consultations/{id}/pdf', [DossierMedicalController::class, 'generatePDF1'])->name('consultation.pdf');
-
-
-
 
 // ROUTE POUR L'ADMINISTRATEUR BACK_END
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('service',ServiceControllers::class);
     Route::resource('usersPdf',afficherImpression::class);
-    Route::resource('usersPdf',afficherImpressionMedecin::class);
-    Route::resource('usersPdf',afficherImpressionPatient::class);
+    Route::resource('medecinpdf',afficherImpressionMedecin::class);
+    Route::resource('patientpdf',afficherImpressionPatient::class);
+    Route::resource('personnelpdf',afficherImprissionPersonnel::class);
     Route::resource('actualite',ActualiteControllers::class);
     Route::resource('temoignage',adminTemoignages::class)->except('show');
     Route::resource('medecin',adminTemoignages::class)->except('show');
@@ -131,9 +127,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('maux',MalController::class);
     Route::resource('calendriers',CalendrierController::class);
 
-
-
-    Route::get('medecins/{medecin}', [MedecinController::class, 'show'])->name('medecins.show');
+ Route::get('medecins/{medecin}', [MedecinController::class, 'show'])->name('medecins.show');
     // Route::ressource('administrateur',AdminController::class)->except('show');
 });
 Route::post('horaireStore/{id}', [HoraireController::class,'store'])->name('horaireStore');
@@ -242,7 +236,7 @@ Route::post('/login_medecin',[AuthController::class,'login_medecin'])->name('med
 
 Route::get('/dashboard_patient', [AuthController::class,'dashboard_patient_view'])->name('patients.dashboard_patient');
 Route::get('/dashboard_medecin', [AuthController::class,'dashboard_medecin_view'])->name('medecins.dashboard_medecin');
-Route::get('/confirmation-rdv_view', [RdvController::class,'confirmationRdv_view'])->middleware(['auth', 'verified'])->name('confirmation_rdv_view');
+Route::get('/confirmation-rdv_view', [RdvController::class,'confirmationRdv_view'])->middleware('auth')->name('confirmation_rdv_view');
 Route::post('/confirmation-rdv', [RdvController::class,'confirmationRdv'])->name('confirmation_rdv');
 Route::get('/verify-code', [AuthController::class,'verifyCodeView'])->name('patients.verify_code_view');
 Route::post('/verify-code', [AuthController::class,'verifyCode'])->name('patients.verify_code');

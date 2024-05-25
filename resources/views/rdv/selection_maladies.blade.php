@@ -22,17 +22,26 @@
         <!-- Contenu de la vue de sélection des maladies -->
         <form action="{{ route('recommander_servicePar_maladie') }}" method="post">
             @csrf
+
             <div class="card">
-                @foreach($maladies as $maladie)
-                <div class="row form-check input-group form-group mb-2">
-                    <div class="col-sm-2" >
-                        <input class="form-check-input form-control p-3" type="checkbox" value="{{ $maladie->id }}" id="maladie{{ $maladie->id }}" name="maladies[]">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{asset('logo/sangplus.svg')}}" alt="symptomes chech image">
                     </div>
-                    <label class="form-check-label form-control" for="maladie{{ $maladie->id }}">
-                        {{ $maladie->nom }}
-                    </label>
+                    <div class="col-md-5">
+                        @foreach($maladies as $maladie)
+                        <div class="row form-check input-group form-group mb-2">
+                            <div class="col-sm-2" >
+                                <input class="form-check-input form-control p-3" type="checkbox" value="{{ $maladie->id }}" id="maladie{{ $maladie->id }}" name="maladies[]">
+                            </div>
+                            <label class="form-check-label form-control" for="maladie{{ $maladie->id }}">
+                                {{ $maladie->nom }}
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
-                @endforeach
+
             </div>
             <button type="submit" class="btn btn-outline-primary w-50 float-end">CONTINUEZ</button>
         </form>

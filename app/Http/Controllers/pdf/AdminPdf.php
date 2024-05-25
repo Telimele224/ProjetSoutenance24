@@ -23,7 +23,5 @@ class AdminPdf extends Controller
         // Retourne le PDF pour téléchargement
         return $pdf->stream('document.pdf');
     }
-    public function afficher()
-    {
-    }
+   
 }

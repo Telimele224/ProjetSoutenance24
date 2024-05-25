@@ -14,12 +14,12 @@
                                     <div class="col-md-10">
                                         <input type="text" id="search" name="search" class="form-control" placeholder="Rechercher par  telephone ou nom_prenom " autocomplete="on" value="{{ request('search') }}">
                                     </div>
-                                    
+
                                     <div class="col-md-1">
                                         <button type="submit" class="btn btn-primary text-end"><i class="bi bi-search text-muted"></i></button>
                                     </div>
                                 </div>
-                            </form>                          
+                            </form>
                         </div>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
@@ -39,10 +39,10 @@
         <div class="tab-pane active show" id="tab-11" role="tabpanel">
             <div class="card">
                 <div class="card-header border-bottom-0 px-5">
-                    <a href="{{ route('patientimprime') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a>
+                    {{-- /<a href="{{ route('export') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a> --}}
                     <h2 class="card-title"> </h2>
                     <div class="page-options ms-auto">
-                        <a href="{{ route('patientpdf.pdf') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
+                        <a href="{{ route('admin.patientpdf.index') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i>&nbsp;&nbsp;&nbsp; Impression | Pdf | Excel</a>
                     </div>
                 </div>
                 <div class="e-table px-5 pb-5">

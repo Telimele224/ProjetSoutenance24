@@ -470,10 +470,27 @@ public function annulerRendezVous(Request $request,$id)
 
     //   mes rendez-vous
     public function mesRendezVous() {
+        $user = auth()->user();
+     // Vérifier si l'utilisateur est un médecin et s'il a un médecin associé
+        if ($user->role === 'medecin' && $user->medecin) {
+        // L'utilisateur est un médecin et a un médecin associé
+        // Récupérer l'ID du médecin
+        $medecinId = $user->medecin->id;
+
+        // Récupérer les rendez-vous du médecin avec les détails des patients
+        $rendezVous = Rdv::where('id_medecin', $medecinId)->where('is_deleted', true)->with('patient.user')->get();
+
         return view('medecins.consultation.rendezvous', [
             'mesRendezVous' => Rdv::orderBy('created_at', 'desc')->get(),
             'users' => User::all(),
-            'patients' => Patient::all()
+            'patients' => Patient::all(),
+            'rendezVous' => $rendezVous
         ]);
+    } else {
+        // L'utilisateur n'est pas un médecin ou n'a pas de médecin associé
+        // Rediriger l'utilisateur vers une page d'erreur ou une autre page
+        // Dans cet exemple, je redirige simplement l'utilisateur vers la page d'accueil
+        return redirect()->route('home')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
     }
+ }
 }

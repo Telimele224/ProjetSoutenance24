@@ -12,6 +12,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{asset('pdfassets/css/custom.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('pdfassets/css/media-query.css')}}">
+    <link href="{{asset('assets/build/assets/iconfonts/icons.css')}}" rel="stylesheet">
+
 </head>
 <body>
 	<!--Invoice Wrap Start here -->
@@ -109,97 +111,11 @@
 								</div>
 							</div>
 						</div>
-						<!--Booking Information end here -->
 
-						<!--Invoice Table Data Start here -->
-						{{-- <div class="table-wrapper">
-							<table class="invoice-table">
-								<thead>
-									<tr class="invo-tb-header">
-										<th class="invo-table-title item-wid inter-700 medium-font">Items</th>
-										<th class="invo-table-title desc-wid inter-700 medium-font">Description</th>
-										<th class="invo-table-title rate-title qty-wid inter-700 medium-font">Rate</th>
-										<th class="invo-table-title tota-wid inter-700 medium-font total-head">Amount</th>
-									</tr>
-								</thead>
-								<tbody class="invo-tb-body">
-									<tr class="invo-tb-row">
-										<td class="invo-tb-data">Delux Room</td>
-										<td class="invo-tb-data">Double bedroom with private bathroom</td>
-										<td class="invo-tb-data rate-data">1 Rooms x 3 Nights x $300.00</td>
-										<td class="invo-tb-data total-data">$900.00</td>
-									</tr>
-									<tr class="invo-tb-row">
-										<td class="invo-tb-data">Room Service</td>
-										<td class="invo-tb-data">Breakfast + Dinner</td>
-										<td class="invo-tb-data rate-data">$30.00 X One Time</td>
-										<td class="invo-tb-data total-data">$180.00</td>
-									</tr>
-									<tr class="invo-tb-row">
-										<td class="invo-tb-data">Promotional Code</td>
-										<td class="invo-tb-data">HOLYSUMMER - One Time Discount</td>
-										<td class="invo-tb-data rate-data">20% OFF</td>
-										<td class="invo-tb-data total-data">-$216.00</td>
-									</tr>
-								</tbody>
-							</table>
-						</div> --}}
-						<!--Invoice Table Data End here -->
-
-						<!--Invoice additional info start here -->
-						{{-- <div class="invo-addition-wrap">
-							<div class="invo-add-info-content">
-								<h3 class="addi-info-title inter-700 medium-font">Additional Information:</h3>
-								<p class="add-info-desc inter-400 mtb-0">A ut vitae nullam risus at. Justo enim nisi elementum ac. Massa molestie metus vitae ornare turpis donec odio sollicitudin. Ac ut tellus eu donec dictum risus blandit. Quam diam dictum amet.</p>
-							</div>
-							<div class="invo-bill-total">
-								<table class="invo-total-table">
-									<tbody>
-										<tr>
-											<td class="inter-700 medium-font b-text hotel-sub">Sub Total:</td>
-											<td class="invo-total-data inter-400 medium-font second-color">$864.00</td>
-										</tr>
-										<tr class="tax-row bottom-border">
-											<td class="inter-700 medium-font b-text hotel-sub">Tax <span class="invo-total-data inter-700 medium-font second-color">(18%)</span></td>
-											<td class="invo-total-data inter-400 medium-font second-color">$155.52</td>
-										</tr>
-										<tr class="invo-grand-total">
-											<td class="inter-700 sm-text primary-color hotel-sub">Grand Total:</td>
-											<td class="sm-text b-text invo-total-price">$1019.52</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div> --}}
-						<!--Invoice additional info end here -->
-
-						<!--Payment detail table start here -->
-						{{-- <div class="payment-table-wrap hotel-booking-wrap">
-							<table class="invo-payment-table">
-								<thead>
-									<tr class="invo-tb-header">
-										<th class="invo-table-title inter-700 payemnt-wid medium-font b-text">Payment Details</th>
-										<th class="invo-table-title inter-700 date-wid medium-font b-text">Date</th>
-										<th class="invo-table-title inter-700 trans-wid medium-font b-text">Transaction ID</th>
-										<th class="invo-table-title inter-700 amount-wid medium-font b-text total-head">Amount</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="invo-paye-row">
-										<td class="invo-total-data inter-400 payment-desc second-color">American Express</td>
-										<td class="invo-total-data inter-400 payment-desc second-color">25/11/2022</td>
-										<td class="invo-total-data inter-400 payment-desc second-color">TD52369815</td>
-										<td class="invo-total-data inter-400 payment-desc second-color">$1019.52</td>
-									</tr>
-								</tbody>
-							</table>
-						</div> --}}
-						<!--Payment detail table end here -->
 					</div>
 				</section>
 				<!--Invoice content end here -->
 			</div>
-
 			<!--bottom content start here -->
 			<section class="agency-bottom-content d-print-none" id="agency_bottom">
 				<div class="container">
@@ -207,41 +123,31 @@
 					<div class="invo-buttons-wrap">
 						<div class="invo-print-btn invo-btns">
 							<a href="javascript:window.print()" class="print-btn">
-								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_5_313)">
-									<path d="M14 3V7C14 7.26522 14.1054 7.51957 14.2929 7.70711C14.4804 7.89464 14.7348 8 15 8H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H14L19 8V19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 7H10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13H15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 17H15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_5_313"><rect width="24" height="24" fill="white"/>
-									</clipPath></defs></svg>
-									<span class="inter-700 medium-font">Imprimmer</span>
-								</a>
-							</div>
-							<div class="invo-down-btn invo-btns">
-								<a class="download-btn" id="generatePDF">
-									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_5_246)">
-										<path d="M4 17V19C4 19.5304 4.21071 20.0391 4.58579 20.4142C4.96086 20.7893 5.46957 21 6 21H18C18.5304 21 19.0391 20.7893 19.4142 20.4142C19.7893 20.0391 20 19.5304 20 19V17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 11L12 16L17 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 4V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_5_246"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
-										<span class="inter-700 medium-font">Telecharger<a href="{{route('adminpfd.pdf')}}"></a></span>
-									</a>
-								</div>
-							</div>
-							<!--print-download content end here -->
-							<!--Note content -->
-							<div class="invo-note-wrap">
-								<div class="note-title">
-									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_8_240)"><path d="M14 3V7C14 7.26522 14.1054 7.51957 14.2929 7.70711C14.4804 7.89464 14.7348 8 15 8H19" stroke="#00BAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H14L19 8V19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21Z" stroke="#00BAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 7H10" stroke="#00BAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13H15" stroke="#00BAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 17H15" stroke="#00BAFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_8_240"><rect width="24" height="24" fill="white"/>
-									</clipPath></defs></svg>
-									<span class="inter-700 medium-font">Note:</span>
-								</div>
-								<h3 class="inter-400 medium-font third-color note-desc mtb-0">This is computer generated receipt and does not require physical signature.</h3>
-							</div>
+							    <span class="ion ion-printer">&nbsp;&nbsp;&nbsp;Imprimmer</span>
+							</a>
 						</div>
-					</section>
-					<!--bottom content end here -->
-				</div>
-			</div>
-			<!--Invoice Wrap End here -->
-			<script src="{{asset('pdfassets/js/jquery.min.js')}}"></script>
-			<script src="{{asset('pdfassets/js/jspdf.min.js')}}"></script>
-			<script src="{{asset('pdfassets/js/html2canvas.min.js')}}"></script>
-			<script src="{{asset('pdfassets/js/custom.js')}}"></script>
-		</body>
+                        <div class="invo-down-btn invo-btns">
+                            <a class="download-btn" id="generatePDF"  href="{{route('adminpfd.pdf')}}">
+                                <span class="fa fa-file-pdf-o">&nbsp;&nbsp;&nbsp;Pdf</span>
+                            </a>
+                        </div>
+                        <div class="invo-down-btn invo-btns">
+                            <a class="download-btn" id="generatePDF" href="{{route('export')}}">
+                                <span class="ion ion-printer">&nbsp;&nbsp;&nbsp; Excel</span>
+                            </a>
+                        </div>
+					</div>
+                </div>
+            </section>
+            <!--bottom content end here -->
+        </div>
+    </div>
+    <!--Invoice Wrap End here -->
+    <script src="{{asset('pdfassets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('pdfassets/js/jspdf.min.js')}}"></script>
+    <script src="{{asset('pdfassets/js/html2canvas.min.js')}}"></script>
+    <script src="{{asset('pdfassets/js/custom.js')}}"></script>
+</body>
 
 <!-- Mirrored from up2client.com/envato/digital-invoice-2.0/main-file/Light-Invoice/hotel_booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 May 2024 02:56:15 GMT -->
 </html>

@@ -22,16 +22,24 @@
         <form action="{{ route('recommander_servicePar_symptome') }}" method="post">
             @csrf
             <div class="card">
-                @foreach($symptomes as $symptome)
-                <div class="row form-check form-group input-group mb-2">
-                    <div class="col-sm-2">
-                        <input class="form-check-input form-control p-3" type="checkbox" value="{{ $symptome->id }}" id="symptome{{ $symptome->id }}" name="symptomes[]">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{asset('logo/symptomecheck.svg')}}" alt=""  srcset="">
                     </div>
-                    <label class="form-check-label form-control" for="symptome{{ $symptome->id }}">
-                        {{ $symptome->nom }}
-                    </label>
+                    <div class="col-md-5">
+                        @foreach($symptomes as $symptome)
+                        <div class="row form-check form-group input-group mb-2">
+                            <div class="col-sm-2">
+                                <input class="form-check-input form-control p-3" type="checkbox" value="{{ $symptome->id }}" id="symptome{{ $symptome->id }}" name="symptomes[]">
+                            </div>
+                            <label class="form-check-label form-control" for="symptome{{ $symptome->id }}">
+                                {{ $symptome->nom }}
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
-                @endforeach
+
             </div>
             <!-- Bouton de soumission -->
             <button type="submit" class="btn btn-outline-primary w-50 float-end">CONTINUEZ</button>

@@ -23,7 +23,12 @@
         <form action="{{ route('recommander_servicePar_maux') }}" method="post">
             @csrf
             <div class="card">
-            @foreach($maux as $mal)
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{asset('logo/symptomecheck.svg')}}" alt="symptomes chech image">
+                    </div>
+                    <div class="col-md-5">
+                         @foreach($maux as $mal)
                 <div class="form-check input-group form-group mb-2">
                     <div class="col-sm-2">
                         <input class="form-check-input form-control p-3" type="checkbox" value="{{ $mal->id }}" id="mal{{ $mal->id }}" name="maux[]">
@@ -33,6 +38,9 @@
                     </label>
                 </div>
             @endforeach
+                    </div>
+                </div>
+
             </div>
 
 

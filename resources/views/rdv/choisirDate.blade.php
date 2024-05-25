@@ -13,9 +13,10 @@
         {{Session::get('error') }}
     </div>
     @endif
-            <div class=" row  mb-4">
+            <div class=" row card-header mb-4 p-3">
+
                 <div class="col-md-6 text-center">
-                    <h6 class="text-uppercase">Choisissez une date de consultation :</h6>
+                    <h6 class="text-uppercase">Choisissez le jour et Heure de consultation :</h6>
                 </div>
                 <div class="col-md-6 ">
                     <button class="btn btn-outline-primary btn-select-date dbtn-sm float-end" data-toggle="collapse" data-target="#formSelectionDate" aria-expanded="false" aria-controls="formSelectionDate">
@@ -23,8 +24,11 @@
                     </button>
                 </div>
             </div>
-        <div class="row">
-            <div class="card-body col-md-7" id="card-body-container">
+        <div class="row p-3">
+            <div class="col-md-3 mt-4">
+                <img src="{{asset('logo/appointmentcalendar.svg')}}" width="100%" height="auto" alt="">
+            </div>
+            <div class="card-body col-md-5" id="card-body-container">
                 <!-- Formulaire pour la sélection de la date de RDV -->
                 <div id="formSelectionDate" class="collapse">
                     <div class="card mt-3">
@@ -38,18 +42,18 @@
                                     <div class="mb-3 col-sm-6">
                                         <label for="dateRdv" class="form-label">Sélectionnez une date</label>
                                         <input type="date" class="form-control" id="dateRdv" name="dateRdv" onchange="updateDay()">
-                                        @error('dateRdv')<span class="badge badge-danger bg-danger">{{ $message }}</span>@enderror
+                                        @error('dateRdv')<span class="badge badge-primary bg-primary">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="mb-3 col-sm-6">
                                         <label for="heure" class="form-label">Sélectionnez une heure</label>
                                         <input type="time" class="form-control" id="heure" name="heure">
-                                        @error('heure')<span class="badge badge-danger bg-danger">{{ $message }}</span>@enderror
+                                        @error('heure')<span class="badge badge-primary bg-primary">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="jour" class="form-label">Jour</label>
                                     <input type="text" class="form-control" id="jour" name="jour" readonly>
-                                    @error('jour')<span class="badge badge-danger bg-danger">{{ $message }}</span>@enderror
+                                    @error('jour')<span class="badge badge-primary bg-primary">{{ $message }}</span>@enderror
                                 </div>
 
                                 <input type="hidden" name="medecinId" value="{{ $medecin->id }}">
@@ -62,8 +66,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 @if(empty($horairesParJour))
                 <div class="alert alert-warning" role="alert">
                     Ce médecin n'a pas d'horaires disponibles pour le moment.
@@ -95,7 +97,7 @@
                                             <input type="hidden" name="date" id="hiddenDateRdv_{{ $loop->index }}" value="{{ $horaire->format('Y-m-d') }}">
                                             <input type="hidden" name="heure" id="hiddenHeure_{{ $loop->index }}" value="{{ $horaire->format('H:i') }}">
                                             <input type="hidden" name="jour" id="hiddenJour_{{ $loop->index }}" value="{{ $horaire->format('l') }}">
-                                            <button onclick="handleSelection('{{ $horaire->format('Y-m-d') }}', '{{ $horaire->format('H:i') }}', '{{ $horaire->format('l') }}')" class="btn btn-outline-secondary mb-1 w-100">
+                                            <button onclick="handleSelection('{{ $horaire->format('Y-m-d') }}', '{{ $horaire->format('H:i') }}', '{{ $horaire->format('l') }}')" class="btn btn-outline-primary mb-1 w-100">
                                                 {{ $horaire->format('H:i') }}
                                             </button>
                                         </form>
@@ -106,21 +108,20 @@
                         </div>
                     </div>
                 @endforeach
-
                 </div>
-            @endif
-         </div>
+                 @endif
+            </div>
 
-         <div class="col-md-5">
+         <div class="col-md-4">
             <!-- Card Bootstrap pour les horaires de disponibilité -->
             <div class="card">
-                <div class="card-header text-center">
-                    Horaires de disponibilité
+                <div class="card text-center text-uppercase small">
+                  Jours  et  Horaires de disponibilité
                 </div>
                 <div class="row">
                     @if(!empty($horair->lundi_debut) && !empty($horair->lundi_fin))
                         <div class="card col-sm-4 ms-4 mb-3">
-                            <div class="card-header text-center">
+                            <div class="card-header text-center text-">
                                 Lundi
                             </div>
                             <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->lundi_debut)) }} - {{ date('H:i', strtotime($horair->lundi_fin)) }}</p>

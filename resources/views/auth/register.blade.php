@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="row m-4">
                 <div class="text-center">
-                   <a href="index.html"><img src="{{asset('Image/Logo HRL.png')}}" width="50" height="50" class="header-brand-img" alt=""></a>
+                   <a href="index.html"><img src="{{asset('logo/LogoHRL.png')}}" width="90" height="90" class="header-brand-img" alt=""></a>
                 </div>
              </div>
             <div class="col-xl-8">

@@ -25,6 +25,7 @@
 
                 <div class="row">
                     <!-- Champ rdv_id -->
+                    
 
                     <div class="col-md-6">
                         <label for="rdv_id" class="form-label">Patient Phone</label>

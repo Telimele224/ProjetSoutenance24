@@ -8,7 +8,7 @@
             <div class="card shadow-none">
                 <div class="card-body p-sm-6">
                     <div class="text-center mb-4">
-                        <h4 class="mb-1">Recuparation</h4>
+                        <h4 class="mb-1">Récuparation mot de passe</h4>
                           <!-- Session Status -->
                         <x-auth-session-status class="mb-4" :status="session('status')" />
                     </div>
@@ -25,14 +25,14 @@
                         <div class="col-xl-12">
                             <div class="d-grid mb-3 btn btn-primary">
                                 <button class="btn btn-primary">
-                                    {{ __('Email Password Reset Link') }}
+                                    {{ __('Lien de réinitialisation du mot de passe par e-mail') }}
                                 </button>
 
 
                             </div>
                             <div class="text-center">
                                 <p class="mb-0 tx-14">Mémorisé votre mot de passe?
-                                    <a href="{{route('register')}}" class="tx-primary ms-1 text-decoration-underline">Se connecter</a>
+                                    <a href="{{route('login')}}" class="tx-primary ms-1 text-decoration-underline">Se connecter</a>
                                 </p>
                             </div>
                         </div>

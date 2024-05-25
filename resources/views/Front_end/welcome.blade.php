@@ -16,7 +16,7 @@
                <p>Optenez les meilleurs soins de santé avec notre personnel compétent et expérimenté </p>
                <div class="bosluks2"></div>
 
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}"><i class="flaticon-timetable iconp"></i>    Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank" ><i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;    Prendre rendez-vous →</a></div>
 
                <div class="or">
 
@@ -33,7 +33,7 @@
                </h1>
                <p>Nous sommes à votre service pour une vie plus saine</p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}"><i class="flaticon-timetable iconp"></i>  Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank"><i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;  Prendre rendez-vous →</a></div>
 
                <div class="or">
                   <a href="#">En savoir plus →</a>
@@ -49,7 +49,7 @@
                </h1>
                <p>Votre santé est entre de bonne mains grâce à notre personnel experts et experimentés. </p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}"> <i class="flaticon-timetable iconp"></i>   Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank"> <i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;   Prendre rendez-vous →</a></div>
 
                <div class="or">
                   <a href="#">En savoir plus →</a>
@@ -64,7 +64,7 @@
                </h1>
                <p>Votre santé est tout. </p>
                <div class="bosluks2"></div>
-               <div class="or mb-2"> <a href="{{route('recommandation.service')}}">   <i class="flaticon-timetable iconp"></i>Prendre rendez-vous →</a></div>
+               <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank">   <i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;Prendre rendez-vous →</a></div>
                <div class="or">
                   <a href="#">En savoir plus →</a>
                </div>
@@ -124,14 +124,22 @@
                       <td class="text-center"><span class="text-danger">16</span> h : <span class="text-danger">30 </span> min-<span class="text-danger"> 20 </span> h :<span class="text-danger"> 00</span> min</td>
                     </tr>
                     <tr>
+                        <td class="text-center" colspan="3"><span class=""><h1>HEURE D'OUVERTURE 7JOURS /7:</h1></span></td>
+                      </tr>
+                      <tr>
+                          <td class="text-center" colspan="3"> <h1><span class="text-danger">24</span> h : <span class="text-danger">/ </span><span class="text-danger"> 24 </span> </h1></td>
+                      </tr>
+                    <tr>
+                    <tr>
                       <td class="text-center" colspan="3"><span class="text-danger"><h1>Interdiction formelle de sortir de :</h1></span></td>
                     </tr>
                     <tr>
                         <td class="text-center" colspan="3"> <h1><span class="text-danger">19</span> h : <span class="text-danger">30 </span> min-<span class="text-danger"> 6 </span> h : <span class="text-danger">30 </span> min </h1></td>
                     </tr>
-                    <tr>
+
                         <td class="text-center" colspan="3"><h1>De Malade Hospitalisé, Du Nouveaux Né et de Dépouille Mortelle</h1></td>
                     </tr>
+
                   </tbody>
                 </table>
               </div>

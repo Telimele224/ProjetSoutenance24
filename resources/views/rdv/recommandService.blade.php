@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <img src="{{asset('logo/techBar.png')}}" alt="">
+            <img src="{{asset('logo/symptomes.svg')}}"  width="4500" height="450">
         </div>
         <div class="col-md-6">
             <div class="card row">

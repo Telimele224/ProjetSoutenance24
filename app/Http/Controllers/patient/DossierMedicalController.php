@@ -20,28 +20,27 @@ class DossierMedicalController extends Controller
      */
     public function index()
     {
+        // Vérifiez si l'utilisateur est un patient
+        if (auth()->user()->role === 'patient') {
+            $patient_id = auth()->user()->patient->id; // Supposons que l'utilisateur actuel est un patient
 
-        $patient_id = auth()->user()->patient->id; // Supposons que l'utilisateur actuel est un médecin
+            // Récupérer les consultations associées au patient
+            $consultations = Consultation::whereHas('rdv', function($query) use ($patient_id) {
+                $query->where('patient_id', $patient_id);
+            })
+            ->with('ordonnances') // Charger les ordonnances associées
+            ->orderBy('created_at', 'desc');
+            // ->paginate(10);
 
-        // Récupérer les consultations associées au médecin
-        $consultations = Consultation::where('patient_id', $patient_id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            return view('patients.Dossier_medical.index', [
+                'consultations' => $consultations,
+            ]);
+        }
 
-        // Récupérer la liste des patients avec leurs informations utilisateur associées
-        $medecins = Medecin::with('user')->get();
-
-        return view ('patients.Dossier_medical.index', [
-            'consultations' => $consultations,
-            'medecins' => $medecins,
-        ]);
+        return redirect()->back()->with('error', 'Accès non autorisé');
+        }
 
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //

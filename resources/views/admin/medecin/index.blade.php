@@ -49,10 +49,10 @@
         <div class="tab-pane active show" id="tab-11" role="tabpanel">
             <div class="card">
                 <div class="card-header border-bottom-0 px-5">
-                    <a href="{{ route('medecinimprime') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a>
-                    <h2 class="card-title"></h2>
+                    {{-- /<a href="{{ route('export') }}" class="btn btn-primary"><i class="ion ion-printer"></i> Imprimer</a> --}}
+                    <h2 class="card-title"> </h2>
                     <div class="page-options ms-auto">
-                        <a href="{{ route('medecinpdf.pdf') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i> Télécharger en PDF</a>
+                        <a href="{{ route('admin.medecinpdf.index') }}" class="btn btn-primary"><i class="bi bi-arrow-down-circle"></i>&nbsp;&nbsp;&nbsp; Impression | Pdf | Excel</a>
                     </div>
                 </div>
                 <div class="e-table px-5 pb-5">
