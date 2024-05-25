@@ -38,12 +38,24 @@
                     <div class="card-header text-justify ">
                         <h6>Jour du rendez-vous : {{ $rendezVous['jour'] }}</h6>
                     </div>
-                    <div class="card-footer ">
-                        <form action="{{ route('confirmation_rdv') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-primary w-100 mt-3 float-end">CONFIRMER</button>
+                    <div class="row">
+                       <div class="col-md-6">
+                            <form action="{{ route('welcome') }}" method="GET">
+                                <button type="submit" class="btn btn-outline-danger w-100 mt-3 ">ANNULER</button>
+                            </form>
+                        
+                       </div>   
+                       
+                       <div class="col-md-6">
+                            <form action="{{ route('confirmation_rdv') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-primary w-100 mt-3 ">CONFIRMER</button>
 
-                        </form>
+                            </form>
+                    
+                       </div>   <!-- Ajoutez le bouton "Annuler" -->
+                       
+                       
                     </div>
                     </div>
 
