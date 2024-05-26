@@ -25,7 +25,7 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-10" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide2.jpg')}}"  width="1920"
+            <div class="slide-image wow fadeInUp mt-10" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide3.jpg')}}"  width="1920"
             height="1080"></div>
             <div class="container">
                <h1>Pour une vie <br>
@@ -41,7 +41,7 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Image/hero-6-bg.jpg')}}" width="1920"
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/slide5.jpg')}}" width="1920"
             height="1080"></div>
             <div class="container">
                <h1>Medécins <br>
@@ -57,7 +57,7 @@
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Image/testi-bg.jpg')}}"></div>
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/slide4.jpg')}}"></div>
             <div class="container">
                <h1>Ne retardez pas  <br>
                   votre santé
