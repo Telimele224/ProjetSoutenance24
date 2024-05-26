@@ -2,13 +2,13 @@
 <aside class="app-sidebar sticky" id="sidebar">
     <!-- Start::main-sidebar-header -->
     <div class="main-sidebar-header">
-       <a href="index.html" class="header-logo  m-3">
-       <img src="{{asset('Image/Logo HRL.png')}}" width="25" height="25"  alt="logo" class="desktop-logo">
-       <img src="{{asset('Image/Logo HRL.png')}}"  width="25" height="25" alt="logo" class="toggle-logo">
-       <img src="{{asset('Image/Logo HRL.png')}}"   width="50" height="50" alt="logo" class="desktop-dark" >
-       <img src="{{asset('Image/Logo HRL.png')}}"  width="25" height="25" alt="logo" class="toggle-dark">
-       </a>
-    </div>
+        <a href="{{route('welcome')}}" class="header-logo">
+        <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="desktop-logo">
+        <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="toggle-logo">
+        <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="desktop-dark">
+        <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="toggle-dark">
+        </a>
+     </div>
     <!-- End::main-sidebar-header -->
     <!-- Start::main-sidebar -->
     <div class="main-sidebar" id="sidebar-scroll">

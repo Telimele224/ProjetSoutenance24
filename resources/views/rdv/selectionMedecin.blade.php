@@ -29,22 +29,22 @@
                 <div class="col-md-7">
                     @foreach($medecins as $medecin)
                     <div class="row mb-3 align-items-center">
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <a href="{{ route('choisirDate', ['medecinId' => $medecin->id]) }}" class="list-group-item list-group-item-action d-flex align-items-center">
                                 <!-- Avatar du médecin -->
-                                <div class="rounded-circle overflow-hidden me-3" style="width: 60px; height: 60px;">
-                                    <img src="{{ asset('storage/' . $medecin->user->photo) }}" alt="{{ $medecin->user->nom }}" class="w-100 h-100 object-fit-cover">
+                                <div class="rounded-circle overflow-hidden me-3" style="width: 40px; height: 40px;">
+                                    <img src="{{ asset('storage/' . $medecin->user->photo) }}" alt="{{ $medecin->user->nom }}" class="w-100 h-90 object-fit-cover">
                                 </div>
                                 <!-- Nom et spécialité du médecin -->
                                 <div>
-                                    <p class="mb-0" style="font-size: 18px; font-weight: bold;">{{ $medecin->user->nom }} {{ $medecin->user->prenom }}</p>
-                                    <p class="mb-0" style="font-size: 14px;">{{ $medecin->specialite }}</p>
+                                    <p class="mb-0" style="font-size: 12px; font-weight: bold;">{{ $medecin->user->nom }} {{ $medecin->user->prenom }}</p>
+                                    <p class="mb-0" style="font-size: 10px;">{{ $medecin->specialite }}</p>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-center">
+                        <div class="col-md-2 d-flex justify-content-center">
                             <a href="{{ route('rdv.detail_medecin', ['medecinId' => $medecin->id]) }}" class="btn btn-outline-primary btn-sm" title="Afficher les détails">
-                                <i class="fa fa-eye  fs-20 "></i>
+                                <i class="fa fa-eye  fs-22 "></i>
                             </a>
                         </div>
                     </div>

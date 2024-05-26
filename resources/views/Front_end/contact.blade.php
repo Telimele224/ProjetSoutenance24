@@ -111,5 +111,7 @@
         </div>
     </div>
   </section>
-<p><iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1563266.1918335108!2d-75.84536893896656!3d40.06973977396647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c0fb959e00409f%3A0x2cd27b07f83f6d8d!2sNew%20Jersey%2C%20Amerika%20Birle%C5%9Fik%20Devletleri!5e0!3m2!1str!2str!4v1645136392814!5m2!1str!2str" width="100%" height="450px" allowfullscreen="allowfullscreen"></iframe></p>
+<p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15648.88929386067!2d-12.303630362781126!3d11.318454169067403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xefc3b1b8dce00db%3A0x60a42a7902a749c4!2sHopital%20R%C3%A9gional%20de%20Lab%C3%A9!5e0!3m2!1sfr!2s!4v1716641184965!5m2!1sfr!2s" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</p>
 @endsection
