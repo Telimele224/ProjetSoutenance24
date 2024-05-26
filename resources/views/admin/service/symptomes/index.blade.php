@@ -19,7 +19,7 @@
            
 
             <!-- table start -->
-            <table class="list-table" id="symptomsTable">
+            <table class="table table-bordered" id="symptomsTable">
                 <thead>
                     <tr>
                         <th class="text-center">ID</th>

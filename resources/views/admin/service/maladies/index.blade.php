@@ -18,7 +18,7 @@
             @endif
 
             <!-- table start -->
-            <table class="list-table" id="diseasesTable">
+            <table class="table table-bordered" id="diseasesTable">
                 <thead>
                     <tr>
                         <th class="text-center">ID</th>

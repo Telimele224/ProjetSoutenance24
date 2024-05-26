@@ -28,7 +28,7 @@
                         @method($service->exists ? 'put': 'post')
                         <div class="row">
                 
-                            <div class="mb-20 form-group col-sm-12 mb-2">
+                            <div class="mb-20 form-group col-sm-6 mb-2">
                                 <label   for="nom" :value="__('nom')" class="mb-2 fw-500">Nom du service<span class="text-danger ms-1">*</span></label>
                                 <div class="input-group ">
                                     <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-arrow-left"></i></span>
@@ -38,7 +38,7 @@
                             </div>
                           
                             <!-- Champs pour les symptômes -->
-                            <div class="mb-20 form-group col-sm-12 mb-2">
+                            <div class="mb-20 form-group col-sm-6 mb-2">
                                 <label class="mb-10 fw-semibold">Symptômes (optionnel)</label>
                                 <div class="select-container">
                                     <select name="symptoms[]" class="form-control select2">
@@ -50,7 +50,7 @@
                             </div>
 
                             <!-- Champs pour les maux -->
-                            <div class="mb-20 form-group col-sm-12 mb-2">
+                            <div class="mb-20 form-group col-sm-6 mb-2">
                                 <label class="mb-10 fw-semibold">Maux (optionnel)</label>
                                 <div class="select-container">
                                     <select name="illnesses[]" class="form-control select2">
@@ -62,7 +62,7 @@
                             </div>
 
                             <!-- Champs pour les maladies -->
-                            <div class="mb-20 form-group col-sm-12 mb-2">
+                            <div class="mb-20 form-group col-sm-6 mb-2">
                                 <label class="mb-10 fw-semibold">Maladies (optionnel)</label>
                                 <div class="select-container">
                                     <select name="diseases[]" class="form-control select2">

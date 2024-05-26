@@ -131,23 +131,80 @@
              <!-- End::slide__category -->
              <!-- Start::slide -->
              <li class="slide has-sub">
-                <a href="javascript:void(0);" class="side-menu__item">
+               <a href="javascript:void(0);" class="side-menu__item">
 
-                   <span class="side-menu__label"><i class="fa fa-cubes"></i>      SERVICES</span>
-                   <i class="fe fe-chevron-right side-menu__angle"></i>
-                </a>
-                <ul class="slide-menu child1">
-                   <li class="slide side-menu__label1">
-                      <a href="javascript:void(0);">Services</a>
-                   </li>
-                   <li class="slide">
-                      <a href="{{route('admin.service.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle"></i>        Ajouter</span></a>
-                   </li>
-                   <li class="slide">
-                      <a href="{{route('admin.service.index')}}" class="side-menu__item"><span><i class="fa fa-list-ol"></i>        Listes</span></a>
-                   </li>
-                </ul>
-             </li>
+                  <span class="side-menu__label"><i class="fa fa-cubes"></i>      SERVICES</span>
+                  <i class="fe fe-chevron-right side-menu__angle"></i>
+               </a>
+               <ul class="slide-menu child1">
+                 <li class="slide has-sub">
+                    <a href="javascript:void(0);" class="side-menu__item">
+    
+                       <span class="side-menu__label"><i class="fa fa-cubes"></i>Symptomes</span>
+                       <i class="fe fe-chevron-right side-menu__angle"></i>
+                    </a>
+                    <ul class="slide-menu child1">
+                       <li class="slide side-menu__label1">
+                          <a href="javascript:void(0);">Symptomes</a>
+                       </li>
+                       <li class="slide">
+                          <a href="{{route('admin.symptomes.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle"></i>  Ajouter</span></a>
+                       </li>
+                       <li class="slide">
+                          <a href="{{route('admin.symptomes.index')}}" class="side-menu__item"><span><i class="fa fa-list-ol"></i>        Listes</span></a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li class="slide has-sub">
+                    <a href="javascript:void(0);" class="side-menu__item">
+    
+                       <span class="side-menu__label"><i class="fa fa-cubes"></i>Maladies</span>
+                       <i class="fe fe-chevron-right side-menu__angle"></i>
+                    </a>
+                    <ul class="slide-menu child1">
+                       <li class="slide side-menu__label1">
+                          <a href="javascript:void(0);">Maladies</a>
+                       </li>
+                       <li class="slide">
+                          <a href="{{route('admin.maladies.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle"></i>  Ajouter</span></a>
+                       </li>
+                       <li class="slide">
+                          <a href="{{route('admin.maladies.index')}}" class="side-menu__item"><span><i class="fa fa-list-ol"></i>        Listes</span></a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li class="slide has-sub">
+                    <a href="javascript:void(0);" class="side-menu__item">
+    
+                       <span class="side-menu__label"><i class="fa fa-cubes"></i>Maux</span>
+                       <i class="fe fe-chevron-right side-menu__angle"></i>
+                    </a>
+                    <ul class="slide-menu child1">
+                       <li class="slide side-menu__label1">
+                          <a href="javascript:void(0);">Maux</a>
+                       </li>
+                       <li class="slide">
+                          <a href="{{route('admin.maux.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle"></i>  Ajouter</span></a>
+                       </li>
+                       <li class="slide">
+                          <a href="{{route('admin.maux.index')}}" class="side-menu__item"><span><i class="fa fa-list-ol"></i>        Listes</span></a>
+                       </li>
+                    </ul>
+                 </li>
+                  <li class="slide side-menu__label1">
+                     <a href="javascript:void(0);">Services</a>
+                  </li>
+                  <li class="slide">
+                     <a href="{{route('admin.service.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle"></i>        Ajouter</span></a>
+                  </li>
+                  <li class="slide">
+                     <a href="{{route('admin.service.index')}}" class="side-menu__item"><span><i class="fa fa-list-ol"></i>        Listes</span></a>
+                  </li>
+
+               </ul>
+
+
+            </li>
              <!-- End::slide -->
 
                           <!-- Start::slide  Actualité-->

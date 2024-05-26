@@ -48,11 +48,11 @@
                                 <td><img  width="25" height="25" class=" rounded-circle" src="{{asset('storage/'.$service->avatar)}} " alt="Image"></td>
                                 <td>
                                     <div class="avatar-list text-end">
-                                        {{-- <span class="avatar rounded-circle bg-blue-dark" ><i class="fe fe-eye fs-15"></i></span> --}}
+                                        <span class="btn btn-sm btn-icon btn-info-light rounded-circle m-2" ><i class="fe fe-eye fs-15"></i></span>
                                         <span class="btn btn-sm btn-icon btn-info-light rounded-circle"><a href="{{route('admin.service.edit', $service)}}" class=""><i class="bi bi-pencil-square"></i></a></span>
-                                        {{-- <span class="avatar rounded-circle bg-danger" data-bs-toggle="modal" --}}
-                                        {{-- data-bs-target="#delete"><i class="bi bi-trash fs-15 "></i> --}}
-                                        {{-- </span> --}}
+                                        <span class="btn btn-sm btn-icon btn-info-light rounded-circle m-2" data-bs-toggle="modal"
+                                        data-bs-target="#delete"><i class="bi bi-trash fs-15 "></i>
+                                        </span>
                                     </div>
                                 </td>
                             </tr>
@@ -63,7 +63,7 @@
                 </div>
         </div>
 
-          {{-- <div class="modal fade" id="delete">
+          <div class="modal fade" id="delete">
             <div class="modal-dialog modal-dialog-centered text-center" role="document">
                 <div class="modal-content tx-size-sm">
                     <div class="modal-body p-4 pb-5">
@@ -107,7 +107,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         {{-- @endforeach --}}
        </div>
     </div>
