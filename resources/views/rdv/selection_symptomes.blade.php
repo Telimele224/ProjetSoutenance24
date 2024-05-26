@@ -1,6 +1,7 @@
 @extends('rdv.headerRdv')
 
 @section('contenu')
+<link rel="stylesheet" href="{{ asset('assets/scroll.css') }}">
 
 <div class="card" style="margin-top:20px; margin-left:20%; width:60%">
     <div class=" card text-center" >
@@ -26,7 +27,7 @@
                     <div class="col-md-6">
                         <img src="{{asset('logo/symptomecheck.svg')}}" alt=""  srcset="">
                     </div>
-                    <div class="col-md-5">
+                    <div class="card scroll-container col-md-5" style="max-height: 300px; overflow-y: auto;">
                         @foreach($symptomes as $symptome)
                         <div class="row form-check form-group input-group mb-2">
                             <div class="col-sm-2">

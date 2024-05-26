@@ -1,6 +1,7 @@
 @extends('rdv.headerRdv')
 
 @section('contenu')
+<link rel="stylesheet" href="{{ asset('assets/scroll.css') }}">
 
 <div class="card" style="margin-top:20px; margin-left:20%; width:60%">
     <div class=" card text-center" >
@@ -27,17 +28,17 @@
                     <div class="col-md-6">
                         <img src="{{asset('logo/symptomecheck.svg')}}" alt="symptomes chech image">
                     </div>
-                    <div class="col-md-5">
-                         @foreach($maux as $mal)
-                <div class="form-check input-group form-group mb-2">
-                    <div class="col-sm-2">
-                        <input class="form-check-input form-control p-3" type="checkbox" value="{{ $mal->id }}" id="mal{{ $mal->id }}" name="maux[]">
-                    </div>
-                    <label class="form-check-label form-control" for="mal{{ $mal->id }}">
-                        {{ $mal->nom }}
-                    </label>
-                </div>
-            @endforeach
+                    <div class="card scroll-container col-md-5" style="max-height: 300px; overflow-y: auto;">
+                        @foreach($maux as $mal)
+                            <div class="form-check input-group form-group mb-2">
+                                <div class="col-sm-2">
+                                    <input class="form-check-input form-control p-3" type="checkbox" value="{{ $mal->id }}" id="mal{{ $mal->id }}" name="maux[]">
+                                </div>
+                                <label class="form-check-label form-control" for="mal{{ $mal->id }}">
+                                    {{ $mal->nom }}
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
 
