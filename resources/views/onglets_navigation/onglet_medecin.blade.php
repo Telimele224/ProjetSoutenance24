@@ -2,11 +2,11 @@
 <aside class="app-sidebar sticky" id="sidebar">
     <!-- Start::main-sidebar-header -->
     <div class="main-sidebar-header">
-       <a href="index.html" class="header-logo">
-       <img src="{{asset('assets/build/assets/images/brand/desktop-logo.png')}}" alt="logo" class="desktop-logo">
-       <img src="{{asset('assets/build/assets/images/brand/toggle-logo.png')}}" alt="logo" class="toggle-logo">
-       <img src="{{asset('assets/build/assets/images/brand/desktop-dark.png')}}" alt="logo" class="desktop-dark">
-       <img src="{{asset('assets/build/assets/images/brand/toggle-dark.png')}}" alt="logo" class="toggle-dark">
+       <a href="{{route('welcome')}}" class="header-logo">
+       <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="desktop-logo">
+       <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="toggle-logo">
+       <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="desktop-dark">
+       <img src="{{asset('logo/LogoHRL.png')}}" width="85" height="85" alt="logo" class="toggle-dark">
        </a>
     </div>
     <!-- End::main-sidebar-header -->

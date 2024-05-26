@@ -8,7 +8,7 @@
           <div class="card shadow-none">
             <div class="row m-3">
                 <div class="text-center">
-                   <a href="index.html"><img src="{{asset('logo/LogoHRL.png')}}" width="90" height="90" class="header-brand-img" alt=""></a>
+                   <a href="index.html"><img src="{{asset('logo/LogoHRL.png')}}" width="90" height="80" class="header-brand-img" alt=""></a>
                 </div>
              </div>
              <div class="card-body p-sm-6">
