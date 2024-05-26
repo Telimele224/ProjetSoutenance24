@@ -26,7 +26,7 @@
 
             <!-- Photo du service -->
             <div class="mb-4   p-1" style="height: 200px;">
-                <img src="{{ asset('storage/' . $service->photo) }}" alt="{{ $service->nom }}" class="w-100 img-fluid" style="height: 250px;">
+                <img src="{{ asset('storage/' . $service->photo) }}" alt="{{ $service->nom }}" class="w-100 mt-2 img-fluid" style="height: 200px;">
             </div>
 
             <!-- Description du service -->
@@ -55,10 +55,8 @@
                 </div>
             </div>
         </div>
-        <div class="card-header  p-1">
             <h6 class="text-uppercase">Description du service</h6>
-        </div>
-        <div class="card ">
+        <div class="card p-4">
             <textarea class="mb-0  " style="border: none;" disabled>{{ $service->description }} </textarea>
         </div>
     </div>

@@ -92,7 +92,7 @@
             @foreach ($services as $service)
                 <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.5s">
                     <div class="dep" onclick="location.href='{{route('admin.service.show',$service)}}';" style="cursor:pointer;">
-                        <div class="icon"> <img src="{{asset('storage/'.$service->avatar)}}" alt="Icon"></div>
+                        <div class="icon "> <img src="{{asset('storage/'.$service->avatar)}}" class="mb-2" alt="Icon"></div>
                         <h3 class="baslik-3 h-yazi-margin-kucuk1">{{$service->nom}}</h3>
                     </div>
                 </div>

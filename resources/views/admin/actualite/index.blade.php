@@ -35,9 +35,12 @@
                                     <tr>
                                         <td>{{$k+1}}</td>
                                         <td>{{$actualite->titre}}</td>
-                                        <td>{{$actualite->contenu}}</td>
+                                        <td>{{ Illuminate\Support\Str::limit($actualite->contenu, 12) }}</td>
                                         <td><h6 class="card-text"><small class="text-muted"> Publier le : {{$actualite->created_at->format('d-m-Y')}}</small></h6></td>
-                                        <td><img  class="card-img-top" src="{{asset('storage/'.$actualite->avatar)}} " alt="Image"></td>
+                                        <td>
+                                            <img class="card-img-top rounded-circle" src="{{ asset('storage/'.$actualite->avatar) }}" alt="Image" style="max-width: 50px; max-height: 50px;">
+                                        </td>
+
                                         <td>
                                             <div class="avatar-list text-end">
                                                 <span class="btn btn-sm btn-icon btn-info-light rounded-circle m-2"><a href="{{route('admin.actualite.show', $actualite)}}"><i class="fe fe-eye"></i></a></span>

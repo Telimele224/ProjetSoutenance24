@@ -139,8 +139,7 @@
                <ul class="slide-menu child1">
                  <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
-    
-                       <span class="side-menu__label"><i class="fa fa-cubes"></i>Symptomes</span>
+                       <span class="side-menu__label"><i class="fa fa-teinte"></i>Symptomes</span>
                        <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">
@@ -157,8 +156,8 @@
                  </li>
                  <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
-    
-                       <span class="side-menu__label"><i class="fa fa-cubes"></i>Maladies</span>
+
+                       <span class="side-menu__label"><i class="fa fa-stéhoscope"></i>Maladies</span>
                        <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">
@@ -175,8 +174,8 @@
                  </li>
                  <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
-    
-                       <span class="side-menu__label"><i class="fa fa-cubes"></i>Maux</span>
+
+                       <span class="side-menu__label"><i class="fa fa-thermomètre"></i>Maux</span>
                        <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">

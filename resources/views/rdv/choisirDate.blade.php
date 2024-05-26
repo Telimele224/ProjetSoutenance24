@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 @if(empty($horairesParJour))
-                <div class="alert alert-warning" role="alert">
+                <div class="alert alert-danger" role="alert">
                     Ce médecin n'a pas d'horaires disponibles pour le moment.
                 </div>
                 @else

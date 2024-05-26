@@ -177,8 +177,8 @@
                       <a href="javascript:void(0);" class="header-link dropdown-toggle d-flex align-items-center"
                          id="mainHeaderProfile" data-bs-toggle="dropdown" aria-expanded="false">
                          <span class="me-2">
-                         <img src="{{asset('storage/'.Auth::user()->photo)}}" alt="img" width="30"
-                            height="30" class="rounded-circle">
+                         <img src="{{asset('storage/'.Auth::user()->photo)}}" alt="img" width="40"
+                            height="50" class="rounded-circle">
                          </span>
                          <div class="d-xl-block d-none lh-1">
                             <h6 class="fs-13 font-weight-semibold mb-0">{{ Auth::user()->name }} </h6>

@@ -16,6 +16,10 @@ class MaladieSeeder extends Seeder
          $maladie3 = Disease::create(['nom' => 'Pneumonie']);
          $maladie4 = Disease::create(['nom' => 'Hypertension artérielle']);
          $maladie5 = Disease::create(['nom' => 'Asthme']);
+         $maladie5 = Disease::create(['nom' => 'Migraines']);
+         $maladie5 = Disease::create(['nom' => 'Maladie coeliaque']);
+         $maladie5 = Disease::create(['nom' => 'Bronchites']);
+         $maladie5 = Disease::create(['nom' => 'Gastrite']);
 
     }
 }

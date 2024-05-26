@@ -22,11 +22,14 @@
                                  <p class="list-group-item">Aucun service trouvé pour les critères sélectionnés.</p>
                             @else
                         @foreach($services as $service)
-                            <div class="row mb-2 service-item" data-name="{{ $service->nom }}" data-description="{{ $service->description }}">
+                            <div class="row mb-2 service-item" data-name="{{ $service->nom }}">
                                 <div class="col-md-10">
-                                    <a href="{{ route('afficherMedecinsParService', ['serviceId' => $service->service_id]) }}" class="list-group-item list-group-item-action">
-                                        {{ $service->nom }} - {{ $service->description }}
+                                    <h6 class="text-bold title text-uppercase ">
+                                    <a {{ route('afficherMedecinsParService', ['serviceId' => $service->service_id]) }}" class="list-group-item list-group-item-action">
+                                        {{ $service->nom }}
                                     </a>
+                                    </h6>
+
                                 </div>
                                 <div class="col-md-2">
                                     <a href="{{ route('detailService', ['serviceId' => $service->service_id]) }}" class="btn btn-outline-primary " title="Afficher les détails">
