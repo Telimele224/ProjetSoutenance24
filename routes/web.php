@@ -146,6 +146,9 @@ Route::prefix('patients')->name('patients.')->group(function () {
     // Route::resource('calendrier',calendrierControllers::class)->except('show');
 });
 
+Route::get('Dossier_medical/consultation/{consultation}', [DossierMedicalController::class, 'show'])->name('dossier_medical.consultation.show');
+
+
 //ROUTE POUR LE MEDECINS BACK_END
 Route::prefix('medecins')->name('medecins.')->group(function () {
     // Route::resource('calendrier',calendrierControllers::class)->except('show');
@@ -155,6 +158,8 @@ Route::prefix('medecins')->name('medecins.')->group(function () {
     Route::resource('ordonance',OrdonnanceController::class);
     Route::get('medecins/consultation/rendezvous', [RdvController::class, 'mesRendezVous'])->name('mesrendezvous');
 });
+ // Route personnalisée pour create avec paramètre
+ Route::get('ordonance/create/{consultation_id}', [OrdonnanceController::class, 'create'])->name('ordonance.create');
 // Route::get('/medecins/consultation/getPatientsByDate', [ConsultationController::class, 'getPatientsByDate'])->name('medecins.consultation.getPatientsByDate');
 
 
@@ -260,5 +265,7 @@ Route::post('/choisirHeure_patient', [RdvpatientController::class, 'choisirHeure
 Route::get('/confirmation-rdv_view_patient', [RdvpatientController::class,'confirmationRdv_view'])->name('confirmation_rdv_view_patient');
 Route::post('/confirmation-rdv_patient', [RdvpatientController::class,'confirmationRdv'])->name('confirmation_rdv_patient');
 Route::post('/ajouterRendezVous_patient', [RdvpatientController::class, 'ajouterRendezVous'])->name('ajouterRendezVous_patient');
-
+Route::get('/rdvdetail_medecin_patient/{medecinId}', [RdvpatientController::class, 'detail_medecin_patient'])->name('rdv.detail_medecin_patient');
+Route::get('/services_patient/{serviceId}/details', [RdvpatientController::class, 'detail_service_patient'])->name('detailService_patient');
+Route::get('/annuler_rendezvous_patient', [RdvpatientController::class, 'annuler_rendezvous'])->name('annulerRendezvous_patient');
 require __DIR__.'/auth.php';

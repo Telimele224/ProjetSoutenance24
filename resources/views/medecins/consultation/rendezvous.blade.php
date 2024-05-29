@@ -43,7 +43,8 @@
                                     <th class="">Heure</th>
                                     <th class="">Patient</th>
                                     <th class="">Telephone</th>
-                                    <th class="">statut</th>
+                                    <th class="">Statut</th>
+                                    <th class="">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="p-2">
@@ -57,6 +58,11 @@
                                             <td>P.{{ $rendezVous->patient->user->nom }} {{ $rendezVous->patient->user->prenom }}</td>
                                             <td>{{$rendezVous->patient->user->telephone}}</td>
                                             <td>{{$rendezVous->statut}}</td>
+                                           <td><div class=" text-center">
+                                            <span class=" btn btn-primary">
+                                                <a href="{{route('medecins.consultation.create')}}">Consulter</a>
+                                            </span>
+                                        </div> </td>
                                         </tr>
                                     @endif
                                 @endforeach

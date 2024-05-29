@@ -4,23 +4,23 @@
 @section('contenu')
 <div class="container card p-3" style="margin-top: 20px; width: 60%;">
     <div class="card mb-4">
-        <h5 class="text-uppercase text-center mt-3">Médecins disponible du service</h5>
+        <h5 class="text-uppercase text-center mt-3">Médecins disponibles du service</h5>
     </div>
 
     <form action="{{ route('rechercheMedecin') }}" method="GET">
         @csrf
         <div class="form-group mb-3">
             <label for="rechercheMedecin">RECHERCHER <i class="fa fa-search"></i> :</label>
-            <input type="text" id="rechercheMedecin" placeholder="Entrer le nom du medecin" name="rechercheMedecin" class="form-control">
+            <input type="text" id="rechercheMedecin" placeholder="Entrer le nom du médecin" name="rechercheMedecin" class="form-control">
         </div>
 
-         <div class="form-group mb-3">
+        <div class="form-group mb-3">
             <h6 class="text-uppercase">Listes des médecins du service : {{ $service->nom }}</h6>
         </div>
 
-        <div class="">
+        <div class="" id="medecinList">
             @if(isset($message))
-                 <p>{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
             @else
             <div class="row">
                 <div class="col-md-5">
@@ -33,7 +33,7 @@
                             <a href="{{ route('choisirDate', ['medecinId' => $medecin->id]) }}" class="list-group-item list-group-item-action d-flex align-items-center">
                                 <!-- Avatar du médecin -->
                                 <div class="rounded-circle overflow-hidden me-3" style="width: 40px; height: 40px;">
-                                    <img src="{{ asset('storage/' . $medecin->user->photo) }}" alt="{{ $medecin->user->nom }}" class="w-100 h-90 object-fit-cover">
+                                    <img src="{{ asset('storage/' . $medecin->user->photo) }}" alt="{{ $medecin->user->nom }}" class="w-100 h-100 object-fit-cover">
                                 </div>
                                 <!-- Nom et spécialité du médecin -->
                                 <div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-2 d-flex justify-content-center">
                             <a href="{{ route('rdv.detail_medecin', ['medecinId' => $medecin->id]) }}" class="btn btn-outline-primary btn-sm" title="Afficher les détails">
-                                <i class="fa fa-eye  fs-22 "></i>
+                                <i class="fa fa-eye fs-22"></i>
                             </a>
                         </div>
                     </div>
@@ -60,3 +60,4 @@
 @include('rdv/scripts')
 
 @endsection
+

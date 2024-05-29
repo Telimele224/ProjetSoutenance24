@@ -31,7 +31,6 @@ class ConsultationRequest extends FormRequest
             'examen_complementaire'=>['required','string'],
             'suivi_recommande'=>['required','string'],
             'note_medecin'=>['required','string'],
-            'frais'=>['required','string'],
             'status'=>['required','string'],
         ];
 

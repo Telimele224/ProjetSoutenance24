@@ -23,58 +23,71 @@
        <div class="row">
           <div class="card-body">
             <!-- Formulaire de recherche -->
-            <form action="{{ route('medecins.ordonance.index') }}" method="GET" class="mb-3">
-                <div class="input-group row">
-                    <div class="col-md-10">
-                        <input type="text" name="search" class="form-control" placeholder="Rechercher par numéro de téléphone ou code">
+            <form action="{{ route('medecins.ordonance.index') }}" method="GET" class="search-form">
+                <div class="input-group col-xl-5 col-lg-4 col-md-4 col-sm-4 mb-4">
+                  <div class="input-group-text">
+                    <button type="submit"><i class="fa fa-search feather feather-search icon-md cursor-pointer"></i></button>
+                  </div>
+                  <input type="text"  name="search" class=" rounded-1  form-control" id="searchForm" placeholder="Cherche ici...| par numero de téléphone">
+                </div>
+              </form>
+            {{-- <form action="{{ route('medecins.ordonance.index') }}" method="GET" class="mb-3">
+                <div class="input-group row gy-4">
+                    <div class="icon col-xl-5 col-lg-4 col-md-4 col-sm-4">
+                        <input type="text" name="search" class=" rounded-3 form-control" placeholder="Rechercher par numéro de téléphone ou code">
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary text-end">Rechercher</button>
+                        <button type="submit" class="btn btn-primary text-end"><i c></i></button>
                     </div>
 
                 </div>
-            </form>
+            </form> --}}
 
             <div class="table-responsive">
-                <table class="table border-top table-bordered mb-0 text-nowrap">
+                <table class="table border-top table-bordered text-center mb-0 text-nowrap">
                     <thead class="table-success">
                         <tr>
                             <th>Numero</th>
                             <th>Nom Patient</th>
-                            <th>Type Consultation</th>
-                            <th>Code</th>
-                            <th>Status</th>
-                            <th>Frais</th>
+                            <th>N° Téléphone</th>
+                            <th>Médicament</th>
+                            <th>Posologie</th>
+                            <th>Mode d'utilisation</th>
+
                             <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
-                            <th class="text-end">Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($ordonances as $k => $ordonance)
                             <tr>
                                 <td>{{ $k + 1 }}</td>
-                                {{-- @if($ordonance->patient) <!-- Vérifiez si la ordonance est liée à un patient -->
-                                <td>{{ $ordonance->patient->user->prenom }}  {{ $ordonance->patient->user->nom }}</td>
-                                @else --}}
-                                    {{-- <td colspan="2">Aucun patient associé</td> <!-- Si la ordonance n'est pas liée à un patient -->
+                                <!-- Vérifiez si la ordonnance est liée à une consultation, un rdv et un patient -->
+                                @if($ordonance->consultation && $ordonance->consultation->rdv && $ordonance->consultation->rdv->patient && $ordonance->consultation->rdv->patient->user)
+                                    <td>{{ $ordonance->consultation->rdv->patient->user->prenom }}  {{ $ordonance->consultation->rdv->patient->user->nom }}</td>
+                                @else
+                                    <!-- Si l'ordonnance n'est pas liée à un patient -->
+                                    <td colspan="2">Aucun patient associé</td>
                                 @endif
-                                <td>{{ $ordonance->typeordonance->name }}</td> --}}
-                                {{-- <td>{{ $ordonance->code }}</td> --}}
-                                {{-- <td>{{ $ordonance->status }}</td>
-                                <td>{{ $ordonance->frais }}</td> --}}
+                                <td>{{ $ordonance->consultation->rdv->patient->user->telephone }}</td>
+                                <td>{{ $ordonance->name }}</td>
+                                <td>{{ $ordonance->posologie }}</td>
+                                <td>{{ $ordonance->mode_utilisation }}</td>
                                 <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
                                 <td>
                                     <div class="avatar-list text-end">
-                                        <span class="avatar rounded-circle bg-blue-dark">
-                                            <a href=""><i class="fe fe-eye fs-15"></i></a>
+                                        <span class="avatar rounded-circle bg-blue-priamry">
+                                            <a href="{{route('medecins.ordonance.show',$ordonance) }}"><i class="fe fe-eye fs-15"></i></a>
                                         </span>
-                                        <span class="avatar rounded-circle bg-blue">
-                                            <a href="" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
+                                        <span class="avatar rounded-circle btn btn-info">
+                                            <a href="{{route('medecins.ordonance.edit', ['ordonance' => $ordonance->id])}}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
                                         </span>
-                                        <span class="avatar rounded-circle bg-blue">
-                                            <a href="" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
+                                        <span class="avatar rounded-circle btn btn-dark">
+                                            <a href="#" class="text-decoration-none text-default"><i class="icon icon-printer"></i></a>
                                         </span>
-
+                                        <span class="avatar rounded-circle btn btn-secondary">
+                                            <a href="" class="text-decoration-none text-default"><i class="fa fa-file-pdf-o fs-15"></i></a>
+                                        </span>
                                     </div>
                                 </td>
                             </tr>
@@ -85,11 +98,10 @@
         </div>
        </div>
     </div>
- </div>
-<!-- JavaScript pour afficher la fenêtre modale -->
+</div>
 
 <script>
-    // Attendre 10 secondes (10000 millisecondes) avant de masquer le message de succès
+    // Attendre 5 secondes (5000 millisecondes) avant de masquer le message de succès
     setTimeout(function(){
         $('#success-message').fadeOut();
     }, 5000);

@@ -17,15 +17,6 @@ class RdvpatientController extends Controller
 {
 
 
-
-    public function detail_service($serviceId)
-    {
-        $service = Service::with('medecin.user')->findOrFail($serviceId);
-        $medecins = $service->medecin;  // Récupérer les médecins du service
-
-        return view('rdv.show_service', compact('service', 'medecins'));
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -58,90 +49,129 @@ class RdvpatientController extends Controller
 
 
         public function recommander_servicePar_symptome(Request $request)
-    {
-        // Valider les données du formulaire
-        $request->validate([
-            'symptomes' => 'array', // Les symptômes doivent être un tableau
-        ]);
+        {
+            // Valider les données du formulaire
+            $request->validate([
+                'symptomes' => 'required|array|min:1', // Les symptômes doivent être un tableau avec au moins un élément
+            ], [
+                'symptomes.required' => 'Vous devez sélectionner au moins un symptôme.',
+                'symptomes.array' => 'La sélection des symptômes est invalide.',
+                'symptomes.min' => 'Vous devez sélectionner au moins un symptôme.',
+            ]);
 
-        // Récupérer les symptômes sélectionnés
-        $symptomes = $request->input('symptomes', []);
+            // Récupérer les symptômes sélectionnés
+            $symptomes = $request->input('symptomes', []);
 
-        // Construction de la requête pour récupérer les services
-        $servicesQuery = Service::query();
+            // Construction de la requête pour récupérer les services
+            $servicesQuery = Service::query();
 
-        // Joindre la table pivot service_symptom_illness_disease
-        $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
+            // Joindre la table pivot service_symptom_illness_disease
+            $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
 
-        // Ajouter les contraintes en fonction des symptômes sélectionnés
-        if (!empty($symptomes)) {
-            $servicesQuery->whereIn('service_symptom_illness_disease.symptom_id', $symptomes);
+            // Ajouter les contraintes en fonction des symptômes sélectionnés
+            if (!empty($symptomes)) {
+                $servicesQuery->whereIn('service_symptom_illness_disease.symptom_id', $symptomes);
+            }
+
+            // Récupérer les services recommandés
+            $services = $servicesQuery->distinct()->get();
+
+            // Retourner la vue avec les services recommandés
+            return view('patients.rendez-vous.selectionService', compact('services'));
         }
 
-        // Récupérer les services recommandés
-        $services = $servicesQuery->distinct()->get();
 
-        // Retourner la vue avec les services recommandés
-        return view('patients.rendez-vous.selectionService', compact('services'));
+
+        public function recommander_servicePar_maux(Request $request)
+        {
+            // Valider les données du formulaire
+            $request->validate([
+                'maux' => 'required|array|min:1', // Les maux doivent être un tableau avec au moins un élément
+            ], [
+                'maux.required' => 'Vous devez sélectionner au moins un mal.',
+                'maux.array' => 'La sélection des maux est invalide.',
+                'maux.min' => 'Vous devez sélectionner au moins un mal.',
+            ]);
+
+            // Récupérer les maux sélectionnés
+            $maux = $request->input('maux', []);
+
+            // Construction de la requête pour récupérer les services
+            $servicesQuery = Service::query();
+
+            // Joindre la table pivot service_symptom_illness_disease
+            $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
+
+            // Ajouter les contraintes en fonction des maux sélectionnés
+            if (!empty($maux)) {
+                $servicesQuery->whereIn('service_symptom_illness_disease.illness_id', $maux);
+            }
+
+            // Récupérer les services recommandés
+            $services = $servicesQuery->distinct()->get();
+
+            // Retourner la vue avec les services recommandés
+            return view('patients.rendez-vous.selectionService', compact('services'));
+        }
+
+
+
+        public function recommander_servicePar_maladie(Request $request)
+        {
+            // Valider les données du formulaire
+            $request->validate([
+                'maladies' => 'required|array|min:1', // Les maladies doivent être un tableau avec au moins un élément
+            ], [
+                'maladies.required' => 'Vous devez sélectionner au moins une maladie.',
+                'maladies.array' => 'La sélection des maladies est invalide.',
+                'maladies.min' => 'Vous devez sélectionner au moins une maladie.',
+            ]);
+
+            // Récupérer les maladies sélectionnées
+            $maladies = $request->input('maladies', []);
+
+            // Construction de la requête pour récupérer les services
+            $servicesQuery = Service::query();
+
+            // Joindre la table pivot service_symptom_illness_disease
+            $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
+
+            // Ajouter les contraintes en fonction des maladies sélectionnées
+            if (!empty($maladies)) {
+                $servicesQuery->whereIn('service_symptom_illness_disease.disease_id', $maladies);
+            }
+
+            // Récupérer les services recommandés
+            $services = $servicesQuery->distinct()->get();
+
+            // Retourner la vue avec les services recommandés
+            return view('patients.rendez-vous.selectionService', compact('services'));
+        }
+
+
+
+
+    // Dans RdvController
+    public function detail_medecin_patient($medecinId)
+    {
+        // Récupérer le médecin
+        $medecin = Medecin::findOrFail($medecinId);
+
+        // Récupérer les horaires de disponibilité du médecin
+        $horaires = $medecin->horaires;
+
+        // Retourner la vue avec les données du médecin
+        return view('patients.rendez-vous.show_medecin', compact('medecin', 'horaires'));
     }
 
 
-    public function recommander_servicePar_maux(Request $request)
-    {
-        // Valider les données du formulaire
-        $request->validate([
-            'maux' => 'array', // Les maux doivent être un tableau
-        ]);
+    public function detail_service_patient($serviceId)
+        {
+            $service = Service::with('medecin.user')->findOrFail($serviceId);
+            $medecins = $service->medecin;  // Récupérer les médecins du service
 
-        // Récupérer les maux sélectionnés
-        $maux = $request->input('maux', []);
-
-        // Construction de la requête pour récupérer les services
-        $servicesQuery = Service::query();
-
-        // Joindre la table pivot service_symptom_illness_disease
-        $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
-
-        // Ajouter les contraintes en fonction des maux sélectionnés
-        if (!empty($maux)) {
-            $servicesQuery->whereIn('service_symptom_illness_disease.illness_id', $maux);
+            return view('patients.rendez-vous.show_service', compact('service', 'medecins'));
         }
-
-        // Récupérer les services recommandés
-        $services = $servicesQuery->distinct()->get();
-
-        // Retourner la vue avec les services recommandés
-        return view('patients.rendez-vous.selectionService', compact('services'));
-    }
-
-
-    public function recommander_servicePar_maladie(Request $request)
-    {
-        // Valider les données du formulaire
-        $request->validate([
-            'maladies' => 'array', // Les maladies doivent être un tableau
-        ]);
-
-        // Récupérer les maladies sélectionnées
-        $maladies = $request->input('maladies', []);
-
-        // Construction de la requête pour récupérer les services
-        $servicesQuery = Service::query();
-
-        // Joindre la table pivot service_symptom_illness_disease
-        $servicesQuery->join('service_symptom_illness_disease', 'services.service_id', '=', 'service_symptom_illness_disease.service_id');
-
-        // Ajouter les contraintes en fonction des maladies sélectionnées
-        if (!empty($maladies)) {
-            $servicesQuery->whereIn('service_symptom_illness_disease.disease_id', $maladies);
-        }
-
-        // Récupérer les services recommandés
-        $services = $servicesQuery->distinct()->get();
-
-        // Retourner la vue avec les services recommandés
-        return view('patients.rendez-vous.selectionService', compact('services'));
-    }
 
 
     public function afficherMedecinsParService($serviceId)
@@ -149,6 +179,11 @@ class RdvpatientController extends Controller
     // Récupérez les médecins du service spécifié
     $service = Service::find($serviceId);
     $medecins = Medecin::where('service_id',  $service->service_id)->get();
+
+      // Vérifiez s'il n'y a aucun médecin lié au service
+      if ($medecins->isEmpty()) {
+        return view('patients.rendez-vous.selectionMedecin', compact('service'))->with('message', 'Aucun médecin n\'est lié à ce service.');
+    }
 
     return view('patients.rendez-vous.selectionMedecin', compact('service', 'medecins'));
     }
@@ -420,6 +455,19 @@ public function confirmationRdv(Request $request)
         'rendezVousEnAttente' => $rendezVousEnAttente
     ])->with('success', 'La demande de rendez-vous a été confirmée avec succès');
 
+}
+
+public function annuler_rendezvous(){
+    $rendezVous = Rdv::all();
+    $rendezVousAcceptes = Rdv::where('statut', 'accepte')->get();
+    $rendezVousRejettes = Rdv::where('statut', 'rejette')->get();
+    $rendezVousEnAttente= Rdv::where('statut', 'annuler')->get();
+    return view('patients.home',[
+        'rendezVous'=>$rendezVous,
+        'rendezVousAcceptes' => $rendezVousAcceptes,
+        'rendezVousRejettes' => $rendezVousRejettes,
+        'rendezVousEnAttente' => $rendezVousEnAttente
+    ])->with('success', 'La demande de rendez-vous a été confirmée avec succès');
 }
 
 

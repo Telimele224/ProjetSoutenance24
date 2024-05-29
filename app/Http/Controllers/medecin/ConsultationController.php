@@ -31,18 +31,22 @@ class ConsultationController extends Controller
      */
     public function create()
     {
-        $essai = Rdv::all();
+        // Récupérer le premier rendez-vous disponible
+        $rdv = Rdv::first();
 
-        // dd($essai);
+        // Récupérer l'utilisateur (patient) associé au rendez-vous
+        $patient = $rdv->patient->user;
+
+        // Passer les informations du patient à la vue
         $consultation = new Consultation();
         return view('medecins.consultation.form', [
+            'rdv' => $rdv,
             'consultation' => $consultation,
-            'rdvs' => Rdv::all(),
+            'patient' => $patient, // Passer les informations du patient à la vue
             'typesConsultations' => TypeConsultation::all(),
-
         ]);
-
     }
+
 
 
     /**
@@ -52,16 +56,34 @@ class ConsultationController extends Controller
     {
         $data = $request->validated();
         Consultation::create($data);
-        return redirect()->route('medecins.consultation.index')->with('success', 'Ajout effectue avec succes');
+        return redirect()->route('medecins.consultation.index')->with('success', 'patient consulté avec succes');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Consultation $consultation)
     {
+        // Récupérer le rendez-vous associé à la consultation
+        $rdv = $consultation->rdv;
 
+        // Récupérer l'utilisateur (patient) associé au rendez-vous
+        $patient = $rdv->patient->user;
 
+        // Récupérer tous les types de consultations disponibles
+        $typesConsultations = TypeConsultation::all();
+
+        // Récupérer tous les patients pour le champ patient_id dans la vue
+        $patients = Patient::all();
+
+        // Passer les informations à la vue
+        return view('medecins.consultation.show', [
+            'rdv' => $rdv,
+            'consultation' => $consultation,
+            'patient' => $patient,
+            'typesConsultations' => $typesConsultations,
+            'patients' => $patients,
+        ]);
     }
 
     /**
@@ -69,12 +91,21 @@ class ConsultationController extends Controller
      */
     public function edit(Consultation $consultation)
     {
+        // Récupérer le rendez-vous associé à la consultation
+        $rdv = $consultation->rdv;
+
+        // Récupérer l'utilisateur (patient) associé au rendez-vous
+        $patient = $rdv->patient->user;
+
+        // Passer les informations à la vue
         return view('medecins.consultation.form', [
+            'rdv' => $rdv,
             'consultation' => $consultation,
-            'rdvs' => Rdv::all(),
+            'patient' => $patient,
             'typesConsultations' => TypeConsultation::all(),
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -105,7 +136,7 @@ class ConsultationController extends Controller
             $medecinId = $user->medecin->id;
 
             // Récupérer les rendez-vous du médecin avec les détails des patients
-            $rendezVous = Rdv::where('id_medecin', $medecinId)->where('is_deleted', true)->with('patient.user')->get();
+            $rendezVous = Rdv::where('id_medecin', $medecinId)->where('statut','accepté')->with('patient.user')->get();
 
             // Passer les rendez-vous à la vue
             return view('medecins.consultation.rendezvous', ['rendezVous' => $rendezVous,

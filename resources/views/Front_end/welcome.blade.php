@@ -10,22 +10,22 @@
             <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide1.jpg')}}"  width="1920"
             height="1080"></div>
             <div class="container">
-               <h1>Il n'y a pas de place <br>
+               {{-- <h1 class="text-info">Il n'y a pas de place <br>
                   pour les excuses en matière de santé
                </h1>
-               <p>Optenez les meilleurs soins de santé avec notre personnel compétent et expérimenté </p>
+               <p>Optenez les meilleurs soins de santé avec notre personnel compétent et expérimenté </p> --}}
                <div class="bosluks2"></div>
 
                <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank" ><i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;    Prendre rendez-vous →</a></div>
 
                <div class="or">
 
-                  <a href="#">En savoir plus →</a>
+                  <a href="{{route('apropos')}}">En savoir plus →</a>
                </div>
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-10" data-wow-delay="0.3s" data-background="{{asset('Slide/Slide3.jpg')}}"  width="1920"
+            <div class="slide-image wow fadeInUp mt-10" data-wow-delay="0.3s" data-background="{{asset('Slide/slider2.jpg')}}"  width="1920"
             height="1080"></div>
             <div class="container">
                <h1>Pour une vie <br>
@@ -36,12 +36,12 @@
                <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank"><i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;  Prendre rendez-vous →</a></div>
 
                <div class="or">
-                  <a href="#">En savoir plus →</a>
+                  <a href="{{route('apropos')}}">En savoir plus →</a>
                </div>
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/slide5.jpg')}}" width="1920"
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/services7.png')}}" width="1920"
             height="1080"></div>
             <div class="container">
                <h1>Medécins <br>
@@ -52,12 +52,12 @@
                <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank"> <i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;   Prendre rendez-vous →</a></div>
 
                <div class="or">
-                  <a href="#">En savoir plus →</a>
+                  <a href="{{route('apropos')}}">En savoir plus →</a>
                </div>
             </div>
          </div>
          <div class="swiper-slide">
-            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/slide4.jpg')}}"></div>
+            <div class="slide-image wow fadeInUp mt-5" data-wow-delay="0.3s" data-background="{{asset('Slide/slider4.jpg')}}"></div>
             <div class="container">
                <h1>Ne retardez pas  <br>
                   votre santé
@@ -66,7 +66,7 @@
                <div class="bosluks2"></div>
                <div class="or mb-2"> <a href="{{route('recommandation.service')}}" target="blank">   <i class="flaticon-timetable iconp"></i>&nbsp;&nbsp;&nbsp;Prendre rendez-vous →</a></div>
                <div class="or">
-                  <a href="#">En savoir plus →</a>
+                  <a href="{{route('apropos')}}">En savoir plus →</a>
                </div>
             </div>
          </div>
@@ -90,12 +90,20 @@
         <div class="col-lg-7">
             <div class="row">
             @foreach ($services as $service)
-                <div class="col-lg-3 wow bounceInLeft" data-wow-delay="0.5s">
-                    <div class="dep" onclick="location.href='{{route('admin.service.show',$service)}}';" style="cursor:pointer;">
-                        <div class="icon "> <img src="{{asset('storage/'.$service->avatar)}}" class="mb-2" alt="Icon"></div>
-                        <h3 class="baslik-3 h-yazi-margin-kucuk1">{{$service->nom}}</h3>
-                    </div>
-                </div>
+               <section >
+                     <div class="paketler wow fadeInLeft text-center" data-wow-delay="0.5s" onclick="location.href='{{route('admin.service.show',$service)}}';" style="cursor:pointer;">
+                           <div class="hizmet-kutu text-center">
+                              <div class="kutu-duzen  mt-0" style="height:180px; width: 180px ;" >
+                                 <div class="icon-box ">
+                                    <span class="border-layer"></span>
+                                    <i> <img src="{{asset('storage/'.$service->avatar)}}" height="70" width="65" class="mb-2" alt="Icon"></i>
+                                 </div>
+
+                              </div>
+                              <h3 class="text-center "><a href={{route('admin.service.show',$service)}}#">{{$service->nom}}</a></h3>
+                           </div>
+                     </div>
+               </section>
 
             @endforeach
 
@@ -114,30 +122,30 @@
                   <tbody>
                     <!-- Première ligne du corps du tableau -->
                     <tr>
-                      <td class="text-center" rowspan="2"><h3>Tous les jours</h3></td>
-                      <td class="text-center"><h3>Le Matin de</h3></td>
+                      <td class="text-center" rowspan="2"><h3 class="small">Tous les jours</h3></td>
+                      <td class="text-center"><h3 class="small">Le Matin de</h3></td>
                       <td class="text-center"><span class="text-danger"> 7 </span>h :<span class="text-danger"> 00</span> min-<span class="text-danger"> 8 </span> h :<span class="text-danger"> 00</span> min</td>
                     </tr>
                     <!-- Deuxième ligne du corps du tableau -->
                     <tr>
-                      <td class="text-center"><h3> L'après Midi</h3></td>
+                      <td class="text-center"><h3 class="small"> L'après Midi</h3></td>
                       <td class="text-center"><span class="text-danger">16</span> h : <span class="text-danger">30 </span> min-<span class="text-danger"> 20 </span> h :<span class="text-danger"> 00</span> min</td>
                     </tr>
                     <tr>
-                        <td class="text-center" colspan="3"><span class=""><h1>HEURE D'OUVERTURE 7JOURS /7:</h1></span></td>
+                        <td class="text-center" colspan="3"><span class=""><h4>HEURE D'OUVERTURE 7JOURS /7:</h4></span></td>
                       </tr>
                       <tr>
                           <td class="text-center" colspan="3"> <h1><span class="text-danger">24</span> h : <span class="text-danger">/ </span><span class="text-danger"> 24 </span> </h1></td>
                       </tr>
                     <tr>
                     <tr>
-                      <td class="text-center" colspan="3"><span class="text-danger"><h1>Interdiction formelle de sortir de :</h1></span></td>
+                      <td class="text-center" colspan="3"><span class="text-danger"><h4>Interdiction formelle de sortir de :</h4></span></td>
                     </tr>
                     <tr>
                         <td class="text-center" colspan="3"> <h1><span class="text-danger">19</span> h : <span class="text-danger">30 </span> min-<span class="text-danger"> 6 </span> h : <span class="text-danger">30 </span> min </h1></td>
                     </tr>
 
-                        <td class="text-center" colspan="3"><h1>De Malade Hospitalisé, Du Nouveaux Né et de Dépouille Mortelle</h1></td>
+                        <td class="text-center" colspan="3"><h4>De Malade Hospitalisé, Du Nouveaux Né et de Dépouille Mortelle</h4></td>
                     </tr>
 
                   </tbody>

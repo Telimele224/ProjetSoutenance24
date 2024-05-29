@@ -10,19 +10,24 @@ class RendezVousAnnule extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public $rdv;
+    public $patientUser;
+    public $rendezVous;
     public $raisonAnnulation;
 
-    public function __construct($user, $rdv, $raisonAnnulation)
+    public function __construct($patientUser, $rendezVous, $raisonAnnulation)
     {
-        $this->user = $user;
-        $this->rdv = $rdv;
+        $this->patientUser = $patientUser;
+        $this->rendezVous = $rendezVous;
         $this->raisonAnnulation = $raisonAnnulation;
     }
 
     public function build()
     {
-        return $this->view('emails.rendezVousAnnuler');
+        return $this->view('emails.rendezVousAnnuler')
+                    ->with([
+                        'patientUser' => $this->patientUser,
+                        'rendezVous' => $this->rendezVous,
+                        'raisonAnnulation' => $this->raisonAnnulation,
+                    ]);
     }
 }

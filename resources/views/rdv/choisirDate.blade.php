@@ -9,7 +9,7 @@
         {{ Session::get('success') }}
     </div>
     @elseif(Session::has('error'))
-    <div id="successMessage" class="alert alert-danger " style="height: 50px;margin-bottom:15px">
+    <div id="errorMessage" class="alert alert-danger " style="height: 50px;margin-bottom:15px">
         {{Session::get('error') }}
     </div>
     @endif

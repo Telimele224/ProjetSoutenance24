@@ -33,28 +33,31 @@
             <div class="card">
                 <div class="e-table px-5 pb-5">
                     <div class="table-responsive table-lg">
-                        <table class="table border-top table-bordered mb-0 text-nowrap">
+                        <table class="table border-top table-bordered text-center mb-0 text-nowrap">
                             <thead>
                                 <tr>
                                     <th>N°</th>
                                     <th>Prenom et Nom</th>
+                                    <th>N° Téléphone</th>
+                                    <th>Motif</th>
                                     <th>Type Consultation</th>
                                     <th>Status</th>
-                                    <th>Frais</th>
                                     <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
-                                    <th class="text-end">Action</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody >
                                 @foreach ($consultations as $k => $consultation)
-                                    @if (Auth::user()->id === $consultation->id_medecin)
+                                    {{-- @if (Auth::user()->id === $consultation->id_medecin) --}}
                                         <tr>
                                             <td>{{ $k + 1 }}</td>
                                             <td>{{ $consultation->rdv->patient->user->prenom }}  {{ $consultation->rdv->patient->user->nom }}</td>
+                                            <td>{{$consultation->rdv->patient->user->telephone }}</td>
+                                            <td>{{$consultation->motif}}</td>
                                             <td>{{ $consultation->typeConsultation->name }}</td>
                                             <td>{{ $consultation->status }}</td>
-                                            <td>{{ $consultation->frais }}</td>
+
                                             <!-- Ajoutez d'autres colonnes ici selon vos besoins -->
                                             <td>
                                                 <div class="avatar-list text-end">
@@ -64,14 +67,14 @@
                                                     <span class="avatar rounded-circle bg-blue">
                                                         <a href="{{route('medecins.consultation.edit',$consultation) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15 text-white"></i></a>
                                                     </span>
-                                                    <span class="avatar rounded-circle bg-red">
-                                                        <a href="{{ route('consultation.pdf', $consultation->id) }}" class="text-decoration-none text-default"><i class="fa fa-trash fs-15 text-white "></i></a>
+                                                    <span class="avatar rounded-circle bg-info">
+                                                        <a href="{{ route('ordonance.create', ['consultation_id' => $consultation->id] ) }}" class="text-decoration-none text-default"><i class="fa fa-folder-open-o fs-15 text-white "></i></a>
                                                     </span>
 
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endif
+                                    {{-- @endif --}}
                                 @endforeach
                             </tbody>
 

@@ -19,13 +19,13 @@
                 <div class="list-group service-list mt-2 mb-4" id="serviceList">
                     <div class="card mt-2">
                              @if($services->isEmpty())
-                                 <p class="list-group-item">Aucun service trouvé pour les critères sélectionnés.</p>
+                                 <p class="list-group-item text-dangers">Aucun service trouvé pour les critères sélectionnés.</p>
                             @else
                         @foreach($services as $service)
-                            <div class="row mb-2 service-item" data-name="{{ $service->nom }}">
+                            <div class="row mb-2 service-item" data-name="{{ $service->nom }}" data-description="{{$service->description}}">
                                 <div class="col-md-10">
                                     <h6 class="text-bold title text-uppercase ">
-                                    <a {{ route('afficherMedecinsParService', ['serviceId' => $service->service_id]) }}" class="list-group-item list-group-item-action">
+                                    <a href="{{ route('afficherMedecinsParService', ['serviceId' => $service->service_id]) }}" class="list-group-item list-group-item-action">
                                         {{ $service->nom }}
                                     </a>
                                     </h6>
@@ -42,11 +42,11 @@
                     </div>
 
                 </div>
-                <p id="noResultsMessage" class="list-group-item" style="display: none;">Aucun service trouvé pour les critères sélectionnés.</p>
+                <p id="noResultsMessage" class="list-group-item text-danger" style="display: none;">Aucun service trouvé pour les critères sélectionnés.</p>
             </div>
         </div>
 
     </div>
     @include('rdv/scripts')
 @endsection
-"
+

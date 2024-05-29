@@ -1,27 +1,34 @@
 <!-- choisir_date.blade.php -->
 @extends('en_tete.entete_patient')
+
 @section('contenu')
-<div class="card " style="margin-top:20px ;margin-left:10%; width:80%">
+<div class="card " style="margin-top:20px ;margin-left:10px; width:95%">
+    <div class="card " style="margin-top:20px ;margin-left:10%; width:80%">
     @if(Session::has('success'))
     <div id="successMessage" class="alert alert-success" style="height: 50px; margin-bottom: 15px">
         {{ Session::get('success') }}
     </div>
     @elseif(Session::has('error'))
-    <div id="successMessage" class="alert alert-danger " style="height: 50px;margin-bottom:15px">
+    <div id="errorMessage" class="alert alert-danger " style="height: 50px;margin-bottom:15px">
         {{Session::get('error') }}
     </div>
     @endif
+            <div class=" row card-header mb-4 p-3">
 
-            <div class="card-header text-center mt-2">
-                <h6>Choisissez une date de consultation
-                    <button class="btn btn-outline-success btn-select-date dbtn-sm float-end" data-toggle="collapse" data-target="#formSelectionDate" aria-expanded="false" aria-controls="formSelectionDate">
+                <div class="col-md-6 text-center">
+                    <h6 class="text-uppercase">Choisissez le jour et Heure de consultation :</h6>
+                </div>
+                <div class="col-md-6 ">
+                    <button class="btn btn-outline-primary btn-select-date dbtn-sm float-end" data-toggle="collapse" data-target="#formSelectionDate" aria-expanded="false" aria-controls="formSelectionDate">
                         Sélectionner une date de RDV
                     </button>
-                </h6>
-
+                </div>
             </div>
-        <div class="row">
-            <div class="card-body col-md-7" id="card-body-container">
+        <div class="row p-3">
+            <div class="col-md-3 mt-4">
+                <img src="{{asset('logo/appointmentcalendar.svg')}}" width="100%" height="auto" alt="">
+            </div>
+            <div class="card-body col-md-5" id="card-body-container">
                 <!-- Formulaire pour la sélection de la date de RDV -->
                 <div id="formSelectionDate" class="collapse">
                     <div class="card mt-3">
@@ -32,34 +39,38 @@
                             <form action="{{ route('ajouterRendezVous_patient') }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    <div class="mb-3 col-sm-6">
+                                    <div class="mb-3 col-sm-7">
                                         <label for="dateRdv" class="form-label">Sélectionnez une date</label>
-                                        <input type="date" class="form-control" id="dateRdv" name="dateRdv" onchange="updateDay()">
-                                        @error('dateRdv')<span class="badge badge-danger bg-danger">{{ $message }}</span>@enderror
+                                        <input type="date" class="form-control rounded-3" id="dateRdv" name="dateRdv" onchange="updateDay()">
+                                        @error('dateRdv')<span class="badge badge-primary bg-primary">{{ $message }}</span>@enderror
                                     </div>
-                                    <div class="mb-3 col-sm-6">
+                                    <div class="mb-3 col-sm-5">
                                         <label for="heure" class="form-label">Sélectionnez une heure</label>
-                                        <input type="time" class="form-control" id="heure" name="heure">
-                                        @error('heure')<span class="badge badge-danger bg-danger">{{ $message }}</span>@enderror
+                                        <input type="time" class="form-control rounded-3 small text-center"  id="heure" name="heure">
+                                        @error('heure')<span class="badge badge-primary bg-primary">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="jour" class="form-label">Jour</label>
-                                    <input type="text" class="form-control" id="jour" name="jour" readonly>
-                                    @error('jour')<span class="badge badge-danger bg-danger">{{ $message }}</span>@enderror
+                                    <input type="text" class="form-control rounded-3 text-center text-uppercase" id="jour" name="jour" readonly>
+                                    @error('jour')<span class="badge badge-primary bg-primary">{{ $message }}</span>@enderror
                                 </div>
 
                                 <input type="hidden" name="medecinId" value="{{ $medecin->id }}">
 
 
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-outline-info" name="submit" type="submit">Valider</button>
+                                <div class="d-grid gap-4">
+                                    <button class="btn btn-outline-primary text-uppercase" name="submit" type="submit">Valider</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
+                @if(empty($horairesParJour))
+                <div class="alert alert-danger" role="alert">
+                    Ce médecin n'a pas d'horaires disponibles pour le moment.
+                </div>
+                @else
                 <!-- Horaires de consultation -->
                 <div id="horairesContainer">
                     @foreach ($horairesParJour as $jour => $horaires)
@@ -86,7 +97,7 @@
                                             <input type="hidden" name="date" id="hiddenDateRdv_{{ $loop->index }}" value="{{ $horaire->format('Y-m-d') }}">
                                             <input type="hidden" name="heure" id="hiddenHeure_{{ $loop->index }}" value="{{ $horaire->format('H:i') }}">
                                             <input type="hidden" name="jour" id="hiddenJour_{{ $loop->index }}" value="{{ $horaire->format('l') }}">
-                                            <button onclick="handleSelection('{{ $horaire->format('Y-m-d') }}', '{{ $horaire->format('H:i') }}', '{{ $horaire->format('l') }}')" class="btn btn-outline-secondary mb-1 w-100">
+                                            <button onclick="handleSelection('{{ $horaire->format('Y-m-d') }}', '{{ $horaire->format('H:i') }}', '{{ $horaire->format('l') }}')" class="btn btn-outline-primary mb-1 w-100">
                                                 {{ $horaire->format('H:i') }}
                                             </button>
                                         </form>
@@ -97,82 +108,90 @@
                         </div>
                     </div>
                 @endforeach
-
                 </div>
+                 @endif
             </div>
 
-            <div class="col-md-5">
-                <!-- Card Bootstrap pour les horaires de disponibilité -->
-                <div class="card ">
-                    <div class="card-header text-center">
-                        Horaires de disponibilité
-                    </div>
-                    <div class="row">
-                        @if($horair->lundi_debut && $horair->lundi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
-                            <div class="card-header text-center">
+         <div class="col-md-4">
+            <!-- Card Bootstrap pour les horaires de disponibilité -->
+            <div class="card">
+                <div class="card text-center ">
+                  <h4 class="text-uppercase small title,">Jours  et  Horaires de disponibilité</h4>
+                </div>
+                <div class="row">
+                    @if(!empty($horair->lundi_debut) && !empty($horair->lundi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
+                            <div class="card-header text-center text-">
                                 Lundi
                             </div>
-                                <p style="text-align: center; font-weight:bold; ">{{ date('H:i', strtotime($horair->lundi_debut)) }} - {{ date('H:i', strtotime($horair->lundi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->lundi_debut)) }} - {{ date('H:i', strtotime($horair->lundi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->mardi_debut && $horair->mardi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->mardi_debut) && !empty($horair->mardi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Mardi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->mardi_debut)) }} - {{ date('H:i', strtotime($horair->mardi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->mardi_debut)) }} - {{ date('H:i', strtotime($horair->mardi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->mercredi_debut && $horair->mercredi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->mercredi_debut) && !empty($horair->mercredi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Mercredi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->mercredi_debut)) }} - {{ date('H:i', strtotime($horair->mercredi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->mercredi_debut)) }} - {{ date('H:i', strtotime($horair->mercredi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->jeudi_debut && $horair->jeudi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->jeudi_debut) && !empty($horair->jeudi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Jeudi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->jeudi_debut)) }} - {{ date('H:i', strtotime($horair->jeudi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->jeudi_debut)) }} - {{ date('H:i', strtotime($horair->jeudi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->vendredi_debut && $horair->vendredi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->vendredi_debut) && !empty($horair->vendredi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Vendredi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->vendredi_debut)) }} - {{ date('H:i', strtotime($horair->vendredi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->vendredi_debut)) }} - {{ date('H:i', strtotime($horair->vendredi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->samedi_debut && $horair->samedi_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->samedi_debut) && !empty($horair->samedi_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Samedi
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->samedi_debut)) }} - {{ date('H:i', strtotime($horair->samedi_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->samedi_debut)) }} - {{ date('H:i', strtotime($horair->samedi_fin)) }}</p>
                         </div>
-                        @endif
-                        @if($horair->dimanche_debut && $horair->dimanche_fin)
-                        <div class="card col-md-5 ms-4 mb-3">
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
+                    @if(!empty($horair->dimanche_debut) && !empty($horair->dimanche_fin))
+                        <div class="card col-sm-4 ms-4 mb-3">
                             <div class="card-header text-center">
                                 Dimanche
                             </div>
-                                <p style="text-align: center; font-weight:bold">{{ date('H:i', strtotime($horair->dimanche_debut)) }} - {{ date('H:i', strtotime($horaires->dimanche_fin)) }}</p>
+                            <p style="text-align: center; font-weight:bold;">{{ date('H:i', strtotime($horair->dimanche_debut)) }} - {{ date('H:i', strtotime($horair->dimanche_fin)) }}</p>
                         </div>
-                        @endif
-
-
-                    </div>
+                    @endif
+                    <!-- Répétez la structure pour chaque jour -->
                 </div>
             </div>
+        </div>
+
 
      </div>
 
 </div>
+</div>
+
 
 <!-- Script JavaScript pour gérer l'affichage du card-body -->
 <script>

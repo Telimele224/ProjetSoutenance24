@@ -24,7 +24,7 @@ class Rdv extends Model
     }
 
     public function consultations(){
-        return $this->hasMany(Medecin::class);
+        return $this->hasMany(Consultation::class);
     }
 
 }

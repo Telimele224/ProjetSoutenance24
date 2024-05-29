@@ -265,7 +265,7 @@ public function ajouterRendezVous(Request $request)
 
     // Vérifier que la date est supérieure à la date actuelle
     if (strtotime($dateRdv) <= strtotime(now())) {
-        return redirect()->back()->with('error', 'La date doit être ultérieure à aujourd\'hui.');
+        return redirect()->back()->with('error', 'La date doit être ultérieure à la date d\'aujourd\'hui.');
     }
 
     // Vérifier que l'heure est supérieure à l'heure actuelle
@@ -284,7 +284,7 @@ public function ajouterRendezVous(Request $request)
 
     // Vérifier la disponibilité du médecin à l'heure sélectionnée
     if ($horairesDisponibles->isEmpty()) {
-        return redirect()->back()->with('error', 'Le médecin n\'est pas disponible à cette heure.');
+        return redirect()->back()->with('error', 'Le médecin n\'est pas disponible ressayer ulterieurement.');
     }
 
     // Enregistrez le rendez-vous dans la session
