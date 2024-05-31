@@ -73,7 +73,7 @@
                                         <td class="text-nowrap align-middle">1</td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex align-items-center flex-wrap gap-1">
-                                                <img alt="image" class="avatar avatar-sm br-7 me-2" src="{{asset('assets/build/assets/images/users/16.jpg')}}">
+                                                <img alt="image" class="avatar avatar-sm br-7 me-2" src="{{asset('storage/'.$medecin->user->photo)}}">
 
                                             </div>
                                         </td>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <!-- COL-END -->
             </div>
             <div class="tab-pane" id="tab-12" role="tabpanel">
@@ -113,7 +113,7 @@
                             <div class="user-image">
                                 <img src="{{asset('assets/build/assets/images/media/files/04.jpg')}}" class="card-img-top" alt="...">
                                 <span class="avatar avatar-xl rounded-circle">
-                                    <img src="{{asset('assets/build/assets/images/users/16.jpg')}}" alt="" class="rounded-circle">
+                                    <img src="{{asset('storage/'.$medecin->user->photo)}}" alt="" class="rounded-circle">
                                 </span>
                             </div>
                             <div class="card-body text-center">
@@ -133,8 +133,6 @@
                                 </div>
                                 <a href="profile" class="fs-18 fw-bold d-block">{{$medecin->user->nom}} {{$medecin->user->prenom}}</a>
                                 <p class="text-muted text-center">{{$medecin->specialite}}</p>
-
-                                <p class="text-muted text-center">Biographie du medecins</p>
 
                                 <span class="text-muted mx-3"><i class="fe fe-map-pin mx-2 text-secondary ">{{$medecin->user->adresse}}</i></span>
                                 <span class="text-muted"><i class="fe fe-phone mx-2 text-success "></i>+224 {{$medecin->user->telephone}}</span>

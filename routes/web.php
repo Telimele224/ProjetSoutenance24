@@ -47,6 +47,11 @@ use App\Http\Controllers\pdf\AdminPdf;
 use App\Http\Controllers\pdf\MedecinPdf;
 use App\Http\Controllers\pdf\Patientdf;
 use App\Http\Controllers\pdf\Personnelpdf;
+use App\Http\Controllers\medecin\MedecinOrdonnancepdf;
+use App\Http\Controllers\medecin\medecinPdf\MedecinPdfController;
+use App\Http\Controllers\patient\PatientOrdonnancepdf;
+
+
 use App\Http\Controllers\PDFController;
 use App\Models\Consultation;
 use App\Models\Medecin;
@@ -80,6 +85,8 @@ Route::get('/adminpdf', [AdminPdf::class, 'generatePDF'])->name('adminpfd.pdf');
 Route::get('/medecinpdf', [MedecinPdf::class, 'medecin'])->name('medecinpdf.pdf');
 Route::get('/patientpdf', [Patientdf::class, 'patient'])->name('patientpdf.pdf');
 Route::get('/personnelpdf', [Personnelpdf::class, 'personnel'])->name('personnelpdf.pdf');
+
+Route::get('/medecinpdf', [MedecinPdfController::class, 'generatemedecinpdf'])->name('medecin.pdf');
 
 
 //Route pour la page contact
@@ -140,26 +147,35 @@ Route::get('/admin/listeTemoignage', [adminTemoignages::class, 'listeTemoignage'
 //ROUTE POUR LE PATIENTS BACK_END
 Route::prefix('patients')->name('patients.')->group(function () {
     Route::resource('temoignage',TemoignageControllers::class)->except('show');
+    Route::resource('patientpdf',PatientOrdonnancepdf::class);
     Route::resource('medecin',MedecinListeController::class)->except('show','create','store','update','edit','destroy');
     Route::resource('Dossier_medical',DossierMedicalController::class);
 
     // Route::resource('calendrier',calendrierControllers::class)->except('show');
 });
-
+Route::get('patients/ordonances/{consultation}', [PatientOrdonnancepdf::class, 'show'])->name('patientpdf.ordonanceShow');
 Route::get('Dossier_medical/consultation/{consultation}', [DossierMedicalController::class, 'show'])->name('dossier_medical.consultation.show');
+
 
 
 //ROUTE POUR LE MEDECINS BACK_END
 Route::prefix('medecins')->name('medecins.')->group(function () {
     // Route::resource('calendrier',calendrierControllers::class)->except('show');
     Route::resource('consultation', ConsultationController::class);
+    Route::resource('medecinpdf',MedecinOrdonnancepdf::class);
     Route::resource('patient', PatientsController::class)->except('show');
     Route::resource('monequipe', ListeMedecinsController::class)->except('show');
     Route::resource('ordonance',OrdonnanceController::class);
     Route::get('medecins/consultation/rendezvous', [RdvController::class, 'mesRendezVous'])->name('mesrendezvous');
 });
  // Route personnalisée pour create avec paramètre
+ Route::get('medecins/ordonances/{consultationId}', [MedecinOrdonnancepdf::class, 'show'])->name('medecinspdf.ordonanceShow');
+
+//  Route::get('medecins/medecinpdfShow/{ordonance}', [MedecinOrdonnancepdf::class, 'show'])->name('medecins.medecinpdfShow');
  Route::get('ordonance/create/{consultation_id}', [OrdonnanceController::class, 'create'])->name('ordonance.create');
+ Route::get('/medecins/rendezvous/filter', [ConsultationController::class, 'filterRendezVousByDate'])->name('medecins.rendezvous.filter');
+ Route::get('/rendezvous/filter', [RdvController::class, 'filter'])->name('rendezvous.filter');
+
 // Route::get('/medecins/consultation/getPatientsByDate', [ConsultationController::class, 'getPatientsByDate'])->name('medecins.consultation.getPatientsByDate');
 
 

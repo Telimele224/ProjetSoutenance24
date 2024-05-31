@@ -35,12 +35,12 @@ class OrdonnanceController extends Controller
         $patient = $rdv->patient->user;
 
         // Créer une instance vide d'ordonnance
-        $ordonnance = new Ordonance();
+        $ordonance = new Ordonance();
 
         // Passer les informations à la vue
         return view('medecins.ordonance.form', [
             'consultation' => $consultation,
-            'ordonnance' => $ordonnance,
+            'ordonance' => $ordonance,
             'rdv' => $rdv,
             'patient' => $patient,
         ]);
@@ -65,12 +65,16 @@ class OrdonnanceController extends Controller
      */
     public function show(Ordonance $ordonance)
     {
-        // Récupérer toutes les informations du patient associé à l'ordonnance
+        // Récupérer toutes les ordonnances de la consultation associée
+        $consultationId = $ordonance->consultation_id;
+        $ordonances = Ordonance::where('consultation_id', $consultationId)->get();
+
+        // Récupérer les informations du patient associé à l'ordonnance
         $patient = $ordonance->consultation->rdv->patient->user;
 
         // Passer les données à la vue
         return view('medecins.ordonance.show', [
-            'ordonance' => $ordonance,
+            'ordonances' => $ordonances,
             'patient' => $patient,
         ]);
     }

@@ -48,10 +48,10 @@
 
             <div class="row" style="align-items:flex-start">
                 <div class="col-md-5 text-end">
-                    <button type="button" id="add-medicine" class="btn btn-info">Ajouter un médicament</button>
+                    <button type="button" id="add-medicine" class="btn btn-info text-uppercase">Ajouter un médicament</button>
                 </div>
                 <div class="col-md-7">
-                    <button type="submit" class="btn btn-primary">Enregistrer la consultation</button>
+                    <button type="submit" class="btn btn-primary text-uppercase">Enregistrer l'ordonnance</button>
                 </div>
             </div>
         </form>

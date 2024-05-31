@@ -9,6 +9,7 @@ use App\Models\Patient;
 use App\Models\Rdv;
 use App\Models\TypeConsultation;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ConsultationController extends Controller
@@ -125,7 +126,8 @@ class ConsultationController extends Controller
         //
     }
 
-    public function listedesrendezvous()
+
+    public function listedesrendezvous(Request $request)
     {
         $user = auth()->user();
 
@@ -136,16 +138,70 @@ class ConsultationController extends Controller
             $medecinId = $user->medecin->id;
 
             // Récupérer les rendez-vous du médecin avec les détails des patients
-            $rendezVous = Rdv::where('id_medecin', $medecinId)->where('statut','accepté')->with('patient.user')->get();
+            $rendezVous = Rdv::where('id_medecin', $medecinId)
+                ->where('statut', 'accepté')
+                ->with('patient.user')
+                ->get();
+
+            // Mettre à jour le statut des rendez-vous passés à "manqué"
+            foreach ($rendezVous as $rdv) {
+                if (Carbon::parse($rdv->dateRdv . ' ' . $rdv->heure)->isPast() && $rdv->statut != 'manqué') {
+                    $rdv->statut = 'manqué';
+                    $rdv->save();
+                }
+            }
 
             // Passer les rendez-vous à la vue
-            return view('medecins.consultation.rendezvous', ['rendezVous' => $rendezVous,
-
-            'mesRendezVous' => Rdv::all(),
-            'consultations' => Consultation::all(),
-            'patients' => Patient::all(),
-            'typesConsultations' => TypeConsultation::all(),
-        ]);
-     }
+            return view('medecins.consultation.rendezvous', [
+                'rendezVous' => $rendezVous,
+                'mesRendezVous' => Rdv::all(),
+                'consultations' => Consultation::all(),
+                'patients' => Patient::all(),
+                'typesConsultations' => TypeConsultation::all(),
+                'selectedOption' => $request->get('filter', 'all'),
+            ]);
+        }
     }
+
+
+
+    public function filterRendezVousByDate(Request $request)
+    {
+        $user = auth()->user();
+
+        // Vérifier si l'utilisateur est un médecin et s'il a un médecin associé
+        if ($user->role === 'medecin' && $user->medecin) {
+            // L'utilisateur est un médecin et a un médecin associé
+            // Récupérer l'ID du médecin
+            $medecinId = $user->medecin->id;
+
+            // Initialiser la requête pour récupérer les rendez-vous
+            $query = Rdv::where('id_medecin', $medecinId)->where('statut', 'accepté')->with('patient.user');
+
+            // Filtrer par date si une date est fournie
+            if ($request->has('date') && !empty($request->date)) {
+                $query->whereDate('dateRdv', $request->date);
+            }
+
+            // Récupérer les rendez-vous filtrés
+            $rendezVous = $query->get();
+
+            // Passer les rendez-vous et l'option sélectionnée à la vue
+            return view('medecins.consultation.rendezvous', [
+                'rendezVous' => $rendezVous,
+                'mesRendezVous' => Rdv::all(),
+                'consultations' => Consultation::all(),
+                'patients' => Patient::all(),
+                'typesConsultations' => TypeConsultation::all(),
+                'selectedOption' => $request->get('filter', 'all'),
+               // Définir et passer l'option sélectionnée à la vue
+            ]);
+        }
+
+        return redirect()->back()->with('error', 'Accès non autorisé');
+    }
+
+
+
+
 }

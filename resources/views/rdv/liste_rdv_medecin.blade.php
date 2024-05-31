@@ -13,7 +13,16 @@
                             <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style" aria-selected="true" role="tab"><i class="fa fa-list"></i></a></li>
                             <li><a href="#tab-12" data-bs-toggle="tab" class="" title="Grid" aria-selected="false" role="tab" tabindex="-1"><i class="fa fa-th"></i></a></li>
                             <ol class="breadcrumb gap-3 ml-3">
-                                <li class="breadcrumb-item"><span><a href="{{route('medecins.consultation.create')}}" class="btn btn-primary"><i class="fe fe-plus"></i> Ajouter | patient</a></span></li>
+                                <form method="GET" action="{{ route('rendezvous.filter') }}" id="filter-form">
+                                    <select class="form-select" id="filter-select" name="filter">
+                                        <option value="tousrendezVous" {{ $selectedOption == 'tousrendezVous' ? 'selected' : '' }}>Tous les rendez-vous</option>
+                                        <option value="accepté" {{ $selectedOption == 'accepté' ? 'selected' : '' }}>Accepté</option>
+                                        <option value="en_attente" {{ $selectedOption == 'en_attente' ? 'selected' : '' }}>En attente</option>
+                                        <option value="annulé" {{ $selectedOption == 'annulé' ? 'selected' : '' }}>Annulé</option>
+                                        <option value="manqué" {{ $selectedOption == 'manqué' ? 'selected' : '' }}>Manqué</option>
+                                    </select>
+                                </form>
+
                             </ol>
                         </ul>
                     </div>
@@ -49,34 +58,39 @@
                                     <td>{{ $rendezVous->patient->user->nom }} {{ $rendezVous->patient->user->prenom }}</td>
                                     <td>
                                         @if ($rendezVous->statut == 'accepté')
-                                        <span class="border border-success rounded-2 p-1">{{ $rendezVous->statut }}</span>
-                                        @elseif ($rendezVous->statut == 'en attente')
+                                            <span class="border border-success rounded-2 p-1">{{ $rendezVous->statut }}</span>
+                                        @elseif ($rendezVous->statut == 'en_attente')
                                             <span class="border border-warning rounded-2 p-1">{{ $rendezVous->statut }}</span>
                                         @elseif ($rendezVous->statut == 'annulé')
+                                            <span class="border border-danger rounded-2 p-1">{{ $rendezVous->statut }}</span>
+                                        @elseif ($rendezVous->statut == 'manqué')
                                             <span class="border border-danger rounded-2 p-1">{{ $rendezVous->statut }}</span>
                                         @endif
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        <!-- Bouton pour accepter le rendez-vous -->
-                                        <form id="accept-form-{{ $rendezVous->id }}" action="{{ route('accepter_rendez_vous', $rendezVous->id) }}" method="POST">
-                                            @csrf
-                                            @if ($rendezVous->statut == 'accepté')
-                                                <button type="button" class="btn border border-success rounded-circle disabled accepter-btn d-center" title="Rendez-vous déjà accepté">
-                                                    <i class="fa fa-check fs-12 p-2"></i>
-                                                </button>
-                                            @else
-                                                <button type="submit" class="btn btn-success rounded-circle m-2 accept-btn" title="Accepter rendez-vous" onclick="hideRejectButton({{ $rendezVous->id }})">
-                                                    <i class="fa fa-check fs-15 p-2"></i>
+                                        @if ($rendezVous->statut != 'annulé' && $rendezVous->statut != 'manqué')
+                                            <!-- Bouton pour accepter le rendez-vous -->
+                                            <form id="accept-form-{{ $rendezVous->id }}" action="{{ route('accepter_rendez_vous', $rendezVous->id) }}" method="POST">
+                                                @csrf
+                                                @if ($rendezVous->statut == 'accepté')
+                                                    <button type="button" class="btn border border-success rounded-circle disabled accepter-btn d-center" title="Rendez-vous déjà accepté">
+                                                        <i class="fa fa-check fs-12 p-2"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="submit" class="btn btn-success rounded-circle m-2 accept-btn" title="Accepter rendez-vous" onclick="hideRejectButton({{ $rendezVous->id }})">
+                                                        <i class="fa fa-check fs-15 p-2"></i>
+                                                    </button>
+                                                @endif
+                                            </form>
+                                            <!-- Bouton pour rejeter le rendez-vous -->
+                                            @if ($rendezVous->statut != 'accepté' && $rendezVous->statut != 'annulé')
+                                                <button type="button" class="btn btn-danger rounded-circle m-2 reject-btn" title="Rejeter rendez-vous" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setRendezVousId({{ $rendezVous->id }})">
+                                                    <i class="fa fa-edit p-2"></i>
                                                 </button>
                                             @endif
-                                        </form>
-                                        <!-- Bouton pour rejeter le rendez-vous -->
-                                        @if ($rendezVous->statut != 'accepté')
-                                        <button type="button" class="btn btn-danger rounded-circle m-2 reject-btn" title="Rejeter rendez-vous" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setRendezVousId({{ $rendezVous->id }})">
-                                            <i class="fa fa-edit p-2"></i>
-                                        </button>
                                         @endif
                                     </td>
+
                                 </tr>
                                 @endif
                                 @endforeach
@@ -139,6 +153,24 @@
 @endsection
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+        const filterSelect = document.getElementById('filter-select');
+
+        filterSelect.addEventListener('change', function() {
+            document.getElementById('filter-form').submit();
+        });
+
+        setTimeout(function() {
+            const successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 5000);
+    });
+
+
+
 function setRendezVousId(id) {
     document.getElementById('rendez_vous_id').value = id;
     document.getElementById('annuler-rendez-vous-form').action = '/annuler-rendez-vous/' + id;

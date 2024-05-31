@@ -12,12 +12,12 @@
                 @method($consultation->exists ? 'put': 'post')
                 <div class="row gy-4 ">
                     <!-- Champ motif -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <label for="code" class="form-label">Référence du rendez-vous</label>
-                        <input type="text" class=" rounded-3 border-0 form-control @error('code') is-invalid @enderror" id="code" name="code" placeholder="Référence du rendez-vous" value="{{ old('code', $consultation->code) }}" disabled>
+                    <div  hidden class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <label for="code" class="form-label" >Référence du rendez-vous</label>
+                        <input type="text" class=" rounded-3 border-0 form-control  @error('code') is-invalid @enderror" id="code" name="code" placeholder="Référence du rendez-vous" value="{{ old('code', $consultation->code) }}" disabled>
                         <div class="invalid-feedback">@error('code') {{ $message }} @enderror</div>
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <label for="status" class="form-label">Statut</label>
                         <input type="text" class=" rounded-3 border-0 form-control @error('status') is-invalid @enderror" id="status" name="status" placeholder="Statut de la consultation" value="{{ old('status', $consultation->status) }}" disabled>
                         <div class="invalid-feedback">@error('status') {{ $message }} @enderror</div>
@@ -33,7 +33,7 @@
                         </select>
                         <div class="invalid-feedback">@error('type_consultation_id') {{ $message }} @enderror</div>
                     </div> --}}
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <label for="motif" class="form-label">Motif</label>
                         <input type="text" class=" rounded-3 border-0 form-control @error('motif') is-invalid @enderror" id="motif" name="motif" placeholder="Motif de la consultation" value="{{ old('motif', $consultation->motif) }}" disabled>
                         <div class="invalid-feedback">@error('motif') {{ $message }} @enderror</div>

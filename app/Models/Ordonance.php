@@ -20,6 +20,12 @@ class Ordonance extends Model
     {
         return $this->belongsTo(Consultation::class);
     }
+    // protected $casts = [
+    //     'name' => 'array',
+    //     'posologie' => 'array',
+    //     'modes_utilisation' => 'array',
+    // ];
+
 }
 
 

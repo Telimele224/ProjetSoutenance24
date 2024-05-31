@@ -15,7 +15,8 @@
                 <div class="row align-items-center justify-content-around">
                     <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
                     </div>
-                    <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
+                    <h4 class= " text-center title text-uppercase"> La liste des consultation</h4>
+                    {{-- <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
                         <ul class="nav item2-gl-menu float-end my-2" role="tablist">
                             <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style" aria-selected="true" role="tab"><i class="fa fa-list"></i></a></li>
                             <li><a href="#tab-12" data-bs-toggle="tab" class="" title="Grid" aria-selected="false" role="tab" tabindex="-1"><i class="fa fa-th"></i></a></li>
@@ -23,7 +24,7 @@
                                 <li class="breadcrumb-item"><span><a href="{{route('medecins.consultation.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | patient</a></span></li>
                             </ol>
                         </ul>
-                    </div>
+                    </div> --}}
                  </div>
             </div>
         </div>

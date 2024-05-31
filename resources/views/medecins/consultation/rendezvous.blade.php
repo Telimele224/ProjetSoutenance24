@@ -12,20 +12,35 @@
     <div class="col-xl-12">
         <div class="card p-0">
             <div class="card-body p-4">
-                <div class="row align-items-center justify-content-around">
-                    <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
+                <div class="row gy-4 align-items-center justify-content-around">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <select class="form-select" id="filter-select">
+                            <option value="all" {{ $selectedOption == 'all' ? 'selected' : '' }}>Tous les rendez-vous</option>
+                            <option value="today" {{ $selectedOption == 'today' ? 'selected' : '' }}>Aujourd'hui</option>
+                            <option value="tomorrow" {{ $selectedOption == 'tomorrow' ? 'selected' : '' }}>Demain</option>
+                        </select>
+                    </div>
 
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <form method="GET" action="{{ route('medecins.rendezvous.filter') }}" id="date-filter-form">
+                            <div class="input-group flatpickr" id="flatpickr-date">
+                                <input type="text" name="date" class="form-control flatpickr-input" placeholder="Select date" data-input readonly="readonly">
+                                <span class="input-group-text input-group-addon" data-toggle="">
+                                    <button type="button" id="calendar-button"><i class="fa fa-calendar" style="color: white"></i></button>
+                                </span>
+                            </div>
+                            <input type="hidden" name="filter" id="filter-input">
+                        </form>
                     </div>
-                    <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
-                        <ul class="nav item2-gl-menu float-end my-2" role="tablist">
-                            <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style" aria-selected="true" role="tab"><i class="fa fa-list"></i></a></li>
-                            <li><a href="#tab-12" data-bs-toggle="tab" class="" title="Grid" aria-selected="false" role="tab" tabindex="-1"><i class="fa fa-th"></i></a></li>
-                            <ol class="breadcrumbn gap-3 ml-3 ">
-                                <li class="breadcrumb-item"><span><a href="{{route('medecins.consultation.create')}}" class="btn btn-primary"> <i class="fe fe-plus"></i>  Ajouter | Consultation</a></span></li>
-                            </ol>
-                        </ul>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <div class="btn input-group flatpickr" id="flatpickr-date">
+                            <label for="imprimer">Imprimer</label>
+                            <span class="input-group-text input-group-addon" data-toggle="">
+                                <button type="button" id="print-button"><i class="fa fa-printer" style="color: white"></i></button>
+                            </span>
+                        </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>
@@ -38,34 +53,42 @@
                             <thead class="p-2">
                                 <tr>
                                     <th class="">No</th>
-                                    <th class="">Jour </th>
+                                    <th class="">Jour</th>
                                     <th class="">Date</th>
                                     <th class="">Heure</th>
                                     <th class="">Patient</th>
-                                    <th class="">Telephone</th>
+                                    <th class="">Téléphone</th>
                                     <th class="">Statut</th>
                                     <th class="">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="p-2">
-                                @foreach ($rendezVous as $k => $rendezVous)
-                                    @if ($rendezVous->patient)
+                                @forelse ($rendezVous as $k => $rdv)
+                                    @if ($rdv->patient)
                                         <tr>
                                             <td>{{$k+1}}</td>
-                                            <td>{{ $rendezVous->jour }}</td>
-                                            <td>{{ $rendezVous->dateRdv }}</td>
-                                            <td>{{ $rendezVous->heure }}</td>
-                                            <td>P.{{ $rendezVous->patient->user->nom }} {{ $rendezVous->patient->user->prenom }}</td>
-                                            <td>{{$rendezVous->patient->user->telephone}}</td>
-                                            <td>{{$rendezVous->statut}}</td>
-                                           <td><div class=" text-center">
-                                            <span class=" btn btn-primary">
-                                                <a href="{{route('medecins.consultation.create')}}">Consulter</a>
-                                            </span>
-                                        </div> </td>
+                                            <td>{{ $rdv->jour }}</td>
+                                            <td>{{ $rdv->dateRdv }}</td>
+                                            <td>{{ $rdv->heure }}</td>
+                                            <td>P.{{ $rdv->patient->user->nom }} {{ $rdv->patient->user->prenom }}</td>
+                                            <td>{{$rdv->patient->user->telephone}}</td>
+                                            <td>{{$rdv->statut}}</td>
+                                            <td>
+                                                <div class="text-center">
+                                                    <span class="btn btn-primary consult-btn"
+                                                        data-rdv-date="{{ $rdv->dateRdv }}"
+                                                        data-rdv-time="{{ $rdv->heure }}">
+                                                        <a href="{{route('medecins.consultation.create')}}" class="consult-link">Consulter</a>
+                                                    </span>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endif
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">Aucun rendez-vous ne correspond à la date sélectionnée.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -76,12 +99,142 @@
     </div>
 </div>
 
-{{-- {{$rendezVous->links()}} --}}
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    // Attendre 10 secondes (10000 millisecondes) avant de masquer le message de succès
-    setTimeout(function(){
-        $('#success-message').fadeOut();
-    }, 5000);
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterSelect = document.getElementById('filter-select');
+        const dateInput = document.querySelector('#flatpickr-date input');
+        const filterInput = document.getElementById('filter-input');
+        const form = document.getElementById('date-filter-form');
+        let initialLoad = true; // Nouvelle variable pour vérifier le chargement initial
+
+        const datePicker = flatpickr(dateInput, {
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr, instance) {
+                if (!initialLoad) {
+                    form.submit();
+                }
+            }
+        });
+
+        // Load the selected filter option from local storage
+        const storedFilterOption = localStorage.getItem('selectedFilterOption');
+        if (storedFilterOption) {
+            filterSelect.value = storedFilterOption;
+            updateDateFilter(storedFilterOption);
+        } else {
+            filterSelect.value = 'all';
+        }
+
+        filterSelect.addEventListener('change', function() {
+            const selectedOption = filterSelect.value;
+            localStorage.setItem('selectedFilterOption', selectedOption);
+            updateDateFilter(selectedOption);
+        });
+
+        function updateDateFilter(selectedOption) {
+            let dateToFilter = '';
+
+            switch(selectedOption) {
+                case 'today':
+                    dateToFilter = '{{ now()->format("Y-m-d") }}';
+                    break;
+                case 'tomorrow':
+                    dateToFilter = '{{ now()->addDay()->format("Y-m-d") }}';
+                    break;
+                case 'all':
+                    if (!initialLoad) {
+                        window.location.href = '{{ route('listerendezvous') }}';
+                    }
+                    return;
+                default:
+                    dateToFilter = '';
+            }
+
+            dateInput.value = dateToFilter;
+            filterInput.value = selectedOption;
+
+            if (!initialLoad) {
+                form.submit();
+            }
+
+            initialLoad = false;
+        }
+
+        document.getElementById('calendar-button').addEventListener('click', function() {
+            datePicker.open();
+        });
+
+        document.getElementById('print-button').addEventListener('click', function() {
+            window.print();
+        });
+
+        setTimeout(function(){
+            const successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 5000);
+
+        initialLoad = false; // Une fois que tout est configuré, marquer le chargement initial comme terminé
+
+        // Griser le bouton consulter avant la date et heure du rendez-vous
+        const consultButtons = document.querySelectorAll('.consult-btn');
+        const now = new Date();
+
+        consultButtons.forEach(button => {
+            const rdvDate = button.getAttribute('data-rdv-date');
+            const rdvTime = button.getAttribute('data-rdv-time');
+            const rdvDateTime = new Date(`${rdvDate}T${rdvTime}`);
+
+            if (rdvDateTime > now) {
+                button.classList.add('disabled');
+                button.querySelector('.consult-link').removeAttribute('href');
+                button.setAttribute('title', "La date du rendez-vous n'est pas encore arrivée");
+            }
+        });
+
+        // Afficher le tooltip sur le survol
+        consultButtons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                const title = button.getAttribute('title');
+                if (title) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'custom-tooltip';
+                    tooltip.innerText = title;
+                    document.body.appendChild(tooltip);
+
+                    const rect = button.getBoundingClientRect();
+                    tooltip.style.left = `${rect.left + window.scrollX}px`;
+                    tooltip.style.top = `${rect.top + window.scrollY - tooltip.offsetHeight - 5}px`;
+
+                    button.addEventListener('mouseleave', function() {
+                        if (tooltip) {
+                            tooltip.remove();
+                        }
+                    });
+                }
+            });
+        });
+    });
 </script>
+
+<style>
+    .disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .custom-tooltip {
+        position: absolute;
+        background-color: rgb(3, 17, 26);
+        color: white;
+        padding: 5px;
+        border-radius: 3px;
+        z-index: 1000;
+        font-size: 12px;
+    }
+</style>
+
 @endsection

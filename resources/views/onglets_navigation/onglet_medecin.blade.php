@@ -51,9 +51,6 @@
                       <a href="javascript:void(0);">Consulation</a>
                    </li>
                    <li class="slide">
-                     <a href="{{route('medecins.consultation.create')}}" class="side-menu__item"><span> <i class="fa fa-check-circle me-2"></i>Enregistrer</span></a>
-                   </li>
-                   <li class="slide">
                       <a href="{{route('medecins.consultation.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol me-2"></i>Listes</span></a>
                    </li>
                     <li class="slide">
@@ -70,29 +67,12 @@
                    <i class="fe fe-chevron-right side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1">
-
-                   <li class="slide">
-                      <a href="{{ route('medecins.login_medecin_view') }}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Ajout | Rendez-vous</span></a>
-                   </li>
                    <li class="slide">
                       <a href="{{ route('liste_rdv_medecin') }}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Liste | Rendez-vous</span></a>
                    </li>
                 </ul>
              </li>
              <!-- End::slide -->
-            <!-- Start::slide  Calendrier-->
-            <li class="slide has-sub">
-            <a href="javascript:void(0);" class="side-menu__item">
-                <span class="side-menu__label"><i class="fa fa-calendar"></i>          CALENDRIER</span>
-                <i class="fe fe-chevron-right side-menu__angle"></i>
-            </a>
-            <ul class="slide-menu child1">
-                <li class="slide">
-                    <a href="{{route('admin.calendriers.index')}}" class="side-menu__item"><span><i class="fa fa-calendar-o"></i>      Date du jour</span></a>
-                </li>
-            </ul>
-            </li>
-            <!-- End::slide -->
              <!-- Start::slide  Patient-->
              <li class="slide has-sub">
                 <a href="javascript:void(0);" class="side-menu__item">
@@ -160,7 +140,7 @@
                     <a href="javascript:void(0);"><span>Forum</a>
                 </li>
                 <li class="slide">
-                    <a href="{{route('profile.edit')}}" class="side-menu__item"><span><i class="ion-person"></i>        Profile</span></a>
+                    <a href="{{route('profilee.edit')}}" class="side-menu__item"><span><i class="ion-person"></i>        Profile</span></a>
                 </li>
                 <li class="slide">
                     <a >

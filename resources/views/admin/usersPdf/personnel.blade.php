@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('pdfassets/css/custom.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('pdfassets/css/media-query.css')}}">
     <link href="{{asset('assets/build/assets/iconfonts/icons.css')}}" rel="stylesheet">
+    <link rel="icon" href="{{asset(logo/LogoHRL.png)}}">
 
 </head>
 <body>
@@ -27,16 +28,7 @@
 						<div class="invoice-logo">
 							<a href="hotel_booking.html" class="logo"><img src="{{asset('Image/Logo HRL.png')}}" alt="this is a invoice logo"></a>
                         </div>
-						{{-- <div class="invo-head-content">
-							<div class="invo-head-wrap">
-								<div class="invo-num-title invo-no inter-700">Invoice No:</div>
-								<div class="invo-num inter-400">#DI56789</div>
-							</div>
-							<div class="invo-head-wrap invoi-date-wrap">
-								<div class="invo-num-title invo-date inter-700">Invoice Date:</div>
-								<div class="invo-num inter-400">30/11/2022</div>
-							</div>
-						</div> --}}
+						
 					</div>
 					<div class="invoice-header-contact">
 						<div class="invo-cont-wrap invo-contact-wrap">

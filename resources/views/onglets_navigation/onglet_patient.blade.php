@@ -72,17 +72,7 @@
              </li>
              <!-- End::slide -->
             <!-- Start::slide  Calendrier-->
-            <li class="slide has-sub">
-            <a href="javascript:void(0);" class="side-menu__item">
-                <span class="side-menu__label"><i class="fa fa-calendar"></i>          CALENDRIER</span>
-                <i class="fe fe-chevron-right side-menu__angle"></i>
-            </a>
-            <ul class="slide-menu child1">
-                <li class="slide">
-                    <a href="{{route('admin.calendriers.index')}}" class="side-menu__item"><span><i class="fa fa-calendar-o"></i>      Date du jour</span></a>
-                </li>
-            </ul>
-            </li>
+
             <!-- End::slide -->
              <li class="slide__category"><span class="category-name">DISCUSION</span></li>
              <!-- End::slide__category -->
@@ -155,7 +145,7 @@
                     <a href="javascript:void(0);"><span>Forum</a>
                 </li>
                 <li class="slide">
-                    <a href="{{route('profile.edit')}}" class="side-menu__item"><span><i class="ion-person"></i>        Profile</span></a>
+                    <a href="{{route('profilepatient.edit')}}" class="side-menu__item"><span><i class="ion-person"></i>        Profile</span></a>
                 </li>
                 <li class="slide">
                     <a >

@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\Medecin;
+use App\Models\Consultation;
+use App\Models\TypeConsultation;
 use App\Models\Role;
 use App\Models\Horaires;
 use App\Models\Patient;
@@ -403,7 +405,7 @@ public function liste_rdv_patient()
     }
 }
 
-public function liste_rdv_medecin()
+public function liste_rdv_medecin(Request $request)
 {
     // Récupérer l'utilisateur connecté
     $user = auth()->user();
@@ -414,11 +416,20 @@ public function liste_rdv_medecin()
         // Récupérer l'ID du médecin
         $medecinId = $user->medecin->id;
 
+        $statut = $request->input('filter', 'tousrendezVous');
+
+        $query = Rdv::where('id_medecin', $medecinId)->with('patient.user');
+
+        if ($statut != 'tousrendezVous') {
+            $query->where('statut', $statut);
+        }
+
+
         // Récupérer les rendez-vous du médecin avec les détails des patients
-        $rendezVous = Rdv::where('id_medecin', $medecinId)->where('is_deleted', false)->with('patient.user')->get();
+        $rendezVous = Rdv::where('id_medecin', $medecinId)->with('patient.user')->get();
 
         // Passer les rendez-vous à la vue
-        return view('rdv.liste_rdv_medecin', ['rendezVous' => $rendezVous]);
+        return view('rdv.liste_rdv_medecin', ['rendezVous' => $rendezVous, 'selectedOption' => $statut,]);
     } else {
         // L'utilisateur n'est pas un médecin ou n'a pas de médecin associé
         // Rediriger l'utilisateur vers une page d'erreur ou une autre page
@@ -493,4 +504,33 @@ public function annulerRendezVous(Request $request,$id)
         return redirect()->route('home')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
     }
  }
+
+ public function filter(Request $request)
+{
+    $user = auth()->user();
+
+    if ($user->role === 'medecin' && $user->medecin) {
+        $medecinId = $user->medecin->id;
+
+        $statut = $request->input('filter', 'tousrendezVous');
+
+        $query = Rdv::where('id_medecin', $medecinId)->with('patient.user');
+
+        if ($statut != 'tousrendezVous') {
+            $query->where('statut', $statut);
+        }
+
+        $rendezVous = $query->get();
+
+        return view('rdv.liste_rdv_medecin', [
+            'rendezVous' => $rendezVous,
+            'mesRendezVous' => Rdv::all(),
+            'patients' => Patient::all(),
+            'selectedOption' => $statut,
+        ]);
+    }
+}
+
+
+
 }
