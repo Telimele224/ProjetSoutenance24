@@ -55,10 +55,22 @@ class OrdonnanceController extends Controller
     public function store(OrdonnanceRequest $request)
     {
         $data = $request->validated();
-        // dd($data);
-        Ordonance::create($data);
-        return redirect()->route('medecins.ordonance.index')->with('sucess', 'Ajout effectue avec success !');
+    
+        if (isset($data['ordonnances'])) {
+            foreach ($data['ordonnances'] as $ordonanceData) {
+                Ordonance::create([
+                    'consultation_id' => $data['consultation_id'],
+                    'name' => $ordonanceData['name'],
+                    'posologie' => $ordonanceData['posologie'],
+                    'mode_utilisation' => $ordonanceData['mode_utilisation'],
+                ]);
+            }
+        }
+    
+        return redirect()->route('medecins.ordonance.index')->with('success', 'Ajout effectué avec succès !');
     }
+    
+    
 
     /**
      * Display the specified resource.
@@ -82,52 +94,47 @@ class OrdonnanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ordonance $ordonance)
-    {
-        // Vérifier si l'ordonnance est associée à une consultation
-        if (!$ordonance->consultation) {
-            return redirect()->route('medecins.consultation.index')->withErrors('Cette ordonnance n\'est pas associée à une consultation.');
+
+     public function edit($consultationId)
+{
+    $consultation = Consultation::findOrFail($consultationId);
+    $rdv = $consultation->rdv;
+    $patient = $rdv->patient->user;
+    $ordonances = Ordonance::where('consultation_id', $consultationId)->get();
+
+    return view('medecins.ordonance.edit', [
+        'consultation' => $consultation,
+        'rdv' => $rdv,
+        'patient' => $patient,
+        'ordonances' => $ordonances,
+    ]);
+}
+
+
+public function update(OrdonnanceRequest $request, $consultationId)
+{
+    $data = $request->validated();
+
+    Ordonance::where('consultation_id', $consultationId)->delete();
+
+    if (isset($data['ordonnances'])) {
+        foreach ($data['ordonnances'] as $ordonanceData) {
+            Ordonance::create([
+                'consultation_id' => $consultationId,
+                'name' => $ordonanceData['name'],
+                'posologie' => $ordonanceData['posologie'],
+                'mode_utilisation' => $ordonanceData['mode_utilisation'],
+            ]);
         }
-
-        // Récupérer la consultation associée à l'ordonnance
-        $consultation = $ordonance->consultation;
-
-        // Vérifier si la consultation a un rendez-vous associé
-        if (!$consultation->rdv) {
-            return redirect()->route('medecins.consultation.index')->withErrors('Aucun rendez-vous associé à cette consultation.');
-        }
-
-        // Récupérer le rendez-vous associé à la consultation
-        $rdv = $consultation->rdv;
-
-        // Vérifier si le rendez-vous a un patient associé
-        if (!$rdv->patient) {
-            return redirect()->route('medecins.consultation.index')->withErrors('Aucun patient associé à ce rendez-vous.');
-        }
-
-        // Récupérer l'utilisateur (patient) associé au rendez-vous
-        $patient = $rdv->patient->user;
-
-        // Passer les informations à la vue
-        return view('medecins.ordonance.form', [
-            'consultation' => $consultation,
-            'ordonance' => $ordonance,
-            'rdv' => $rdv,
-            'patient' => $patient,
-        ]);
     }
 
+    return redirect()->route('medecins.ordonance.index')->with('success', 'Modification effectuée avec succès !');
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(OrdonnanceRequest $request, Ordonance $ordonance)
-    {
-        $data = $request->validated();
-        $ordonance->update($data);
-        return redirect()->route('medecins.ordonance.index')->with('sucess', 'Modification effectue avec success !');
+   
 
-    }
+    
+    
 
     /**
      * Remove the specified resource from storage.

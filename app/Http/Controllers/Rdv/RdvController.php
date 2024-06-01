@@ -384,19 +384,37 @@ public function confirmationRdv(Request $request)
 }
 
 
-public function liste_rdv_patient()
+public function liste_rdv_patient(Request $request)
 {
     // Récupérer l'utilisateur connecté
     $user = auth()->user();
 
     // Vérifier si l'utilisateur est un patient et s'il a un patient associé
     if ($user->role === 'patient' && $user->patient) {
-        // L'utilisateur est un patient et a un patient associé
-        // Récupérer les rendez-vous du patient avec les détails du médecin
-        $rendezVous = Rdv::where('id_patient', $user->patient->id)->with('medecin')->get();
+        // Récupérer l'ID du patient
+        $patientId = $user->patient->id;
+
+        // Mettre à jour le statut des rendez-vous en attente dont la date et l'heure sont dépassées
+        $now = now();
+        Rdv::where('id_patient', $patientId)
+            ->where('statut', 'en_attente')
+            ->where('dateRdv', '<=', $now->toDateString())
+            ->where('heure', '<=', $now->toTimeString())
+            ->update(['statut' => 'annulé']);
+
+        $statut = $request->input('filter', 'tousrendezVous');
+
+        $query = Rdv::where('id_patient', $patientId)->with('medecin.user');
+
+        if ($statut != 'tousrendezVous') {
+            $query->where('statut', $statut);
+        }
+
+        // Récupérer les rendez-vous du patient avec les détails des médecins
+        $rendezVous = $query->get();
 
         // Passer les rendez-vous à la vue
-        return view('rdv.liste_rdv_patient', ['rendezVous' => $rendezVous]);
+        return view('rdv.liste_rdv_patient', ['rendezVous' => $rendezVous, 'selectedOption' => $statut]);
     } else {
         // L'utilisateur n'est pas un patient ou n'a pas de patient associé
         // Rediriger l'utilisateur vers une page d'erreur ou une autre page
@@ -404,6 +422,7 @@ public function liste_rdv_patient()
         return redirect()->route('home')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
     }
 }
+
 
 public function liste_rdv_medecin(Request $request)
 {
@@ -416,6 +435,14 @@ public function liste_rdv_medecin(Request $request)
         // Récupérer l'ID du médecin
         $medecinId = $user->medecin->id;
 
+        // Mettre à jour le statut des rendez-vous en attente dont la date et l'heure sont dépassées
+        $now = now();
+        Rdv::where('id_medecin', $medecinId)
+            ->where('statut', 'en_attente')
+            ->where('dateRdv', '<=', $now->toDateString())
+            ->where('heure', '<=', $now->toTimeString())
+            ->update(['statut' => 'annulé']);
+
         $statut = $request->input('filter', 'tousrendezVous');
 
         $query = Rdv::where('id_medecin', $medecinId)->with('patient.user');
@@ -424,12 +451,11 @@ public function liste_rdv_medecin(Request $request)
             $query->where('statut', $statut);
         }
 
-
         // Récupérer les rendez-vous du médecin avec les détails des patients
-        $rendezVous = Rdv::where('id_medecin', $medecinId)->with('patient.user')->get();
+        $rendezVous = $query->get();
 
         // Passer les rendez-vous à la vue
-        return view('rdv.liste_rdv_medecin', ['rendezVous' => $rendezVous, 'selectedOption' => $statut,]);
+        return view('rdv.liste_rdv_medecin', ['rendezVous' => $rendezVous, 'selectedOption' => $statut]);
     } else {
         // L'utilisateur n'est pas un médecin ou n'a pas de médecin associé
         // Rediriger l'utilisateur vers une page d'erreur ou une autre page
@@ -437,6 +463,7 @@ public function liste_rdv_medecin(Request $request)
         return redirect()->route('home')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
     }
 }
+
 
 
 public function accepterRendezVous($id)

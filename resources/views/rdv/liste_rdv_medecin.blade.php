@@ -20,6 +20,7 @@
                                         <option value="en_attente" {{ $selectedOption == 'en_attente' ? 'selected' : '' }}>En attente</option>
                                         <option value="annulé" {{ $selectedOption == 'annulé' ? 'selected' : '' }}>Annulé</option>
                                         <option value="manqué" {{ $selectedOption == 'manqué' ? 'selected' : '' }}>Manqué</option>
+                                        <option value="consulté" {{ $selectedOption == 'consulté' ? 'selected' : '' }}>Consulté</option>
                                     </select>
                                 </form>
 
@@ -65,16 +66,18 @@
                                             <span class="border border-danger rounded-2 p-1">{{ $rendezVous->statut }}</span>
                                         @elseif ($rendezVous->statut == 'manqué')
                                             <span class="border border-danger rounded-2 p-1">{{ $rendezVous->statut }}</span>
+                                        @elseif ($rendezVous->statut == 'consulté')
+                                            <span class="border border-danger rounded-2 p-1">{{ $rendezVous->statut }}</span>
                                         @endif
                                     </td>
                                     <td class="d-flex align-items-center">
-                                        @if ($rendezVous->statut != 'annulé' && $rendezVous->statut != 'manqué')
+                                        @if ($rendezVous->statut != 'annulé' && $rendezVous->statut != 'manqué' && $rendezVous->statut != 'consulté')
                                             <!-- Bouton pour accepter le rendez-vous -->
                                             <form id="accept-form-{{ $rendezVous->id }}" action="{{ route('accepter_rendez_vous', $rendezVous->id) }}" method="POST">
                                                 @csrf
                                                 @if ($rendezVous->statut == 'accepté')
                                                     <button type="button" class="btn border border-success rounded-circle disabled accepter-btn d-center" title="Rendez-vous déjà accepté">
-                                                        <i class="fa fa-check fs-12 p-2"></i>
+                                                        <i class="fa fa-check  fs-12 p-2"></i>
                                                     </button>
                                                 @else
                                                     <button type="submit" class="btn btn-success rounded-circle m-2 accept-btn" title="Accepter rendez-vous" onclick="hideRejectButton({{ $rendezVous->id }})">

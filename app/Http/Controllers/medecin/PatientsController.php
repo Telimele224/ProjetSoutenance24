@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\medecin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rdv;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,28 @@ class PatientsController extends Controller
      */
     public function index()
     {
-       return view('medecins.patient.index',[
-        'users' => User::orderBy('created_at', 'desc')->paginate(10)
-       ]);
+        // Récupérer l'utilisateur connecté
+        $user = auth()->user();
+    
+        // Vérifier si l'utilisateur est un médecin et s'il a un médecin associé
+        if ($user->role === 'medecin' && $user->medecin) {
+            // Récupérer les rendez-vous du médecin avec les détails du patient
+            $rendezVous = Rdv::where('id_medecin', $user->medecin->id)->with('patient.user')->get();
+    
+            // Extraire les patients des rendez-vous
+            $patients = $rendezVous->map(function ($rdv) {
+                return $rdv->patient->user;
+            })->unique('id');
+    
+            // Passer les patients à la vue
+            return view('medecins.patient.index', ['patients' => $patients]);
+        } else {
+            // L'utilisateur n'est pas un médecin ou n'a pas de médecin associé
+            return redirect()->route('home')->with('error', 'Vous n\'êtes pas autorisé à accéder à cette page.');
+        }
     }
-
+    
+    
     /**
      * Show the form for creating a new resource.
      */

@@ -63,7 +63,7 @@
                                                         <a href="{{ route('medecins.ordonance.show', $ordonance) }}"><i class="fe fe-eye fs-15"></i></a>
                                                     </span>
                                                     <span class="avatar rounded-circle btn btn-info">
-                                                        <a href="{{ route('medecins.ordonance.edit', ['ordonance' => $ordonance->id]) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
+                                                        <a href="{{ route('medecins.Ordonanceconsultation.edit', ['consultationId' => $consultationId]) }}" class="text-decoration-none text-default"><i class="fa fa-edit fs-15"></i></a>
                                                     </span>
                                                     <span class="avatar rounded-circle btn btn-secondary">
                                                         <a href="{{ route('medecinspdf.ordonanceShow', ['consultationId' => $consultationId])}}" class="text-decoration-none text-default">
@@ -96,4 +96,5 @@
         $('#success-message').fadeOut();
     }, 5000);
 </script>
+
 @endsection

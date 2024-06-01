@@ -38,7 +38,7 @@
       <link rel="stylesheet" href="{{asset('assets/select2.css')}}">
       <link rel="stylesheet" href="{{asset('assets/select2.min.css')}}">
        <!-- Scripts -->
-       @vite(['resources/css/app.css', 'resources/js/app.js'])
+       {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
    </head>
    <body class="app sidebar-mini">
       @include('en_tete.couleur')

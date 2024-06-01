@@ -75,11 +75,17 @@
                                             <td>{{$rdv->statut}}</td>
                                             <td>
                                                 <div class="text-center">
-                                                    <span class="btn btn-primary consult-btn"
-                                                        data-rdv-date="{{ $rdv->dateRdv }}"
-                                                        data-rdv-time="{{ $rdv->heure }}">
-                                                        <a href="{{route('medecins.consultation.create')}}" class="consult-link">Consulter</a>
-                                                    </span>
+                                                    @if($rdv->statut == 'consulté' && !$rdv->consultations->isEmpty())
+                                                        <span class="avatar rounded-circle bg-blue-dark">
+                                                            <a href="{{ route('medecins.consultation.show', $rdv->consultations->first()->id) }}"><i class="fe fe-eye fs-15"></i></a>
+                                                        </span>
+                                                    @else
+                                                        <span class="btn btn-primary consult-btn"
+                                                            data-rdv-date="{{ $rdv->dateRdv }}"
+                                                            data-rdv-time="{{ $rdv->heure }}">
+                                                            <a href="{{ route('medecins.consultation.create') }}" class="consult-link">Consulter</a>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
@@ -106,7 +112,7 @@
         const dateInput = document.querySelector('#flatpickr-date input');
         const filterInput = document.getElementById('filter-input');
         const form = document.getElementById('date-filter-form');
-        let initialLoad = true; // Nouvelle variable pour vérifier le chargement initial
+        let initialLoad = true;
 
         const datePicker = flatpickr(dateInput, {
             dateFormat: "Y-m-d",
@@ -117,7 +123,6 @@
             }
         });
 
-        // Load the selected filter option from local storage
         const storedFilterOption = localStorage.getItem('selectedFilterOption');
         if (storedFilterOption) {
             filterSelect.value = storedFilterOption;
@@ -176,9 +181,8 @@
             }
         }, 5000);
 
-        initialLoad = false; // Une fois que tout est configuré, marquer le chargement initial comme terminé
+        initialLoad = false;
 
-        // Griser le bouton consulter avant la date et heure du rendez-vous
         const consultButtons = document.querySelectorAll('.consult-btn');
         const now = new Date();
 
@@ -186,15 +190,15 @@
             const rdvDate = button.getAttribute('data-rdv-date');
             const rdvTime = button.getAttribute('data-rdv-time');
             const rdvDateTime = new Date(`${rdvDate}T${rdvTime}`);
+            const endOfDay = new Date(`${rdvDate}T23:59:59`);
 
-            if (rdvDateTime > now) {
+            if (now < rdvDateTime || now > endOfDay) {
                 button.classList.add('disabled');
                 button.querySelector('.consult-link').removeAttribute('href');
-                button.setAttribute('title', "La date du rendez-vous n'est pas encore arrivée");
+                button.setAttribute('title', "La date du rendez-vous n'est pas encore arrivée ou est déjà passée");
             }
         });
 
-        // Afficher le tooltip sur le survol
         consultButtons.forEach(button => {
             button.addEventListener('mouseenter', function() {
                 const title = button.getAttribute('title');

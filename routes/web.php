@@ -28,6 +28,7 @@ use App\Http\Controllers\medecin\PatientsController;
 use App\Http\Controllers\medecin\ProfileMedecinController;
 use App\Http\Controllers\patient\DossierMedicalController;
 use App\Http\Controllers\patient\MedecinListeController;
+use App\Http\Controllers\patient\PatientConsultationController;
 use App\Http\Controllers\patient\ProfilePatientController;
 use App\Http\Controllers\patient\TemoignageControllers;
 use App\Http\Controllers\ProfileController;
@@ -155,9 +156,9 @@ Route::prefix('patients')->name('patients.')->group(function () {
 });
 Route::get('patients/ordonances/{consultation}', [PatientOrdonnancepdf::class, 'show'])->name('patientpdf.ordonanceShow');
 Route::get('Dossier_medical/consultation/{consultation}', [DossierMedicalController::class, 'show'])->name('dossier_medical.consultation.show');
-
-
-
+Route::get('/patients/rendezvous/filter', [RdvpatientController::class, 'filterRendezVousByDate'])->name('patients.rendezvous.filter');
+Route::get('patients/mesrendezvous', [RdvpatientController::class, 'listeRendezVousPatient'])->name('patients.mesrendezvous');
+Route::get('/patient/consultation/{consultation}', [PatientConsultationController::class, 'show'])->name('patients.consultation.show');
 //ROUTE POUR LE MEDECINS BACK_END
 Route::prefix('medecins')->name('medecins.')->group(function () {
     // Route::resource('calendrier',calendrierControllers::class)->except('show');
@@ -168,8 +169,14 @@ Route::prefix('medecins')->name('medecins.')->group(function () {
     Route::resource('ordonance',OrdonnanceController::class);
     Route::get('medecins/consultation/rendezvous', [RdvController::class, 'mesRendezVous'])->name('mesrendezvous');
 });
+
+Route::get('/medecins/ordonance/edit/{consultationId}', [OrdonnanceController::class, 'edit'])->name('medecins.Ordonanceconsultation.edit');
+Route::put('/medecins/ordonanceupdate/{consultationId}', [OrdonnanceController::class, 'update'])->name('medecins.ordonanceUpdate');
+
+
  // Route personnalisée pour create avec paramètre
  Route::get('medecins/ordonances/{consultationId}', [MedecinOrdonnancepdf::class, 'show'])->name('medecinspdf.ordonanceShow');
+//  Route::get('medecins/Ordonanceconsultation/{consultationId}', [OrdonnanceController::class, 'edit'])->name('medecins.Ordonanceconsultation.edit');
 
 //  Route::get('medecins/medecinpdfShow/{ordonance}', [MedecinOrdonnancepdf::class, 'show'])->name('medecins.medecinpdfShow');
  Route::get('ordonance/create/{consultation_id}', [OrdonnanceController::class, 'create'])->name('ordonance.create');

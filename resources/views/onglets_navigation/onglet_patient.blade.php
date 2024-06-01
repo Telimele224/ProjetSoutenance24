@@ -66,6 +66,9 @@
                       <a href={{route('recommandation.service_patient')}} class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Ajout | Rendez-vous</span></a>
                    </li>
                    <li class="slide">
+                     <a href="{{ route('patients.mesrendezvous') }}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Mes rendez vous</span></a>
+                  </li>
+                   <li class="slide">
                       <a href="{{ route('liste_rdv_patient') }}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>Liste | Rendez-vous</span></a>
                    </li>
                 </ul>

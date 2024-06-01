@@ -470,6 +470,62 @@ public function annuler_rendezvous(){
     ])->with('success', 'La demande de rendez-vous a été confirmée avec succès');
 }
 
+public function listeRendezVousPatient(Request $request)
+{
+    $user = auth()->user();
+
+    if ($user->role === 'patient' && $user->patient) {
+        $patientId = $user->patient->id;
+
+        $query = Rdv::where('id_patient', $patientId)
+            ->whereIn('statut', ['accepté', 'consulté'])
+            ->with(['medecin.user', 'consultations']);
+
+        if ($request->has('date') && !empty($request->date)) {
+            $query->whereDate('dateRdv', $request->date);
+        }
+
+        $rendezVous = $query->get();
+
+        return view('patients.rendez-vous.mesrendezvous', [
+            'rendezVous' => $rendezVous,
+            'selectedOption' => $request->get('filter', 'all'),
+        ]);
+    } else {
+        return redirect()->back()->with('error', 'Accès non autorisé');
+    }
+}
+
+public function filterRendezVousByDate(Request $request)
+{
+    $user = auth()->user();
+
+    if ($user->role === 'patient' && $user->patient) {
+        $patientId = $user->patient->id;
+
+        $query = Rdv::where('id_patient', $patientId)
+            ->whereIn('statut', ['accepté', 'consulté'])
+            ->with(['medecin.user', 'consultations']);
+
+        if ($request->has('date') && !empty($request->date)) {
+            $query->whereDate('dateRdv', $request->date);
+        }
+
+        $rendezVous = $query->get();
+
+        return view('patients.rendez-vous.mesrendezvous', [
+            'rendezVous' => $rendezVous,
+            'selectedOption' => $request->get('filter', 'all'),
+        ]);
+    }
+
+    return redirect()->back()->with('error', 'Accès non autorisé');
+}
+
+
+
+
+
 
 
     /**

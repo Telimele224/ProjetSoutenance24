@@ -22,11 +22,13 @@ class OrdonnanceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'consultation_id'=>['required','exists:consultations,id'],
-            'name'=>['required','string'],
-            'posologie'=>['required','string'],
-            'mode_utilisation'=>['required','string'],
-
+            'consultation_id' => 'required|exists:consultations,id',
+            'ordonnances' => 'required|array',
+            'ordonnances.*.name' => 'required|string|max:255',
+            'ordonnances.*.posologie' => 'required|string|max:255',
+            'ordonnances.*.mode_utilisation' => 'required|string|max:1000',
         ];
     }
+    
+
 }
