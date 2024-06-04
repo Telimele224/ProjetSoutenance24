@@ -27,17 +27,26 @@ class ServiceControllers extends Controller
 
     }
     public function create()
-    {   $service = new Service();
-        $services =Service::all();
-        $symptoms = Symptom::all();
-        $illnesses = Illness::all();
-        $diseases = Disease::all();
-        $serviceSymptoms = [];
-        $serviceIllnesses=[];
-        $serviceDiseases =[];
-        return view("admin.service.form",['service' => $service] ,compact("services","symptoms", "illnesses", "diseases","serviceSymptoms","serviceIllnesses","serviceDiseases"));
+{
+    $service = new Service();
+    $symptoms = Symptom::all();
+    $illnesses = Illness::all();
+    $diseases = Disease::all();
+    $serviceSymptoms = [];
+    $serviceIllnesses = [];
+    $serviceDiseases = [];
 
-    }
+    return view("admin.service.form", [
+        'service' => $service,
+        'symptoms' => $symptoms,
+        'illnesses' => $illnesses,
+        'diseases' => $diseases,
+        'serviceSymptoms' => $serviceSymptoms,
+        'serviceIllnesses' => $serviceIllnesses,
+        'serviceDiseases' => $serviceDiseases
+    ]);
+}
+
 
     // public function create()
     // {
@@ -51,43 +60,48 @@ class ServiceControllers extends Controller
      * Store a newly created resource in storage.
      */
     public function store(ServiceRequest $request)
-{
-    $data = $request->validated();
-
-    // Vérifie si l'un des champs (symptômes, maux ou maladies) est renseigné
-    if (!$request->filled('symptoms') && !$request->filled('illnesses') && !$request->filled('diseases')) {
-        return redirect()->back()->withInput()->withErrors(['error' => 'Veuillez renseigner au moins un symptôme, un mal ou une maladie.']);
-    }
-
-    // Vérification et traitement des fichiers photo et avatar
-    if ($request->hasFile('photo')) {
-        $photo = $request->file('photo');
-        if ($photo->isValid()) {
-            $new_photo = $photo->getClientOriginalName();
-            $data['photo'] = $photo->storeAs('services', $new_photo, 'public');
+    {
+        $data = $request->validated();
+    
+        // Vérifie si l'un des champs (symptômes, maux ou maladies) est renseigné
+        if (!$request->filled('symptoms') && !$request->filled('illnesses') && !$request->filled('diseases')) {
+            return redirect()->back()->withInput()->withErrors(['error' => 'Veuillez renseigner au moins un symptôme, un mal ou une maladie.']);
         }
-    }
-
-    if ($request->hasFile('avatar')) {
-        $avatar = $request->file('avatar');
-        if ($avatar->isValid()) {
-            $new_avatar = $avatar->getClientOriginalName();
-            $data['avatar'] = $avatar->storeAs('services', $new_avatar, 'public');
+    
+        // Vérification et traitement des fichiers photo et avatar
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            if ($photo->isValid()) {
+                $new_photo = $photo->getClientOriginalName();
+                $data['photo'] = $photo->storeAs('services', $new_photo, 'public');
+            }
         }
+    
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            if ($avatar->isValid()) {
+                $new_avatar = $avatar->getClientOriginalName();
+                $data['avatar'] = $avatar->storeAs('services', $new_avatar, 'public');
+            }
+        }
+    
+        // Création du service avec les données validées
+        $service = Service::create($data);
+    
+        // Association des symptômes, maladies et maux au service
+        $symptoms = $request->input('symptoms', []);
+        $illnesses = $request->input('illnesses', []);
+        $diseases = $request->input('diseases', []);
+    
+        $service->symptoms()->sync($symptoms);
+        $service->illnesses()->sync($illnesses);
+        $service->diseases()->sync($diseases);
+    
+        // Redirection avec un message de succès
+        return redirect()->route('admin.service.index')->with('success', 'Ajout effectué avec succès !');
     }
-
-    // Création du service avec les données validées
-    $service=Service::create($data);
-
-     // Association des symptômes, maladies et maux au service
-     $service->symptoms()->sync($request->input('symptoms',[]));
-     $service->illnesses()->sync($request->input('illnesses',[]));
-     $service->diseases()->sync($request->input('diseases',[]));
-
-    // Redirection avec un message de succès
-    return redirect()->route('admin.service.index')->with('sucess', 'Ajout effectué avec succès !');
-}
-
+    
+    
 
     /**
      * Display the specified resource.

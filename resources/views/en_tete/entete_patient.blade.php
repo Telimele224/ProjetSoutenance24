@@ -59,6 +59,21 @@
                <!-- PAGE-HEADER -->
                @include('connexion_en_cours.titre')
                <!-- PAGE-HEADER END -->
+
+               @if (session('success'))
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                   {{ session('success') }}
+                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
+               @endif
+
+               @if (session('error'))
+               <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                   {{ session('error') }}
+                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
+               @endif
+
                <!-- CONTAINER -->
                @yield('contenu')
             </div>
@@ -197,6 +212,18 @@
       <script type="module" src="{{asset('assets/build/assets/app-6df099bd.js')}}"></script>
       <script src="{{asset('assets/select2.full.js')}}"></script>
       <script src="{{asset('assets/select2js.js')}}"></script>
+
+      <script>
+         // Faire disparaître les alertes après 20 secondes
+         setTimeout(function() {
+             let alert = document.querySelector('.alert');
+             if (alert) {
+                 alert.style.transition = 'opacity 0.5s ease';
+                 alert.style.opacity = '0';
+                 setTimeout(() => alert.remove(), 500); // Attendre que la transition se termine
+             }
+         }, 10000); // 20 secondes
+     </script>
 
       <!-- END SCRIPTS -->
    </body>

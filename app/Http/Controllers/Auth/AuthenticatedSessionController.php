@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\AdminLog;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate(); // Régénère la session pour des raisons de sécurité
 
+        $this->authenticated($request, Auth::user()); // Appel de la méthode pour enregistrer l'action de connexion
+
         return redirect()->intended(RouteServiceProvider::HOME); // Redirige l'utilisateur vers la page d'origine ou la page d'accueil si non spécifiée
     }
 
@@ -37,6 +40,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+        
+        if ($user && $user->role === 'admin') {
+            AdminLog::create([
+                'user_id' => $user->id,
+                'action' => 'Deconnecté',
+            ]);
+        }
+
         Auth::guard('web')->logout(); // Déconnecte l'utilisateur en utilisant le garde 'web'
 
         $request->session()->invalidate(); // Invalide la session actuelle
@@ -44,5 +56,18 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken(); // Régénère le jeton de session pour des raisons de sécurité
 
         return redirect('/'); // Redirige l'utilisateur vers la page d'accueil
+    }
+
+     /**
+     * Méthode pour enregistrer l'action de connexion d'un administrateur.
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->role === 'admin') {
+            AdminLog::create([
+                'user_id' => $user->id,
+                'action' => 'Connecté',
+            ]);
+        }
     }
 }

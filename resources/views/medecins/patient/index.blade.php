@@ -8,7 +8,7 @@
             <div class="card-body p-4">
                 <div class="row align-items-center justify-content-around">
                     <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
-                        <!-- Vous pouvez ajouter des actions supplémentaires ici -->
+                        <h6>Liste des patients liés aux rendez vous du medecin</h6>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-4 col-sm-4">
                         <!-- Formulaire de filtrage (si nécessaire) -->

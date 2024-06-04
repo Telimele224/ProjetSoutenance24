@@ -7,16 +7,7 @@
             <span class="heading-five">Liste des Maladies</span>
         </div>
         <div class="card-body">
-            @if(Session::has('success'))
-            <div class="alert alert-success " style="height: 50px;margin-bottom:15px">
-              {{Session::get('success')}}
-            </div>
-            @elseif(Session::has('error'))
-            <div class="alert alert-danger " style="height: 50px;margin-bottom:15px">
-              {{Session::get('error')}}
-            </div>
-            @endif
-
+           
             <!-- table start -->
             <table class="table table-bordered" id="diseasesTable">
                 <thead>

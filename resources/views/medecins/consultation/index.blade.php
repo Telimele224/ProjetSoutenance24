@@ -2,11 +2,11 @@
 
 @section('contenu')
 
-@if(session('success'))
+{{-- @if(session('success'))
     <div id="success-message" class="alert alert-success" role="alert">
         {{ session('success') }}
     </div>
-@endif
+@endif --}}
 
 <div class="row row-cards">
     <div class="col-xl-12">

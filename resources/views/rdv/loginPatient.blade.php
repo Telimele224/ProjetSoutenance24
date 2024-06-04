@@ -2,15 +2,21 @@
 
 @section('contenu')
 <div class="card" style="margin-top:20px; margin-left:20%; width:60%">
-    @if(Session::has('success'))
-    <div class="alert alert-success " style="height: 50px;margin-bottom:15px">
-      {{Session::get('success')}}
-    </div>
-    @elseif(Session::has('error'))
-    <div class="alert alert-danger " style="height: 50px;margin-bottom:15px">
-      {{Session::get('error')}}
+
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    
     <div class="card-header text-center">
         <h6>Connectez-Vous</h6>
     </div>

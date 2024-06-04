@@ -4,7 +4,7 @@
 @section('contenu')
 <div class="card " style="margin-top:20px ;margin-left:10px; width:95%">
     <div class="card " style="margin-top:20px ;margin-left:10%; width:80%">
-    @if(Session::has('success'))
+    {{-- @if(Session::has('success'))
     <div id="successMessage" class="alert alert-success" style="height: 50px; margin-bottom: 15px">
         {{ Session::get('success') }}
     </div>
@@ -12,7 +12,7 @@
     <div id="errorMessage" class="alert alert-danger " style="height: 50px;margin-bottom:15px">
         {{Session::get('error') }}
     </div>
-    @endif
+    @endif --}}
             <div class=" row card-header mb-4 p-3">
 
                 <div class="col-md-6 text-center">

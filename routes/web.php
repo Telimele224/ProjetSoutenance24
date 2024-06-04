@@ -39,6 +39,9 @@ use App\Http\Controllers\Rdv\SymptomController;
 use App\Http\Requests\medecin\ConsultationRequest;
 use App\Models\TypeConsultation;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\historique\AdminhController;
+use App\Http\Controllers\historique\logIController;
+use App\Http\Controllers\historique\logOController;
 use App\Http\Controllers\impression\AdminImpression;
 use App\Http\Controllers\impression\MedecinImpression;
 use App\Http\Controllers\impression\PatientImpression;
@@ -184,6 +187,13 @@ Route::put('/medecins/ordonanceupdate/{consultationId}', [OrdonnanceController::
  Route::get('/rendezvous/filter', [RdvController::class, 'filter'])->name('rendezvous.filter');
 
 // Route::get('/medecins/consultation/getPatientsByDate', [ConsultationController::class, 'getPatientsByDate'])->name('medecins.consultation.getPatientsByDate');
+
+
+// routes/web.php
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/historique', [AdminhController::class, 'index'])->name('admin.historique.index');
+});
 
 
 Route::middleware('auth')->group(function () {

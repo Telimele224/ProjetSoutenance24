@@ -3,17 +3,21 @@
 
 @section('contenu')
 <div class="card" style="margin-top:20px; margin-left:20%; width:60%">
-    @if(Session::has('success'))
-    <div id="successMessage" class="alert alert-success" style="height: 50px; margin-bottom: 15px">
-        {{ Session::get('success') }}
+    
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
-    @if(Session::has('error'))
-        <div id="errorMessage" class="alert alert-danger" style="height: 50px; margin-bottom: 15px">
-            {{ Session::get('error') }}
-        </div>
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
+
     <div class="card text-center text-uppercase p-3 ">
         <h5 class=" title text-center bold "> CONFIRMEZ-VOUS CES INFORMATIONS ? </h5>
     </div>

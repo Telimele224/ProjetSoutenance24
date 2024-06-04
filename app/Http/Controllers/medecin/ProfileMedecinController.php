@@ -26,18 +26,23 @@ class ProfileMedecinController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request ): View
+    public function edit(Request $request): View
     {
-       $medecins = Medecin::all();
-    //    $patients = Patient::all();
-
-       return view('medecins.profilee.edit',[
-           'user' => $request ->user(),
-           'medecins'=>$medecins,
-        //    'patients' => $patients
-       ]);
-
+        $medecin = $request->user()->medecin;  
+        // Supposons que l'utilisateur connecté est un médecin et qu'il a une relation avec le modèle Medecin.
+        $horaires = $medecin->horaires; // Relation entre le médecin et ses horaires
+    
+        // Débogage pour vérifier si les horaires sont correctement récupérés
+        // dd($horaires);
+    
+        return view('medecins.profilee.edit', [
+            'user' => $request->user(),
+            'medecin' => $medecin,
+            'horaires' => $horaires,
+        ]);
     }
+    
+
 
     /**
      * Update the specified resource in storage.

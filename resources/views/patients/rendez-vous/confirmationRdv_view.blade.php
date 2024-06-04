@@ -3,17 +3,7 @@
 
 @section('contenu')
 <div class="card" style="margin-top:20px; margin-left:5%; width:90%">
-    @if(Session::has('success'))
-    <div id="successMessage" class="alert alert-success" style="height: 50px; margin-bottom: 15px">
-        {{ Session::get('success') }}
-    </div>
-    @endif
-
-    @if(Session::has('error'))
-        <div id="errorMessage" class="alert alert-danger" style="height: 50px; margin-bottom: 15px">
-            {{ Session::get('error') }}
-        </div>
-    @endif
+  
     <div class="card text-center text-uppercase p-3 ">
         <h5 class=" title text-center bold "> CONFIRMEZ-VOUS CES INFORMATIONS ? </h5>
     </div>

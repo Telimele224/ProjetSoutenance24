@@ -27,25 +27,33 @@
                         @csrf
                         @method($service->exists ? 'put': 'post')
                         <div class="row">
-                
                             <div class="mb-20 form-group col-sm-6 mb-2">
-                                <label   for="nom" :value="__('nom')" class="mb-2 fw-500">Nom du service<span class="text-danger ms-1">*</span></label>
-                                <div class="input-group ">
+                                <label for="nom" class="mb-2 fw-500">Nom du service<span class="text-danger ms-1">*</span></label>
+                                <div class="input-group">
                                     <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-arrow-left"></i></span>
-                                    <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Entrer le nom du service" aria-label="nom" aria-describedby="addon-wrapping" value="{{ old('nom', $service->nom) }}" ><br>
+                                    <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" placeholder="Entrer le nom du service" aria-label="nom" aria-describedby="addon-wrapping" value="{{ old('nom', $service->nom) }}">
                                     <div class="invalid-feedback">@error('nom') {{$message}} @enderror </div>
                                 </div>
                             </div>
-                          
+
                             <!-- Champs pour les symptômes -->
                             <div class="mb-20 form-group col-sm-6 mb-2">
                                 <label class="mb-10 fw-semibold">Symptômes (optionnel)</label>
                                 <div class="select-container">
-                                    <select name="symptoms[]" class="form-control select2">
+                                    <select id="symptomsSelect" class="form-control">
+                                        <option value="">-- Sélectionner des symptômes --</option>
                                         @foreach($symptoms as $symptom)
-                                        <option value="{{ $symptom->id }}" {{ in_array($symptom->id, $serviceSymptoms) ? 'selected' : '' }}>{{ $symptom->nom }}</option>
+                                        <option value="{{ $symptom->id }}">{{ $symptom->nom }}</option>
                                         @endforeach
                                     </select>
+                                    <div id="symptomsCheckboxes" style="display: none;">
+                                        @foreach($symptoms as $symptom)
+                                        <div>
+                                            <input type="checkbox" class="symptom-checkbox" value="{{ $symptom->id }}" {{ in_array($symptom->id, $serviceSymptoms) ? 'checked' : '' }}>{{ $symptom->nom }}
+                                        </div>
+                                        @endforeach
+                                        <input type="hidden" name="symptoms" id="symptoms" value="{{ implode(',', $serviceSymptoms) }}">
+                                    </div>
                                 </div>
                             </div>
 
@@ -53,11 +61,20 @@
                             <div class="mb-20 form-group col-sm-6 mb-2">
                                 <label class="mb-10 fw-semibold">Maux (optionnel)</label>
                                 <div class="select-container">
-                                    <select name="illnesses[]" class="form-control select2">
+                                    <select id="illnessesSelect" class="form-control">
+                                        <option value="">-- Sélectionner des maux --</option>
                                         @foreach($illnesses as $illness)
-                                        <option value="{{ $illness->id }}" {{ in_array($illness->id, $serviceIllnesses) ? 'selected' : '' }}>{{ $illness->nom }}</option>
+                                        <option value="{{ $illness->id }}">{{ $illness->nom }}</option>
                                         @endforeach
                                     </select>
+                                    <div id="illnessesCheckboxes" style="display: none;">
+                                        @foreach($illnesses as $illness)
+                                        <div>
+                                            <input type="checkbox" class="illness-checkbox" value="{{ $illness->id }}" {{ in_array($illness->id, $serviceIllnesses) ? 'checked' : '' }}>{{ $illness->nom }}
+                                        </div>
+                                        @endforeach
+                                        <input type="hidden" name="illnesses" id="illnesses" value="{{ implode(',', $serviceIllnesses) }}">
+                                    </div>
                                 </div>
                             </div>
 
@@ -65,32 +82,39 @@
                             <div class="mb-20 form-group col-sm-6 mb-2">
                                 <label class="mb-10 fw-semibold">Maladies (optionnel)</label>
                                 <div class="select-container">
-                                    <select name="diseases[]" class="form-control select2">
+                                    <select id="diseasesSelect" class="form-control">
+                                        <option value="">-- Sélectionner des maladies --</option>
                                         @foreach($diseases as $disease)
-                                        <option value="{{ $disease->id }}" {{ in_array($disease->id, $serviceDiseases) ? 'selected' : '' }}>{{ $disease->nom }}</option>
+                                        <option value="{{ $disease->id }}">{{ $disease->nom }}</option>
                                         @endforeach
                                     </select>
+                                    <div id="diseasesCheckboxes" style="display: none;">
+                                        @foreach($diseases as $disease)
+                                        <div>
+                                            <input type="checkbox" class="disease-checkbox" value="{{ $disease->id }}" {{ in_array($disease->id, $serviceDiseases) ? 'checked' : '' }}>{{ $disease->nom }}
+                                        </div>
+                                        @endforeach
+                                        <input type="hidden" name="diseases" id="diseases" value="{{ implode(',', $serviceDiseases) }}">
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6 position-relative">
-                                <label   for="photo" :value="__('Photo')" class="mb-2 fw-500">Photo du Service<span class="text-danger ms-1">*</span></label>
-                                <div class="input-group ">
+                                <label for="photo" class="mb-2 fw-500">Photo du Service<span class="text-danger ms-1">*</span></label>
+                                <div class="input-group">
                                     <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-convert"></i></span>
-                                    <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" placeholder="selectionner une photo" aria-label="photo" aria-describedby="addon-wrapping" value="{{ old('photo', $service->photo) }}" ><br>
+                                    <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" placeholder="selectionner une photo" aria-label="photo" aria-describedby="addon-wrapping" value="{{ old('photo', $service->photo) }}">
                                     <div class="invalid-feedback">@error('photo') {{$message}} @enderror </div>
                                 </div>
                             </div>
                             <div class="col-md-6 position-relative">
-                                <label   for="avatar" :value="__('avatar')" class="mb-2 fw-500">Logo du Service<span class="text-danger ms-1">*</span></label>
-                                <div class="input-group ">
+                                <label for="avatar" class="mb-2 fw-500">Logo du Service<span class="text-danger ms-1">*</span></label>
+                                <div class="input-group">
                                     <span class="input-group-text" id="addon-wrapping"><i class="mdi mdi-account-convert"></i></span>
-                                    <input type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" placeholder="selectionner une avatar" aria-label="avatar" aria-describedby="addon-wrapping" value="{{ old('avatar', $service->avatar) }}" ><br>
+                                    <input type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" placeholder="selectionner une avatar" aria-label="avatar" aria-describedby="addon-wrapping" value="{{ old('avatar', $service->avatar) }}">
                                     <div class="invalid-feedback">@error('avatar') {{$message}} @enderror </div>
                                 </div>
                             </div>
-
-                            <!-- Autres champs de formulaire -->
 
                             <div class="form-group mb-0">
                                 <label for="description" class="mb-2 fw-500">Description du service<span class="text-danger ms-1">*</span></label>
@@ -118,30 +142,44 @@
     </div>
 </div>
 
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2({
-                tags: true, // Permet d'ajouter de nouveaux tags
-                tokenSeparators: [',', ' '], // Définit les séparateurs de token pour la création de tags
-                allowClear: true, // Autorise l'effacement des éléments sélectionnés
-            });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const symptomsSelect = document.getElementById('symptomsSelect');
+        const symptomsCheckboxes = document.getElementById('symptomsCheckboxes');
+        const illnessesSelect = document.getElementById('illnessesSelect');
+        const illnessesCheckboxes = document.getElementById('illnessesCheckboxes');
+        const diseasesSelect = document.getElementById('diseasesSelect');
+        const diseasesCheckboxes = document.getElementById('diseasesCheckboxes');
 
-            $('.select2').on('select2:open', function (e) {
-                // Retirez la classe hide-option du select2-dropdown
-                $('.select2-dropdown').removeClass('hide-option');
-            });
-
-            $('.select2').on('select2:close', function (e) {
-                // Ajoutez la classe hide-option au select2-dropdown
-                $('.select2-dropdown').addClass('hide-option');
-            });
-
-            // Fermez le dropdown lorsqu'un clic est effectué en dehors de celui-ci
-            $(document).on('click', function (e) {
-                if (!$(e.target).closest('.select2-container').length) {
-                    $('.select2-dropdown').addClass('hide-option');
-                }
-            });
+        symptomsSelect.addEventListener('change', function() {
+            symptomsCheckboxes.style.display = symptomsSelect.value ? 'block' : 'none';
         });
-    </script>
+
+        illnessesSelect.addEventListener('change', function() {
+            illnessesCheckboxes.style.display = illnessesSelect.value ? 'block' : 'none';
+        });
+
+        diseasesSelect.addEventListener('change', function() {
+            diseasesCheckboxes.style.display = diseasesSelect.value ? 'block' : 'none';
+        });
+
+        function updateHiddenFields() {
+            const symptomCheckboxes = document.querySelectorAll('.symptom-checkbox:checked');
+            const illnessCheckboxes = document.querySelectorAll('.illness-checkbox:checked');
+            const diseaseCheckboxes = document.querySelectorAll('.disease-checkbox:checked');
+            
+            document.getElementById('symptoms').value = Array.from(symptomCheckboxes).map(cb => cb.value).join(',');
+            document.getElementById('illnesses').value = Array.from(illnessCheckboxes).map(cb => cb.value).join(',');
+            document.getElementById('diseases').value = Array.from(diseaseCheckboxes).map(cb => cb.value).join(',');
+        }
+
+        document.querySelectorAll('.symptom-checkbox, .illness-checkbox, .disease-checkbox').forEach(function(checkbox) {
+            checkbox.addEventListener('change', updateHiddenFields);
+        });
+
+        // Initialize the hidden fields with any pre-selected values
+        updateHiddenFields();
+    });
+</script>
+
 @endsection

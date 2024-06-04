@@ -56,9 +56,23 @@
 
     </div>
 
+
+   
 <div class="contenair">
     @yield('contenu')
 </div>
+
+<script>
+    // Faire disparaître les alertes après 20 secondes
+    setTimeout(function() {
+        let alert = document.querySelector('.alert');
+        if (alert) {
+            alert.style.transition = 'opacity 0.5s ease';
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 500); // Attendre que la transition se termine
+        }
+    }, 10000); // 20 secondes
+</script>
 
 <script>
     // Si un message de session flash avec un délai est présent, masquez-le après quelques secondes

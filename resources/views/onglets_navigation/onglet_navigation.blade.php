@@ -58,8 +58,12 @@
                        </li>
                        <li class="slide">
                           <a href="{{route('admin.administrateur.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i>        Listes</span></a>
-                    </ul>
-                 </li>
+                       </li>
+                       <li class="slide">
+                        <a href="{{route('admin.historique.index')}}" class="side-menu__item"> <span><i class="fa fa-list-ol"></i> historique de connexion</span></a>
+                     </li>
+                     </ul>
+                 </li> 
                      <!-- Start::slide  fin-->
 
              <!-- Start::slide  Medecins-->
