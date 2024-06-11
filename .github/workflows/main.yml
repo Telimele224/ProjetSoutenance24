@@ -21,8 +21,8 @@ jobs:
             - name: Install Dependencies
               run: |
                 composer install
-                composer artisan migrate:refresh
-                composer artisan db:seed
+                php artisan migrate:refresh
+                php artisan db:seed
               
               env:
                 APP_ENV: production
